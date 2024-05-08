@@ -92,6 +92,49 @@ header .es-site-header-right .site-right-buttons .es-logged-in-user .es-user-nam
   line-height: 20px;
 }
 
+.es-site-footer {
+  background: #3C3F41;
+  padding: 10px 0px;
+}
+.es-site-footer .es-footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.es-site-footer .es-footer-inner .es-left {
+  display: flex;
+  gap: 25px;
+}
+.es-site-footer .es-footer-inner .es-copyright p {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16.41px;
+  color: rgba(255, 255, 255, 0.4078431373);
+}
+.es-site-footer .es-footer-inner .es-footer-menu ul {
+  display: flex;
+  gap: 10px;
+}
+.es-site-footer .es-footer-inner .es-footer-menu ul li {
+  list-style: none;
+}
+.es-site-footer .es-footer-inner .es-footer-menu ul li a {
+  color: rgba(255, 255, 255, 0.6980392157);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16.41px;
+  display: inline-block;
+  padding: 6px 17px;
+  border-radius: 4px 4px 0 0;
+  transition: all 0.1s ease-in;
+  border-bottom: 2px solid transparent;
+}
+.es-site-footer .es-footer-inner .es-footer-menu ul li a:hover {
+  background-color: #484b4e;
+  border-bottom: 2px solid #fff;
+}
+
 .courses-header-slider {
   margin-top: 30px;
   position: relative;
@@ -118,6 +161,7 @@ header .es-site-header-right .site-right-buttons .es-logged-in-user .es-user-nam
 }
 .courses-header-slider .es-slide a {
   font-size: 14px;
+  font-weight: 500;
   color: #3C3F41;
   background-color: #ffffff;
   border-radius: 6px;
@@ -177,6 +221,7 @@ header .es-site-header-right .site-right-buttons .es-logged-in-user .es-user-nam
 }
 .es-purchased-bar a {
   font-size: 14px;
+  font-weight: 500;
   color: #3C3F41;
   background-color: #ffffff;
   border-radius: 3px;
@@ -191,15 +236,13 @@ header .es-site-header-right .site-right-buttons .es-logged-in-user .es-user-nam
 
 .es-site-courses-grid {
   display: grid;
-  grid-template-columns: 20% 20% 20% 20% 20%;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 20px;
 }
 .es-site-courses-grid .es-course-item {
   border: 1px solid #e1e4e8;
   border-radius: 6px;
   position: relative;
-}
-.es-site-courses-grid .es-course-item:not(:last-child) {
-  margin-right: 20px;
 }
 .es-site-courses-grid .es-course-item img {
   width: 100%;
@@ -303,6 +346,7 @@ header .es-site-header-right .site-right-buttons .es-logged-in-user .es-user-nam
   background: #E04B06;
   color: #ffffff;
   font-size: 14px;
+  font-weight: 500;
   border-radius: 6px;
   width: 100%;
   display: flex;
@@ -379,6 +423,50 @@ header .es-site-header-right .site-right-buttons .es-logged-in-user .es-user-nam
   font-weight: 500;
   line-height: 24px;
   margin-bottom: 4px;
+}
+
+.es-courses-marketplace-banner {
+  margin: 60px 0px;
+}
+.es-courses-marketplace-banner .es-cmb-inner {
+  background: #7a7c7d;
+  padding: 50px 0px 70px;
+  border-radius: 6px;
+  text-align: center;
+  color: white;
+}
+.es-courses-marketplace-banner .es-cmb-inner h5 {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  margin-bottom: 10px;
+}
+.es-courses-marketplace-banner .es-cmb-inner h3 {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 30px;
+  margin: 0px;
+}
+.es-courses-marketplace-banner .es-cmb-inner p {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  margin-top: 12px;
+}
+.es-courses-marketplace-banner .es-cmb-inner .es-btn {
+  font-size: 14px;
+  font-weight: 500;
+  color: white;
+  background: #E04B06;
+  border-radius: 6px;
+  padding: 16px 50px;
+  text-decoration: none;
+  margin-top: 15px;
+  display: inline-block;
+  transition: all 0.2s ease-in;
+}
+.es-courses-marketplace-banner .es-cmb-inner .es-btn:hover {
+  background: #ea530d;
 }
 
 /*# sourceMappingURL=main.css.map */

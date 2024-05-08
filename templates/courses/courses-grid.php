@@ -31,7 +31,7 @@ $courses_array = [
         'level' => 'Beginner level'
     ],
     [
-        'title' => 'CSS - The Complete Guide (incl. Flexbox, Guide, Sass)',
+        'title' => 'CSS - The Complete Guide (including Flexbox, Guide, Sass)',
         'category' => 'IO Configuration',
         'original_price' => '50.99',
         'discounted_price' => '5.99',
@@ -59,7 +59,7 @@ $courses_array = [
         'level' => 'Beginner level'
     ],
     [
-        'title' => 'CSS - The Complete Guide (incl. Flexbox, Guide, Sass)',
+        'title' => 'CSS - The Complete Guide (including Flexbox, Guide, Sass)',
         'category' => 'IO Configuration',
         'original_price' => '50.99',
         'discounted_price' => '5.99',
@@ -107,7 +107,7 @@ $level_icon = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns
                             printf(
                                 '<a href="%s"><h4>%s</h4></a>',
                                 '#',
-                                esc_html( es_get_course_title_trimmed($course['title'], 8) )
+                                esc_html( es_get_course_title_trimmed($course['title'], 6) )
                             );
                             printf(
                                 '<a href="%s"><p>%s</p></a>',
@@ -184,7 +184,7 @@ $level_icon = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns
                             printf(
                                 '<a href="%s"><h4>%s</h4></a>',
                                 '#',
-                                esc_html( es_get_course_title_trimmed($course['title'], 8) )
+                                esc_html( es_get_course_title_trimmed($course['title'], 6) )
                             );
                             printf(
                                 '<a href="%s"><p>%s</p></a>',

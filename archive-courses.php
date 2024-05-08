@@ -11,6 +11,9 @@ get_header();
 
     // Get Courses Grid
     get_template_part( 'templates/courses/courses-grid' );
+    
+    // Marketplace banner
+    get_template_part( 'templates/courses/marketplace-banner' );
 ?>
 
 

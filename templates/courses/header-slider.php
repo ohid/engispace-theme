@@ -1,19 +1,20 @@
 <div class="es-site-container">
     <div class="courses-header-slider owl-carousel owl-theme" id="courses-header-slider">
-        <div class="es-slide" style="background-image: url(<?php echo THEME_URI . '/assets/img/courses-header-slider.png'; ?>)">
-            <h4>Introduction to Electronics Fundamentals</h4>
-            <p>The Complete Basics of Electricity $ Electronics | 3000+ Enrolments | Quickest Learning | Condensed Materials</p>
-            <a href="">Learn More</a>
-        </div>
-        <div class="es-slide" style="background-image: url(<?php echo THEME_URI . '/assets/img/courses-header-slider.png'; ?>)">
-            <h4>Introduction to Electronics Fundamentals</h4>
-            <p>The Complete Basics of Electricity $ Electronics | 3000+ Enrolments | Quickest Learning | Condensed Materials</p>
-            <a href="">Learn More</a>
-        </div>
-        <div class="es-slide" style="background-image: url(<?php echo THEME_URI . '/assets/img/courses-header-slider.png'; ?>)">
-            <h4>Introduction to Electronics Fundamentals</h4>
-            <p>The Complete Basics of Electricity $ Electronics | 3000+ Enrolments | Quickest Learning | Condensed Materials</p>
-            <a href="">Learn More</a>
-        </div>
+
+    <?php
+        $sliders = get_field('courses_header_slider', 'option');
+
+        if ( empty( $sliders ) ) {
+            return;
+        }
+
+        foreach ( $sliders as $slide ) {
+            printf( '<div class="es-slide" style="background-image: url(%s)">', $slide['slider_image'] );
+            printf( '<h4>%s</h4>', esc_html( $slide['title'] ) );
+            printf( '<p>%s</p>', esc_html( $slide['description'] ) );
+            printf( '<a href="%s">%s</a>', esc_url( $slide['button_url'] ), esc_html( $slide['button_label'] ) );
+            echo '</div>';
+        }
+    ?>
     </div>
 </div>

@@ -48,3 +48,21 @@ function es_get_course_title_trimmed( $string, $n = 10 ) {
 
     return implode(' ', $remainingWords) . '...';
 }
+
+/**
+ * ACF Theme Options Page
+ */
+add_action('acf/init', 'es_theme_options_page');
+function es_theme_options_page() {
+    // Check function exists.
+    if( function_exists('acf_add_options_page') ) {
+        // Register options page.
+        $option_page = acf_add_options_page(array(
+            'page_title'    => __('Theme Settings'),
+            'menu_title'    => __('Theme Settings'),
+            'menu_slug'     => 'engispace-theme-settings',
+            'capability'    => 'edit_posts',
+            'redirect'      => false
+        ));
+    }
+}
