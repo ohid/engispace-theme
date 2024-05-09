@@ -25,3 +25,15 @@ function engispace_style_scripts() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'engispace_style_scripts' );
+
+
+/**
+ * Admin styles and scripts
+ */
+function engispace_admin_scripts() {
+	if ( !empty( $_GET['page'] ) && $_GET['page'] === 'engispace-theme-settings' ) {
+		wp_enqueue_style( 'engispace-theme-settings-style', get_template_directory_uri() . '/assets/css/admin/theme-settings.css' );
+	}
+}
+add_action( 'admin_enqueue_scripts', 'engispace_admin_scripts' );
+

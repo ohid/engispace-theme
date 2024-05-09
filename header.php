@@ -16,4 +16,4 @@
 <body <?php body_class(); ?> id="top">
     <div class="main-wrapper">
 
-        <?php get_template_part( 'site-header' ); ?>
+        <?php get_template_part( 'templates/site-header' ); ?>

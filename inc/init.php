@@ -10,6 +10,8 @@ require_once trailingslashit( get_template_directory() ) . 'inc/constants.php' ;
 
 // Theme Style and Scripts Enqueye
 require_once ENGISPACE_INC_DIR . '/theme-style-and-scripts.php';
+// Theme Setup
+require_once ENGISPACE_INC_DIR . '/theme-setup.php';
 
 /**
  * Generate IMG tag
@@ -36,17 +38,26 @@ function es_img_with_srcset( $regular_img, $retina_img = null, $alt = null, $cla
     );
 }
 
-function es_get_course_title_trimmed( $string, $n = 10 ) {
+function es_get_course_title_trimmed( $string, $n = 10, $chars_length = 40 ) {
     // Split the string into words based on spaces
     $words = explode(' ', $string);
     if ( count( $words ) <= $n ) {
         return $string;
     }
-
     // Remove the first $n words
     $remainingWords = array_slice($words, 0, $n);
+    // Get the output strings
+    $output_string = implode(' ', $remainingWords);
+    // check lowest chars 
+    if ( strlen( $output_string ) <= $chars_length ) {
+        $output_string = es_get_course_title_trimmed($string, $n + 1);
+    }
+    // Check max characters length
+    if ( strlen( $output_string ) >= $chars_length ) {
+        $output_string = mb_substr($output_string, 0, $chars_length, "UTF-8");
+    }
 
-    return implode(' ', $remainingWords) . '...';
+    return $output_string . '...';
 }
 
 /**
@@ -58,8 +69,8 @@ function es_theme_options_page() {
     if( function_exists('acf_add_options_page') ) {
         // Register options page.
         $option_page = acf_add_options_page(array(
-            'page_title'    => __('Theme Settings'),
-            'menu_title'    => __('Theme Settings'),
+            'page_title'    => __('Engispace Settings'),
+            'menu_title'    => __('Engispace Settings'),
             'menu_slug'     => 'engispace-theme-settings',
             'capability'    => 'edit_posts',
             'redirect'      => false

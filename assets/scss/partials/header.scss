@@ -75,7 +75,7 @@ header {
                         transition: all 0.2s ease-in;
                     }
 
-                    &:first-child, &:hover {
+                    &.current-menu-item, &:hover {
                         background-color: #505254;
 
                         a {

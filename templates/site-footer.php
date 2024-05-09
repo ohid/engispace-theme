@@ -4,25 +4,34 @@
             <div class="es-left">
                 <div class="es-logo">
                     <?php
-                        es_img_with_srcset(
-                            THEME_URI . '/assets/img/engispace-logo-white-2.png',
-                            THEME_URI . '/assets/img/engispace-logo-white-2@2x.png',
-                            'Engispace'
-                        );
+                        $es_footer_logo = get_field( 'es_footer_logo', 'option' );
+                        if ( isset( $es_footer_logo['normal_logo'] ) ) {
+                            printf( '<a href="%s">', esc_url( home_url() ) );
+                                es_img_with_srcset(
+                                    esc_url( $es_footer_logo['normal_logo'] ),
+                                    esc_url( $es_footer_logo['retina_logo'] ),
+                                );
+                            echo '</a>';
+                        }
                     ?>
                 </div>
                 <div class="es-copyright">
-                    <p>© 2019 engispace, Inc.</p>
+                    <?php
+                        $es_footer_copyright = get_field( 'es_footer_copyright', 'option' );
+                        printf( '<p>%s</p>', $es_footer_copyright ? $es_footer_copyright : '' );
+                    ?>
                 </div>
             </div>
             <div class="es-right">
                 <div class="es-footer-menu">
-                    <ul>
-                        <li><a href="#">Terms</a></li>
-                        <li><a href="#">Privacy</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">Advertise</a></li>
-                    </ul>
+                    <?php
+                        if ( function_exists( 'wp_nav_menu' ) ) {
+                            wp_nav_menu( array(
+                                'theme_location' => 'es-footer-menu',
+                                'menu_class' => 'navigation-menu'
+                            ) );
+                        }
+                    ?>
                 </div>
             </div>
         </div>

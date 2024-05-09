@@ -1,78 +1,11 @@
 <?php
 
-// Build the courses array
-$courses_array = [
-    [
-        'title' => 'Node.js: The Complete Guide to Build RESTful APIs',
-        'category' => 'Unity Programing',
-        'original_price' => '50.99',
-        'discounted_price' => '5.99',
-        'currency' => '$',
-        'rating' => '5',
-        'img' => THEME_URI . '/assets/img/node-js-course-banner.png',
-        'img@2x' => THEME_URI . '/assets/img/node-js-course-banner@2x.png',
-        'description' => 'Obtain Modern C++ Object-Oriented Programming and STL skills that are extremely in demand in the job market.',
-        'lectures' => 29,
-        'duration' => '20 hours',
-        'level' => 'Beginner level'
-    ],
-    [
-        'title' => 'The Complete React Web Developer Course (with full guide)',
-        'category' => 'Tropical Control Systems',
-        'original_price' => '50.99',
-        'discounted_price' => '5.99',
-        'currency' => '$',
-        'rating' => '5',
-        'img' => THEME_URI . '/assets/img/node-js-course-banner.png',
-        'img@2x' => THEME_URI . '/assets/img/node-js-course-banner@2x.png',
-        'description' => 'Obtain Modern C++ Object-Oriented Programming and STL skills that are extremely in demand in the job market.',
-        'lectures' => 29,
-        'duration' => '20 hours',
-        'level' => 'Beginner level'
-    ],
-    [
-        'title' => 'CSS - The Complete Guide (including Flexbox, Guide, Sass)',
-        'category' => 'IO Configuration',
-        'original_price' => '50.99',
-        'discounted_price' => '5.99',
-        'currency' => '$',
-        'rating' => '5',
-        'img' => THEME_URI . '/assets/img/node-js-course-banner.png',
-        'img@2x' => THEME_URI . '/assets/img/node-js-course-banner@2x.png',
-        'description' => 'Obtain Modern C++ Object-Oriented Programming and STL skills that are extremely in demand in the job market.',
-        'lectures' => 29,
-        'duration' => '20 hours',
-        'level' => 'Beginner level'
-    ],
-    [
-        'title' => 'Node.js: The Complete Guide to Build RESTful APIs',
-        'category' => 'Unity Programing',
-        'original_price' => '50.99',
-        'discounted_price' => '5.99',
-        'currency' => '$',
-        'rating' => '5',
-        'img' => THEME_URI . '/assets/img/node-js-course-banner.png',
-        'img@2x' => THEME_URI . '/assets/img/node-js-course-banner@2x.png',
-        'description' => 'Obtain Modern C++ Object-Oriented Programming and STL skills that are extremely in demand in the job market.',
-        'lectures' => 29,
-        'duration' => '20 hours',
-        'level' => 'Beginner level'
-    ],
-    [
-        'title' => 'CSS - The Complete Guide (including Flexbox, Guide, Sass)',
-        'category' => 'IO Configuration',
-        'original_price' => '50.99',
-        'discounted_price' => '5.99',
-        'currency' => '$',
-        'rating' => '5',
-        'img' => THEME_URI . '/assets/img/node-js-course-banner.png',
-        'img@2x' => THEME_URI . '/assets/img/node-js-course-banner@2x.png',
-        'description' => 'Obtain Modern C++ Object-Oriented Programming and STL skills that are extremely in demand in the job market.',
-        'lectures' => 29,
-        'duration' => '20 hours',
-        'level' => 'Beginner level'
-    ],
-];
+// Fetch all courses
+$courses = get_posts([
+    'post_type'      => 'sfwd-courses',
+    'posts_per_page' => -1,  // Retrieve all available courses
+    'post_status'    => 'publish',
+]);
 
 $cart_icon = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path fill-rule="evenodd" clip-rule="evenodd" d="M15 1.66602C14.6117 1.66602 14.275 1.93352 14.1875 2.31185L13.3758 5.83268H2.50002C2.24335 5.83268 2.00085 5.95185 1.84335 6.15352C1.68502 6.35602 1.62918 6.61935 1.69168 6.86852L3.35835 13.5352C3.45085 13.906 3.78418 14.166 4.16668 14.166H12.5C12.8884 14.166 13.225 13.8985 13.3125 13.521L15.6625 3.33268H18.3334V1.66602H15Z" fill="white"/><path fill-rule="evenodd" clip-rule="evenodd" d="M5.00004 15C4.08004 15 3.33337 15.7467 3.33337 16.6667C3.33337 17.5883 4.08004 18.3333 5.00004 18.3333C5.92004 18.3333 6.66671 17.5883 6.66671 16.6667C6.66671 15.7467 5.92004 15 5.00004 15Z" fill="white"/><path fill-rule="evenodd" clip-rule="evenodd" d="M11.6667 15C10.7467 15 10 15.7467 10 16.6667C10 17.5883 10.7467 18.3333 11.6667 18.3333C12.5867 18.3333 13.3333 17.5883 13.3333 16.6667C13.3333 15.7467 12.5867 15 11.6667 15Z" fill="white"/></svg>';
@@ -89,38 +22,68 @@ $level_icon = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns
 <div class="es-courses-grid-area">
     <div class="es-site-container">
         <div class="es-course-grid-section-title">
-            <p>Feature</p>
+            <?php
+                $feature_title = get_field( 'courses__update_feature_title', 'option' );
+                printf( '<p>%s</p>', $feature_title ? esc_html( $feature_title ) : esc_html__( 'Featured', 'engispace' ) );
+            ?>
         </div>
         <div class="es-site-courses-grid">
             <?php
-                foreach( $courses_array as $course ) {
+                $courses = (array) get_field( 'courses__featured_courses', 'option' );
+                if ( empty( $courses ) ) {
+                    return;
+                }
+                foreach( $courses as $post ) {
+                    // Setup post data
+                    setup_postdata($post);
+                    $post_id = get_the_ID();
+                    $es_currency = '$';
+                    // Course category
+                    $course_category = wp_get_post_terms( $post_id, 'ld_course_category' );
+                    if ( isset( $course_category[0] ) ) {
+                        $course_category_page = get_term_link( $course_category[0], 'ld_course_category' );
+                    }
+                    $short_description = get_post_meta( $post_id, 'es_course_short_description', true );
+                    $difficulty_level = get_post_meta( $post_id, 'es_course_difficulty_level', true );
+                    $course_duration = get_post_meta( $post_id, 'es_course_duration', true );
+                    $original_price = get_post_meta( $post_id, 'es_course_original_price', true );
+
+                    $price_args = learndash_get_course_price( $post->ID );
+                    $lessons_data = learndash_course_get_steps_by_type( $post->ID, 'sfwd-lessons' );
+
+                    $course_link = get_the_permalink( $post );
                     echo '<div class="es-course-item">';
-                        echo '<a href="#">';
-                            es_img_with_srcset(
-                                $course['img'],
-                                $course['img@2x'],
-                                $course['title']
-                            );
+                        echo '<a href="'. esc_url( $course_link ) .'">';
+                            the_post_thumbnail();
                         echo '</a>';
 
                         echo '<div class="es-course-details-wrap">';
                             printf(
                                 '<a href="%s"><h4>%s</h4></a>',
-                                '#',
-                                esc_html( es_get_course_title_trimmed($course['title'], 6) )
+                                esc_url( $course_link ),
+                                esc_html( es_get_course_title_trimmed( get_the_title(), 6) )
                             );
-                            printf(
-                                '<a href="%s"><p>%s</p></a>',
-                                '#',
-                                esc_html( $course['category'] )
-                            );
+                            
+                            if ( isset( $course_category[0] ) ) {
+                                printf(
+                                    '<a href="%s"><p>%s</p></a>',
+                                    $course_category_page ? esc_url( $course_category_page ) : '',
+                                    esc_html( $course_category[0]->name )
+                                );
+                            }
                             echo '<div class="es-course-price">';
                                 echo '<div class="es-course-price-wrap">';
-                                    printf('<ins>%s</ins>', $course['currency'] . $course['discounted_price']);
-                                    printf('<del>%s</del>', $course['currency'] . $course['original_price']);
+                                    if ( isset( $price_args['type'] ) && $price_args['type'] === 'free' ) {
+                                        printf('<ins>%s</ins>', 'Free');
+                                    }
+                                    if ( isset( $price_args['type'] ) && $price_args['type'] === 'paynow' ) {
+                                        printf('<ins>%s</ins>', $es_currency . esc_html( $price_args['price'] ));
+                                    }
+                                    if ( isset( $price_args['type'] ) && $price_args['type'] === 'paynow' && !empty( $original_price ) ) {
+                                        printf('<del>%s</del>', $es_currency . esc_html( $original_price ));
+                                    }
                                 echo '</div>';
                                 echo '<div class="es-course-rating">';
-
                                 echo '</div>';
                             echo '</div>';
                         echo '</div>';
@@ -128,28 +91,32 @@ $level_icon = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns
                         echo '<div class="es-course-details">';
                             printf(
                                 '<a href="%s"><h4>%s</h4></a>',
-                                '#',
-                                esc_html( $course['title'] )
+                                esc_url( $course_link ),
+                                esc_html( get_the_title() )
                             );
-                            printf(
-                                '<a href="%s"><p class="es-course-details-category">%s</p></a>',
-                                '#',
-                                esc_html( $course['category'] )
-                            );
-                            printf('<p class="es-course-description">%s</p>', esc_html( $course['description'] ));
+                            if ( isset( $course_category[0] ) ) {
+                                printf(
+                                    '<a href="%s"><p>%s</p></a>',
+                                    $course_category_page ? esc_url( $course_category_page ) : '',
+                                    esc_html( $course_category[0]->name )
+                                );
+                            }
+                            if ( $short_description ) {
+                                printf('<p class="es-course-description">%s</p>', esc_html( $short_description ));
+                            }
 
                             echo '<div class="es-course-meta-data">';
                                 printf(
                                     '<div class="es-course-meta-item">%s</div>',
-                                    $lectures_icon . '39 lectures'
+                                    $lectures_icon . count( $lessons_data ) . ' lectures'
                                 );
                                 printf(
                                     '<div class="es-course-meta-item">%s</div>',
-                                    $duration_icon . '3.5 hours'
+                                    $duration_icon . esc_html( $course_duration )
                                 );
                                 printf(
                                     '<div class="es-course-meta-item">%s</div>',
-                                    $level_icon . 'Beginner level'
+                                    $level_icon . esc_html( $difficulty_level )
                                 );
                             echo '</div>';
 
@@ -161,43 +128,75 @@ $level_icon = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns
                         echo '</div>';
 
                     echo '</div>';
+
+                    wp_reset_postdata();
                 }
             ?>
         </div>
 
         <div class="es-course-grid-section-title">
-            <p>Top courses in "Business"</p>
+            <?php
+                $feature_title = get_field( 'courses__update_top_courses_title', 'option' );
+                printf( '<p>%s</p>', $feature_title ? esc_html( $feature_title ) : esc_html__( 'Top courses in "Business"', 'engispace' ) );
+            ?>
         </div>
         <div class="es-site-courses-grid">
             <?php
-                foreach( $courses_array as $course ) {
+                $courses = (array) get_field( 'courses__top_courses', 'option' );
+                if ( empty( $courses ) ) {
+                    return;
+                }
+                foreach( $courses as $post ) {
+                    // Setup post data
+                    setup_postdata($post);
+                    $post_id = get_the_ID();
+                    $es_currency = '$';
+                    // Course category
+                    $course_category = wp_get_post_terms( $post_id, 'ld_course_category' );
+                    if ( isset( $course_category[0] ) ) {
+                        $course_category_page = get_term_link( $course_category[0], 'ld_course_category' );
+                    }
+                    $short_description = get_post_meta( $post_id, 'es_course_short_description', true );
+                    $difficulty_level = get_post_meta( $post_id, 'es_course_difficulty_level', true );
+                    $course_duration = get_post_meta( $post_id, 'es_course_duration', true );
+                    $original_price = get_post_meta( $post_id, 'es_course_original_price', true );
+
+                    $price_args = learndash_get_course_price( $post->ID );
+                    $lessons_data = learndash_course_get_steps_by_type( $post->ID, 'sfwd-lessons' );
+
+                    $course_link = get_the_permalink( $post );
                     echo '<div class="es-course-item">';
-                        echo '<a href="#">';
-                            es_img_with_srcset(
-                                $course['img'],
-                                $course['img@2x'],
-                                $course['title']
-                            );
+                        echo '<a href="'. esc_url( $course_link ) .'">';
+                            the_post_thumbnail();
                         echo '</a>';
 
                         echo '<div class="es-course-details-wrap">';
                             printf(
                                 '<a href="%s"><h4>%s</h4></a>',
-                                '#',
-                                esc_html( es_get_course_title_trimmed($course['title'], 6) )
+                                esc_url( $course_link ),
+                                esc_html( es_get_course_title_trimmed( get_the_title(), 6) )
                             );
-                            printf(
-                                '<a href="%s"><p>%s</p></a>',
-                                '#',
-                                esc_html( $course['category'] )
-                            );
+                            
+                            if ( isset( $course_category[0] ) ) {
+                                printf(
+                                    '<a href="%s"><p>%s</p></a>',
+                                    $course_category_page ? esc_url( $course_category_page ) : '',
+                                    esc_html( $course_category[0]->name )
+                                );
+                            }
                             echo '<div class="es-course-price">';
                                 echo '<div class="es-course-price-wrap">';
-                                    printf('<ins>%s</ins>', $course['currency'] . $course['discounted_price']);
-                                    printf('<del>%s</del>', $course['currency'] . $course['original_price']);
+                                    if ( isset( $price_args['type'] ) && $price_args['type'] === 'free' ) {
+                                        printf('<ins>%s</ins>', 'Free');
+                                    }
+                                    if ( isset( $price_args['type'] ) && $price_args['type'] === 'paynow' ) {
+                                        printf('<ins>%s</ins>', $es_currency . esc_html( $price_args['price'] ));
+                                    }
+                                    if ( isset( $price_args['type'] ) && $price_args['type'] === 'paynow' && !empty( $original_price ) ) {
+                                        printf('<del>%s</del>', $es_currency . esc_html( $original_price ));
+                                    }
                                 echo '</div>';
                                 echo '<div class="es-course-rating">';
-
                                 echo '</div>';
                             echo '</div>';
                         echo '</div>';
@@ -205,28 +204,32 @@ $level_icon = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns
                         echo '<div class="es-course-details">';
                             printf(
                                 '<a href="%s"><h4>%s</h4></a>',
-                                '#',
-                                esc_html( $course['title'] )
+                                esc_url( $course_link ),
+                                esc_html( get_the_title() )
                             );
-                            printf(
-                                '<a href="%s"><p class="es-course-details-category">%s</p></a>',
-                                '#',
-                                esc_html( $course['category'] )
-                            );
-                            printf('<p class="es-course-description">%s</p>', esc_html( $course['description'] ));
+                            if ( isset( $course_category[0] ) ) {
+                                printf(
+                                    '<a href="%s"><p>%s</p></a>',
+                                    $course_category_page ? esc_url( $course_category_page ) : '',
+                                    esc_html( $course_category[0]->name )
+                                );
+                            }
+                            if ( $short_description ) {
+                                printf('<p class="es-course-description">%s</p>', esc_html( $short_description ));
+                            }
 
                             echo '<div class="es-course-meta-data">';
                                 printf(
                                     '<div class="es-course-meta-item">%s</div>',
-                                    $lectures_icon . '39 lectures'
+                                    $lectures_icon . count( $lessons_data ) . ' lectures'
                                 );
                                 printf(
                                     '<div class="es-course-meta-item">%s</div>',
-                                    $duration_icon . '3.5 hours'
+                                    $duration_icon . esc_html( $course_duration )
                                 );
                                 printf(
                                     '<div class="es-course-meta-item">%s</div>',
-                                    $level_icon . 'Beginner level'
+                                    $level_icon . esc_html( $difficulty_level )
                                 );
                             echo '</div>';
 
@@ -238,6 +241,8 @@ $level_icon = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns
                         echo '</div>';
 
                     echo '</div>';
+
+                    wp_reset_postdata();
                 }
             ?>
         </div>

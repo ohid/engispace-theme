@@ -79,10 +79,10 @@ header .es-site-header-right .site-menu ul li a {
   border-bottom: 2px solid transparent;
   transition: all 0.2s ease-in;
 }
-header .es-site-header-right .site-menu ul li:first-child, header .es-site-header-right .site-menu ul li:hover {
+header .es-site-header-right .site-menu ul li.current-menu-item, header .es-site-header-right .site-menu ul li:hover {
   background-color: #505254;
 }
-header .es-site-header-right .site-menu ul li:first-child a, header .es-site-header-right .site-menu ul li:hover a {
+header .es-site-header-right .site-menu ul li.current-menu-item a, header .es-site-header-right .site-menu ul li:hover a {
   border-bottom: 2px solid #FFF;
 }
 header .es-site-header-right .site-right-buttons .es-logged-in-user .es-user-name {
@@ -246,6 +246,7 @@ header .es-site-header-right .site-right-buttons .es-logged-in-user .es-user-nam
 }
 .es-site-courses-grid .es-course-item img {
   width: 100%;
+  height: auto;
   border-radius: 5px;
 }
 .es-site-courses-grid .es-course-item .es-course-details-wrap {
