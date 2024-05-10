@@ -7,7 +7,7 @@ get_header();
     get_template_part( 'templates/courses/header-slider' );
 
     // Get User Purchased Courses
-    get_template_part( 'templates/courses/user-purchased-courses' );
+    // get_template_part( 'templates/courses/user-purchased-courses' );
 
     // Get Courses Grid
     get_template_part( 'templates/courses/courses-grid' );

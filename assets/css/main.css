@@ -7,10 +7,20 @@ body, html {
 }
 
 .es-site-container {
-  width: 1180px;
+  width: 100%;
   margin: auto;
 }
 
+@media (min-width: 1040px) {
+  .es-site-container {
+    padding: 0px 15px;
+  }
+}
+@media (min-width: 1200px) {
+  .es-site-container {
+    width: 1180px;
+  }
+}
 header {
   background: #3C3F41;
 }
@@ -234,15 +244,22 @@ header .es-site-header-right .site-right-buttons .es-logged-in-user .es-user-nam
   background-color: #eeeeee;
 }
 
-.es-site-courses-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  gap: 20px;
-}
 .es-site-courses-grid .es-course-item {
   border: 1px solid #e1e4e8;
   border-radius: 6px;
   position: relative;
+}
+.es-site-courses-grid .es-course-item:after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  right: -15px;
+  width: 40px;
+  height: 100%;
+  background-color: transparent;
+}
+.es-site-courses-grid .es-course-item.left-pseudo-element:after {
+  left: -8px;
 }
 .es-site-courses-grid .es-course-item img {
   width: 100%;
@@ -293,6 +310,39 @@ header .es-site-header-right .site-right-buttons .es-logged-in-user .es-user-nam
   line-height: 16px;
 }
 .es-site-courses-grid .es-course-item .es-course-details {
+  display: none;
+}
+.es-site-courses-grid .es-single-course-details-box {
+  position: absolute;
+  left: 0px;
+  top: 20px;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 111;
+}
+.es-site-courses-grid .es-single-course-details-box.display {
+  opacity: 1;
+  visibility: visible;
+}
+.es-site-courses-grid .es-single-course-details-box:not(.left-pseudo-element) .es-course-details:after {
+  content: "";
+  border-top: 6px solid transparent;
+  border-right: 8px solid #e1e4e8;
+  border-bottom: 6px solid transparent;
+  position: absolute;
+  top: 50%;
+  left: -8px;
+}
+.es-site-courses-grid .es-single-course-details-box.left-pseudo-element .es-course-details:after {
+  content: "";
+  border-top: 6px solid transparent;
+  border-left: 8px solid #e1e4e8;
+  border-bottom: 6px solid transparent;
+  position: absolute;
+  top: 50%;
+  right: -8px;
+}
+.es-site-courses-grid .es-single-course-details-box .es-course-details {
   position: absolute;
   width: 300px;
   background-color: #fff;
@@ -303,24 +353,22 @@ header .es-site-header-right .site-right-buttons .es-logged-in-user .es-user-nam
   z-index: 999;
   border-radius: 6px;
   transition: all 0.1s ease-in;
-  opacity: 0;
-  visibility: hidden;
   box-shadow: -3px 0px 20px 0px rgba(0, 0, 0, 0.05);
 }
-.es-site-courses-grid .es-course-item .es-course-details a {
+.es-site-courses-grid .es-single-course-details-box .es-course-details a {
   text-decoration: none;
 }
-.es-site-courses-grid .es-course-item .es-course-details h4 {
+.es-site-courses-grid .es-single-course-details-box .es-course-details h4 {
   color: #3C3F41;
   font-size: 16px;
   font-weight: 500;
   line-height: 24px;
   margin: 0px;
 }
-.es-site-courses-grid .es-course-item .es-course-details .es-course-details-category {
+.es-site-courses-grid .es-single-course-details-box .es-course-details .es-course-details-category {
   margin-top: 3px;
 }
-.es-site-courses-grid .es-course-item .es-course-details .es-course-description {
+.es-site-courses-grid .es-single-course-details-box .es-course-details .es-course-description {
   color: #3C3F41;
   font-size: 14px;
   font-weight: 400;
@@ -329,12 +377,12 @@ header .es-site-header-right .site-right-buttons .es-logged-in-user .es-user-nam
   padding-top: 13px;
   margin-top: -2px;
 }
-.es-site-courses-grid .es-course-item .es-course-details .es-course-meta-data {
+.es-site-courses-grid .es-single-course-details-box .es-course-details .es-course-meta-data {
   display: grid;
   grid-template-columns: 50% 50%;
   gap: 10px 5px;
 }
-.es-site-courses-grid .es-course-item .es-course-details .es-course-meta-data .es-course-meta-item {
+.es-site-courses-grid .es-single-course-details-box .es-course-details .es-course-meta-data .es-course-meta-item {
   font-size: 12px;
   font-weight: 500;
   line-height: 16px;
@@ -343,7 +391,7 @@ header .es-site-header-right .site-right-buttons .es-logged-in-user .es-user-nam
   align-items: center;
   gap: 5px;
 }
-.es-site-courses-grid .es-course-item .es-course-details .es-add-to-cart-icon {
+.es-site-courses-grid .es-single-course-details-box .es-course-details .es-add-to-cart-icon {
   background: #E04B06;
   color: #ffffff;
   font-size: 14px;
@@ -359,61 +407,13 @@ header .es-site-header-right .site-right-buttons .es-logged-in-user .es-user-nam
   margin-top: 20px;
   transition: all 0.2s ease-in;
 }
-.es-site-courses-grid .es-course-item .es-course-details .es-add-to-cart-icon:hover {
+.es-site-courses-grid .es-single-course-details-box .es-course-details .es-add-to-cart-icon:hover {
   background: #ed530c;
 }
-.es-site-courses-grid .es-course-item:not(:last-child) .es-course-details {
-  right: -300px;
-}
-.es-site-courses-grid .es-course-item:not(:last-child) .es-course-details:before {
-  content: "";
-  width: 70px;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: -30px;
-}
-.es-site-courses-grid .es-course-item:not(:last-child) .es-course-details:after {
-  content: "";
-  border-top: 6px solid transparent;
-  border-right: 8px solid #e1e4e8;
-  border-bottom: 6px solid transparent;
-  position: absolute;
-  top: 50%;
-  left: -8px;
-}
-.es-site-courses-grid .es-course-item:not(:last-child):hover .es-course-details {
-  right: -308px;
-  opacity: 1;
-  visibility: visible;
-}
-.es-site-courses-grid .es-course-item:last-child .es-course-details {
-  left: -300px;
-}
-.es-site-courses-grid .es-course-item:last-child .es-course-details:before {
-  content: "";
-  width: 70px;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: inherit;
-  right: -30px;
-}
-.es-site-courses-grid .es-course-item:last-child .es-course-details:after {
-  content: "";
-  border-top: 6px solid transparent;
-  border-left: 8px solid #e1e4e8;
-  border-bottom: 6px solid transparent;
-  position: absolute;
-  top: 50%;
-  right: -8px;
-}
-.es-site-courses-grid .es-course-item:last-child:hover .es-course-details {
-  left: -308px;
-  opacity: 1;
-  visibility: visible;
-}
 
+.es-courses-grid-area {
+  position: relative;
+}
 .es-courses-grid-area .es-course-grid-section-title {
   border-bottom: 1px solid #E1E4E8;
   margin-bottom: 28px;

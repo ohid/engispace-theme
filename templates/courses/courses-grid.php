@@ -28,11 +28,13 @@ $level_icon = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns
             ?>
         </div>
         <div class="es-site-courses-grid">
+            <div id="es-single-course-details-box" class="es-single-course-details-box"></div>
             <?php
                 $courses = (array) get_field( 'courses__featured_courses', 'option' );
                 if ( empty( $courses ) ) {
                     return;
                 }
+                echo '<div class="courses-page-course-slider owl-carousel owl-theme" id="courses_slider">';
                 foreach( $courses as $post ) {
                     // Setup post data
                     setup_postdata($post);
@@ -48,8 +50,8 @@ $level_icon = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns
                     $course_duration = get_post_meta( $post_id, 'es_course_duration', true );
                     $original_price = get_post_meta( $post_id, 'es_course_original_price', true );
 
-                    $price_args = learndash_get_course_price( $post->ID );
-                    $lessons_data = learndash_course_get_steps_by_type( $post->ID, 'sfwd-lessons' );
+                    $price_args = learndash_get_course_price( $post_id );
+                    $lessons_data = learndash_course_get_steps_by_type( $post_id, 'sfwd-lessons' );
 
                     $course_link = get_the_permalink( $post );
                     echo '<div class="es-course-item">';
@@ -128,12 +130,16 @@ $level_icon = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns
                         echo '</div>';
 
                     echo '</div>';
-
                     wp_reset_postdata();
                 }
+
+                echo '</div>';
             ?>
         </div>
-
+    </div>
+</div>
+<div class="es-courses-grid-area">
+    <div class="es-site-container">
         <div class="es-course-grid-section-title">
             <?php
                 $feature_title = get_field( 'courses__update_top_courses_title', 'option' );
@@ -141,11 +147,13 @@ $level_icon = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns
             ?>
         </div>
         <div class="es-site-courses-grid">
+            <div id="es-single-course-details-box" class="es-single-course-details-box"></div>
             <?php
                 $courses = (array) get_field( 'courses__top_courses', 'option' );
                 if ( empty( $courses ) ) {
                     return;
                 }
+                echo '<div class="courses-page-course-slider owl-carousel owl-theme" id="courses_slider_2">';
                 foreach( $courses as $post ) {
                     // Setup post data
                     setup_postdata($post);
@@ -244,6 +252,7 @@ $level_icon = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns
 
                     wp_reset_postdata();
                 }
+                echo '</div>';
             ?>
         </div>
     </div>
