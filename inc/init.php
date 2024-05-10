@@ -77,3 +77,17 @@ function es_theme_options_page() {
         ));
     }
 }
+
+/**
+ * Get SVG icon
+ * 
+ * @param string $path
+ * 
+ * @return string $icon
+ */
+function es_get_svg_icon( $path ) {
+    if ( !file_exists( ENGISPACE_DIR . $path . '.svg' ) ) {
+        return '';
+    }
+    return file_get_contents( ENGISPACE_DIR . $path . '.svg' );
+}
