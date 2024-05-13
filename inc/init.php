@@ -91,3 +91,17 @@ function es_get_svg_icon( $path ) {
     }
     return file_get_contents( ENGISPACE_DIR . $path . '.svg' );
 }
+
+function es_get_template_for_single_course() {
+    $page = isset( $_GET['content'] ) ? sanitize_text_field( $_GET['content'] ) : '';
+
+    if ( $page === 'comments' ) {
+        get_template_part( 'templates/courses/single-course-comments' );
+    } else if ( $page === 'reviews' ) {
+        get_template_part( 'templates/courses/single-course-reviews' );
+    } else {
+        get_template_part( 'templates/courses/single-course-content' );
+    }
+
+    return;
+}

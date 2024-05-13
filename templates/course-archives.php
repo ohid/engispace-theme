@@ -5,13 +5,20 @@
                 <h3><?php esc_html_e( 'Categories', 'engispace' ) ?></h3>
                 <?php
                     $course_categories = get_terms( 'ld_course_category' );
-                    ray($course_categories);
+                    
+                    if ( !empty( $course_categories ) ) {
+                        echo '<ul>';
+                        foreach ( $course_categories as $category ) {
+                            $course_category_page = get_term_link( $category, 'ld_course_category' );
+                            printf(
+                                '<li><a href="%s">%s</a></li>',
+                                esc_url( $course_category_page ),
+                                esc_html( $category->name )
+                            );
+                        }
+                        echo '</ul>';
+                    }
                 ?>
-                <ul>
-                    <li><a href="#">Power Engineering</a></li>
-                    <li><a href="#">Power Engineering</a></li>
-                    <li><a href="#">Power Engineering</a></li>
-                    <li><a href="#">Power Engineering</a></li>
                 </ul>
             </div>
             <div class="es-course-archives">

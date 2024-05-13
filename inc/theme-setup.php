@@ -7,6 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 function es_theme_setup () {
 
+    add_image_size( 'engispace-course-thumbnail', 324, 234, true );
+
     if ( function_exists( 'register_nav_menus' ) ) {
         register_nav_menus(
             array(
