@@ -1,0 +1,114 @@
+.es-sc-comments-area {
+    width: 760px;
+
+    .comment-list {
+        margin: 0;
+        padding: 0px;
+
+        & > li {
+
+            &:not(:first-child) {
+                margin-top: 30px;
+                border-top: 1px solid #E1E4E8;
+                padding-top: 25px;
+            }
+        }
+
+        li {
+            list-style: none;
+
+            .the-comment {
+                .comment-author {
+                    display: flex;
+                    gap: 10px;
+                    align-items: center;
+                }
+                .author__avatar {
+                    width: 30px;
+                    height: 30px;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 30px;
+                    }
+                }
+
+                .author-name {
+                    strong, span {
+                        font-size: 12px;
+                        font-weight: 500;
+                        line-height: 15px;
+                        display: block;
+                    }
+
+                    span {
+                        color: #646667B2;
+                    }
+                }
+
+                .comment-text {
+                    font-size: 16px;
+                    line-height: 24px;
+                }
+                .comment-reply-link {
+                    text-decoration: none;
+                    color: inherit;
+                    border: 1px solid #E1E4E8;
+                    border-radius: 3px;
+                    padding: 3px 12px;
+                    font-size: 12px;
+                    display: inline-block;
+                }
+            }
+        }
+
+        .children {
+            li.comment {    
+                border-top: 1px solid #E1E4E8;
+                padding-top: 25px;
+                margin-top: 25px;
+            }
+        }
+    }
+
+    .comment-reply-title {
+        font-size: 16px;
+        font-weight: 500;
+        margin-top: 50px;
+    }
+
+    
+    .comment-form {
+        .logged-in-as {
+            display: none;
+        }
+        .comment-form-comment {
+            label {
+                display: none;
+            }
+            textarea {
+                border: 1px solid #E1E4E8;
+                width: 100%;
+                resize: none;
+                min-height: 150px;
+                border-radius: 4px;
+                padding: 10px;
+                font-size: 16px;
+                line-height: 24px;
+
+                &:focus {
+                    outline: none;
+                }
+            }
+        }
+
+        .form-submit {
+            .es-button-regular {
+                font-weight: 700;
+                max-width: 220px;
+                cursor: pointer;
+            }
+        }
+    }
+}

@@ -2,7 +2,7 @@
 get_header();
 ?>
 
-Page
+Home Page
 
 <?php
 get_footer();

@@ -18,7 +18,13 @@ function engispace_style_scripts() {
 	wp_enqueue_style( 'engispace-main', get_template_directory_uri() . '/assets/css/main.css' );
 
 	wp_enqueue_script( 'engispace-owl-carousel', get_template_directory_uri() . '/assets/js/owl.carousel.min.js', ['jquery'] );
+	wp_enqueue_script( 'jquery-validation', 'https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js', ['jquery'] );
 	wp_enqueue_script( 'engispace-scripts', get_template_directory_uri() . '/assets/js/dist/main.min.js', ['engispace-owl-carousel'] );
+
+	wp_localize_script( 'engispace-scripts', 'engisapce_obj', array(
+		'ajaxurl' => admin_url( 'admin-ajax.php' ),
+		'nonce' => wp_create_nonce('es_nonce')
+	));
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comment' ) ) {
 		wp_enqueue_script( 'comment-reply' );

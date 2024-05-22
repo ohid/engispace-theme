@@ -14,12 +14,12 @@ get_header();
         [
             'title' => __( 'Comments', 'engispace' ),
             'icon' => es_get_svg_icon( '/assets/img/info-icon' ),
-            'url' => $course_link . '?content=comments',
+            'url' => $course_link . '?tab=comments',
         ],
         [
             'title' => __( 'Reviews', 'engispace' ),
             'icon' => es_get_svg_icon( '/assets/img/reviews-icon' ),
-            'url' => $course_link . '?content=reviews',
+            'url' => $course_link . '?tab=reviews',
         ]
     )
 ?>

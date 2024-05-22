@@ -35,11 +35,15 @@
                     ?>
                 </div>
                 <div class="site-right-buttons">
-                    <div class="es-logged-in-user">
-                        <span class="es-user-name">Jason</span>
-                    </div>
+                    <?php get_template_part( 'templates/header-right-buttons' ); ?>
                 </div>
             </div>
         </div>
     </div>
+
+    <?php 
+        if ( !is_user_logged_in() ) {
+            get_template_part( 'templates/modal/site-auth-modal' ); 
+        }
+    ?>
 </header>

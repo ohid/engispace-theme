@@ -201,6 +201,10 @@
             color: #3C3F41;
             padding: 5px 22px;
             border-radius: 4px;
+
+            &:hover {
+                background: linear-gradient(to top, #A9B7C733 0%, #fff 80%);
+            }
         }
     }
 }
