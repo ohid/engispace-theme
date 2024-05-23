@@ -1,0 +1,17 @@
+{
+    "name": "ohid/engispace-theme",
+    "autoload": {
+        "psr-4": {
+            "Ohid\\EngispaceTheme\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Ohidul Islam",
+            "email": "ohidul.islam951@gmail.com"
+        }
+    ],
+    "require": {
+        "stripe/stripe-php": "^14.7"
+    }
+}

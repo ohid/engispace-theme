@@ -21,7 +21,7 @@
 
     <a href="" class="course-purchase-btn">
         <?php
-            echo es_get_svg_icon( '/assets/img/cart-icon' ) . esc_html__( 'Add to cart', 'engispace' );
+            echo es_get_svg_icon( '/assets/img/cart-icon' ) . esc_html__( 'Buy now', 'engispace' );
         ?>
     </a>
 

@@ -2,6 +2,10 @@
 	'use strict';
 
     var engispaceApp = function() {
+        $('.es-user-profile-button button').on('click', function() {
+            $('.es-user-profile-dropdown').toggleClass('active');
+        });
+
         $("#courses-header-slider").owlCarousel({
             center: false,
             items:1,

@@ -200,3 +200,52 @@ function engispace_comments_list( $comment, $args, $depth ) {
         break;
     endswitch;
 }
+
+function es_get_first_letters( $words ) {
+    $words_arr = explode( ' ', $words );
+    $first_letters = '';
+    foreach( $words_arr as $word ) {
+        if ( !empty( $word ) ) {
+            $first_letters .= $word[0];
+        }
+    }
+    return $first_letters;
+}
+
+function es_get_current_user_firstname() {
+    if ( !is_user_logged_in() ) {
+        return;
+    }
+
+    $current_user = wp_get_current_user();
+    return $current_user->user_firstname;
+}
+
+function es_get_current_user_display_name() {
+    if ( !is_user_logged_in() ) {
+        return;
+    }
+
+    $current_user = wp_get_current_user();
+    return $current_user->data->display_name;
+}
+
+function es_get_current_user_avatar() {
+    if ( !is_user_logged_in() ) {
+        return;
+    }
+    $avatar_html = '';
+
+    $current_user = wp_get_current_user();
+    $user_avatar = get_user_meta( $current_user->data->ID, '_es_user_avatar', true );
+    if ( $user_avatar ) {
+        $avatar_html = '<img class="es-user-avater-img" src="'. esc_url( $user_avatar ) .'" ?>';
+    } else {
+        $letters_of_username = es_get_first_letters( $current_user->data->display_name );
+        if ( $letters_of_username ) {
+            $avatar_html = '<span class="es-user-avater-letters">'. $letters_of_username .'</span>';
+        }
+    }
+
+    return $avatar_html;
+}
