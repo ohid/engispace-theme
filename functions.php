@@ -9,6 +9,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+if ( ! defined( 'ENGISPACE_THEME_DIR' ) ) {
+	define( 'ENGISPACE_THEME_DIR', __DIR__ );
+}
+
 /**
  *
  * Intialize Vapp Theme

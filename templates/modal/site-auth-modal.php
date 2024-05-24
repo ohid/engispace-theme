@@ -19,7 +19,7 @@
                     </div>
                     <div class="es-form-control">
                         <label for="#password">Password</label>
-                        <input type="password" id="password" name="password" class="es-form-input" minlength="8">
+                        <input type="password" id="login_password" name="login_password" class="es-form-input" minlength="8">
                     </div>
                     <p class="es-form-message"></p>
                     <div class="es-form-control es-submit-btn">

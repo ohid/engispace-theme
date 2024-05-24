@@ -19,11 +19,7 @@
         echo '</div>';
     ?>
 
-    <a href="" class="course-purchase-btn">
-        <?php
-            echo es_get_svg_icon( '/assets/img/cart-icon' ) . esc_html__( 'Buy now', 'engispace' );
-        ?>
-    </a>
+    <?php es_generate_buy_now_button(); ?>
 
     <?php
         echo '<div class="es-sc-post-dates">';
