@@ -1,9 +1,7 @@
 <?php
 
 // File Security Check
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 function es_theme_setup () {
 

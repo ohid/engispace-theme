@@ -1,9 +1,7 @@
 <?php
 
 // File Security Check
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 if ( ! defined( 'THEME_URI' ) ) {
     define( 'THEME_URI', get_template_directory_uri() );

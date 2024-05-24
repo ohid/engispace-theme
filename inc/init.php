@@ -1,9 +1,8 @@
 <?php
 
 // File Security Check
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 // Load the autoload file
 require_once ENGISPACE_THEME_DIR . '/vendor/autoload.php';
 
@@ -12,8 +11,6 @@ use Stripe\StripeClient;
 // Theme Constants
 require_once trailingslashit( get_template_directory() ) . 'inc/constants.php' ;
 
-// Theme Style and Scripts Enqueye
-require_once ENGISPACE_INC_DIR . '/theme-style-and-scripts.php';
 // Theme Setup
 require_once ENGISPACE_INC_DIR . '/theme-setup.php';
 // AJAX 
