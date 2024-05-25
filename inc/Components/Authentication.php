@@ -1,8 +1,23 @@
-<?php
+<?php 
 
-class ES_AJAX {
+namespace Engispace\Components;
 
-    public function __construct() {
+use Engispace\Component_Interface;
+
+// File Security Check
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+class Authentication implements Component_Interface {
+	/**
+	 * Gets the unique identifier for the theme component.
+	 *
+	 * @return string Component slug.
+	 */
+	public function get_slug() : string {
+		return 'authentication';
+	}
+
+    public function initialize() {
         add_action( 'wp_ajax_es_site_signin', array( $this, 'signin' ) );
         add_action( 'wp_ajax_nopriv_es_site_signin', array( $this, 'signin' ) );
         add_action( 'wp_ajax_es_site_signup', array( $this, 'signup' ) );
@@ -13,7 +28,7 @@ class ES_AJAX {
         if ( !wp_doing_ajax() ) {
             return;
         }
-        // check_ajax_referer('es_site_signin', 'nonce'); // Check nonce
+        check_ajax_referer('es_site_signin', 'es_nonce'); // Check nonce
 
         $email = filter_var( $_POST['email'], FILTER_VALIDATE_EMAIL );
         $password = sanitize_text_field( $_POST['login_password'] );
@@ -136,5 +151,3 @@ class ES_AJAX {
         return $userdata;
     }
 }
-
-new ES_AJAX();

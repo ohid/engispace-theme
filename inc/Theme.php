@@ -105,8 +105,13 @@ class Theme {
 	 */
 	protected function get_default_components() : array {
         $components = array(
+            new Components\Core(),
+            new Components\Setup(),
             new Components\Styles(),
-            new Components\Scripts()
+            new Components\Scripts(),
+            new Components\Authentication(),
+            new Components\Theme_Options(),
+            new Components\Course_Purchase(),
         );
         
         return $components;
