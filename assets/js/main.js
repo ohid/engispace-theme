@@ -282,6 +282,45 @@
             });
         },
 
+        /**
+         * Create Stripe checkout session and get the URL via AJAX
+         */
+        initCoursePurchase: function() {
+            // Get the stripe checkout URL
+            const getCoursePurchaseStripeCheckoutURL = (thisBtn, courseData) => {
+                $.ajax({
+                    url: engisapce_obj.ajaxurl,
+                    method: "POST",
+                    data: {
+                        action: 'es_course_purchase_url',
+                        nonce: engisapce_obj.nonce,
+                        course_id: courseData.id
+                    },
+                    success: function( response ) {
+                        if ( ! response.success ) {
+                            // disable button load
+                            thisBtn.removeClass('loading');
+                        }
+                        // redirect to the Stripe checkout page
+                        window.location.href = response.data;
+                    }
+                })
+            }
+
+            // Handle course purchase button event click
+            $('#course-purchase-btn').on('click', function() {
+                const thisBtn = $(this),
+                    courseData = thisBtn.data('course-info');
+                // bail out if the purchase button already made an AJAX request
+                if ( ! thisBtn.hasClass( 'loading' ) ) {
+                    // turn the button loader on
+                    thisBtn.addClass('loading');
+                    // get course purchase URL
+                    getCoursePurchaseStripeCheckoutURL(thisBtn, courseData);
+                }
+            })
+        },
+
         init: function() {
             window.engispace.initHeaderFunctions();
             window.engispace.initCourseSliders();
@@ -289,6 +328,7 @@
             window.engispace.initSignIn();
             window.engispace.initSignUp();
             window.engispace.initAuthModal();
+            window.engispace.initCoursePurchase();
         }
     }
 

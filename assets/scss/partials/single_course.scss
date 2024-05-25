@@ -150,15 +150,46 @@
             padding: 14px;
             width: 100%;
             text-decoration: none;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 4px;
             border-radius: 6px;
             box-sizing: border-box;
             transition: all 0.1s ease-in;
+            position: relative;
+            min-height: 53px;
+
             &:hover {
                 background: #ed530c;
+            }
+
+            &:focus {
+                outline: none;
+            }
+
+            .pb-text {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 4px;
+            }
+
+            .pb-icon {
+                display: none;
+
+                svg {
+                    width: 56px;
+                    height: 56px;
+                    position: absolute;
+                    left: calc(50% - 17px);
+                    top: 0px;
+                }
+            }
+
+            &.loading {
+                .pb-text {
+                    display: none;
+                }
+                .pb-icon {
+                    display: block;
+                }
             }
         }
 

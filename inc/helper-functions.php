@@ -235,13 +235,26 @@ function es_get_current_user_avatar() {
     return $avatar_html;
 }
 
+/**
+ * Generate the button now button on the single course page
+ * 
+ * @since 1.0.0
+ */
 function es_generate_buy_now_button() {
     global $post;
     $course_info = array(
         'id' => $post->ID
     );
 
-    printf( '<button data-course-info=\'%s\' class="course-purchase-btn">', json_encode( $course_info ) );
-        echo es_get_svg_icon( '/assets/img/cart-icon' ) . esc_html__( 'Buy now', 'engispace' );
+    printf( '<button data-course-info=\'%s\' class="course-purchase-btn" id="course-purchase-btn">', json_encode( $course_info ) );
+        printf(
+            '<span class="pb-text">%s</span>',
+            es_get_svg_icon( '/assets/img/cart-icon' ) . esc_html__( 'Buy now', 'engispace' )
+        );
+        
+        printf(
+            '<span class="pb-icon">%s</span>',
+            es_get_svg_icon( '/assets/img/loader-2' )
+        );
     echo '</button>';
 }

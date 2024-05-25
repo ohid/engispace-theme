@@ -19,13 +19,25 @@ class Course_Purchase implements Component_Interface {
 	}
 
     public function initialize() {
-        add_action( 'wp_ajax_course_purchase_url', array( $this, 'course_purchase_url' ) );
-        add_action( 'wp_ajax_nopriv_course_purchase_url', array( $this, 'course_purchase_url' ) );
+        add_action( 'wp_ajax_es_course_purchase_url', array( $this, 'course_purchase_url' ) );
+        add_action( 'wp_ajax_nopriv_es_course_purchase_url', array( $this, 'course_purchase_url' ) );
     }
 
+    /**
+     * Create Stripe session and get checkout page URL
+     * 
+     * @since 1.0.0
+     * 
+     */
     public function course_purchase_url() {
-        // get the session arguments
-        $session_args = $this->stripe_payment_session_args();
+        if ( !wp_doing_ajax() ) {
+            return;
+        }
+        check_ajax_referer( 'es_nonce', 'nonce' ); // Check nonce
+
+        $course_id = (int) $_POST['course_id'];
+        // create the session arguments
+        $session_args = $this->stripe_payment_session_args( $course_id );
         $api_key = 'sk_test_PpmKa2L8wZC7T2ihabo5Ex0W';
 
         try {
@@ -35,25 +47,13 @@ class Course_Purchase implements Component_Interface {
 
         }
         
-        if ( isset( $session['url'] ) ) {
-            return $session['url'];
+        if ( empty( $session['url'] ) ) {
+            wp_send_json_error();
+            die;
         }
 
-        return;
-    }
-
-    public function es_get_course_fee_marketplace_amount( $price ) {
-        $marketplace_fee_percentage = get_field( 'course_items_marketplace_fees', 'option' );
-        $marketplace_fee_percentage = (int) $marketplace_fee_percentage['marketplace_fee_percentage'];
-
-        return $price * $marketplace_fee_percentage / 100;
-    }
-
-    public function es_get_course_fee_creator_amount( $price ) {
-        $creator_fee_percentage = get_field( 'course_items_marketplace_fees', 'option' );
-        $creator_fee_percentage = (int) $creator_fee_percentage['creator_fee_percentage'];
-
-        return $price * $creator_fee_percentage / 100;
+        wp_send_json_success( $session['url'] );
+        die;
     }
 
     /**
@@ -63,17 +63,20 @@ class Course_Purchase implements Component_Interface {
      * 
      * @return array $session_args
      */
-    public function stripe_payment_session_args() {
+    public function stripe_payment_session_args( $course_id ) {
         // Get the product data
-        global $post;
-        $product_title = $post->post_title;
-        $product_description = get_post_meta( $post->ID, 'es_course_short_description', true );
-        $price_args = learndash_get_course_price( $post->ID );
+        $course = get_post( $course_id );
+        if ( !$course ) {
+            return;
+        }
+        $product_title = $course->post_title;
+        $product_description = get_post_meta( $course->ID, 'es_course_short_description', true );
+        $price_args = learndash_get_course_price( $course->ID );
         if ( isset( $price_args['type'] ) && $price_args['type'] === 'paynow' ) {
             $product_price = esc_html( $price_args['price'] );
         }
 
-        $product_price = esc_html( $product_price ) * 100;
+        $product_price = (int) $product_price * 100;
 
         $session_args = [
             'payment_method_types' => ['card'],
@@ -97,7 +100,7 @@ class Course_Purchase implements Component_Interface {
         ];
 
         // get the course creator user ID
-        $creator_user_id = get_post_meta( $post->ID, '_es_course_creator_id', true );
+        $creator_user_id = get_post_meta( $course->ID, '_es_course_creator_id', true );
         // if the course doesn't have an ID then return the current session arguments
         if ( !$creator_user_id ) {
             return $session_args;
@@ -114,6 +117,20 @@ class Course_Purchase implements Component_Interface {
         }
 
         return $session_args;
+    }
+
+    public function es_get_course_fee_marketplace_amount( $price ) {
+        $marketplace_fee_percentage = get_field( 'course_items_marketplace_fees', 'option' );
+        $marketplace_fee_percentage = (int) $marketplace_fee_percentage['marketplace_fee_percentage'];
+
+        return $price * $marketplace_fee_percentage / 100;
+    }
+
+    public function es_get_course_fee_creator_amount( $price ) {
+        $creator_fee_percentage = get_field( 'course_items_marketplace_fees', 'option' );
+        $creator_fee_percentage = (int) $creator_fee_percentage['creator_fee_percentage'];
+
+        return $price * $creator_fee_percentage / 100;
     }
 
 }
