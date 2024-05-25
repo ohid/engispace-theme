@@ -28,7 +28,7 @@ class Authentication implements Component_Interface {
         if ( !wp_doing_ajax() ) {
             return;
         }
-        check_ajax_referer('es_site_signin', 'es_nonce'); // Check nonce
+        check_ajax_referer('es_site_signin', 'es_signin_nonce'); // Check nonce
 
         $email = filter_var( $_POST['email'], FILTER_VALIDATE_EMAIL );
         $password = sanitize_text_field( $_POST['login_password'] );
@@ -60,7 +60,7 @@ class Authentication implements Component_Interface {
         if ( !wp_doing_ajax() ) {
             return;
         }
-        check_ajax_referer('es_site_signup', 'es_nonce'); // Check nonce
+        check_ajax_referer('es_site_signup', 'es_signup_nonce'); // Check nonce
 
         // return if fields do not validate
         if ( ! $this->validate_input_fields( $_POST ) ) {

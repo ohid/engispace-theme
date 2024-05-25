@@ -23,7 +23,7 @@ $courses = get_posts([
                 if ( empty( $courses ) ) {
                     return;
                 }
-                echo '<div class="courses-page-course-slider owl-carousel owl-theme" id="courses_slider">';
+                echo '<div class="courses-page-course-slider owl-carousel owl-theme courses_slider">';
                 foreach( $courses as $post ) {
                     // Setup post data
                     setup_postdata($post);
@@ -142,7 +142,7 @@ $courses = get_posts([
                 if ( empty( $courses ) ) {
                     return;
                 }
-                echo '<div class="courses-page-course-slider owl-carousel owl-theme" id="courses_slider_2">';
+                echo '<div class="courses-page-course-slider owl-carousel owl-theme courses_slider">';
                 foreach( $courses as $post ) {
                     // Setup post data
                     setup_postdata($post);
