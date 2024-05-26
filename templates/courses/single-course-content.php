@@ -29,5 +29,7 @@
     </div>
     <div class="es-sc-course-body">
         <?php the_content(); ?>
+
+        <?php echo do_shortcode( '[course_content]' ); ?>
     </div>
 </div>

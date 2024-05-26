@@ -1227,6 +1227,86 @@ header .es-site-header-right .site-right-buttons .es-user-profile-button .es-use
   display: none;
 }
 
+.es-course-lesson-wrapper {
+  margin: 60px 0;
+}
+.es-course-lesson-wrapper .ld-lesson-status .ld-breadcrumbs {
+  background: #FAFBFC;
+  border: 1px solid #E1E4E8;
+  padding: 20px;
+}
+.es-course-lesson-wrapper .ld-lesson-status .ld-breadcrumbs-segments span {
+  margin-right: 26px;
+  position: relative;
+}
+.es-course-lesson-wrapper .ld-lesson-status .ld-breadcrumbs-segments span:after {
+  position: absolute;
+  right: -13px;
+  top: -1px;
+}
+.es-course-lesson-wrapper .ld-lesson-status .ld-breadcrumbs-segments a {
+  font-size: 16px;
+  color: #0366D6;
+}
+.es-course-lesson-wrapper .learndash-wrapper .ld-button {
+  border-radius: 5px;
+  font-size: 12px;
+  margin-bottom: 5px;
+  padding: 16px 20px;
+  background-color: #f24c00;
+}
+.es-course-lesson-wrapper .learndash-wrapper .ld-button:hover {
+  background-color: #ea530d;
+}
+.es-course-lesson-wrapper .learndash-wrapper .sfwd-mark-complete:after {
+  right: 32px;
+  top: 31%;
+  font-size: 13px;
+  transform: none;
+}
+.es-course-lesson-wrapper .learndash-wrapper .learndash_mark_complete_button {
+  border-radius: 5px;
+  font-size: 12px;
+  margin-bottom: 5px;
+  padding: 16px 20px;
+}
+.es-course-lesson-wrapper .learndash-wrapper .ld-content-actions .ld-content-action .ld-course-step-back {
+  font-size: 14px;
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+  color: #0366d6;
+}
+.es-course-lesson-wrapper .learndash-wrapper .ld-breadcrumbs .ld-status {
+  background-color: #e2e7ed;
+  border-radius: 5px;
+  color: #728188;
+  font-size: 12px;
+  margin-bottom: 0px;
+  padding: 16px 20px;
+}
+.es-course-lesson-wrapper .learndash-wrapper .ld-breadcrumbs .ld-status.ld-status-progress {
+  background-color: #81878a;
+}
+.es-course-lesson-wrapper .learndash-wrapper .wp-block-embed__wrapper iframe {
+  width: 100%;
+}
+@media (min-width: 600px) {
+  .es-course-lesson-wrapper .learndash-wrapper .wp-block-embed__wrapper iframe {
+    min-height: 450px;
+  }
+}
+@media (min-width: 900px) {
+  .es-course-lesson-wrapper .learndash-wrapper .wp-block-embed__wrapper iframe {
+    min-height: 550px;
+  }
+}
+@media (min-width: 1400px) {
+  .es-course-lesson-wrapper .learndash-wrapper .wp-block-embed__wrapper iframe {
+    min-height: 650px;
+  }
+}
+
 .es-course-learn-context {
   border: 1px solid #E1E4E8;
   background: #FAFBFC;
