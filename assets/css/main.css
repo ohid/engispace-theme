@@ -729,7 +729,7 @@ header .es-site-header-right .site-right-buttons .es-user-profile-button .es-use
   display: flex;
   transition: all 0.1s ease-in;
 }
-.engispace-single-course-wrapper .es-sc-top-nav .es-top-nav-item:first-child, .engispace-single-course-wrapper .es-sc-top-nav .es-top-nav-item:hover {
+.engispace-single-course-wrapper .es-sc-top-nav .es-top-nav-item.active, .engispace-single-course-wrapper .es-sc-top-nav .es-top-nav-item:hover {
   border-bottom-color: #E58C63;
 }
 .engispace-single-course-wrapper .es-sc-top-nav .es-top-nav-item a {
@@ -983,6 +983,9 @@ header .es-site-header-right .site-right-buttons .es-user-profile-button .es-use
   font-size: 16px;
   font-weight: 500;
   margin-top: 50px;
+}
+.es-sc-comments-area .comment-reply-title a {
+  color: #e04b06;
 }
 .es-sc-comments-area .comment-form .logged-in-as {
   display: none;

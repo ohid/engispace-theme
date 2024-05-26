@@ -258,3 +258,13 @@ function es_generate_buy_now_button() {
         );
     echo '</button>';
 }
+
+function es_get_course_current_tab_class( $tab ) {
+    $current_page_tab = isset( $_GET['tab'] ) ? sanitize_text_field( $_GET['tab'] ) : 'content';
+
+    if ( $current_page_tab === $tab ) {
+        return ' active';
+    }
+
+    return;
+}
