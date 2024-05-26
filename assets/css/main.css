@@ -800,10 +800,27 @@ header .es-site-header-right .site-right-buttons .es-user-profile-button .es-use
   font-weight: 700;
   line-height: 24px;
 }
-.engispace-single-course-wrapper .es-sc-content-box .es-sc-content-area .es-sc-course-body, .engispace-single-course-wrapper .es-sc-content-box .es-sc-content-area .es-sc-course-body p {
+.engispace-single-course-wrapper .es-sc-content-box .es-sc-content-area .es-sc-course-body {
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
+}
+.engispace-single-course-wrapper .es-sc-content-box .es-sc-content-area .es-sc-course-body p {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+.engispace-single-course-wrapper .es-sc-content-box .es-sc-content-area .es-sc-course-body .ld-section-heading {
+  margin-bottom: -10px;
+}
+.engispace-single-course-wrapper .es-sc-content-box .es-sc-content-area .es-sc-course-body .ld-section-heading h2 {
+  font-size: 12px;
+  color: rgba(100, 102, 103, 0.6980392157);
+  text-transform: uppercase;
+  margin-bottom: 0px;
+}
+.engispace-single-course-wrapper .es-sc-content-box .es-sc-content-area .es-sc-course-body .ld-item-list .ld-item-list-item .ld-item-name {
+  align-items: center;
 }
 .engispace-single-course-wrapper .es-sc-course-sidebar {
   width: calc(100% - 760px);
@@ -1305,6 +1322,27 @@ header .es-site-header-right .site-right-buttons .es-user-profile-button .es-use
   .es-course-lesson-wrapper .learndash-wrapper .wp-block-embed__wrapper iframe {
     min-height: 650px;
   }
+}
+
+.es-course-notification-page {
+  text-align: center;
+  padding-top: 100px;
+  padding-bottom: 400px;
+}
+.es-course-notification-page img {
+  width: 110px;
+}
+.es-course-notification-page h5 {
+  margin-top: 0px;
+  font-size: 14px;
+  color: rgba(100, 102, 103, 0.6980392157);
+  font-weight: 500;
+}
+.es-course-notification-page h3 {
+  margin-top: -10px;
+  margin-bottom: 40px;
+  font-size: 28px;
+  font-weight: 700;
 }
 
 .es-course-learn-context {

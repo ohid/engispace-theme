@@ -96,10 +96,30 @@
                 }
             }
 
-            .es-sc-course-body, .es-sc-course-body p {
+            .es-sc-course-body {
                 font-size: 16px;
                 font-weight: 400;
                 line-height: 24px;
+
+                p {
+                    font-size: 16px;
+                    font-weight: 400;
+                    line-height: 24px;
+                }
+
+                .ld-section-heading {
+                    margin-bottom: -10px;
+                    
+                    h2 {
+                        font-size: 12px;
+                        color: #646667B2;
+                        text-transform: uppercase;
+                        margin-bottom: 0px;
+                    }
+                }
+                .ld-item-list .ld-item-list-item .ld-item-name {
+                    align-items: center;
+                }
             }
         }
     }

@@ -75,6 +75,8 @@ class Course_Purchase implements Component_Interface {
         if ( isset( $price_args['type'] ) && $price_args['type'] === 'paynow' ) {
             $product_price = esc_html( $price_args['price'] );
         }
+        $success_page_url = get_site_url() . '/course-payment-success?session_id={CHECKOUT_SESSION_ID}&course_id=' . $course->ID;
+        $error_page_url = get_site_url() . '/course-payment-error?session_id={CHECKOUT_SESSION_ID}&course_id=' . $course->ID;
 
         $product_price = (int) $product_price * 100;
 
@@ -95,8 +97,8 @@ class Course_Purchase implements Component_Interface {
                 ],
             ],
             'mode' => 'payment',
-            'success_url' => get_site_url() . '/success?session_id={CHECKOUT_SESSION_ID}',
-            'cancel_url' => get_site_url() . '/success',
+            'success_url' => $success_page_url,
+            'cancel_url' => $error_page_url,
         ];
 
         // get the course creator user ID
@@ -131,6 +133,38 @@ class Course_Purchase implements Component_Interface {
         $creator_fee_percentage = (int) $creator_fee_percentage['creator_fee_percentage'];
 
         return $price * $creator_fee_percentage / 100;
+    }
+
+    /**
+     * Process next things after a course is purchased by an user
+     * 
+     * @since 1.0.0
+     */
+    public static function process_course_after_purchase() {
+        $course_id = isset( $_GET['course_id'] ) ? (int) $_GET['course_id'] : false;
+        $course_post = get_post( $course_id );
+
+        if ( !is_user_logged_in() || !$course_post ) {
+            return;
+        }
+
+        // Enable access to the course for the user
+        self::enable_course_access( $course_post->ID );
+
+        self::record_course_purchase_data();
+    }
+
+    /**
+     * Enable course access to the logged in user
+     * 
+     * @since 1.0.0
+     */
+    public static function enable_course_access( $course_id ) {
+        ld_update_course_access( get_current_user_id(), $course_id );
+    }
+
+    public static function record_course_purchase_data() {
+        
     }
 
 }

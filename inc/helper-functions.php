@@ -259,6 +259,14 @@ function es_generate_buy_now_button() {
     echo '</button>';
 }
 
+/**
+ * Determine the current tab on the single course page
+ * 
+ * @wsince 1.0.0
+ * @param string $tab
+ * 
+ * @return null|string 
+ */
 function es_get_course_current_tab_class( $tab ) {
     $current_page_tab = isset( $_GET['tab'] ) ? sanitize_text_field( $_GET['tab'] ) : 'content';
 
@@ -267,4 +275,19 @@ function es_get_course_current_tab_class( $tab ) {
     }
 
     return;
+}
+
+/**
+ * Check the user capability to access any given course id
+ * 
+ * @since 1.0.0
+ * @param int $course_id
+ * 
+ * @return null|boolean
+ */
+function es_user_has_access_to_course( $course_id ) {
+    if ( !is_user_logged_in() || !$course_id ) {
+        return;
+    }
+    return sfwd_lms_has_access( $course_id, get_current_user_id() );
 }
