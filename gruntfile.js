@@ -6,6 +6,7 @@ module.exports = function(grunt) {
                 files: [
                     'assets/scss/*.scss', 
                     'assets/scss/partials/*.scss',
+                    'assets/scss/blocks/*.scss',
                 ],
                 tasks: ['sass']
             },

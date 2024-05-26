@@ -112,6 +112,7 @@ class Theme {
             new Components\Authentication(),
             new Components\Theme_Options(),
             new Components\Course_Purchase(),
+            new Components\ACF_Blocks(),
         );
         
         return $components;
