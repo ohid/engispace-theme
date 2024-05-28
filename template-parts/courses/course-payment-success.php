@@ -1,7 +1,8 @@
 <?php
 get_header();
 
-$course_id = isset( $_GET['course_id'] ) ? (int) $_GET['course_id'] : false;
+$course_id = isset( $_GET['course_id'] ) ? sanitize_text_field( $_GET['course_id'] ) : false;
+$course_id = es_custom_decrypt_value( $course_id );
 $course_post = get_post( $course_id );
 if ( !$course_post ) {
     return;

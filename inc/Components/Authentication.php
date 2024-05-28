@@ -22,6 +22,9 @@ class Authentication implements Component_Interface {
         add_action( 'wp_ajax_nopriv_es_site_signin', array( $this, 'signin' ) );
         add_action( 'wp_ajax_es_site_signup', array( $this, 'signup' ) );
         add_action( 'wp_ajax_nopriv_es_site_signup', array( $this, 'signup' ) );
+
+        add_action( 'wp_ajax_es_auth_required_modal', array( $this, 'auth_required_modal' ) );
+        add_action( 'wp_ajax_nopriv_es_auth_required_modal', array( $this, 'auth_required_modal' ) );
     }
 
     public function signin() {
@@ -149,5 +152,23 @@ class Authentication implements Component_Interface {
         }
 
         return $userdata;
+    }
+
+    /**
+     * Output the Auth Required Modal HTML
+     * 
+     * @since 1.0.0
+     */
+    public function auth_required_modal() {
+        if ( !wp_doing_ajax() ) {
+            return;
+        }
+        check_ajax_referer( 'es_nonce', 'nonce' ); // Check nonce
+
+        ob_start();
+        get_template_part( 'template-parts/auth-required-modals' );
+        $modal = ob_get_clean();
+
+        wp_send_json_success( $modal );
     }
 }

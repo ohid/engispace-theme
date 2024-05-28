@@ -257,7 +257,7 @@
          */
         initAuthModal: function() {
             // Open signin modal
-            $('#es-open-signin-modal').on('click', function() {
+            $(document).on('click', '#es-open-signin-modal', function() {
                 $('.es-modal-wrapper').addClass('display-modal').attr('modal-type', 'signin-modal')
             });
             // Open signup modal
@@ -265,10 +265,33 @@
                 $('.es-modal-wrapper').addClass('display-modal').attr('modal-type', 'signup-modal')
             });
             // Close modal 
-            $('.close-modal').on('click', function() {
-                $('.es-modal-wrapper')
-                    .removeClass('display-modal signin-modal signup-modal')
-                    .attr('modal-type', '')
+            $(document).on('click', '.close-modal', function() {
+                if ($('.es-modal-wrapper[modal-type="auth-require-modal"]')) {
+                    $('.es-modal-wrapper[modal-type="auth-require-modal"]').remove();
+                }
+                    $('.es-modal-wrapper')
+                        .removeClass('display-modal signin-modal signup-modal')
+                        .attr('modal-type', '');
+            });
+
+            // Open sign in modal from auth modal
+            $(document).on('click', '#es-open-signin-modal-from-auth', function() {
+                // Close the auth required modal first
+                if ($('.es-modal-wrapper[modal-type="auth-require-modal"]')) {
+                    $('.es-modal-wrapper[modal-type="auth-require-modal"]').remove();
+                }
+                // open the signin modal
+                $('.es-modal-wrapper').addClass('display-modal').attr('modal-type', 'signin-modal');
+            });
+            
+            // Open sign up modal from auth modal
+            $(document).on('click', '#es-open-signup-modal-from-auth', function() {
+                // Close the auth required modal first
+                if ($('.es-modal-wrapper[modal-type="auth-require-modal"]')) {
+                    $('.es-modal-wrapper[modal-type="auth-require-modal"]').remove();
+                }
+                // open the signin modal
+                $('.es-modal-wrapper').addClass('display-modal').attr('modal-type', 'signup-modal');
             });
 
             // Swith modal content from signin form to signup form
@@ -287,7 +310,7 @@
          */
         initCoursePurchase: function() {
             // Get the stripe checkout URL
-            const getCoursePurchaseStripeCheckoutURL = (thisBtn, courseData) => {
+            const redirectToStripeCheckoutPage = (thisBtn, courseData) => {
                 $.ajax({
                     url: engisapce_obj.ajaxurl,
                     method: "POST",
@@ -307,6 +330,25 @@
                 })
             }
 
+            /**
+             * Open the authentication modal when required
+             * @param {object} thisBtn 
+             */
+            const openAuthRequiredModal = ( thisBtn ) => {
+                $.ajax({
+                    url: engisapce_obj.ajaxurl,
+                    method: "POST",
+                    data: {
+                        action: 'es_auth_required_modal',
+                        nonce: engisapce_obj.nonce
+                    },
+                    success: function( response ) {
+                        thisBtn.removeClass('loading');
+                        $('body').append( response.data )
+                    }
+                })
+            }
+
             // Handle course purchase button event click
             $('#course-purchase-btn').on('click', function() {
                 const thisBtn = $(this),
@@ -315,8 +357,17 @@
                 if ( ! thisBtn.hasClass( 'loading' ) ) {
                     // turn the button loader on
                     thisBtn.addClass('loading');
+
+                    // Check user authentication status
+                    // Display auth require popup
+                    if ( !engisapce_obj.user_logged_in ) {
+                        $('.es-modal-wrapper.es-auth-require-modal').addClass('display-modal').attr('modal-type', 'auth-require-modal');
+                        openAuthRequiredModal( thisBtn );
+                        return;
+                    }
+                    
                     // get course purchase URL
-                    getCoursePurchaseStripeCheckoutURL(thisBtn, courseData);
+                    redirectToStripeCheckoutPage(thisBtn, courseData);
                 }
             })
         },

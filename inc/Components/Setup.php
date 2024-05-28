@@ -33,6 +33,11 @@ class Setup implements Component_Interface {
     public function after_setup_theme() {
         add_image_size( 'engispace-course-thumbnail', 324, 234, true );
 
+        // Hide admin bar for all users except admin
+        if ( ! current_user_can( 'administrator' ) && !is_admin() ) {
+            show_admin_bar( false );
+        }
+
         if ( function_exists( 'register_nav_menus' ) ) {
             register_nav_menus(
                 array(

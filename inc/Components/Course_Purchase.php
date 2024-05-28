@@ -75,8 +75,8 @@ class Course_Purchase implements Component_Interface {
         if ( isset( $price_args['type'] ) && $price_args['type'] === 'paynow' ) {
             $product_price = esc_html( $price_args['price'] );
         }
-        $success_page_url = get_site_url() . '/course-payment-success?session_id={CHECKOUT_SESSION_ID}&course_id=' . $course->ID;
-        $error_page_url = get_site_url() . '/course-payment-error?session_id={CHECKOUT_SESSION_ID}&course_id=' . $course->ID;
+        $success_page_url = get_site_url() . '/course-payment-success?session_id={CHECKOUT_SESSION_ID}&course_id=' . es_custom_encrypt_value($course->ID);
+        $error_page_url = get_site_url() . '/course-payment-error?session_id={CHECKOUT_SESSION_ID}&course_id=' . es_custom_encrypt_value($course->ID);
 
         $product_price = (int) $product_price * 100;
 
@@ -141,7 +141,8 @@ class Course_Purchase implements Component_Interface {
      * @since 1.0.0
      */
     public static function process_course_after_purchase() {
-        $course_id = isset( $_GET['course_id'] ) ? (int) $_GET['course_id'] : false;
+        $course_id = isset( $_GET['course_id'] ) ? $_GET['course_id'] : false;
+        $course_id = es_custom_decrypt_value( $course_id );
         $course_post = get_post( $course_id );
 
         if ( !is_user_logged_in() || !$course_post ) {
@@ -151,7 +152,7 @@ class Course_Purchase implements Component_Interface {
         // Enable access to the course for the user
         self::enable_course_access( $course_post->ID );
 
-        self::record_course_purchase_data();
+        self::record_course_purchase_data( $course_post );
     }
 
     /**
@@ -163,8 +164,16 @@ class Course_Purchase implements Component_Interface {
         ld_update_course_access( get_current_user_id(), $course_id );
     }
 
-    public static function record_course_purchase_data() {
-        
+    public static function record_course_purchase_data( $course ) {
+        $api_key = 'sk_test_PpmKa2L8wZC7T2ihabo5Ex0W';
+        $session_id = isset( $_GET['session_id'] ) ? sanitize_text_field( $_GET['session_id'] ) : '';
+
+        try {
+            $stripe = new StripeClient( $api_key );
+            $stripe->checkout->sessions->retrieve( $session_id );
+        } catch ( Exception $e ) {
+
+        }
     }
 
 }

@@ -16,6 +16,11 @@
         transform: scale(0.95);
         margin-bottom: -40px;
         transition: all 0.2s ease;
+        width: 400px;
+        box-sizing: border-box;
+        padding: 50px 20px 20px;
+        background-color: #fff;
+        border-radius: 8px;
 
         #es-user-signin-modal-body, 
         #es-user-signup-modal-body {
@@ -199,6 +204,48 @@
         }
         #es-user-signin-modal-body {
             display: none;
+        }
+    }
+    &[modal-type="auth-require-modal"] {
+        .es-site-modal {
+            min-height: 300px;
+            text-align: center;
+
+            p {
+                font-size: 12px;
+                color: #818181;
+                margin-top: -10px;
+            }
+
+            .es-btns {
+                margin-top: 40px;
+                span {
+                    font-size: 12px;
+                    margin: 0 5px;
+                }
+                .es-btn-signin, .es-btn-signup {
+                    border: 1px solid #ebdfdf;
+                    border-radius: 4px;
+                    padding: 14px 30px;
+                    font-weight: 700;
+                    background-color: #ffffff;
+                    color: inherit;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: #f5f3f3;
+                    }
+                }
+
+                .es-btn-signup {
+                    background-color: #E04B06;
+                    color: #fff;
+
+                    &:hover {
+                        background-color: #ed530c;
+                    }
+                }
+            }
         }
     }
 }

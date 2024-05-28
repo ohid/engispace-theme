@@ -53,7 +53,8 @@ class Scripts implements Component_Interface {
             'engisapce_obj', 
             array(
                 'ajaxurl' => admin_url( 'admin-ajax.php' ),
-                'nonce' => wp_create_nonce('es_nonce')
+                'nonce' => wp_create_nonce('es_nonce'),
+                'user_logged_in' => is_user_logged_in(),
             )
         );
     

@@ -291,3 +291,38 @@ function es_user_has_access_to_course( $course_id ) {
     }
     return sfwd_lms_has_access( $course_id, get_current_user_id() );
 }
+
+/**
+ * Custom function to encrypt value
+ * 
+ * @since 1.0.0
+ * @param string $value
+ * @return string
+ */
+function es_custom_encrypt_value( $value ) {
+    $cipher = "aes-256-cbc";
+    $key = substr( hash( 'sha256', AUTH_KEY . SECURE_AUTH_KEY . LOGGED_IN_KEY . NONCE_KEY ), 0, 32 );
+    $ivlen = openssl_cipher_iv_length($cipher);
+    $iv = openssl_random_pseudo_bytes($ivlen);
+    $ciphertext = openssl_encrypt($value, $cipher, $key, $options=0, $iv);
+
+    return base64_encode($iv . $ciphertext);
+}
+
+/**
+ * Custom function to decrypt value
+ * 
+ * @since 1.0.0
+ * @param string $encrypted_value
+ * @return string
+ */
+function es_custom_decrypt_value( $encrypted_value ) {
+    $cipher = "aes-256-cbc";
+    $key = substr( hash( 'sha256', AUTH_KEY . SECURE_AUTH_KEY . LOGGED_IN_KEY . NONCE_KEY ), 0, 32 );
+    $ivlen = openssl_cipher_iv_length($cipher);
+    $data = base64_decode($encrypted_value);
+    $iv = substr($data, 0, $ivlen);
+    $ciphertext = substr($data, $ivlen);
+
+    return openssl_decrypt($ciphertext, $cipher, $key, $options=0, $iv);
+}

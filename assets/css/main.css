@@ -1090,6 +1090,11 @@ header .es-site-header-right .site-right-buttons .es-user-profile-button .es-use
   transform: scale(0.95);
   margin-bottom: -40px;
   transition: all 0.2s ease;
+  width: 400px;
+  box-sizing: border-box;
+  padding: 50px 20px 20px;
+  background-color: #fff;
+  border-radius: 8px;
 }
 .es-modal-wrapper .es-site-modal #es-user-signin-modal-body,
 .es-modal-wrapper .es-site-modal #es-user-signup-modal-body {
@@ -1242,6 +1247,41 @@ header .es-site-header-right .site-right-buttons .es-user-profile-button .es-use
 }
 .es-modal-wrapper[modal-type=signup-modal] #es-user-signin-modal-body {
   display: none;
+}
+.es-modal-wrapper[modal-type=auth-require-modal] .es-site-modal {
+  min-height: 300px;
+  text-align: center;
+}
+.es-modal-wrapper[modal-type=auth-require-modal] .es-site-modal p {
+  font-size: 12px;
+  color: #818181;
+  margin-top: -10px;
+}
+.es-modal-wrapper[modal-type=auth-require-modal] .es-site-modal .es-btns {
+  margin-top: 40px;
+}
+.es-modal-wrapper[modal-type=auth-require-modal] .es-site-modal .es-btns span {
+  font-size: 12px;
+  margin: 0 5px;
+}
+.es-modal-wrapper[modal-type=auth-require-modal] .es-site-modal .es-btns .es-btn-signin, .es-modal-wrapper[modal-type=auth-require-modal] .es-site-modal .es-btns .es-btn-signup {
+  border: 1px solid #ebdfdf;
+  border-radius: 4px;
+  padding: 14px 30px;
+  font-weight: 700;
+  background-color: #ffffff;
+  color: inherit;
+  cursor: pointer;
+}
+.es-modal-wrapper[modal-type=auth-require-modal] .es-site-modal .es-btns .es-btn-signin:hover, .es-modal-wrapper[modal-type=auth-require-modal] .es-site-modal .es-btns .es-btn-signup:hover {
+  background-color: #f5f3f3;
+}
+.es-modal-wrapper[modal-type=auth-require-modal] .es-site-modal .es-btns .es-btn-signup {
+  background-color: #E04B06;
+  color: #fff;
+}
+.es-modal-wrapper[modal-type=auth-require-modal] .es-site-modal .es-btns .es-btn-signup:hover {
+  background-color: #ed530c;
 }
 
 .es-course-lesson-wrapper {
