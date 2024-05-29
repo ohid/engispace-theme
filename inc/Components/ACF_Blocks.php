@@ -29,6 +29,7 @@ class ACF_Blocks implements Component_Interface {
         }
 
         $this->register_blocks_for_courses_page();
+        $this->register_blocks_for_pricing_page();
     }
 
     public function register_blocks_for_courses_page() {
@@ -45,7 +46,31 @@ class ACF_Blocks implements Component_Interface {
             'enqueue_assets' => function() {
                 // only enqueue the block assets for the admin gutenberg editor
                 if ( is_admin() ) {
-                    wp_enqueue_style( 'hero-home', THEME_URI . '/assets/css/blocks/course_learn_context.css' );
+                    wp_enqueue_style( 'courses_learn_context', THEME_URI . '/assets/css/blocks/course_learn_context.css' );
+                }
+            },
+            'example'  => array(
+                'attributes' => array(
+                    'mode' => 'preview'
+                )
+            ),
+        ));
+    }
+
+    public function register_blocks_for_pricing_page() {
+        // Pricing plan block
+        acf_register_block_type(array(
+            'name'              => 'es_pricing_plan_block',
+            'title'             => __('Engispace - Pricing Plan Block'),
+            'description'       => __('Manage pricing plans'),
+            'render_template'   => 'template-parts/acf-blocks/pricing/pricing-plans.php',
+            'category'          => 'engispace-theme',
+            'icon'              => $this->sb_logo,
+            'keywords'          => array( 'pricing', 'pricing plan', 'engispace', 'es' ),
+            'enqueue_assets' => function() {
+                // only enqueue the block assets for the admin gutenberg editor
+                if ( is_admin() ) {
+                    wp_enqueue_style( 'pricing-plan', THEME_URI . '/assets/css/blocks/pricing_plan.css' );
                 }
             },
             'example'  => array(
