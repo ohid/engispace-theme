@@ -240,13 +240,18 @@ function es_get_current_user_avatar() {
  * 
  * @since 1.0.0
  */
-function es_generate_buy_now_button() {
+function es_generate_buy_now_button( $price_args ) {
     global $post;
     $course_info = array(
         'id' => $post->ID
     );
+    $is_free_course = isset( $price_args['type'] ) && $price_args['type'] === 'free';
 
-    printf( '<button data-course-info=\'%s\' class="course-purchase-btn" id="course-purchase-btn">', json_encode( $course_info ) );
+    printf( 
+        '<button data-course-info=\'%s\' class="course-purchase-btn" id="course-purchase-btn" data-is-free-course="%s">', 
+        json_encode( $course_info ) ,
+        $is_free_course
+    );
         printf(
             '<span class="pb-text">%s</span>',
             es_get_svg_icon( '/assets/img/cart-icon' ) . esc_html__( 'Buy now', 'engispace' )

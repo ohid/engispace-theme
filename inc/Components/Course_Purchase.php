@@ -21,6 +21,9 @@ class Course_Purchase implements Component_Interface {
     public function initialize() {
         add_action( 'wp_ajax_es_course_purchase_url', array( $this, 'course_purchase_url' ) );
         add_action( 'wp_ajax_nopriv_es_course_purchase_url', array( $this, 'course_purchase_url' ) );
+       
+        add_action( 'wp_ajax_es_free_course_purchase', array( $this, 'free_course_purchase' ) );
+        add_action( 'wp_ajax_nopriv_es_free_course_purchase', array( $this, 'free_course_purchase' ) );
     }
 
     /**
@@ -167,13 +170,36 @@ class Course_Purchase implements Component_Interface {
     public static function record_course_purchase_data( $course ) {
         $api_key = 'sk_test_PpmKa2L8wZC7T2ihabo5Ex0W';
         $session_id = isset( $_GET['session_id'] ) ? sanitize_text_field( $_GET['session_id'] ) : '';
-
+        if ( !$session_id ) {
+            return;
+        }
         try {
             $stripe = new StripeClient( $api_key );
             $stripe->checkout->sessions->retrieve( $session_id );
         } catch ( Exception $e ) {
 
         }
+    }
+
+    /**
+     * Ability to purchase free course
+     * 
+     * @since 1.0.0
+     */
+    public function free_course_purchase() {
+        if ( !wp_doing_ajax() ) {
+            return;
+        }
+        check_ajax_referer( 'es_nonce', 'nonce' ); // Check nonce
+        $course_id = (int) $_POST['course_id'];
+        $course = get_post( $course_id );
+        if ( !$course ) {
+            return;
+        }
+
+        $success_page_url = get_site_url() . '/course-payment-success?course_id=' . es_custom_encrypt_value($course->ID);
+
+        wp_send_json_success( $success_page_url );
     }
 
 }

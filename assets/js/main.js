@@ -330,6 +330,27 @@
                 })
             }
 
+            const redirectToSuccessPage = (thisBtn, courseData) => {
+                console.log(courseData);
+                $.ajax({
+                    url: engisapce_obj.ajaxurl,
+                    method: "POST",
+                    data: {
+                        action: 'es_free_course_purchase',
+                        nonce: engisapce_obj.nonce,
+                        course_id: courseData.id
+                    },
+                    success: function( response ) {
+                        if ( ! response.success ) {
+                            // disable button load
+                            thisBtn.removeClass('loading');
+                        }
+                        // redirect to the Stripe checkout page
+                        window.location.href = response.data;
+                    }
+                });
+            }
+
             /**
              * Open the authentication modal when required
              * @param {object} thisBtn 
@@ -352,7 +373,8 @@
             // Handle course purchase button event click
             $('#course-purchase-btn').on('click', function() {
                 const thisBtn = $(this),
-                    courseData = thisBtn.data('course-info');
+                    courseData = thisBtn.data('course-info'),
+                    isFree = thisBtn.data('is-free-course');
                 // bail out if the purchase button already made an AJAX request
                 if ( ! thisBtn.hasClass( 'loading' ) ) {
                     // turn the button loader on
@@ -365,9 +387,14 @@
                         openAuthRequiredModal( thisBtn );
                         return;
                     }
-                    
-                    // get course purchase URL
-                    redirectToStripeCheckoutPage(thisBtn, courseData);
+
+                    if ( isFree ) {
+                        // redirect to course success page once purchase
+                        redirectToSuccessPage(thisBtn, courseData);
+                    } else {
+                        // redirect to stripe checkout page
+                        redirectToStripeCheckoutPage(thisBtn, courseData);
+                    }
                 }
             })
         },

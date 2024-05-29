@@ -23,7 +23,7 @@
 
     <?php 
         if ( ! es_user_has_access_to_course( get_the_ID() ) ) {
-            es_generate_buy_now_button(); 
+            es_generate_buy_now_button( $price_args ); 
         }
     ?>
 
