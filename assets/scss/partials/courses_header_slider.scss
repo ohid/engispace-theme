@@ -40,6 +40,10 @@
                 background-color: #eeeeee;
             }
         }
+
+        @media (max-width: 680px) {
+            padding: 58px 40px;
+        }
     }
 
     .owl-dots {

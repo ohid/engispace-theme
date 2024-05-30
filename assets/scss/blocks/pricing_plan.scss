@@ -35,20 +35,21 @@
             }
 
             &:first-child {
-                h4 {
-                    background-color: rgb(224, 88, 39);
-                }
-            }
-            &:nth-child(2) {
-                box-shadow: 0 10px 50px rgba(0,0,0,0.08), 0 13px 45px rgba(0,0,0,0.08);
 
                 .es-btn-orange,
                 h4 {
                     background-color: rgb(105, 125, 90);
                 }
+                
+            }
+            &:nth-child(2) {
+                box-shadow: 0 10px 50px rgba(0,0,0,0.08), 0 13px 45px rgba(0,0,0,0.08);
+                .es-btn-orange,
+                h4 {
+                    background-color: rgb(224, 88, 39);
+                }
             }
             &:last-child {
-
                 .es-btn-orange,
                 h4 {
                     background-color: rgb(34, 49, 71);

@@ -32,15 +32,16 @@
   font-size: 18px;
   margin-bottom: 10px;
 }
+.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan:first-child .es-btn-orange,
 .es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan:first-child h4 {
-  background-color: rgb(224, 88, 39);
+  background-color: rgb(105, 125, 90);
 }
 .es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan:nth-child(2) {
   box-shadow: 0 10px 50px rgba(0, 0, 0, 0.08), 0 13px 45px rgba(0, 0, 0, 0.08);
 }
 .es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan:nth-child(2) .es-btn-orange,
 .es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan:nth-child(2) h4 {
-  background-color: rgb(105, 125, 90);
+  background-color: rgb(224, 88, 39);
 }
 .es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan:last-child .es-btn-orange,
 .es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan:last-child h4 {

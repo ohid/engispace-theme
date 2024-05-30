@@ -19,71 +19,27 @@ if( !empty($block['align']) ) {
 }
 
 $heading = get_field( 'heading' );
-$information_row = get_field( 'information_row' );
+$pricing_plans = get_field( 'pricing_plans' );
 
 ?>
 
 <div id="<?php echo esc_attr($id); ?>" class="<?php echo esc_attr($className); ?>">
     <h2><?php esc_html_e( $heading ); ?></h2>
     <div class="es-pricing-plans">
-        <div class="es-pricing-plan">
-            <h4>Freemium</h4>
-            <div class="es-pricing-plan-price">
-                <span class="es-pricing-plan-cost"><sup>$</sup>0</span>
-                <span class="es-pricing-plan-subs-type">Per month</span>
+        <?php foreach( $pricing_plans as $plan ) : ?>
+            <div class="es-pricing-plan">
+                <h4><?php echo $plan['plan_title']; ?></h4>
+                <div class="es-pricing-plan-price">
+                    <span class="es-pricing-plan-cost"><sup>$</sup><?php echo $plan['plan_price']; ?></span>
+                    <span class="es-pricing-plan-subs-type">Per month</span>
+                </div>
+                <div class="es-pricing-plan-features">
+                    <?php echo $plan['plan_features']; ?>
+                </div>
+                <div class="plan-btn">
+                    <a href=""class="es-btn-orange">Sign up</a>
+                </div>
             </div>
-            <div class="es-pricing-plan-features">
-                <ul>
-                    <li>Personal profile</li>
-                    <li>Unlimited forum viewing & Posting</li>
-                    <li>Access to Purchasing of Courses</li>
-                    <li>Limited Access to Code Exchange</li>
-                </ul>
-            </div>
-            <div class="plan-btn">
-                <a href=""class="es-btn-orange">Sign up</a>
-            </div>
-        </div>
-        <div class="es-pricing-plan">
-            <h4> <span>Most Popular</span> Pro</h4>
-            <div class="es-pricing-plan-price">
-                <span class="es-pricing-plan-cost"><sup>$</sup>5</span>
-                <span class="es-pricing-plan-subs-type">Per month</span>
-            </div>
-            <div class="es-pricing-plan-features">
-                <ul>
-                    <li>Personal profile</li>
-                    <li>Unlimited forum viewing & Posting</li>
-                    <li>Access to Purchasing of Courses</li>
-                    <li>Full Access to Code Exchange</li>
-                    <li>Unlimited uploading & downloading of files</li>
-                    <li>Access to purchasing courses</li>
-                </ul>
-            </div>
-            <div class="plan-btn">
-                <a href=""class="es-btn-orange">Sign up</a>
-            </div>
-        </div>
-        <div class="es-pricing-plan">
-            <h4>Creator</h4>
-            <div class="es-pricing-plan-price">
-                <span class="es-pricing-plan-cost"><sup>$</sup>49</span>
-                <span class="es-pricing-plan-subs-type">Per month</span>
-            </div>
-            <div class="es-pricing-plan-features">
-                <ul>
-                    <li>Personal profile</li>
-                    <li>Unlimited forum viewing & Posting</li>
-                    <li>Access to Purchasing of Courses</li>
-                    <li>Full Access to Code Exchange</li>
-                    <li>Unlimited uploading & downloading of files</li>
-                    <li>Access to sell courses</li>
-                </ul>
-            </div>
-
-            <div class="plan-btn">
-                <a href=""class="es-btn-orange">Sign up</a>
-            </div>
-        </div>
+        <?php endforeach; ?>
     </div>
 </div>

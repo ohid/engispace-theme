@@ -9,13 +9,10 @@ body, html {
 .es-site-container {
   width: 100%;
   margin: auto;
+  box-sizing: border-box;
+  padding: 0px 15px;
 }
 
-@media (min-width: 1040px) {
-  .es-site-container {
-    padding: 0px 15px;
-  }
-}
 @media (min-width: 1200px) {
   .es-site-container {
     width: 1180px;
@@ -55,9 +52,17 @@ header .es-site-inner-container .es-site-header-left {
   gap: 15px;
   align-items: center;
 }
-header .site-search-form .es-form-control {
-  height: 40px;
+header .site-search-form {
   width: 290px;
+}
+@media (max-width: 1040px) {
+  header .site-search-form {
+    width: 200px;
+  }
+}
+header .site-search-form .es-form-control {
+  width: 100%;
+  height: 40px;
 }
 header .site-search-form .es-form-control input {
   height: 100%;
@@ -84,6 +89,11 @@ header .es-site-header-right {
   display: flex;
   gap: 105px;
   align-items: center;
+}
+@media (max-width: 1040px) {
+  header .es-site-header-right {
+    gap: 5px;
+  }
 }
 header .es-site-header-right .site-menu ul {
   display: flex;
@@ -116,6 +126,11 @@ header .es-site-header-right .site-menu ul li.current-menu-item, header .es-site
 }
 header .es-site-header-right .site-menu ul li.current-menu-item a, header .es-site-header-right .site-menu ul li:hover a {
   border-bottom: 2px solid #FFF;
+}
+@media (max-width: 1024px) {
+  header .es-site-header-right .site-menu {
+    display: none;
+  }
 }
 header .es-site-header-right .site-right-buttons .es-user-profile-button {
   position: relative;
@@ -243,6 +258,11 @@ header .es-site-header-right .site-right-buttons .es-user-profile-button .es-use
   background-color: #484b4e;
   border-bottom: 2px solid #fff;
 }
+@media (max-width: 768px) {
+  .es-site-footer .es-footer-inner {
+    flex-direction: column;
+  }
+}
 
 .courses-header-slider {
   margin-top: 30px;
@@ -282,6 +302,11 @@ header .es-site-header-right .site-right-buttons .es-user-profile-button .es-use
 }
 .courses-header-slider .es-slide a:hover {
   background-color: #eeeeee;
+}
+@media (max-width: 680px) {
+  .courses-header-slider .es-slide {
+    padding: 58px 40px;
+  }
 }
 .courses-header-slider .owl-dots {
   margin-top: 10px;
@@ -343,6 +368,55 @@ header .es-site-header-right .site-right-buttons .es-user-profile-button .es-use
   background-color: #eeeeee;
 }
 
+.es-site-courses-grid .owl-nav {
+  position: absolute;
+  top: calc(50% - 40px);
+  width: 100%;
+}
+.es-site-courses-grid .owl-nav button {
+  position: absolute;
+}
+.es-site-courses-grid .owl-nav button:hover {
+  background-color: transparent !important;
+}
+.es-site-courses-grid .owl-nav button span {
+  width: 48px;
+  height: 48px;
+  background: #E1E4E8;
+  font-size: 30px;
+  color: #C2C7CA;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.es-site-courses-grid .owl-nav button.owl-prev {
+  left: -75px;
+}
+.es-site-courses-grid .owl-nav button.owl-next {
+  right: -75px;
+}
+@media (max-width: 1300px) {
+  .es-site-courses-grid .owl-nav {
+    opacity: 0;
+    visibility: hidden;
+  }
+  .es-site-courses-grid .owl-nav button.owl-prev {
+    left: 10px;
+  }
+  .es-site-courses-grid .owl-nav button.owl-next {
+    right: 10px;
+  }
+  .es-site-courses-grid .owl-nav span {
+    box-shadow: 4px 2px 15px rgba(0, 0, 0, 0.05);
+  }
+}
+@media (max-width: 1300px) {
+  .es-site-courses-grid .owl-nav {
+    opacity: 1;
+    visibility: visible;
+  }
+}
 .es-site-courses-grid .es-course-item {
   border: 1px solid #e1e4e8;
   border-radius: 6px;
@@ -1451,15 +1525,16 @@ header .es-site-header-right .site-right-buttons .es-user-profile-button .es-use
   font-size: 18px;
   margin-bottom: 10px;
 }
+.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan:first-child .es-btn-orange,
 .es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan:first-child h4 {
-  background-color: rgb(224, 88, 39);
+  background-color: rgb(105, 125, 90);
 }
 .es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan:nth-child(2) {
   box-shadow: 0 10px 50px rgba(0, 0, 0, 0.08), 0 13px 45px rgba(0, 0, 0, 0.08);
 }
 .es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan:nth-child(2) .es-btn-orange,
 .es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan:nth-child(2) h4 {
-  background-color: rgb(105, 125, 90);
+  background-color: rgb(224, 88, 39);
 }
 .es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan:last-child .es-btn-orange,
 .es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan:last-child h4 {

@@ -35,17 +35,19 @@
             // Courses slider on the courses page
             $(".courses_slider").owlCarousel({
                 center: false,
-                items: 5,
+                items: 1,
                 loop: false,
+                dots: false,
+                nav: true,
                 margin: 20,
                 responsive:{
-                    1400:{
+                    1024:{
                         items: 5
                     },
-                    1024:{
+                    768:{
                         items: 3
                     },
-                    580:{
+                    480:{
                         items: 2
                     }
                 }
@@ -57,6 +59,10 @@
          * 
          */
         initCourseItemHover: function() {
+            let windowWidth = $(window).width();
+            if ( windowWidth < 1025 ) {
+                return;
+            }
             let courseDetailsBox;
             $( '.es-course-item' )
                 .on('mouseover', function() {

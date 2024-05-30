@@ -93,7 +93,7 @@ $courses = get_posts([
                                 );
                             }
                             if ( $short_description ) {
-                                printf('<p class="es-course-description">%s</p>', esc_html( $short_description ));
+                                printf('<p class="es-course-description">%s</p>', esc_html( es_get_course_title_trimmed( $short_description, 15) ));
                             }
 
                             echo '<div class="es-course-meta-data">';

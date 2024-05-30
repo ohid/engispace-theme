@@ -40,6 +40,65 @@
 }
 
 .es-site-courses-grid {
+    .owl-nav {
+        position: absolute;
+        top: calc( 50% - 40px );
+        width: 100%;
+
+        button {
+            position: absolute;
+
+            &:hover {
+                background-color: transparent !important;
+            }
+
+            span {
+                width: 48px;
+                height: 48px;
+                background: #E1E4E8;
+                font-size: 30px;
+                color: #C2C7CA;
+                border-radius: 6px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            &.owl-prev {
+                left: -75px;
+            }
+            &.owl-next {
+                right: -75px;
+            }
+        }
+
+        @media (max-width: 1300px) {
+            opacity: 0;
+            visibility: hidden;
+
+            button {
+
+            &.owl-prev {
+                left: 10px;
+            }
+            &.owl-next {
+                right: 10px;
+            }
+            }
+            
+            span {
+                box-shadow: 4px 2px 15px rgb(0 0 0 / 5%);
+            }
+        }
+    }
+
+    @media (max-width: 1300px) {
+        .owl-nav {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
     .es-course-item {
         border: 1px solid #e1e4e8;
         border-radius: 6px;

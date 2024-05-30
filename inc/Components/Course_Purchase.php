@@ -41,7 +41,7 @@ class Course_Purchase implements Component_Interface {
         $course_id = (int) $_POST['course_id'];
         // create the session arguments
         $session_args = $this->stripe_payment_session_args( $course_id );
-        $api_key = 'sk_test_PpmKa2L8wZC7T2ihabo5Ex0W';
+        $api_key = get_field( 'stripe_secret_key', 'option' );
 
         try {
             $stripe = new StripeClient( $api_key );
@@ -168,7 +168,7 @@ class Course_Purchase implements Component_Interface {
     }
 
     public static function record_course_purchase_data( $course ) {
-        $api_key = 'sk_test_PpmKa2L8wZC7T2ihabo5Ex0W';
+        $api_key = get_field( 'stripe_secret_key', 'option' );
         $session_id = isset( $_GET['session_id'] ) ? sanitize_text_field( $_GET['session_id'] ) : '';
         if ( !$session_id ) {
             return;
