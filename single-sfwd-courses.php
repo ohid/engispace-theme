@@ -48,8 +48,9 @@ get_header();
                 es_get_template_for_single_course();
 
                 get_template_part( 'templates/courses/single-course-sidebar' );
-            ?>
 
+                get_template_part( 'template-parts/modals/social-share-modal' );
+            ?>
         </div>
     </div>
 </div>

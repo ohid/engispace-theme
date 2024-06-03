@@ -248,4 +248,11 @@
             }
         }
     }
+    
+    &[modal-type="social-share-modal"] {
+        .es-site-modal {
+            min-height: 300px;
+            text-align: center;
+        }
+    }
 }

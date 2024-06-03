@@ -115,11 +115,18 @@ header .es-site-header-right .site-menu ul li a {
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  gap: 2px;
   height: calc(100% - 2px);
   padding: 0px 14px;
   border-bottom: 2px solid transparent;
   transition: all 0.2s ease-in;
+}
+header .es-site-header-right .site-menu ul li a span {
+  min-height: 18px;
+  display: inline-flex;
+  align-items: start;
+}
+header .es-site-header-right .site-menu ul li a img {
+  max-width: 17px;
 }
 header .es-site-header-right .site-menu ul li.current-menu-item, header .es-site-header-right .site-menu ul li:hover {
   background-color: #505254;
@@ -669,7 +676,7 @@ header .es-site-header-right .site-right-buttons .es-user-profile-button .es-use
 .es-all-courses-archive .es-aca-inner .es-course-categories ul li a {
   text-decoration: none;
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 20px;
   color: #0366D6;
   display: block;
@@ -732,11 +739,16 @@ header .es-site-header-right .site-right-buttons .es-user-profile-button .es-use
   margin: 0px;
 }
 .es-all-courses-archive .es-aca-inner .es-course-archives .es-ca-course-list .es-ca-course-item .es-ca-course-details-wrap .es-ca-course-details-title p {
-  color: rgba(100, 102, 103, 0.6980392157);
+  border: 1px solid rgba(8, 105, 214, 0.4980392157);
+  color: #0366D6;
+  display: inline-block;
+  padding: 3px 15px;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 700;
   line-height: 16px;
-  margin: 0px 0px 10px;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 5px;
 }
 .es-all-courses-archive .es-aca-inner .es-course-archives .es-ca-course-list .es-ca-course-item .es-ca-course-details-wrap .es-course-description {
   font-size: 14px;
@@ -1009,9 +1021,19 @@ header .es-site-header-right .site-right-buttons .es-user-profile-button .es-use
   color: #3C3F41;
   padding: 5px 22px;
   border-radius: 4px;
+  border: none;
+  cursor: pointer;
 }
 .engispace-single-course-wrapper .es-sc-course-sidebar .es-sc-share-btn:hover {
   background: linear-gradient(to top, rgba(169, 183, 199, 0.2) 0%, #fff 80%);
+}
+.engispace-single-course-wrapper .es-social-share {
+  margin-top: 60px;
+}
+.engispace-single-course-wrapper .es-social-share .heateor_sss_sharing_ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .es-sc-comments-area {
@@ -1356,6 +1378,10 @@ header .es-site-header-right .site-right-buttons .es-user-profile-button .es-use
 }
 .es-modal-wrapper[modal-type=auth-require-modal] .es-site-modal .es-btns .es-btn-signup:hover {
   background-color: #ed530c;
+}
+.es-modal-wrapper[modal-type=social-share-modal] .es-site-modal {
+  min-height: 300px;
+  text-align: center;
 }
 
 .es-course-lesson-wrapper {

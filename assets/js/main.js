@@ -264,20 +264,18 @@
         initAuthModal: function() {
             // Open signin modal
             $(document).on('click', '#es-open-signin-modal', function() {
-                $('.es-modal-wrapper').addClass('display-modal').attr('modal-type', 'signin-modal')
+                $('#site-auth-modal').addClass('display-modal').attr('modal-type', 'signin-modal');
             });
             // Open signup modal
             $('#es-open-signup-modal').on('click', function() {
-                $('.es-modal-wrapper').addClass('display-modal').attr('modal-type', 'signup-modal')
+                $('#site-auth-modal').addClass('display-modal').attr('modal-type', 'signup-modal');
             });
             // Close modal 
             $(document).on('click', '.close-modal', function() {
                 if ($('.es-modal-wrapper[modal-type="auth-require-modal"]')) {
                     $('.es-modal-wrapper[modal-type="auth-require-modal"]').remove();
                 }
-                    $('.es-modal-wrapper')
-                        .removeClass('display-modal signin-modal signup-modal')
-                        .attr('modal-type', '');
+                $('.es-modal-wrapper').removeClass('display-modal')
             });
 
             // Open sign in modal from auth modal
@@ -287,7 +285,7 @@
                     $('.es-modal-wrapper[modal-type="auth-require-modal"]').remove();
                 }
                 // open the signin modal
-                $('.es-modal-wrapper').addClass('display-modal').attr('modal-type', 'signin-modal');
+                $('#site-auth-modal').addClass('display-modal').attr('modal-type', 'signin-modal');
             });
             
             // Open sign up modal from auth modal
@@ -297,17 +295,17 @@
                     $('.es-modal-wrapper[modal-type="auth-require-modal"]').remove();
                 }
                 // open the signin modal
-                $('.es-modal-wrapper').addClass('display-modal').attr('modal-type', 'signup-modal');
+                $('#site-auth-modal').addClass('display-modal').attr('modal-type', 'signup-modal');
             });
 
             // Swith modal content from signin form to signup form
             $('.es-btn-switch-to-login').on('click', function() {
-                $('.es-modal-wrapper').attr('modal-type', 'signin-modal')
+                $('#site-auth-modal').attr('modal-type', 'signin-modal')
             });
             
             // Swith modal content from signup form to signin form
             $('.es-btn-switch-to-signup').on('click', function() {
-                $('.es-modal-wrapper').attr('modal-type', 'signup-modal')
+                $('#site-auth-modal').attr('modal-type', 'signup-modal')
             });
         },
 
@@ -405,6 +403,13 @@
             })
         },
 
+        initSocialShare: function() {
+            $('.es-sc-share-btn').on('click', function() {
+                $('#social-share-modal').addClass('display-modal');
+            });
+
+        },
+
         init: function() {
             window.engispace.initHeaderFunctions();
             window.engispace.initCourseSliders();
@@ -413,6 +418,7 @@
             window.engispace.initSignUp();
             window.engispace.initAuthModal();
             window.engispace.initCoursePurchase();
+            window.engispace.initSocialShare();
         }
     }
 

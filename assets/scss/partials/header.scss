@@ -77,11 +77,20 @@ header {
                         align-items: center;
                         flex-direction: column;
                         justify-content: center;
-                        gap: 2px;
                         height: calc(100% - 2px);
                         padding: 0px 14px;
                         border-bottom: 2px solid transparent;
                         transition: all 0.2s ease-in;
+
+                        span {
+                            min-height: 18px;
+                            display: inline-flex;
+                            align-items: start;
+                        }
+
+                        img {
+                            max-width: 17px;
+                        }
                     }
 
                     &.current-menu-item, &:hover {

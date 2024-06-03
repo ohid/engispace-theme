@@ -55,9 +55,9 @@
         echo '</div>';
     ?>
 
-    <a href="" class="es-sc-share-btn">
+    <button class="es-sc-share-btn">
         <?php
             echo es_get_svg_icon( '/assets/img/share-icon' ) . esc_html__( 'Share', 'engispace' );
         ?>
-    </a>
+    </button>
 </div>

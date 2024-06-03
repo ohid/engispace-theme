@@ -64,7 +64,7 @@ class Setup implements Component_Interface {
             $icon = get_field('menu_icon', $item);
             // append icon
             if( $icon ) {
-                $item->title = sprintf('<img src="%s">', $icon) . $item->title;
+                $item->title = sprintf('<span><img src="%s"></span>', $icon) . $item->title;
             }
         }
 

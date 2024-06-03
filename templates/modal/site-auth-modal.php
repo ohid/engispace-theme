@@ -1,4 +1,4 @@
-<div class="es-modal-wrapper">
+<div class="es-modal-wrapper" id="site-auth-modal" modal-type="signin-modal">
     <div class="es-site-modal es-auth-modal">
         <div class="es-modal-body" id="es-user-signin-modal-body">
             <span class="close-modal">

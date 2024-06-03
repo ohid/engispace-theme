@@ -166,7 +166,7 @@ class Authentication implements Component_Interface {
         check_ajax_referer( 'es_nonce', 'nonce' ); // Check nonce
 
         ob_start();
-        get_template_part( 'template-parts/auth-required-modals' );
+        get_template_part( 'template-parts/modals/auth-required-modals' );
         $modal = ob_get_clean();
 
         wp_send_json_success( $modal );

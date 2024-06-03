@@ -254,10 +254,21 @@
             color: #3C3F41;
             padding: 5px 22px;
             border-radius: 4px;
+            border: none;
+            cursor: pointer;
 
             &:hover {
                 background: linear-gradient(to top, #A9B7C733 0%, #fff 80%);
             }
+        }
+    }
+
+    .es-social-share {
+        margin-top: 60px;
+        .heateor_sss_sharing_ul {
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     }
 }
