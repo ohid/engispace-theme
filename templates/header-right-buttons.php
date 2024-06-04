@@ -23,7 +23,7 @@ if ( is_user_logged_in() ) : ?>
                 ?>
             </div>
             <ul class="es-user-profile-pages">
-                <li><a href="#">Profile</a></li>
+                <li><a href="/profile">Profile</a></li>
                 <li><a href="<?php echo wp_logout_url( home_url()); ?>">Logout</a></li>
             </ul>
         </div>

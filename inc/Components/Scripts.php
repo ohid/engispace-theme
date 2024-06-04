@@ -52,6 +52,7 @@ class Scripts implements Component_Interface {
             'engispace-scripts', 
             'engisapce_obj', 
             array(
+                'siteurl' => get_home_url(),
                 'ajaxurl' => admin_url( 'admin-ajax.php' ),
                 'nonce' => wp_create_nonce('es_nonce'),
                 'user_logged_in' => is_user_logged_in(),

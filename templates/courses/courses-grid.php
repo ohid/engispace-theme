@@ -113,8 +113,8 @@ $courses = get_posts([
 
                             printf(
                                 '<a href="%s" class="es-add-to-cart-icon">%s</a>',
-                                '#',
-                                '<span class="es-cart-icon">' . es_get_svg_icon( '/assets/img/cart-icon' ) . '</span>' . ' Add to cart'
+                                $course_link,
+                                '<span class="es-cart-icon">' . es_get_svg_icon( '/assets/img/cart-icon' ) . '</span>' . esc_html__('View course', 'engispace')
                             );
                         echo '</div>';
 
