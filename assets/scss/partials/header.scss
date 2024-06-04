@@ -202,3 +202,14 @@ header {
         }
     }
 }
+
+.single-sfwd-courses,
+.page-template-template-all-courses,
+.learndash-cpt-sfwd-courses {
+    header .es-site-header-right .site-menu ul .es-courses-menu {
+        background-color: #505254;
+        a {
+            border-bottom: 2px solid #FFF;
+        }
+    }
+}

@@ -205,7 +205,7 @@ function es_get_current_user_display_name() {
     }
 
     $current_user = wp_get_current_user();
-    return $current_user->data->display_name;
+    return $current_user->first_name . ' ' . $current_user->last_name;
 }
 
 /**

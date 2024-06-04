@@ -74,14 +74,14 @@ class Authentication implements Component_Interface {
         // get the user data
         $userdata = $this->get_form_fields( $_POST );
         // check whether username exists or not
-        if ( username_exists( $userdata['firstname'] ) || email_exists( $userdata['email'] )) {
+        if ( email_exists( $userdata['email'] )) {
             wp_send_json_error( 'user_exists' );
             die();
         }
 
         // Create the new user
         $user_id = wp_create_user(
-            $userdata['firstname'], 
+            $userdata['firstname'] . rand(0, 99999), 
             $userdata['password'], 
             $userdata['email']
         );

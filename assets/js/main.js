@@ -318,16 +318,14 @@
 
             // Close the popup by clicking outside the modal
             $(document).on('click', '.es-modal-wrapper', function(e) {
-                if ($(e.target).closest('.es-site-modal').length != 0) {
-                    return false;
+                if ( e.target.classList.contains('es-modal-wrapper') ) {
+                    // Close the auth required modal first
+                    if ($('.es-modal-wrapper[modal-type="auth-require-modal"]')) {
+                        $('.es-modal-wrapper[modal-type="auth-require-modal"]').remove();
+                    }
+                    
+                    $('.es-modal-wrapper').removeClass('display-modal');
                 }
-            
-                // Close the auth required modal first
-                if ($('.es-modal-wrapper[modal-type="auth-require-modal"]')) {
-                    $('.es-modal-wrapper[modal-type="auth-require-modal"]').remove();
-                }
-            
-                $('.es-modal-wrapper').removeClass('display-modal');
             });
         },
 

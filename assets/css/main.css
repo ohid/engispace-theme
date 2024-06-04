@@ -223,6 +223,17 @@ header .es-site-header-right .site-right-buttons .es-user-profile-button .es-use
   display: block;
 }
 
+.single-sfwd-courses header .es-site-header-right .site-menu ul .es-courses-menu,
+.page-template-template-all-courses header .es-site-header-right .site-menu ul .es-courses-menu,
+.learndash-cpt-sfwd-courses header .es-site-header-right .site-menu ul .es-courses-menu {
+  background-color: #505254;
+}
+.single-sfwd-courses header .es-site-header-right .site-menu ul .es-courses-menu a,
+.page-template-template-all-courses header .es-site-header-right .site-menu ul .es-courses-menu a,
+.learndash-cpt-sfwd-courses header .es-site-header-right .site-menu ul .es-courses-menu a {
+  border-bottom: 2px solid #FFF;
+}
+
 .es-site-footer {
   background: #3C3F41;
   padding: 10px 0px;
@@ -1269,6 +1280,14 @@ header .es-site-header-right .site-right-buttons .es-user-profile-button .es-use
 .es-modal-wrapper .es-site-modal .es-modal-content {
   padding: 10px 40px;
   margin-top: 30px;
+}
+.es-modal-wrapper .es-site-modal .es-modal-content #xs-social-login-container {
+  margin: 30px 0 10px;
+  padding: 0px;
+}
+.es-modal-wrapper .es-site-modal .es-modal-content #xs-social-login-container .xs-login--style-2 {
+  display: flex;
+  justify-content: center;
 }
 .es-modal-wrapper .es-auth-modal {
   width: 400px;
