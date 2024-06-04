@@ -145,8 +145,10 @@
                                 .removeClass('form-success');
                             return;
                         }
-                        // on successful sign in, reload the page
-                        window.location.reload(); 
+                        // on successful sign in, redirect to the profile page
+                        setTimeout(function() {
+                            window.location.href = engisapce_obj.siteurl + '/profile';
+                        }, 100);
                     }
                 })
             }

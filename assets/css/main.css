@@ -364,6 +364,7 @@ header .es-site-header-right .site-right-buttons .es-user-profile-button .es-use
   justify-content: space-between;
   padding: 9px 20px 9px 30px;
   border-radius: 6px;
+  margin-top: 40px;
 }
 .es-purchased-bar span.purchased-label {
   font-size: 16px;
@@ -602,15 +603,18 @@ header .es-site-header-right .site-right-buttons .es-user-profile-button .es-use
   background: #ed530c;
 }
 
-.es-courses-grid-area {
+.es-courses-grid-area,
+.es-user-purchased-courses-area {
   position: relative;
 }
-.es-courses-grid-area .es-course-grid-section-title {
+.es-courses-grid-area .es-course-grid-section-title,
+.es-user-purchased-courses-area .es-course-grid-section-title {
   border-bottom: 1px solid #E1E4E8;
   margin-bottom: 28px;
   margin-top: 31px;
 }
-.es-courses-grid-area .es-course-grid-section-title p {
+.es-courses-grid-area .es-course-grid-section-title p,
+.es-user-purchased-courses-area .es-course-grid-section-title p {
   font-size: 16px;
   font-weight: 500;
   line-height: 24px;

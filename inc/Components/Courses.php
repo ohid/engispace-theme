@@ -86,14 +86,97 @@ class Courses implements Component_Interface {
         }
     }
 
+    public static function user_have_purchased_courses() {
+        if ( !is_user_logged_in() ) {
+            return;
+        }
+        $user_id = get_current_user_id();
+        $courses_ids = learndash_user_get_enrolled_courses( $user_id );
+        
+        if ( empty( $courses_ids ) ) {
+            return;
+        }
+        return true;
+    }
+
+    /**
+     * Display the courses purchased by the user
+     * 
+     * @since 1.0.0
+     */
+    public static function user_purchased_courses() {
+        if ( !self::user_have_purchased_courses() ) {
+            return;
+        }
+        $user_id = get_current_user_id();
+        $courses_ids = learndash_user_get_enrolled_courses( $user_id );
+        $courses = self::get_courses( [ 'post__in' => $courses_ids ] );
+        return self::course_grid_html( $courses->posts );
+    }
+
+    /**
+     * Output the template with featured courses on the website
+     * 
+     * @since 1.0.0
+     */
+    public static function featured_courses_carousel() {
+        $courses = (array) get_field( 'courses__featured_courses', 'option' );
+        return self::course_grid_html( $courses );
+    }
+
+    /**
+     * Output the template with top courses on the website
+     * 
+     * @since 1.0.0
+     */
+    public static function top_courses_carousel() {
+        $courses = (array) get_field( 'courses__top_courses', 'option' );
+        return self::course_grid_html( $courses );
+    }
+
+    /**
+     * Output the course coursel items HTML
+     * 
+     * @since 1.0.0
+     */
+    public static function course_grid_html( $courses ) {
+        if ( empty( $courses ) ) {
+            return;
+        }
+        echo '<div class="courses-page-course-slider owl-carousel owl-theme courses_slider">';
+        foreach( $courses as $post ) {
+            // Setup post data
+            $post_id = get_the_ID();
+            $es_currency = '$';
+            // Course category
+            $course_category = wp_get_post_terms( $post_id, 'ld_course_category' );
+            if ( isset( $course_category[0] ) ) {
+                $course_category_page = get_term_link( $course_category[0], 'ld_course_category' );
+            }
+            $short_description = get_post_meta( $post_id, 'es_course_short_description', true );
+            $difficulty_level = get_post_meta( $post_id, 'es_course_difficulty_level', true );
+            $course_duration = get_post_meta( $post_id, 'es_course_duration', true );
+            $original_price = get_post_meta( $post_id, 'es_course_original_price', true );
+
+            $price_args = learndash_get_course_price( $post_id );
+            $lessons_data = learndash_course_get_steps_by_type( $post_id, 'sfwd-lessons' );
+            $course_link = get_the_permalink( $post );
+        
+            // Include the template
+            include locate_template('template-parts/courses/course-carousel-item.php');
+        }
+        wp_reset_postdata();
+        echo '</div>';
+    }
+
     /**
      * Get courses object
      */
-    public static function get_courses() {
+    public static function get_courses( $args = array() ) {
         // get current taxonomy id
         $current_course_category_id = get_queried_object()->term_id;
 
-        $args = array(
+        $query_args = array(
             'post_type' => 'sfwd-courses',
             'limit' => 20,
             'post_status' => 'publish',
@@ -101,7 +184,7 @@ class Courses implements Component_Interface {
         );
 
         if ( $current_course_category_id ) {
-            $args['tax_query'] = array(
+            $query_args['tax_query'] = array(
                 array(
                     'taxonomy' => 'ld_course_category',
                     'field' => 'id',
@@ -109,6 +192,8 @@ class Courses implements Component_Interface {
                 ),
             );
         }
+
+        $args = wp_parse_args( $args, $query_args );
 
         // run the query
         $courses = new \WP_Query( $args );

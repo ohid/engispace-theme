@@ -13,6 +13,7 @@
     justify-content: space-between;
     padding: 9px 20px 9px 30px;
     border-radius: 6px;
+    margin-top: 40px;
 
 
     span.purchased-label {
@@ -296,7 +297,8 @@
     }
 }
 
-.es-courses-grid-area {
+.es-courses-grid-area,
+.es-user-purchased-courses-area {
     position: relative;
 
     .es-course-grid-section-title {
