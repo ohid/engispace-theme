@@ -1,6 +1,55 @@
 (function($) {
 	'use strict';
 
+    function course_details_hover_box() {
+        let windowWidth = $(window).width();
+        if ( windowWidth < 1025 ) {
+            return;
+        }
+        let courseDetailsBox;
+        $( '.es-course-item' )
+            .on('mouseover', function() {
+                let $this = $(this),
+                    elementWidth = $this.width(),
+                    elementOffset = $this.offset(),
+                    documentWidth = $(document).width(),
+                    elementTrueOffset = elementOffset.left + elementWidth,
+                    setElementPosition = elementOffset.left + elementWidth + 10;
+    
+                courseDetailsBox = $this.closest('.es-site-courses-grid').find('#es-single-course-details-box'),
+    
+                $this.removeClass('left-pseudo-element');
+                let certainMinusPos = ( windowWidth < 1200 ) ? 120 : 95;
+                
+                if ( documentWidth - elementTrueOffset <= 340 ) {
+                    $this.addClass('left-pseudo-element');
+                    courseDetailsBox.addClass('left-pseudo-element');
+                    setElementPosition = elementOffset.left - elementWidth - certainMinusPos;
+                }
+                
+                // show the course details box
+                courseDetailsBox.html('');
+                // close the course details and append to the couses details box
+                $this.find('.es-course-details').clone().appendTo(courseDetailsBox);
+                // set box position            
+                courseDetailsBox.css('left', setElementPosition);
+                courseDetailsBox.addClass('display');
+            })
+            .on('mouseleave', function(data) {
+                let $this = $(this);
+                if ( data.relatedTarget && data.relatedTarget.className !== 'es-course-details' ) {
+                    courseDetailsBox.removeClass('display').html('');
+                }
+                $this.removeClass('left-pseudo-element')
+                courseDetailsBox.removeClass('left-pseudo-element')
+            }
+        );
+
+        $('.es-single-course-details-box').on('mouseleave', function() {
+            $('.es-single-course-details-box').removeClass('display').html('');
+        });
+    }
+
     window.engispace = {
         /**
          * Init header functions
@@ -56,51 +105,7 @@
          * 
          */
         initCourseItemHover: function() {
-            let windowWidth = $(window).width();
-            if ( windowWidth < 1025 ) {
-                return;
-            }
-            let courseDetailsBox;
-            $( '.es-course-item' )
-                .on('mouseover', function() {
-                    let $this = $(this),
-                        elementWidth = $this.width(),
-                        elementOffset = $this.offset(),
-                        documentWidth = $(document).width(),
-                        elementTrueOffset = elementOffset.left + elementWidth,
-                        setElementPosition = elementOffset.left + elementWidth + 10;
-        
-                    courseDetailsBox = $this.closest('.es-site-courses-grid').find('#es-single-course-details-box'),
-        
-                    $this.removeClass('left-pseudo-element');
-        
-                    if ( documentWidth - elementTrueOffset <= 340 ) {
-                        $this.addClass('left-pseudo-element');
-                        courseDetailsBox.addClass('left-pseudo-element');
-                        setElementPosition = elementOffset.left - elementWidth - 90;
-                    }
-                    
-                    // show the course details box
-                    courseDetailsBox.html('');
-                    // close the course details and append to the couses details box
-                    $this.find('.es-course-details').clone().appendTo(courseDetailsBox);
-                    // set box position            
-                    courseDetailsBox.css('left', setElementPosition);
-                    courseDetailsBox.addClass('display');
-                })
-                .on('mouseleave', function(data) {
-                    let $this = $(this);
-                    if ( data.relatedTarget && data.relatedTarget.className !== 'es-course-details' ) {
-                        courseDetailsBox.removeClass('display').html('');
-                    }
-                    $this.removeClass('left-pseudo-element')
-                    courseDetailsBox.removeClass('left-pseudo-element')
-                }
-            );
-    
-            $('.es-single-course-details-box').on('mouseleave', function() {
-                $('.es-single-course-details-box').removeClass('display').html('');
-            });
+            course_details_hover_box();
         },
 
         /**
@@ -441,6 +446,10 @@
             window.engispace.initAuthModal();
             window.engispace.initCoursePurchase();
             window.engispace.initSocialShare();
+
+            jQuery(window).on('resize', function() {
+                course_details_hover_box();
+            });
         }
     }
 

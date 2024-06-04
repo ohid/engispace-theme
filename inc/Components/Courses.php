@@ -7,7 +7,7 @@ use Engispace\Component_Interface;
 // File Security Check
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-class Courses implements Component_Interface {
+class Courses {
 	/**
 	 * Gets the unique identifier for the theme component.
 	 *
@@ -16,10 +16,6 @@ class Courses implements Component_Interface {
 	public function get_slug() : string {
 		return 'courses';
 	}
-
-    public function initialize() {
-
-    }
 
     public static function sidebar_categories_html() {
         $current_course_category_id = get_queried_object()->term_id;
