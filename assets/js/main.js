@@ -41,11 +41,8 @@
                 nav: true,
                 margin: 20,
                 responsive:{
-                    1024:{
-                        items: 5
-                    },
                     768:{
-                        items: 3
+                        items: 5
                     },
                     480:{
                         items: 2
@@ -317,6 +314,20 @@
                     field.attr('type', 'text');
                 }
                 $(this).toggleClass( 'password-displayed' );
+            });
+
+            // Close the popup by clicking outside the modal
+            $(document).on('click', '.es-modal-wrapper', function(e) {
+                if ($(e.target).closest('.es-site-modal').length != 0) {
+                    return false;
+                }
+            
+                // Close the auth required modal first
+                if ($('.es-modal-wrapper[modal-type="auth-require-modal"]')) {
+                    $('.es-modal-wrapper[modal-type="auth-require-modal"]').remove();
+                }
+            
+                $('.es-modal-wrapper').removeClass('display-modal');
             });
         },
 
