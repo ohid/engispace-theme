@@ -684,6 +684,15 @@ header .es-site-header-right .site-right-buttons .es-user-profile-button .es-use
 .es-all-courses-archive .es-aca-inner .es-course-categories ul li a:hover {
   color: #1071df;
 }
+.es-all-courses-archive .es-aca-inner .es-course-categories ul li.has-parent {
+  padding-left: 15px;
+}
+.es-all-courses-archive .es-aca-inner .es-course-categories ul li.has-parent:hover {
+  padding-left: 18px;
+}
+.es-all-courses-archive .es-aca-inner .es-course-categories ul li.active a {
+  font-weight: 700;
+}
 .es-all-courses-archive .es-aca-inner .es-course-archives {
   width: 820px;
 }
@@ -1204,6 +1213,7 @@ header .es-site-header-right .site-right-buttons .es-user-profile-button .es-use
 }
 .es-modal-wrapper .es-site-modal .es-modal-content .es-form-control {
   margin-bottom: 15px;
+  position: relative;
 }
 .es-modal-wrapper .es-site-modal .es-modal-content .es-form-control label {
   display: block;
@@ -1237,6 +1247,29 @@ header .es-site-header-right .site-right-buttons .es-user-profile-button .es-use
 .es-modal-wrapper .es-site-modal .es-modal-content .es-form-input.error:focus {
   border-color: rgba(239, 113, 104, 0.8);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(239, 113, 104, 0.6);
+}
+.es-modal-wrapper .es-site-modal .es-modal-content .password-field-toggle {
+  position: absolute;
+  top: 31px;
+  right: 5px;
+  border: none;
+  background: transparent;
+  z-index: 999;
+  cursor: pointer;
+}
+.es-modal-wrapper .es-site-modal .es-modal-content .password-field-toggle svg {
+  width: 16px;
+  height: 16px;
+  fill: #686060;
+}
+.es-modal-wrapper .es-site-modal .es-modal-content .password-field-toggle .password-hidden {
+  display: none;
+}
+.es-modal-wrapper .es-site-modal .es-modal-content .password-field-toggle.password-displayed .password-visible {
+  display: none;
+}
+.es-modal-wrapper .es-site-modal .es-modal-content .password-field-toggle.password-displayed .password-hidden {
+  display: block;
 }
 .es-modal-wrapper .es-site-modal .es-modal-content {
   padding: 10px 40px;

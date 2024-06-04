@@ -37,6 +37,7 @@
         .es-modal-content {
             .es-form-control {
                 margin-bottom: 15px;
+                position: relative;
                 label {
                     display: block;
                     color: #8e8e8e;
@@ -73,6 +74,35 @@
                     &:focus {
                         border-color: rgba(239, 113, 104, 0.8);
                         box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(239, 113, 104, 0.6);
+                    }
+                }
+            }
+
+            .password-field-toggle {    
+                position: absolute;
+                top: 31px;
+                right: 5px;
+                border: none;
+                background: transparent;
+                z-index: 999;
+                cursor: pointer;
+
+                svg {
+                    width: 16px;
+                    height: 16px;
+                    fill: #686060;
+                }
+
+                .password-hidden {
+                    display: none;
+                }
+
+                &.password-displayed {
+                    .password-visible {
+                        display: none;
+                    }
+                    .password-hidden {
+                        display: block;
                     }
                 }
             }

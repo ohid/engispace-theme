@@ -307,6 +307,17 @@
             $('.es-btn-switch-to-signup').on('click', function() {
                 $('#site-auth-modal').attr('modal-type', 'signup-modal')
             });
+
+            $('.password-field-toggle').on('click', function(e) {
+                e.preventDefault();
+                let field = $( this ).closest( '.es-form-control' ).find('input');
+                if ( $(this).hasClass('password-displayed') ) {
+                    field.attr('type', 'password');
+                } else {
+                    field.attr('type', 'text');
+                }
+                $(this).toggleClass( 'password-displayed' );
+            });
         },
 
         /**
