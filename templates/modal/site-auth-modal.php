@@ -20,6 +20,10 @@
                     <div class="es-form-control">
                         <label for="login_password">Password</label>
                         <input type="password" id="login_password" name="login_password" class="es-form-input" minlength="8">
+                        <button class="password-field-toggle">
+                            <span class="password-visible"><?php echo es_get_svg_icon( '/assets/img/eye-icon' ); ?></span>
+                            <span class="password-hidden"><?php echo es_get_svg_icon( '/assets/img/eye-slash-icon' ); ?></span>
+                        </button>
                     </div>
                     <p class="es-form-message"></p>
                     <div class="es-form-control es-submit-btn">
@@ -66,10 +70,20 @@
                     <div class="es-form-control">
                         <label for="password">Password</label>
                         <input type="password" id="password" name="password" class="es-form-input" minlength="8">
+
+                        <button class="password-field-toggle">
+                            <span class="password-visible"><?php echo es_get_svg_icon( '/assets/img/eye-icon' ); ?></span>
+                            <span class="password-hidden"><?php echo es_get_svg_icon( '/assets/img/eye-slash-icon' ); ?></span>
+                        </button>
                     </div>
                     <div class="es-form-control">
                         <label for="confirm-password">Confirm Password</label>
                         <input type="password" id="confirm-password" name="password_confirm" class="es-form-input" minlength="8">
+
+                        <button class="password-field-toggle">
+                            <span class="password-visible"><?php echo es_get_svg_icon( '/assets/img/eye-icon' ); ?></span>
+                            <span class="password-hidden"><?php echo es_get_svg_icon( '/assets/img/eye-slash-icon' ); ?></span>
+                        </button>
                     </div>
                     <p class="es-form-message"></p>
                     <div class="es-form-control es-submit-btn">

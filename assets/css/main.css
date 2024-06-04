@@ -670,9 +670,6 @@ header .es-site-header-right .site-right-buttons .es-user-profile-button .es-use
   margin-bottom: 10px;
   transition: all 0.1s ease-in;
 }
-.es-all-courses-archive .es-aca-inner .es-course-categories ul li:hover {
-  padding-left: 3px;
-}
 .es-all-courses-archive .es-aca-inner .es-course-categories ul li a {
   text-decoration: none;
   font-size: 14px;
@@ -684,14 +681,12 @@ header .es-site-header-right .site-right-buttons .es-user-profile-button .es-use
 .es-all-courses-archive .es-aca-inner .es-course-categories ul li a:hover {
   color: #1071df;
 }
-.es-all-courses-archive .es-aca-inner .es-course-categories ul li.has-parent {
-  padding-left: 15px;
-}
-.es-all-courses-archive .es-aca-inner .es-course-categories ul li.has-parent:hover {
-  padding-left: 18px;
-}
-.es-all-courses-archive .es-aca-inner .es-course-categories ul li.active a {
+.es-all-courses-archive .es-aca-inner .es-course-categories ul li.current-cat > a {
   font-weight: 700;
+}
+.es-all-courses-archive .es-aca-inner .es-course-categories ul li .children {
+  padding-left: 15px;
+  margin-top: 10px;
 }
 .es-all-courses-archive .es-aca-inner .es-course-archives {
   width: 820px;

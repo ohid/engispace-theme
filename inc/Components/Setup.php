@@ -31,6 +31,8 @@ class Setup implements Component_Interface {
      * @since 1.0.0
      */
     public function after_setup_theme() {
+        add_theme_support( 'title-tag' );
+
         add_image_size( 'engispace-course-thumbnail', 324, 234, true );
 
         // Hide admin bar for all users except admin
