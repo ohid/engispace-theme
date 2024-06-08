@@ -13,6 +13,10 @@
 		"grunt-contrib-sass": "^0.8.1",
 		"grunt-contrib-uglify-es": "github:gruntjs/grunt-contrib-uglify#harmony",
 		"grunt-contrib-watch": "~0.6.1",
-		"gulp": "^4.0.2"
+		"gulp": "^4.0.2",
+		"tailwindcss": "^3.4.4"
+	},
+	"optionalDependencies": {
+		"fsevents": "^2.3.3"
 	}
 }

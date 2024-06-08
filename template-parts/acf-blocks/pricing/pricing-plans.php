@@ -37,7 +37,7 @@ $pricing_plans = get_field( 'pricing_plans' );
                     <?php echo $plan['plan_features']; ?>
                 </div>
                 <div class="plan-btn">
-                    <a href=""class="es-btn-orange">Sign up</a>
+                    <a href="<?php echo es_get_membership_checkout_url( $plan ); ?>"class="es-btn-orange">Sign up</a>
                 </div>
             </div>
         <?php endforeach; ?>

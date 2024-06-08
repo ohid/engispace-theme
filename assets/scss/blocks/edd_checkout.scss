@@ -1,0 +1,41 @@
+#edd_checkout_form_wrap {
+    .edd_form.edd-blocks-form {
+        .edd-input, .edd-select {
+            width: 100%;
+            color: #495057;
+            border: 1px solid #e1e4e8;
+            font-weight: 400;
+            font-size: 16px;
+            border-radius: 4px;
+            display: block;
+            width: 100%;
+            height: calc(1.5em + .75rem + 2px);
+            padding: 0px 10px;
+            box-sizing: border-box;
+
+            &:focus {
+                outline: none;
+                border-color: rgba(126, 239, 104, 0.8);
+                box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(126, 239, 104, 0.6);
+            }
+        }
+    }
+}
+
+#edd-purchase-button, .edd-submit, [type=submit].edd-submit {
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+    background: #E04B06;
+    border-radius: 6px;
+    padding: 16px 50px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s ease-in;
+    cursor: pointer;
+    border: none;
+    
+    &:hover {
+        background: #ea530d;
+    }
+}

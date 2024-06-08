@@ -331,3 +331,32 @@ function es_custom_decrypt_value( $encrypted_value ) {
 
     return openssl_decrypt($ciphertext, $cipher, $key, $options=0, $iv);
 }
+
+/**
+ * Get membership checkout URL
+ * 
+ * @since 1.0.0
+ * @param array $plan
+ * 
+ * @return string
+ */
+function es_get_membership_checkout_url( $plan ) {
+    $base_url = get_site_url() . '/checkout';
+    $download_id = !empty( $plan['download_id'] ) ? $plan['download_id'] : '';
+    $price_id = !empty( $plan['price_id'] ) ? $plan['price_id'] : '';
+
+    return add_query_arg( [
+        'edd_action' => 'add_to_cart',
+        'download_id' => $download_id,
+        'edd_options[price_id]' => $price_id,
+    ], $base_url );
+}
+
+function eddwp_trigger_after_payment_actions_example( $payment_id = 0, $payment = false, $customer = false ) {
+	/**
+	 * The $payment variable contains the EDD_Payment object that has been completed.
+	 * The $customer variable contains the EDD_Customer object that the payment belongs to.
+	*/
+    
+}
+add_action( 'edd_after_payment_actions', 'eddwp_trigger_after_payment_actions_example', 10, 3 );

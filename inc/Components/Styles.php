@@ -48,6 +48,11 @@ class Styles implements Component_Interface {
         );
         
         wp_enqueue_style( 
+            'engispace-styles', 
+            get_template_directory_uri() . '/assets/css/site-styles.css' 
+        );
+        
+        wp_enqueue_style( 
             'engispace-main', 
             get_template_directory_uri() . '/assets/css/main.css' 
         );
