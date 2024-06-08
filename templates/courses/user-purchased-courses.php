@@ -17,11 +17,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 ?>
 <div class="es-user-purchased-courses-area">
     <div class="es-site-container">
-        <div class="es-course-grid-section-title">
-            <?php
-                printf( '<p>%s</p>', esc_html__( 'My list', 'engispace' ) );
-            ?>
-        </div>
         <div class="es-site-courses-grid">
             <div id="es-single-course-details-box" class="es-single-course-details-box"></div>
             <?php Engispace\Components\Courses::user_purchased_courses(); ?>

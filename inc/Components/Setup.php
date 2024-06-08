@@ -34,6 +34,7 @@ class Setup implements Component_Interface {
         add_theme_support( 'title-tag' );
 
         add_image_size( 'engispace-course-thumbnail', 324, 234, true );
+        add_image_size( 'es-course-carousel-item-thumbnail', 424, 238, true );
 
         // Hide admin bar for all users except admin
         if ( ! current_user_can( 'administrator' ) && !is_admin() ) {

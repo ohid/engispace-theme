@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 <div class="es-course-item">
     <a href="<?php echo esc_url( $course_link ); ?>">
-        <?php echo get_the_post_thumbnail( $post ); ?>
+        <?php echo get_the_post_thumbnail( $post, 'es-course-carousel-item-thumbnail' ); ?>
     </a>
 
     <div class="es-course-details-wrap">
