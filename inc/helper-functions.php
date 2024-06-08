@@ -351,12 +351,3 @@ function es_get_membership_checkout_url( $plan ) {
         'edd_options[price_id]' => $price_id,
     ], $base_url );
 }
-
-function eddwp_trigger_after_payment_actions_example( $payment_id = 0, $payment = false, $customer = false ) {
-	/**
-	 * The $payment variable contains the EDD_Payment object that has been completed.
-	 * The $customer variable contains the EDD_Customer object that the payment belongs to.
-	*/
-    
-}
-add_action( 'edd_after_payment_actions', 'eddwp_trigger_after_payment_actions_example', 10, 3 );

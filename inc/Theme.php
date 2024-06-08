@@ -114,6 +114,8 @@ class Theme {
             new Components\Course_Purchase(),
             new Components\ACF_Blocks(),
             new Components\Rewrite_Pages(),
+            new Components\Membership(),
+            new Components\User_Roles(),
         );
         
         return $components;
