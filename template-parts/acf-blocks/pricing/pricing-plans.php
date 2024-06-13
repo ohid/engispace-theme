@@ -21,13 +21,35 @@ if( !empty($block['align']) ) {
 $heading = get_field( 'heading' );
 $pricing_plans = get_field( 'pricing_plans' );
 
+/**
+ * Plan block classes
+ */
+function es_subscription_plan_class( $plan ) {
+    // get current user subscription plan
+    $user_subscription = es_get_current_user_subscription();
+
+    $classes = [ 'es-pricing-plan' ];
+    if ( $plan['subscription_type'] === $user_subscription ) {
+        $classes[] = 'es-current-plan';
+    };
+
+    return $classes;
+}
 ?>
 
 <div id="<?php echo esc_attr($id); ?>" class="<?php echo esc_attr($className); ?>">
     <h2><?php esc_html_e( $heading ); ?></h2>
     <div class="es-pricing-plans">
         <?php foreach( $pricing_plans as $plan ) : ?>
-            <div class="es-pricing-plan">
+            <div class="<?php echo implode( ' ', es_subscription_plan_class( $plan ) ); ?>">
+                <?php
+                    if ( $plan['subscription_type'] === es_get_current_user_subscription() ) {
+                        printf(
+                            '<span class="es-currently-subscribed">%s</span>', 
+                            esc_html__( 'Currently subscribed', 'engispace-theme' )
+                        );
+                    };
+                ?>
                 <h4><?php echo $plan['plan_title']; ?></h4>
                 <div class="es-pricing-plan-price">
                     <span class="es-pricing-plan-cost"><sup>$</sup><?php echo $plan['plan_price']; ?></span>

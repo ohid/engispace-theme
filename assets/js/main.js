@@ -437,6 +437,12 @@
 
         },
 
+        initStartSelling: function() {
+            $('#es-start-selling').on('click', function() {
+                console.log('adsf');
+            });
+        },
+
         init: function() {
             window.engispace.initHeaderFunctions();
             window.engispace.initCourseSliders();
@@ -446,6 +452,7 @@
             window.engispace.initAuthModal();
             window.engispace.initCoursePurchase();
             window.engispace.initSocialShare();
+            window.engispace.initStartSelling();
 
             jQuery(window).on('resize', function() {
                 course_details_hover_box();

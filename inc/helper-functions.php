@@ -351,3 +351,37 @@ function es_get_membership_checkout_url( $plan ) {
         'edd_options[price_id]' => $price_id,
     ], $base_url );
 }
+
+function es_get_current_user_subscription() {
+    $user_role = 'na';
+
+    if ( !is_user_logged_in() ) {
+        return $user_role;
+    }
+    // Change the role to freemium for logged in users
+    $user_role = 'freemium';
+
+    $user = get_user_by( 'id', get_current_user_id() );
+    $user_roles = $user->roles;
+
+    // skip user subscription check for the below user roles
+    if ( 
+        in_array( 'administrator', $user_roles ) ||
+        in_array( 'author', $user_roles ) ||
+        in_array( 'editor', $user_roles ) ||
+        in_array( 'contributor', $user_roles )
+    ) {
+        $user_role = 'na';
+    }
+
+    // check for creator subscription user
+    if ( in_array( 'wdm_instructor', $user_roles ) || in_array( 'engispace_user_creator', $user_roles ) ) {
+        $user_role = 'creator';
+    }
+    // check for pro subscription user
+    if ( in_array( 'engispace_user_pro', $user_roles ) ) {
+        $user_role = 'pro';
+    }
+
+    return $user_role;
+}

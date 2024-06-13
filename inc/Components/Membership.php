@@ -46,8 +46,12 @@ class Membership implements Component_Interface {
      */
     public function update_user_role( $membership_type, $user_id ) {
         $user_obj = get_user_by( 'id', $user_id );
-        $user_obj->set_role( 'edd_subscriber' );
-        $user_obj->set_role( 'engispace_user_' . $membership_type );
+        if ( $membership_type === 'creator' ) {
+            $user_obj->set_role( 'wdm_instructor' );
+        }
+        if ( $membership_type === 'pro' ) {
+            $user_obj->set_role( 'engispace_user_' . $membership_type );
+        }
 
         return;
     }

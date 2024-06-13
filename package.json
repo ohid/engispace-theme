@@ -1,6 +1,6 @@
 {
 	"name": "engispace-theme",
-	"version": "2.0",
+	"version": "1.0.0",
 	"description": "Theme for engispace.com.",
 	"author": "engispace",
 	"license": "GPL-3.0-or-later",
@@ -15,6 +15,10 @@
 		"grunt-contrib-watch": "~0.6.1",
 		"gulp": "^4.0.2",
 		"tailwindcss": "^3.4.4"
+	},
+	"scripts": {
+		"watch": "grunt watch",
+		"tailwind-watch": "npx tailwindcss -i ./assets/scss/tailwind.scss -o ./assets/css/site-styles.css --watch"
 	},
 	"optionalDependencies": {
 		"fsevents": "^2.3.3"

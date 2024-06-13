@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 <div class="es-site-container">
     <div class="es-purchased-bar">
         <span class="purchased-label">Purchased</span>
-        <a href="#">Start Selling</a>
+        <a href="#" id="es-start-selling">Start Selling</a>
     </div>
 </div>
 

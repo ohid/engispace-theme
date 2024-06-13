@@ -1694,6 +1694,30 @@ header .es-site-header-right .site-right-buttons .es-user-profile-button .es-use
   display: inline-block;
   margin: auto;
 }
+.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan.es-current-plan {
+  position: relative;
+}
+.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan.es-current-plan:before {
+  position: absolute;
+  content: "";
+  top: 0px;
+  left: 0px;
+  background-color: rgba(255, 255, 255, 0.2588235294);
+  width: 100%;
+  height: 100%;
+  z-index: 9;
+}
+.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan.es-current-plan .es-currently-subscribed {
+  opacity: 1;
+  position: absolute;
+  background: #f0efef;
+  width: 100%;
+  top: -16px;
+  text-align: center;
+  padding: 3px;
+  color: black;
+  font-size: 12px;
+}
 
 #edd_checkout_form_wrap .edd_form.edd-blocks-form .edd-input, #edd_checkout_form_wrap .edd_form.edd-blocks-form .edd-select {
   width: 100%;
