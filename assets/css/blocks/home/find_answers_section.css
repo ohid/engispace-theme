@@ -1,0 +1,53 @@
+.es-find-answers-section {
+  padding: 110px 0px 120px;
+}
+.es-find-answers-section .es-find-answer-inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 160px;
+}
+.es-find-answers-section .es-find-answer-inner .es-left, .es-find-answers-section .es-find-answer-inner .es-right {
+  width: 50%;
+}
+.es-find-answers-section .es-find-answer-inner .es-right span.es-section-top-title {
+  background: #EF4D1C;
+  color: white;
+  border-radius: 2px;
+  padding: 5px 14px;
+  display: inline-block;
+}
+.es-find-answers-section .es-find-answer-inner .es-right h3 {
+  font-size: 36px;
+  line-height: 45px;
+  color: #444444;
+  margin-top: 20px;
+}
+.es-find-answers-section .es-find-answer-inner .es-right ul {
+  margin-top: 30px;
+  position: relative;
+}
+.es-find-answers-section .es-find-answer-inner .es-right ul li {
+  font-size: 16px;
+  color: #6B6B6B;
+  margin-bottom: 50px;
+  line-height: 24px;
+  position: relative;
+  padding-left: 60px;
+}
+.es-find-answers-section .es-find-answer-inner .es-right ul li span {
+  position: absolute;
+  z-index: 2;
+  left: 0px;
+  top: 5px;
+  border: 2px solid #dbdbdb;
+  width: 24px;
+  height: 25px;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: silver;
+  font-size: 12px;
+}
+
+/*# sourceMappingURL=find_answers_section.css.map */

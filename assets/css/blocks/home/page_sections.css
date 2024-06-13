@@ -1,0 +1,23 @@
+.es-page-sections-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.es-page-sections-inner .es-hps-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.es-page-sections-inner .es-hps-item .es-hps-item-img {
+  min-height: 66px;
+}
+.es-page-sections-inner .es-hps-item:hover {
+  cursor: pointer;
+}
+.es-page-sections-inner .es-hps-item img {
+  max-width: 55px;
+}
+
+/*# sourceMappingURL=page_sections.css.map */

@@ -6,6 +6,19 @@ body, html {
     -webkit-font-smoothing: antialiased;
 }
 
+h1 {
+    font-size: 48px;
+    line-height: 56px;
+}
+h2 {
+    font-size: 42px;
+    line-height: 58px;
+}
+h3 {
+    font-size: 36px;
+    line-height: 42px;
+}
+
 .es-site-container {
     width: 100%;
     margin: auto;

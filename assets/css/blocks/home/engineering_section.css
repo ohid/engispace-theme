@@ -1,0 +1,36 @@
+.es-engineering-section {
+  padding: 90px 0px;
+}
+.es-engineering-section .es-es-inner {
+  text-align: center;
+}
+.es-engineering-section .es-es-inner span {
+  font-size: 18px;
+  color: #716f6f;
+  letter-spacing: 0.4px;
+}
+.es-engineering-section .es-es-inner h3 {
+  margin-top: 10px;
+  position: relative;
+}
+.es-engineering-section .es-es-inner h3:after {
+  position: absolute;
+  content: "";
+  width: 50px;
+  height: 4px;
+  left: calc(50% - 25px);
+  bottom: -20px;
+  background: #EF4D1C;
+}
+.es-engineering-section .es-es-inner .es-es-images {
+  margin-top: 80px;
+  display: grid;
+  gap: 20px;
+  justify-content: space-between;
+  grid-template-columns: 14% 14% 14% 14% 14% 14%;
+}
+.es-engineering-section .es-es-inner .es-es-images img {
+  width: 70%;
+}
+
+/*# sourceMappingURL=engineering_section.css.map */

@@ -7,6 +7,7 @@ module.exports = function(grunt) {
                     'assets/scss/*.scss', 
                     'assets/scss/partials/*.scss',
                     'assets/scss/blocks/*.scss',
+                    'assets/scss/blocks/**/*.scss',
                 ],
                 tasks: ['sass']
             },
@@ -52,7 +53,7 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     cwd: 'src/css/',
-                    src: ['*.css', '!*.min.css', 'blocks/*.css', '!blocks/*.min.css'],
+                    src: ['*.css', '!*.min.css', 'blocks/*.css', 'blocks/**/*.css', '!blocks/*.min.css', '!blocks/**/*.min.css'],
                     dest: 'assets/dest/css/',
                     ext: '.min.css'
                 }]
@@ -63,7 +64,7 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     cwd: 'assets/scss/',
-                    src: ['*.scss', 'blocks/*.scss'],
+                    src: ['*.scss', 'blocks/*.scss', 'blocks/**/*.scss'],
                     dest: 'assets/css/',
                     ext: '.css'
                 }]

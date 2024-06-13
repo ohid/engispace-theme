@@ -1,0 +1,35 @@
+.es-home-features {
+    padding: 50px 0px 70px;
+    .es-site-container {
+        text-align: center;
+    }
+
+    .es-features-section-title {
+        span {
+            display: block;
+            font-size: 18px;
+            letter-spacing: 0.4px;
+            font-weight: 300;
+        }
+        h4 {
+            font-size: 38px;
+            line-height: 58px;
+            color: #444444;
+        }
+    }
+    .es-fs-features {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+
+        span {
+            text-transform: uppercase;
+            color: #444444cf;
+            border: 2px solid #444444;
+            font-size: 14px;
+            padding: 9px 12px;
+            border-radius: 3px;
+        }
+    }
+}

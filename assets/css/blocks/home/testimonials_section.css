@@ -1,0 +1,77 @@
+.es-home-testimonaials {
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0px -21px 23px 5px rgba(235, 235, 235, 0.2784313725);
+}
+
+.es-ht-top {
+  display: grid;
+  grid-template-columns: 45% 45%;
+}
+
+.es-ht-bottom {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  z-index: 10;
+}
+.es-ht-bottom .es-ht-testimonial-item {
+  width: 40%;
+}
+
+.es-ht-testimonial-item {
+  padding: 70px 38px 80px;
+}
+.es-ht-testimonial-item blockquote {
+  font-size: 25px;
+  color: #9f9f9f;
+  text-align: center;
+  font-weight: 300;
+  line-height: 44px;
+}
+.es-ht-testimonial-item blockquote cite {
+  display: block;
+  margin-top: 20px;
+  font-size: 14px;
+  font-style: normal;
+}
+.es-ht-testimonial-item.es-text-color-light blockquote {
+  color: white;
+}
+.es-ht-testimonial-item.es-text-color-gray blockquote {
+  color: white;
+}
+
+.es-ht-section-first-image {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  width: 50%;
+}
+
+.es-ht-section-second-image {
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  width: 50%;
+}
+
+.es-ht-section-left-img-overlay {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.71);
+  left: 0px;
+  top: 0px;
+  width: 50%;
+  height: 100%;
+}
+
+.es-ht-section-right-boc-color {
+  position: absolute;
+  background: #EF4D1C;
+  right: 0px;
+  top: 0px;
+  width: 50%;
+  height: 100%;
+}
+
+/*# sourceMappingURL=testimonials_section.css.map */

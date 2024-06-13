@@ -271,7 +271,7 @@
                 $('#site-auth-modal').addClass('display-modal').attr('modal-type', 'signin-modal');
             });
             // Open signup modal
-            $('#es-open-signup-modal').on('click', function() {
+            $('#es-open-signup-modal, .es-home-cta-signup').on('click', function() {
                 $('#site-auth-modal').addClass('display-modal').attr('modal-type', 'signup-modal');
             });
             // Close modal 

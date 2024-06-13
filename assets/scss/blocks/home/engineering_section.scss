@@ -1,0 +1,40 @@
+.es-engineering-section {
+    padding: 90px 0px;
+
+    .es-es-inner {
+        text-align: center;
+        
+        span {
+            font-size: 18px;
+            color: #716f6f;
+            letter-spacing: 0.4px;
+        }
+
+        h3 {
+            margin-top: 10px;
+            position: relative;
+
+            &:after {
+                position: absolute;
+                content: '';
+                width: 50px;
+                height: 4px;
+                left: calc(50% - 25px);
+                bottom: -20px;
+                background: #EF4D1C;
+            }
+        }
+
+        .es-es-images {
+            margin-top: 80px;
+            display: grid;
+            gap: 20px;
+            justify-content: space-between;
+            grid-template-columns: 14% 14% 14% 14% 14% 14%;
+
+            img {
+                width: 70%;
+            }
+        }
+    }
+}

@@ -1,0 +1,40 @@
+.es-home-code-exchange-section {
+    background: #F5F5F5;
+    padding-top: 110px;
+    padding-bottom: 180px;
+    position: relative;
+
+    .es-hec-section-img {
+        position: absolute;
+        right: 0px;
+        bottom: 0px;
+        width: 560px;
+    }
+}
+.es-hce-inner-top {
+    display: flex;
+    justify-content: space-between;
+
+    .es-section-title {
+        width: 600px;
+        span {
+            background: #EF4D1C;
+            color: white;
+            border-radius: 2px;
+            padding: 5px 14px;
+            display: inline-block;
+        }
+        h3 {
+            font-size: 36px;
+            line-height: 45px;
+            color: #444444;
+            margin-top: 20px;
+        }
+        p {
+            font-size: 16px;
+            line-height: 25px;
+            margin-top: 20px;
+            color: #6B6B6B;
+        }
+    }
+}

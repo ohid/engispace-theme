@@ -1,0 +1,25 @@
+.es-page-sections-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .es-hps-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+
+        .es-hps-item-img {
+            min-height: 66px;
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        img {
+            max-width: 55px;
+        }
+    }
+}

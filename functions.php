@@ -26,12 +26,11 @@ if ( file_exists( ENGISPACE_THEME_DIR . '/vendor/autoload.php' ) ) {
 	require_once ENGISPACE_THEME_DIR . '/vendor/autoload.php';
 }
 
+require trailingslashit( get_template_directory() ) . 'inc/helper-functions.php';
+
 /**
  *
  * Intialize Engispace Theme
  *
  */
 $theme_setup = Theme::instance();
-
-// 
-require trailingslashit( get_template_directory() ) . 'inc/helper-functions.php';
