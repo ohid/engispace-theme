@@ -4,7 +4,7 @@
  */
 
 // Create id attribute allowing for custom "anchor" value.
-$id = 'es-home-features-' . $block['id'];
+$id = 'es-home-features-section';
 if( !empty($block['anchor']) ) {
     $id = $block['anchor'];
 }

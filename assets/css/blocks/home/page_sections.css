@@ -3,20 +3,20 @@
   align-items: center;
   justify-content: space-between;
 }
-.es-page-sections-inner .es-hps-item {
+.es-page-sections-inner .es-hps-item a {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 10px;
 }
-.es-page-sections-inner .es-hps-item .es-hps-item-img {
+.es-page-sections-inner .es-hps-item a .es-hps-item-img {
   min-height: 66px;
 }
-.es-page-sections-inner .es-hps-item:hover {
+.es-page-sections-inner .es-hps-item a:hover {
   cursor: pointer;
 }
-.es-page-sections-inner .es-hps-item img {
+.es-page-sections-inner .es-hps-item a img {
   max-width: 55px;
 }
 

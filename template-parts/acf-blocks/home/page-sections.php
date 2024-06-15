@@ -26,16 +26,18 @@ $page_sections = get_field( 'page_sections' );
         <div class="es-page-sections-inner">
             <?php foreach( $page_sections as $section ) : ?>
                 <div class="es-hps-item">
-                    <span class="es-hps-item-img">
-                        <?php 
-                            printf(
-                                '<img src="%s" alt="%s">',
-                                esc_url( $section['icon'] ),
-                                esc_html( $section['section_title'] ) 
-                            )
-                        ?>
-                    </span>
-                    <span><?php echo esc_html( $section['section_title'] ); ?></span>
+                    <a href="<?php echo $section['target_section_id']; ?>">
+                        <span class="es-hps-item-img">
+                            <?php 
+                                printf(
+                                    '<img src="%s" alt="%s">',
+                                    esc_url( $section['icon'] ),
+                                    esc_html( $section['section_title'] ) 
+                                )
+                            ?>
+                        </span>
+                        <span><?php echo esc_html( $section['section_title'] ); ?></span>
+                    </a>
                 </div>
             <?php endforeach; ?>
         </div>

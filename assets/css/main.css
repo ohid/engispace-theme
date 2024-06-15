@@ -1771,7 +1771,7 @@ header .es-site-header-right .site-right-buttons .es-user-profile-button .es-use
 }
 
 .es-home-header {
-  background-image: url("../img/home-header-background.png");
+  padding: 110px 0px;
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -1790,6 +1790,11 @@ header .es-site-header-right .site-right-buttons .es-user-profile-button .es-use
   z-index: 1;
   top: 0px;
   left: 0px;
+}
+.es-home-header .es-home-header-inner {
+  display: flex;
+  align-items: center;
+  gap: 3.5rem;
 }
 .es-home-header .es-home-header-inner h3 {
   font-size: 54px;
@@ -1821,26 +1826,58 @@ header .es-site-header-right .site-right-buttons .es-user-profile-button .es-use
 .es-home-header .es-home-header-inner .es-form-footer a {
   color: #f24c00;
 }
+.es-home-header .es-home-header-inner .es-left {
+  padding-right: 100px;
+}
+.es-home-header .es-home-header-inner .es-right {
+  min-width: 300px;
+}
+.es-home-header .es-header-signup-form {
+  text-align: center;
+  background-color: white;
+  border-radius: 6px;
+  padding: 25px 20px 30px;
+}
+.es-home-header .es-header-signup-form h4 {
+  font-size: 20px;
+}
+.es-home-header .es-header-signup-form button {
+  background-color: #647f54;
+  color: #fff;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 0.4px;
+  border: none;
+  border-radius: 5px;
+  padding: 11px 48px;
+  margin: 40px auto 0px;
+  display: block;
+  transition: all 0.2s ease-in;
+}
+.es-home-header .es-header-signup-form button:hover {
+  background-color: #526a44;
+  cursor: pointer;
+}
 
 .es-page-sections-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.es-page-sections-inner .es-hps-item {
+.es-page-sections-inner .es-hps-item a {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 10px;
 }
-.es-page-sections-inner .es-hps-item .es-hps-item-img {
+.es-page-sections-inner .es-hps-item a .es-hps-item-img {
   min-height: 66px;
 }
-.es-page-sections-inner .es-hps-item:hover {
+.es-page-sections-inner .es-hps-item a:hover {
   cursor: pointer;
 }
-.es-page-sections-inner .es-hps-item img {
+.es-page-sections-inner .es-hps-item a img {
   max-width: 55px;
 }
 

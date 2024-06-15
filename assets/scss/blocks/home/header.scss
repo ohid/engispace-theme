@@ -1,5 +1,5 @@
 .es-home-header {
-    background-image: url( '../img/home-header-background.png' );
+    padding: 110px 0px;
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -22,6 +22,10 @@
     }
 
     .es-home-header-inner {
+        display: flex;
+        align-items: center;
+        gap: 3.5rem;
+
         h3 {
             font-size: 54px;
             line-height: 64px;
@@ -56,6 +60,43 @@
         .es-form-footer {
             a {
                 color: #f24c00;
+            }
+        }
+
+        .es-left {
+            padding-right: 100px;
+        }
+     
+        .es-right {
+            min-width: 300px;
+        }
+    }
+
+    .es-header-signup-form {
+        text-align: center;
+        background-color: white;
+        border-radius: 6px;
+        padding: 25px 20px 30px;
+
+        h4 {
+            font-size: 20px;
+        }
+
+        button {
+            background-color: #647f54;
+            color: #fff;
+            font-weight: 500;
+            font-size: 16px;
+            letter-spacing: 0.4px;
+            border: none;
+            border-radius: 5px;
+            padding: 11px 48px;
+            margin: 40px auto 0px;
+            display: block;
+            transition: all 0.2s ease-in;
+            &:hover {
+                background-color: #526a44;
+                cursor: pointer;
             }
         }
     }
