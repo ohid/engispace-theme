@@ -32,6 +32,7 @@ class ACF_Blocks implements Component_Interface {
         }
 
         $this->register_blocks_for_home_page();
+        $this->register_blocks_for_features_page();
         $this->register_blocks_for_courses_page();
         $this->register_blocks_for_pricing_page();
     }
@@ -222,6 +223,32 @@ class ACF_Blocks implements Component_Interface {
                 // only enqueue the block assets for the admin gutenberg editor
                 if ( is_admin() ) {
                     wp_enqueue_style( 'cta_section', THEME_URI . '/assets/css/blocks/home/cta_section.css' );
+                }
+            },
+            'example'  => array(
+                'attributes' => array(
+                    'mode' => 'preview'
+                )
+            ),
+        ));
+    }
+
+    /**
+     * Register blocks for the features page
+     */
+    public function register_blocks_for_features_page() {
+        // Register block for the header
+        acf_register_block_type(array(
+            'name'              => 'es_features_header',
+            'title'             => __('Engispace - Features Header'),
+            'render_template'   => 'template-parts/acf-blocks/features/header.php',
+            'category'          => 'engispace-theme',
+            'icon'              => $this->es_logo,
+            'keywords'          => array( 'features', 'header', 'engispace', 'es' ),
+            'enqueue_assets' => function() {
+                // only enqueue the block assets for the admin gutenberg editor
+                if ( is_admin() ) {
+                    wp_enqueue_style( 'features_header', THEME_URI . '/assets/css/blocks/features/header.css' );
                 }
             },
             'example'  => array(
