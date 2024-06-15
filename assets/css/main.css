@@ -2401,4 +2401,22 @@ header .es-site-header-right .site-right-buttons .es-user-profile-button .es-use
   align-items: center;
 }
 
+.es-features-kbase {
+  padding: 250px 0px;
+  position: relative;
+}
+.es-features-kbase .es-section-title {
+  width: 100%;
+  max-width: 550px;
+}
+.es-features-kbase .es-fq-section-image {
+  position: absolute;
+  right: 0px;
+  bottom: 60px;
+  width: 630px;
+}
+.es-features-kbase .es-fq-section-image img {
+  width: 100%;
+}
+
 /*# sourceMappingURL=main.css.map */

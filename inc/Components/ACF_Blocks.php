@@ -320,6 +320,27 @@ class ACF_Blocks implements Component_Interface {
                 )
             ),
         ));
+      
+        // Register block for the code exchanges
+        acf_register_block_type(array(
+            'name'              => 'es_features_kbase',
+            'title'             => __('Engispace - Features Knowledge Base'),
+            'render_template'   => 'template-parts/acf-blocks/features/knowledge-base.php',
+            'category'          => 'engispace-theme',
+            'icon'              => $this->es_logo,
+            'keywords'          => array( 'features', 'knowledge base', 'engispace', 'es' ),
+            'enqueue_assets' => function() {
+                // only enqueue the block assets for the admin gutenberg editor
+                if ( is_admin() ) {
+                    wp_enqueue_style( 'features_kbase', THEME_URI . '/assets/css/blocks/features/kbase.css' );
+                }
+            },
+            'example'  => array(
+                'attributes' => array(
+                    'mode' => 'preview'
+                )
+            ),
+        ));
     }
 
     public function register_blocks_for_courses_page() {
