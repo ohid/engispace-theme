@@ -2269,4 +2269,74 @@ header .es-site-header-right .site-right-buttons .es-user-profile-button .es-use
   line-height: 24px;
 }
 
+.es-features-courses {
+  background-color: #F5F5F5;
+  padding: 100px 0px;
+  position: relative;
+}
+.es-features-courses .es-fc-inner {
+  display: flex;
+  justify-content: space-between;
+}
+.es-features-courses .es-fc-inner .es-right {
+  width: 50%;
+  padding-right: 100px;
+  box-sizing: border-box;
+}
+.es-features-courses .es-fc-inner .es-right ul {
+  margin-top: 50px;
+  position: relative;
+}
+.es-features-courses .es-fc-inner .es-right ul li {
+  font-size: 16px;
+  color: #6B6B6B;
+  margin-bottom: 50px;
+  line-height: 24px;
+  position: relative;
+  padding-left: 60px;
+}
+.es-features-courses .es-fc-inner .es-right ul li span {
+  position: absolute;
+  z-index: 2;
+  left: 0px;
+  top: 5px;
+  border: 2px solid #dbdbdb;
+  width: 24px;
+  height: 25px;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: silver;
+  font-size: 12px;
+}
+.es-features-courses .es-fc-inner .es-section-title span {
+  background: #EF4D1C;
+  color: white;
+  border-radius: 2px;
+  padding: 5px 14px;
+  display: inline-block;
+}
+.es-features-courses .es-fc-inner .es-section-title h3 {
+  font-size: 36px;
+  line-height: 45px;
+  color: #444444;
+  margin-top: 20px;
+}
+.es-features-courses .es-fc-inner .es-section-title p {
+  font-size: 16px;
+  line-height: 25px;
+  margin-top: 20px;
+  color: #6B6B6B;
+}
+.es-features-courses .es-features-courses {
+  position: absolute;
+  left: -120px;
+  top: 0px;
+}
+.es-features-courses .es-features-courses .es-home-course-boxes {
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+}
+
 /*# sourceMappingURL=main.css.map */

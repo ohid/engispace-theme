@@ -257,6 +257,27 @@ class ACF_Blocks implements Component_Interface {
                 )
             ),
         ));
+      
+        // Register block for the courses
+        acf_register_block_type(array(
+            'name'              => 'es_features_courses',
+            'title'             => __('Engispace - Features Courses'),
+            'render_template'   => 'template-parts/acf-blocks/features/courses.php',
+            'category'          => 'engispace-theme',
+            'icon'              => $this->es_logo,
+            'keywords'          => array( 'features', 'courses', 'engispace', 'es' ),
+            'enqueue_assets' => function() {
+                // only enqueue the block assets for the admin gutenberg editor
+                if ( is_admin() ) {
+                    wp_enqueue_style( 'features_courses', THEME_URI . '/assets/css/blocks/features/courses.css' );
+                }
+            },
+            'example'  => array(
+                'attributes' => array(
+                    'mode' => 'preview'
+                )
+            ),
+        ));
     }
 
     public function register_blocks_for_courses_page() {
