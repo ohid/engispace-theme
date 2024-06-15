@@ -341,6 +341,48 @@ class ACF_Blocks implements Component_Interface {
                 )
             ),
         ));
+      
+        // Register block for the code exchanges
+        acf_register_block_type(array(
+            'name'              => 'es_features_engineering_tools',
+            'title'             => __('Engispace - Features Engineering Tools'),
+            'render_template'   => 'template-parts/acf-blocks/features/engineering-tools.php',
+            'category'          => 'engispace-theme',
+            'icon'              => $this->es_logo,
+            'keywords'          => array( 'features', 'engineering-tools', 'engispace', 'es' ),
+            'enqueue_assets' => function() {
+                // only enqueue the block assets for the admin gutenberg editor
+                if ( is_admin() ) {
+                    wp_enqueue_style( 'engineering-tools', THEME_URI . '/assets/css/blocks/features/engineering_tools.css' );
+                }
+            },
+            'example'  => array(
+                'attributes' => array(
+                    'mode' => 'preview'
+                )
+            ),
+        ));
+      
+        // Register block for the code exchanges
+        acf_register_block_type(array(
+            'name'              => 'es_features_aprogress_tools',
+            'title'             => __('Engispace - Features Accelerate Progress'),
+            'render_template'   => 'template-parts/acf-blocks/features/a-progress.php',
+            'category'          => 'engispace-theme',
+            'icon'              => $this->es_logo,
+            'keywords'          => array( 'features', 'a-progress', 'engispace', 'es' ),
+            'enqueue_assets' => function() {
+                // only enqueue the block assets for the admin gutenberg editor
+                if ( is_admin() ) {
+                    wp_enqueue_style( 'a-progress', THEME_URI . '/assets/css/blocks/features/a_progress.css' );
+                }
+            },
+            'example'  => array(
+                'attributes' => array(
+                    'mode' => 'preview'
+                )
+            ),
+        ));
     }
 
     public function register_blocks_for_courses_page() {

@@ -2419,4 +2419,25 @@ header .es-site-header-right .site-right-buttons .es-user-profile-button .es-use
   width: 100%;
 }
 
+.es-features-engi-tools {
+  background-color: #F5F5F5;
+  padding: 210px 0px;
+  position: relative;
+  overflow: hidden;
+}
+.es-features-engi-tools .es-fet-inner {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+.es-features-engi-tools .es-features-engitools-section-image {
+  position: absolute;
+  left: 0px;
+  bottom: -113px;
+  width: 550px;
+}
+
+.es-features-a-progress {
+  padding: 220px 0px;
+}
+
 /*# sourceMappingURL=main.css.map */
