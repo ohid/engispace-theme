@@ -299,6 +299,27 @@ class ACF_Blocks implements Component_Interface {
                 )
             ),
         ));
+      
+        // Register block for the code exchanges
+        acf_register_block_type(array(
+            'name'              => 'es_features_code_exchange',
+            'title'             => __('Engispace - Features Code Exchange'),
+            'render_template'   => 'template-parts/acf-blocks/features/code-exchange.php',
+            'category'          => 'engispace-theme',
+            'icon'              => $this->es_logo,
+            'keywords'          => array( 'features', 'code_exchange', 'engispace', 'es' ),
+            'enqueue_assets' => function() {
+                // only enqueue the block assets for the admin gutenberg editor
+                if ( is_admin() ) {
+                    wp_enqueue_style( 'features_code_exchange', THEME_URI . '/assets/css/blocks/features/code_exchange.css' );
+                }
+            },
+            'example'  => array(
+                'attributes' => array(
+                    'mode' => 'preview'
+                )
+            ),
+        ));
     }
 
     public function register_blocks_for_courses_page() {
