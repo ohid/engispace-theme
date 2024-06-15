@@ -278,6 +278,27 @@ class ACF_Blocks implements Component_Interface {
                 )
             ),
         ));
+      
+        // Register block for the questions
+        acf_register_block_type(array(
+            'name'              => 'es_features_questions',
+            'title'             => __('Engispace - Features Questions'),
+            'render_template'   => 'template-parts/acf-blocks/features/questions.php',
+            'category'          => 'engispace-theme',
+            'icon'              => $this->es_logo,
+            'keywords'          => array( 'features', 'questions', 'engispace', 'es' ),
+            'enqueue_assets' => function() {
+                // only enqueue the block assets for the admin gutenberg editor
+                if ( is_admin() ) {
+                    wp_enqueue_style( 'features_questions', THEME_URI . '/assets/css/blocks/features/questions.css' );
+                }
+            },
+            'example'  => array(
+                'attributes' => array(
+                    'mode' => 'preview'
+                )
+            ),
+        ));
     }
 
     public function register_blocks_for_courses_page() {

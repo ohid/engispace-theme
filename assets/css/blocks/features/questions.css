@@ -1,0 +1,40 @@
+.es-features-questions {
+  padding: 150px;
+  position: relative;
+  overflow: hidden;
+}
+.es-features-questions .es-section-title {
+  width: 100%;
+  max-width: 550px;
+}
+.es-features-questions .es-fq-section-image {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  width: 630px;
+}
+.es-features-questions .es-fq-section-image img {
+  width: 100%;
+}
+
+.es-section-title span.boxed-title {
+  background: #EF4D1C;
+  color: white;
+  border-radius: 2px;
+  padding: 5px 14px;
+  display: inline-block;
+}
+.es-section-title h3 {
+  font-size: 36px;
+  line-height: 45px;
+  color: #444444;
+  margin-top: 20px;
+}
+.es-section-title p {
+  font-size: 16px;
+  line-height: 25px;
+  margin-top: 20px;
+  color: #6B6B6B;
+}
+
+/*# sourceMappingURL=questions.css.map */
