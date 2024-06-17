@@ -79,6 +79,36 @@ header .es-site-inner-container .es-site-header-left {
   gap: 15px;
   align-items: center;
 }
+header .es-site-inner-container .es-site-header-left .site-menu ul {
+  display: flex;
+}
+header .es-site-inner-container .es-site-header-left .site-menu ul li a {
+  color: rgba(255, 255, 255, 0.9058823529);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  height: calc(100% - 2px);
+  padding: 4px 14px;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease-in;
+  border-radius: 3px;
+  border-bottom: 2px solid transparent;
+}
+header .es-site-inner-container .es-site-header-left .site-menu ul li a:hover {
+  background-color: #494b4d;
+  border-radius: 3px 3px 0 0;
+  border-bottom: 2px solid rgb(217, 215, 215);
+}
+header .es-site-inner-container .es-site-header-left .site-menu ul li.current-menu-item a {
+  background-color: #494b4d;
+  border-radius: 3px 3px 0 0;
+  border-bottom: 2px solid rgb(217, 215, 215);
+}
 header .site-search-form {
   width: 290px;
 }
@@ -91,10 +121,10 @@ header .site-search-form .es-form-control {
   width: 100%;
   height: 40px;
 }
-header .site-search-form .es-form-control input {
+header .site-search-form .es-form-control input[type=text] {
   height: 100%;
   width: 100%;
-  background: rgba(248, 251, 247, 0.2117647059);
+  background: rgba(248, 251, 247, 0.2117647059) !important;
   color: rgba(255, 255, 255, 0.5058823529);
   font-family: "Roboto";
   font-size: 13px;
@@ -105,12 +135,18 @@ header .site-search-form .es-form-control input {
   border-radius: 4px;
   padding: 0 10px;
   box-sizing: border-box;
+  transition: all 0.2s ease-in;
 }
-header .site-search-form .es-form-control input:focus {
+header .site-search-form .es-form-control input[type=text]:focus {
   outline: none;
+  background-color: #dedddd !important;
+  color: #3C3F41;
 }
 header .site-search-form .es-form-control input::placeholder {
   color: rgba(255, 255, 255, 0.5058823529);
+}
+header .site-search-form .es-form-control input:focus::placeholder {
+  color: #3C3F41;
 }
 header .es-site-header-right {
   display: flex;
@@ -2438,6 +2474,35 @@ header .es-site-header-right .site-right-buttons .es-user-profile-button .es-use
 
 .es-features-a-progress {
   padding: 220px 0px;
+}
+
+.es-features-categories {
+  padding: 120px 0px;
+  background-color: #F5F5F5;
+}
+.es-features-categories .es-fc-inner {
+  text-align: center;
+  padding: 0 10%;
+}
+.es-features-categories .es-fc-inner .es-fc-categories-list {
+  margin-top: 40px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+.es-features-categories .es-fc-inner .es-fc-categories-list a {
+  font-size: 12px;
+  font-weight: 500;
+  color: #0366D6;
+  border: 1px solid #0366D6;
+  border-radius: 5px;
+  padding: 4px 8px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.es-features-categories .es-fc-inner .es-fc-categories-list a:hover {
+  color: #EF4D1C;
+  border-color: #EF4D1C;
 }
 
 /*# sourceMappingURL=main.css.map */

@@ -45,7 +45,8 @@ class Setup implements Component_Interface {
             register_nav_menus(
                 array(
                     'es-main-menu' => esc_html__( 'Engispace Header Menu', 'engispace' ),
-                    'es-footer-menu' => esc_html__( 'Engispace Footer Menu', 'engispace' )
+                    'es-footer-menu' => esc_html__( 'Engispace Footer Menu', 'engispace' ),
+                    'es-header-non-logged-in-menu' => esc_html__( 'Engispace Header Menu (for non logged-in users)', 'engispace' )
                 ),
             );
         }

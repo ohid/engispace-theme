@@ -15,13 +15,26 @@
                         }
                     ?>
                 </div>
-                <div class="site-search-form">
-                    <form action="">
-                        <div class="es-form-control">
-                            <input type="text" placeholder="<?php esc_attr_e( 'Search engispace', 'engispace' ); ?>">
-                        </div>
-                    </form>
-                </div>
+                <?php if ( is_user_logged_in() ) : ?>
+                    <div class="site-search-form">
+                        <form action="">
+                            <div class="es-form-control">
+                                <input type="text" placeholder="<?php esc_attr_e( 'Search engispace', 'engispace' ); ?>">
+                            </div>
+                        </form>
+                    </div>
+                <?php else: ?>
+                    <div class="site-menu">
+                        <?php
+                            if ( function_exists( 'wp_nav_menu' ) ) {
+                                wp_nav_menu( array(
+                                    'theme_location' => 'es-header-non-logged-in-menu',
+                                    'menu_class' => 'navigation-menu'
+                                ) );
+                            }
+                        ?>
+                    </div>
+                <?php endif; ?>
             </div>
             <div class="es-site-header-right">
                 <div class="site-menu">
