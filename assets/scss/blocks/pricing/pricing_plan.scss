@@ -1,17 +1,27 @@
 .es-pricing-plan-wrapper {
     margin-top: 100px;
     margin-bottom: 40px;
+
+    .es-pricing-compare-plans-btn {
+        text-align: center;
+        margin-top: 40px;
+        button {
+            color: #3379d9;
+            font-size: 18px;
+        }
+    }
+
     h2 {
         margin-bottom: 48px;
         font-weight: 300;
-        font-size: 34px;
-        line-height: 39px;
+        font-size: 50px;
+        line-height: 60px;
         text-align: center;
     }
 
     .es-pricing-plans {
         display: grid;
-        grid-template-columns: 30% 40% 30%;
+        grid-template-columns: 29% 38% 29%;
         gap: 20px;
 
         .es-pricing-plan {

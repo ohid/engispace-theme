@@ -53,15 +53,20 @@ function es_subscription_plan_class( $plan ) {
                 <h4><?php echo $plan['plan_title']; ?></h4>
                 <div class="es-pricing-plan-price">
                     <span class="es-pricing-plan-cost"><sup>$</sup><?php echo $plan['plan_price']; ?></span>
-                    <span class="es-pricing-plan-subs-type">Per month</span>
+                    <span class="es-pricing-plan-subs-type"><?php esc_html_e( 'Per month', 'engispace' ); ?></span>
                 </div>
                 <div class="es-pricing-plan-features">
                     <?php echo $plan['plan_features']; ?>
                 </div>
                 <div class="plan-btn">
-                    <a href="<?php echo es_get_membership_checkout_url( $plan ); ?>"class="es-btn-orange">Sign up</a>
+                    <a href="<?php echo es_get_membership_checkout_url( $plan ); ?>"class="es-btn-orange">
+                        <?php esc_html_e( 'Sign up', 'engispace' ); ?>
+                    </a>
                 </div>
             </div>
         <?php endforeach; ?>
+    </div>
+    <div class="es-pricing-compare-plans-btn">
+        <button><?php esc_html_e( 'Compare Plans', 'engispace' ); ?></button>
     </div>
 </div>

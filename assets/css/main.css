@@ -1672,116 +1672,6 @@ header .es-site-header-right .site-right-buttons .es-user-profile-button .es-use
   top: 2px;
 }
 
-.es-pricing-plan-wrapper {
-  margin-top: 100px;
-  margin-bottom: 40px;
-}
-.es-pricing-plan-wrapper h2 {
-  margin-bottom: 48px;
-  font-weight: 300;
-  font-size: 34px;
-  line-height: 39px;
-  text-align: center;
-}
-.es-pricing-plan-wrapper .es-pricing-plans {
-  display: grid;
-  grid-template-columns: 30% 40% 30%;
-  gap: 20px;
-}
-.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan {
-  border: 1px solid #f2f2f2;
-  padding-bottom: 30px;
-}
-.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan h4 {
-  background-color: rgb(224, 88, 39);
-  color: #fff;
-  font-size: 33px;
-  margin: 0px;
-  font-weight: 300;
-  text-align: center;
-  padding: 17px;
-}
-.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan h4 span {
-  display: block;
-  font-size: 18px;
-  margin-bottom: 10px;
-}
-.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan:first-child .es-btn-orange,
-.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan:first-child h4 {
-  background-color: rgb(105, 125, 90);
-}
-.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan:nth-child(2) {
-  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.08), 0 13px 45px rgba(0, 0, 0, 0.08);
-}
-.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan:nth-child(2) .es-btn-orange,
-.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan:nth-child(2) h4 {
-  background-color: rgb(224, 88, 39);
-}
-.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan:last-child .es-btn-orange,
-.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan:last-child h4 {
-  background-color: rgb(34, 49, 71);
-}
-.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan .es-pricing-plan-price {
-  text-align: center;
-  color: #676767;
-  margin-top: 20px;
-}
-.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan .es-pricing-plan-price .es-pricing-plan-cost {
-  font-size: 60px;
-}
-.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan .es-pricing-plan-price .es-pricing-plan-cost sup {
-  font-size: 20px;
-}
-.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan .es-pricing-plan-price .es-pricing-plan-subs-type {
-  display: block;
-}
-.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan .es-pricing-plan-features {
-  padding: 0px 40px;
-  margin-top: 30px;
-}
-.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan .es-pricing-plan-features ul {
-  margin: 0px;
-  padding: 0px;
-}
-.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan .es-pricing-plan-features ul li {
-  list-style: none;
-  margin-bottom: 4px;
-  font-weight: 300;
-  line-height: 22px;
-}
-.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan .plan-btn {
-  text-align: center;
-  margin-top: 40px;
-}
-.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan .es-btn-orange {
-  display: inline-block;
-  margin: auto;
-}
-.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan.es-current-plan {
-  position: relative;
-}
-.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan.es-current-plan:before {
-  position: absolute;
-  content: "";
-  top: 0px;
-  left: 0px;
-  background-color: rgba(255, 255, 255, 0.2588235294);
-  width: 100%;
-  height: 100%;
-  z-index: 9;
-}
-.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan.es-current-plan .es-currently-subscribed {
-  opacity: 1;
-  position: absolute;
-  background: #f0efef;
-  width: 100%;
-  top: -16px;
-  text-align: center;
-  padding: 3px;
-  color: black;
-  font-size: 12px;
-}
-
 #edd_checkout_form_wrap .edd_form.edd-blocks-form .edd-input, #edd_checkout_form_wrap .edd_form.edd-blocks-form .edd-select {
   width: 100%;
   color: #495057;
@@ -2503,6 +2393,153 @@ header .es-site-header-right .site-right-buttons .es-user-profile-button .es-use
 .es-features-categories .es-fc-inner .es-fc-categories-list a:hover {
   color: #EF4D1C;
   border-color: #EF4D1C;
+}
+
+.es-pricing-plan-wrapper {
+  margin-top: 100px;
+  margin-bottom: 40px;
+}
+.es-pricing-plan-wrapper .es-pricing-compare-plans-btn {
+  text-align: center;
+  margin-top: 40px;
+}
+.es-pricing-plan-wrapper .es-pricing-compare-plans-btn button {
+  color: #3379d9;
+  font-size: 18px;
+}
+.es-pricing-plan-wrapper h2 {
+  margin-bottom: 48px;
+  font-weight: 300;
+  font-size: 50px;
+  line-height: 60px;
+  text-align: center;
+}
+.es-pricing-plan-wrapper .es-pricing-plans {
+  display: grid;
+  grid-template-columns: 29% 38% 29%;
+  gap: 20px;
+}
+.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan {
+  border: 1px solid #f2f2f2;
+  padding-bottom: 30px;
+}
+.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan h4 {
+  background-color: rgb(224, 88, 39);
+  color: #fff;
+  font-size: 33px;
+  margin: 0px;
+  font-weight: 300;
+  text-align: center;
+  padding: 17px;
+}
+.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan h4 span {
+  display: block;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan:first-child .es-btn-orange,
+.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan:first-child h4 {
+  background-color: rgb(105, 125, 90);
+}
+.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan:nth-child(2) {
+  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.08), 0 13px 45px rgba(0, 0, 0, 0.08);
+}
+.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan:nth-child(2) .es-btn-orange,
+.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan:nth-child(2) h4 {
+  background-color: rgb(224, 88, 39);
+}
+.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan:last-child .es-btn-orange,
+.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan:last-child h4 {
+  background-color: rgb(34, 49, 71);
+}
+.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan .es-pricing-plan-price {
+  text-align: center;
+  color: #676767;
+  margin-top: 20px;
+}
+.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan .es-pricing-plan-price .es-pricing-plan-cost {
+  font-size: 60px;
+}
+.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan .es-pricing-plan-price .es-pricing-plan-cost sup {
+  font-size: 20px;
+}
+.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan .es-pricing-plan-price .es-pricing-plan-subs-type {
+  display: block;
+}
+.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan .es-pricing-plan-features {
+  padding: 0px 40px;
+  margin-top: 30px;
+}
+.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan .es-pricing-plan-features ul {
+  margin: 0px;
+  padding: 0px;
+}
+.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan .es-pricing-plan-features ul li {
+  list-style: none;
+  margin-bottom: 4px;
+  font-weight: 300;
+  line-height: 22px;
+}
+.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan .plan-btn {
+  text-align: center;
+  margin-top: 40px;
+}
+.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan .es-btn-orange {
+  display: inline-block;
+  margin: auto;
+}
+.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan.es-current-plan {
+  position: relative;
+}
+.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan.es-current-plan:before {
+  position: absolute;
+  content: "";
+  top: 0px;
+  left: 0px;
+  background-color: rgba(255, 255, 255, 0.2588235294);
+  width: 100%;
+  height: 100%;
+  z-index: 9;
+}
+.es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan.es-current-plan .es-currently-subscribed {
+  opacity: 1;
+  position: absolute;
+  background: #f0efef;
+  width: 100%;
+  top: -16px;
+  text-align: center;
+  padding: 3px;
+  color: black;
+  font-size: 12px;
+}
+
+.es-pricing-courses-wrapper {
+  padding: 100px 0px;
+}
+.es-pricing-courses-wrapper .es-section-title {
+  text-align: center;
+  padding: 0px 20%;
+}
+.es-pricing-courses-wrapper .es-pc-info-list {
+  display: grid;
+  gap: 25px;
+  grid-template-columns: 50% 50%;
+  margin-top: 50px;
+}
+.es-pricing-courses-wrapper .es-pc-info-list div {
+  display: flex;
+  align-items: center;
+  color: #6B6B6B;
+  gap: 20px;
+}
+.es-pricing-courses-wrapper .es-pc-info-list div span {
+  border: 1px solid #f2f2f2;
+  padding: 15px;
+  border-radius: 100px;
+}
+.es-pricing-courses-wrapper .es-pc-info-list div img {
+  width: 20px;
+  height: 20px;
 }
 
 /*# sourceMappingURL=main.css.map */

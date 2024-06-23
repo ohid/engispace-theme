@@ -1,0 +1,30 @@
+.es-pricing-courses-wrapper {
+  padding: 100px 0px;
+}
+.es-pricing-courses-wrapper .es-section-title {
+  text-align: center;
+  padding: 0px 20%;
+}
+.es-pricing-courses-wrapper .es-pc-info-list {
+  display: grid;
+  gap: 25px;
+  grid-template-columns: 50% 50%;
+  margin-top: 50px;
+}
+.es-pricing-courses-wrapper .es-pc-info-list div {
+  display: flex;
+  align-items: center;
+  color: #6B6B6B;
+  gap: 20px;
+}
+.es-pricing-courses-wrapper .es-pc-info-list div span {
+  border: 1px solid #f2f2f2;
+  padding: 15px;
+  border-radius: 100px;
+}
+.es-pricing-courses-wrapper .es-pc-info-list div img {
+  width: 20px;
+  height: 20px;
+}
+
+/*# sourceMappingURL=pricing_courses.css.map */

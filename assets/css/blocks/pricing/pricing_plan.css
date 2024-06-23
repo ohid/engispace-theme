@@ -19,7 +19,7 @@
 }
 .es-pricing-plan-wrapper .es-pricing-plans {
   display: grid;
-  grid-template-columns: 30% 40% 30%;
+  grid-template-columns: 29% 38% 29%;
   gap: 20px;
 }
 .es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan {
