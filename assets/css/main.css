@@ -67,6 +67,10 @@ h3 {
   font-weight: 500;
 }
 
+.es-background-gray {
+  background-color: #F5F5F5;
+}
+
 header {
   background: #3C3F41;
 }
@@ -2520,11 +2524,14 @@ header .es-site-header-right .site-right-buttons .es-user-profile-button .es-use
   text-align: center;
   padding: 0px 20%;
 }
+.es-pricing-courses-wrapper .es-pc-course-boxes {
+  margin-top: 80px;
+}
 .es-pricing-courses-wrapper .es-pc-info-list {
   display: grid;
   gap: 25px;
   grid-template-columns: 50% 50%;
-  margin-top: 50px;
+  margin-top: 80px;
 }
 .es-pricing-courses-wrapper .es-pc-info-list div {
   display: flex;

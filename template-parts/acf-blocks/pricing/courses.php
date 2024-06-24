@@ -21,6 +21,7 @@ if( !empty($block['align']) ) {
 $title_boxed = get_field( 'boxed_title' );
 $title = get_field( 'title' );
 $description = get_field( 'description' );
+$courses = get_field( 'courses' );
 $info_texts = get_field( 'info_texts' );
 ?>
 
@@ -33,7 +34,34 @@ $info_texts = get_field( 'info_texts' );
                 <p><?php esc_html_e( $description ); ?></p>
             </div>
         </div>
+        <div class="es-pc-course-boxes es-home-course-boxes">
+            <?php
+                foreach( $courses as $post ) :
+                setup_postdata( $post );
 
+                $es_currency = '$';
+                $price_args = learndash_get_course_price( $post->ID );
+            ?>
+            <div class="es-home-course-box">
+                <?php echo get_the_post_thumbnail( $post, 'es-course-carousel-item-thumbnail' ); ?>
+                <a href="<?php echo get_the_permalink( $post ); ?>">
+                    <h5><?php echo get_the_title( $post ); ?></h5>
+                </a>
+                <div class="es-hcb-price-box">
+                    <?php if ( isset( $price_args['type'] ) && $price_args['type'] === 'free' ): ?>
+                        <ins>Free</ins>
+                    <?php endif; ?>
+                    <?php if ( isset( $price_args['type'] ) && $price_args['type'] === 'paynow' ): ?>
+                        <ins><?php echo $es_currency . esc_html( $price_args['price'] ); ?></ins>
+                    <?php endif; ?>
+                    <span>[rating content]</span>
+                </div>
+            </div>
+            <?php 
+                endforeach; 
+                wp_reset_postdata();
+            ?>
+        </div>
         <div class="es-pc-info-list">
             <?php 
                 foreach( $info_texts as $text ) :

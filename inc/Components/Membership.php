@@ -19,6 +19,7 @@ class Membership implements Component_Interface {
 
     public function initialize() {
         add_action( 'edd_after_payment_actions', [ $this, 'member_subscription' ], 10, 3 );
+        add_action( 'template_redirect', [ $this, 'membership_cart_empty' ], 10 );
     }
 
     /**
@@ -72,5 +73,20 @@ class Membership implements Component_Interface {
         }
 
         return $membership_type;
+    }
+
+    /**
+     * Redirect to the pricing pages if the EDD checkout page is empty
+     * 
+     * @since 1.0.0
+     */
+    public function membership_cart_empty() {
+        $cart       = function_exists( 'edd_get_cart_contents' ) ? edd_get_cart_contents() : false;
+        $redirect   = site_url( 'pricing' ); // could be the URL to your shop
+    
+        if ( function_exists( 'edd_is_checkout' ) && edd_is_checkout() && ! $cart ) {
+            wp_redirect( $redirect, 301 ); 
+            exit;
+        }
     }
 }

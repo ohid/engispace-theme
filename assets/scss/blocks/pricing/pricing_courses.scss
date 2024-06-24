@@ -5,11 +5,15 @@
         padding: 0px 20%;
     }
 
+    .es-pc-course-boxes {
+        margin-top: 80px;
+    }
+
     .es-pc-info-list {
         display: grid;
         gap: 25px;
         grid-template-columns: 50% 50%;
-        margin-top: 50px;
+        margin-top: 80px;
 
         div {
             display: flex;
