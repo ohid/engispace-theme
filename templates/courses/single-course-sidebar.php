@@ -24,6 +24,8 @@
     <?php 
         if ( ! es_user_has_access_to_course( get_the_ID() ) ) {
             es_generate_buy_now_button( $price_args ); 
+        } else {
+            printf('<a href="#es-learndash-course-content" class="es-course-open-btn es-btn-orange">%s</a>', esc_html__( 'View course', 'engispace-theme' ));
         }
     ?>
 

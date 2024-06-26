@@ -131,6 +131,18 @@
             a {
                 text-decoration: none;
             }
+
+            .es-course-category {
+                display: inline-block;
+                margin-bottom: 10px;
+
+                p {
+                    color: #0366D6;
+                    padding: 4px 10px;
+                    border: 1px solid #0366D6;
+                    border-radius: 4px;
+                }
+            }
         }
 
         h4 {
@@ -243,6 +255,20 @@
                 margin: 0px;
             }
 
+            .es-course-category {
+                display: inline-block;
+                margin: 10px 0px 15px;
+                font-size: 12px;
+                font-weight: 500;
+
+                p {
+                    color: #0366D6;
+                    padding: 4px 10px;
+                    border: 1px solid #0366D6;
+                    border-radius: 4px;
+                }
+            }
+
             .es-course-details-category {
                 margin-top: 3px;
             }
@@ -261,6 +287,7 @@
                 display: grid;
                 grid-template-columns: 50% 50%;
                 gap: 10px 5px;
+                margin-top: 10px;
                 
                 .es-course-meta-item {
                     font-size: 12px;

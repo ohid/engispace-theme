@@ -1,5 +1,6 @@
 header {
     background: #3C3F41;
+    position: relative;
 
     .es-site-inner-container {
         display: flex;
@@ -10,7 +11,15 @@ header {
             gap: 15px;
             align-items: center;
 
+            @media (max-width: 1024px) {
+                padding: 10px 0px;
+            }
+
             .site-menu {
+                @media (max-width: 1024px) {
+                    display: none;
+                }
+
                 ul {
                     display: flex;
                     li {
@@ -53,8 +62,13 @@ header {
 
     .site-search-form {
         width: 290px;
+
         @media (max-width: 1040px) {
             width: 200px;
+        }
+        
+        @media (max-width: 1024px) {
+            display: none;
         }
 
         .es-form-control {
@@ -122,7 +136,7 @@ header {
                         align-items: center;
                         flex-direction: column;
                         justify-content: center;
-                        height: calc(100% - 2px);
+                        height: 100%;
                         padding: 0px 14px;
                         border-bottom: 2px solid transparent;
                         transition: all 0.2s ease-in;
@@ -241,6 +255,61 @@ header {
 
                     &.active {
                         display: block;
+                    }
+                }
+            }
+        }
+
+        .es-site-mobile-menu-btn {
+            @media (max-width: 1024px) {
+                display: block;
+                margin-left: 10px;
+                cursor: pointer;
+
+                img {
+                    width: 28px;
+                }
+            }
+            @media (min-width: 1025px) {
+                display: none;
+            }
+            
+        }
+    }
+
+    .es-header-mobile-navigation-wrapper {
+        @media (max-width: 1024px) {
+            .site-search-form {
+                display: block;
+                width: 100%;
+                margin-bottom: 15px;
+            }
+        }
+        display: none;
+        position: absolute;
+        top: 51px;
+        z-index: 999;
+        background-color: #3d3f41;
+        left: 0px;
+        width: 100%;
+        padding: 20px;
+        border-top: 1px solid #545454;
+
+        &.active {
+            display: block;
+        }
+
+        ul {
+            li {
+                a {
+                    color: rgba(255, 255, 255, 0.9058823529);
+                    padding: 10px 0px;
+                    display: inline-flex;
+                    align-items: center;
+
+                    img {
+                        width: 20px;
+                        margin-right: 10px;
                     }
                 }
             }

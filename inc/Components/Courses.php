@@ -142,11 +142,13 @@ class Courses {
         echo '<div class="courses-page-course-slider owl-carousel owl-theme courses_slider">';
         foreach( $courses as $post ) {
             // Setup post data
-            $post_id = get_the_ID();
+            setup_postdata($post);
+            $post_id = $post->ID;
             $es_currency = '$';
             // Course category
             $course_category = wp_get_post_terms( $post_id, 'ld_course_category' );
             if ( isset( $course_category[0] ) ) {
+                // ray($course_category[0]);
                 $course_category_page = get_term_link( $course_category[0], 'ld_course_category' );
             }
             $short_description = get_post_meta( $post_id, 'es_course_short_description', true );

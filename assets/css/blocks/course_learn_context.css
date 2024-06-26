@@ -12,7 +12,7 @@
 }
 .es-course-learn-context ul {
   padding: 0px;
-  margin: 0px;
+  margin: 15px 0 0;
   display: grid;
   grid-template-columns: 50% 50%;
   gap: 10px 0px;

@@ -10,7 +10,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
             <span class="close-modal">
                 <?php echo es_get_svg_icon('/assets/img/cross-times'); ?>
             </span>
-            <h3><?php esc_html_e( 'Share with your loved ones', 'engispace' ); ?></h3>
+            <h3><?php esc_html_e( 'Sharing is Caring', 'engispace' ); ?></h3>
+            <p><?php esc_html_e( 'Help spread the word. You\'re awesome for doing it', 'engispace' ); ?></p>
             <div class="es-social-share">
                 <?php echo do_shortcode( '[Sassy_Social_Share]' ); ?>
             </div>

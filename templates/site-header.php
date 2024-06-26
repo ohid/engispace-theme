@@ -50,11 +50,20 @@
                 <div class="site-right-buttons">
                     <?php get_template_part( 'templates/header-right-buttons' ); ?>
                 </div>
+                <div class="es-site-mobile-menu-btn">
+                    <?php 
+                        es_img_with_srcset(
+                            THEME_URI . '/assets/img/hamburger.png',
+                        );
+                    ?>
+                </div>
             </div>
         </div>
     </div>
 
     <?php 
+        get_template_part( 'template-parts/header/mobile-menu' ); 
+
         if ( !is_user_logged_in() ) {
             get_template_part( 'templates/modal/site-auth-modal' ); 
         }

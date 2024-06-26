@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
         </a>
 
         <?php if ( isset( $course_category[0] ) ): ?>
-            <a href="<?php echo $course_category_page ? esc_url( $course_category_page ) : ''; ?>">
+            <a href="<?php echo $course_category_page ? esc_url( $course_category_page ) : ''; ?>" class="es-course-category">
                 <p><?php echo esc_html( $course_category[0]->name ); ?></p>
             </a>
         <?php endif; ?>
@@ -42,7 +42,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
             <h4><?php echo esc_html( get_the_title() ); ?></h4>
         </a>
         <?php if ( isset( $course_category[0] ) ): ?>
-            <a href="<?php echo $course_category_page ? esc_url( $course_category_page ) : ''; ?>">
+            <a href="<?php echo $course_category_page ? esc_url( $course_category_page ) : ''; ?>" class="es-course-category">
                 <p><?php echo esc_html( $course_category[0]->name ); ?></p>
             </a>
         <?php endif; ?>

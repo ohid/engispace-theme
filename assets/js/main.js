@@ -50,6 +50,15 @@
         });
     }
 
+    function hide_mobile_menu() {
+        let windowWidth = $(window).width();
+        if ( (windowWidth + 15) < 1025 ) {
+            return;
+        }
+
+        $('.es-header-mobile-navigation-wrapper').hide();
+    }
+
     window.engispace = {
         /**
          * Init header functions
@@ -59,6 +68,10 @@
             $('.es-user-profile-button button').on('click', function() {
                 $('.es-user-profile-dropdown').toggleClass('active');
             });
+
+            $('.es-site-mobile-menu-btn').on('click', function() {
+                $('.es-header-mobile-navigation-wrapper').slideToggle();
+            })
         },
 
         /**
@@ -456,6 +469,7 @@
 
             jQuery(window).on('resize', function() {
                 course_details_hover_box();
+                hide_mobile_menu();
             });
         }
     }

@@ -80,8 +80,8 @@
 
             .password-field-toggle {    
                 position: absolute;
-                top: 31px;
-                right: 5px;
+                top: 37px;
+                right: 7px;
                 border: none;
                 background: transparent;
                 z-index: 999;
@@ -291,8 +291,18 @@
     
     &[modal-type="social-share-modal"] {
         .es-site-modal {
-            min-height: 300px;
+            min-height: 260px;
+            width: 800px;
             text-align: center;
+
+            h3 {
+                font-size: 24px;
+                font-weight: 700;
+            }
+            p {
+                font-size: 22px;
+                font-weight: 300;
+            }
         }
     }
 }
