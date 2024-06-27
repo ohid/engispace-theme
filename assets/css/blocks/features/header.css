@@ -47,5 +47,22 @@
   font-size: 18px;
   line-height: 24px;
 }
+@media (max-width: 1024px) {
+  .es-features-header .es-features-header-inner {
+    padding: 0px 50px;
+  }
+}
+@media (max-width: 768px) {
+  .es-features-header {
+    padding: 60px 0px;
+  }
+  .es-features-header .es-features-header-inner {
+    padding: 0px 10px;
+  }
+  .es-features-header .es-features-header-inner h3 {
+    font-size: 44px;
+    line-height: 54px;
+  }
+}
 
 /*# sourceMappingURL=header.css.map */

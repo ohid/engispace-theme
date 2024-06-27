@@ -37,4 +37,12 @@
             }
         }
     }
+
+    @media (max-width: 768px) {
+        padding: 70px 0px;
+
+        .es-es-inner .es-es-images {
+            grid-template-columns: 19% 19% 19% 19%;
+        }
+    }
 }

@@ -19,5 +19,22 @@
 .es-page-sections-inner .es-hps-item a img {
   max-width: 55px;
 }
+@media (max-width: 810px) {
+  .es-page-sections-inner {
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+  .es-page-sections-inner .es-hps-item {
+    width: 33%;
+    margin-bottom: 30px;
+  }
+  .es-page-sections-inner .es-hps-item a .es-hps-item-img {
+    min-height: 35px;
+  }
+  .es-page-sections-inner .es-hps-item:nth-child(5) img, .es-page-sections-inner .es-hps-item:nth-child(6) img, .es-page-sections-inner .es-hps-item:nth-child(7) img {
+    width: 40px;
+  }
+}
 
 /*# sourceMappingURL=page_sections.css.map */

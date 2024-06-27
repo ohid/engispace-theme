@@ -15,5 +15,37 @@
 .es-features-kbase .es-fq-section-image img {
   width: 100%;
 }
+@media (max-width: 1160px) {
+  .es-features-kbase {
+    padding: 150px 0px;
+  }
+  .es-features-kbase .es-fq-section-image {
+    width: 450px;
+  }
+}
+@media (max-width: 970px) {
+  .es-features-kbase {
+    padding: 80px 0px 600px;
+  }
+  .es-features-kbase .es-section-title {
+    max-width: 700px;
+  }
+  .es-features-kbase .es-fq-section-image {
+    width: 550px;
+  }
+}
+@media (max-width: 540px) {
+  .es-features-kbase {
+    padding: 80px 0px;
+  }
+  .es-features-kbase .es-section-title {
+    max-width: 700px;
+  }
+  .es-features-kbase .es-fq-section-image {
+    width: 100%;
+    position: initial;
+    margin-top: 40px;
+  }
+}
 
 /*# sourceMappingURL=kbase.css.map */

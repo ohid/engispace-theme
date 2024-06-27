@@ -10,6 +10,7 @@
         .es-left {
             display: flex;
             gap: 25px;
+            align-items: center;
         }
 
         .es-copyright {
@@ -52,6 +53,14 @@
 
         @media (max-width: 768px) {
             flex-direction: column;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .es-footer-inner .es-left {
+            flex-direction: column;
+            margin-bottom: 30px;
+            margin-top: 10px;
         }
     }
 }

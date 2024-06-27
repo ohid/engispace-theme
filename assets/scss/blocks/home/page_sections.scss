@@ -22,4 +22,31 @@
             max-width: 55px;
         }
     }
+
+    @media (max-width: 810px) {
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: flex-start;
+
+        .es-hps-item {
+            width: 33%;
+            margin-bottom: 30px;
+
+            a {
+                .es-hps-item-img {
+                    min-height: 35px;
+                }
+
+            }
+
+
+            &:nth-child(5),
+            &:nth-child(6),
+            &:nth-child(7) {
+                img {
+                    width: 40px;
+                }
+            }
+        }
+    }
 }

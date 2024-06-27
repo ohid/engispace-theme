@@ -10,6 +10,32 @@
   bottom: 0px;
   width: 560px;
 }
+@media (max-width: 1140px) {
+  .es-home-code-exchange-section .es-hce-inner-top .es-section-title {
+    width: 500px;
+  }
+}
+@media (max-width: 1060px) {
+  .es-home-code-exchange-section .es-hce-inner-top .es-section-title {
+    width: 400px;
+  }
+}
+@media (max-width: 950px) {
+  .es-home-code-exchange-section {
+    padding-bottom: 500px;
+  }
+  .es-home-code-exchange-section .es-hce-inner-top .es-section-title {
+    width: 100%;
+  }
+}
+@media (max-width: 650px) {
+  .es-home-code-exchange-section {
+    padding-bottom: 500px;
+  }
+  .es-home-code-exchange-section .es-hec-section-img {
+    width: 100%;
+  }
+}
 
 .es-hce-inner-top {
   display: flex;

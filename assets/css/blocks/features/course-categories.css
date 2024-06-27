@@ -11,6 +11,7 @@
   display: flex;
   gap: 12px;
   justify-content: center;
+  flex-wrap: wrap;
 }
 .es-features-categories .es-fc-inner .es-fc-categories-list a {
   font-size: 12px;

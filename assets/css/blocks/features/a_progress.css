@@ -1,5 +1,14 @@
 .es-features-a-progress {
   padding: 220px 0px;
 }
+@media (max-width: 1024px) {
+  .es-features-a-progress {
+    padding: 140px 0px 0px;
+  }
+  .es-features-a-progress .es-fq-section-image {
+    position: initial;
+    margin-top: 60px;
+  }
+}
 
 /*# sourceMappingURL=a_progress.css.map */

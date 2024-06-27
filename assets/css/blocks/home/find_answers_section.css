@@ -49,5 +49,24 @@
   color: silver;
   font-size: 12px;
 }
+@media (max-width: 768px) {
+  .es-find-answers-section {
+    padding: 70px 0px;
+  }
+  .es-find-answers-section .es-find-answer-inner {
+    flex-direction: column-reverse;
+    gap: 40px;
+  }
+  .es-find-answers-section .es-find-answer-inner .es-left, .es-find-answers-section .es-find-answer-inner .es-right {
+    width: 100%;
+  }
+  .es-find-answers-section .es-find-answer-inner .es-right ul li {
+    margin-bottom: 10px;
+    padding-left: 40px;
+  }
+  .es-find-answers-section .es-find-answer-inner .es-right ul li span {
+    top: 0px;
+  }
+}
 
 /*# sourceMappingURL=find_answers_section.css.map */

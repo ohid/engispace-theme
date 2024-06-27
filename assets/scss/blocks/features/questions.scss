@@ -1,5 +1,5 @@
 .es-features-questions {
-    padding: 150px;
+    padding: 150px 0px;
     position: relative;
     overflow: hidden;
 
@@ -39,5 +39,49 @@
         line-height: 25px;
         margin-top: 20px;
         color: #6B6B6B;
+    }
+}
+
+@media (max-width: 1100px) {
+    .es-features-questions {
+        .es-fq-section-image {
+            width: 530px;
+        }
+    }
+}
+
+@media (max-width: 1024px) {
+    .es-features-questions {
+        padding: 150px 0px 600px;
+        .es-section-title {
+            max-width: 100%;
+        }
+        .es-fq-section-image {
+            width: 530px;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .es-features-questions {
+        padding: 80px 0px 500px;
+        .es-section-title {
+            max-width: 100%;
+        }
+        .es-fq-section-image {
+            width: 530px;
+        }
+    }
+}
+
+@media (max-width: 540px) {
+    .es-features-questions {
+        padding: 80px 0px 500px;
+        .es-section-title {
+            max-width: 100%;
+        }
+        .es-fq-section-image {
+            width: 100%;
+        }
     }
 }

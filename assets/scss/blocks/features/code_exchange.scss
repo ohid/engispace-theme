@@ -1,5 +1,5 @@
 .es-features-code-exchange {
-    padding: 120px;
+    padding: 120px 0px;
     background-color: #F5F5F5;
 
     .es-fce-inner {
@@ -7,5 +7,26 @@
         grid-template-columns: 54% 43%;
         gap: 70px;
         align-items: center;
+    }
+
+    @media (max-width: 1130px) {
+        .es-fce-inner {
+            grid-template-columns: 54% 39%;
+        }
+    }
+
+    @media (max-width: 1024px) {
+        .es-fce-inner {
+            grid-template-columns: 48% 44%;
+        }
+    }
+
+    @media (max-width: 768px) {
+        padding: 100px 0px 20px;
+        .es-fce-inner {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column-reverse;
+        }
     }
 }

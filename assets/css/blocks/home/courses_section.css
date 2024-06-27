@@ -1,6 +1,6 @@
 .es-home-courses-section {
   background: #F5F5F5;
-  padding: 110px;
+  padding: 110px 0px;
 }
 .es-home-courses-section .es-hc-inner-top {
   display: flex;
@@ -27,6 +27,30 @@
   line-height: 25px;
   margin-top: 20px;
   color: #6B6B6B;
+}
+@media (max-width: 768px) {
+  .es-home-courses-section {
+    padding: 70px 0px;
+  }
+  .es-home-courses-section .es-hc-inner-top {
+    flex-direction: column;
+    gap: 30px;
+  }
+  .es-home-courses-section .es-hc-inner-top .es-section-title {
+    width: 100%;
+    margin-bottom: 50px;
+  }
+  .es-home-courses-section .es-hc-inner-bottom .es-home-course-boxes, .es-home-courses-section .es-hc-inner-top .es-home-course-boxes {
+    flex-wrap: wrap;
+  }
+  .es-home-courses-section .es-hc-inner-bottom .es-home-course-boxes .es-home-course-box, .es-home-courses-section .es-hc-inner-top .es-home-course-boxes .es-home-course-box {
+    width: calc(33% - 15px);
+  }
+}
+@media (max-width: 540px) {
+  .es-home-courses-section .es-hc-inner-bottom .es-home-course-boxes .es-home-course-box, .es-home-courses-section .es-hc-inner-top .es-home-course-boxes .es-home-course-box {
+    width: calc(50% - 15px);
+  }
 }
 
 .es-home-course-boxes {

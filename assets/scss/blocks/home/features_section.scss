@@ -32,4 +32,20 @@
             border-radius: 3px;
         }
     }
+
+    @media (max-width: 768px) {
+        .es-features-section-title {
+            span {
+                font-size: 16px;
+            }
+            h4 {
+                font-size: 30px;
+                line-height: 40px;
+            }
+        }
+        .es-fs-features span {
+            font-size: 12px;
+            padding: 8px 11px;
+        }
+    }
 }

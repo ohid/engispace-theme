@@ -10,6 +10,40 @@
         bottom: 0px;
         width: 560px;
     }
+
+    @media (max-width: 1140px) {
+        .es-hce-inner-top {
+            .es-section-title {
+                width: 500px;
+            }
+        }
+    }
+
+    @media (max-width: 1060px) {
+        .es-hce-inner-top {
+            .es-section-title {
+                width: 400px;
+            }
+        }
+    }
+
+    @media (max-width: 950px) {
+        padding-bottom: 500px;
+
+        .es-hce-inner-top {
+            .es-section-title {
+                width: 100%;
+            }
+        }
+    }
+  
+    @media (max-width: 650px) {
+        padding-bottom: 500px;
+
+        .es-hec-section-img {
+            width: 100%;
+        }
+    }
 }
 .es-hce-inner-top {
     display: flex;

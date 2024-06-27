@@ -25,9 +25,6 @@ $section_image = get_field( 'section_image' );
 ?>
 
 <div id="<?php echo esc_attr($id); ?>" class="<?php echo esc_attr($className); ?>">
-    <div class="es-hec-section-img">
-        <?php printf('<img src="%s"/>', $section_image); ?>
-    </div>
     <div class="es-site-container">
         <div class="es-hce-inner-top">
             <div class="es-section-title">
@@ -36,5 +33,9 @@ $section_image = get_field( 'section_image' );
                 <p><?php esc_html_e( $description ); ?></p>
             </div>
         </div>
+    </div>
+
+    <div class="es-hec-section-img">
+        <?php printf('<img src="%s"/>', $section_image); ?>
     </div>
 </div>

@@ -47,6 +47,17 @@
             color: white;
         }
     }
+
+    @media (max-width: 1024px) {
+        padding: 60px 38px 30px;
+
+        .es-ht-section-first-image {
+            position: absolute;
+            right: -8%;
+            bottom: 0px;
+            width: 58%;
+        }
+    }
 }
 
 .es-ht-section-first-image {
@@ -78,4 +89,62 @@
     top: 0px;
     width: 50%;
     height: 100%;
+}
+
+
+@media (max-width: 1024px) {
+    .es-ht-section-first-image {
+        position: absolute;
+        right: -8%;
+        bottom: 0px;
+        width: 58%;
+    }
+
+    .es-ht-section-second-image {
+        position: absolute;
+        left: -8%;
+        bottom: 0px;
+        width: 58%;
+    }
+
+    .es-ht-bottom .es-ht-testimonial-item {
+        width: 45%;
+    }
+}
+
+@media (max-width: 768px) {
+    .es-ht-top {
+        grid-template-columns: 100%;
+    }
+    .es-ht-section-first-image {
+        display: none;
+    }
+    .es-ht-bottom {
+        flex-wrap: wrap;
+        .es-ht-testimonial-item {
+            width: 100%;
+        }
+    }
+    .es-ht-section-second-image {
+        position: absolute;
+        left: 0;
+        bottom: 20%;
+        width: 100%;
+    }
+    .es-ht-section-right-boc-color {
+        background: #EF4D1C;
+        right: 0px;
+        top: initial;
+        bottom: 0;
+        width: 100%;
+        height: 50%;
+    }
+    .es-ht-section-left-img-overlay {
+        position: absolute;
+        background: rgba(0, 0, 0, 0.71);
+        left: 0px;
+        top: -10%;
+        width: 100%;
+        height: 70%;
+    }
 }

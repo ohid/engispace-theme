@@ -32,5 +32,13 @@
 .es-engineering-section .es-es-inner .es-es-images img {
   width: 70%;
 }
+@media (max-width: 768px) {
+  .es-engineering-section {
+    padding: 70px 0px;
+  }
+  .es-engineering-section .es-es-inner .es-es-images {
+    grid-template-columns: 19% 19% 19% 19%;
+  }
+}
 
 /*# sourceMappingURL=engineering_section.css.map */
