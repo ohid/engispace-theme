@@ -283,3 +283,56 @@
     }
 }
 
+@media (max-width: 1024px) {
+    .engispace-single-course-wrapper .es-sc-content-box {
+        padding: 60px 20px;
+        gap: 100px;
+
+        .es-btn-orange {
+            padding: 16px 20px;
+        }
+        .es-sc-content-area {
+            width: calc(100% - 270px);
+        }
+        .es-sc-course-sidebar {
+            width: 190px;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .engispace-single-course-wrapper {
+        .es-top-nav-item {
+            a {
+                padding: 12px 10px !important;
+            }
+        }
+        .es-sc-content-box {
+            flex-direction: column;
+            gap: 60px;
+    
+            .es-btn-orange {
+                padding: 16px 20px;
+            }
+            .es-sc-content-area {
+                width: 100%;
+            }
+            .es-sc-course-sidebar {
+                width: 300px;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .engispace-single-course-wrapper {
+        .es-sc-content-box .es-sc-content-area .es-sc-course-header {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            border-bottom: 1px solid #E1E4E8;
+            padding-bottom: 25px;
+            margin-bottom: 25px;
+        }
+    }
+}

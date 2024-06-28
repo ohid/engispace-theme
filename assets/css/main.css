@@ -837,7 +837,7 @@ header .es-header-mobile-navigation-wrapper ul li a img {
   width: 302px;
 }
 .es-all-courses-archive .es-aca-inner .es-course-categories ul {
-  margin: 0;
+  margin: 15px 0px 0px;
   padding: 0;
 }
 .es-all-courses-archive .es-aca-inner .es-course-categories ul li {
@@ -892,16 +892,14 @@ header .es-header-mobile-navigation-wrapper ul li a img {
     display: none;
   }
 }
-@media (min-width: 1024px) {
-  .es-all-courses-archive .es-aca-inner .es-course-archives .es-ca-course-list .es-ca-course-item .es-ca-course-item-background-thubmnail {
-    width: 220px;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-  .es-all-courses-archive .es-aca-inner .es-course-archives .es-ca-course-list .es-ca-course-item .es-ca-course-item-thubmnail {
-    display: none;
-  }
+.es-all-courses-archive .es-aca-inner .es-course-archives .es-ca-course-list .es-ca-course-item .es-ca-course-item-background-thubmnail {
+  width: 220px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.es-all-courses-archive .es-aca-inner .es-course-archives .es-ca-course-list .es-ca-course-item .es-ca-course-item-thubmnail {
+  display: none;
 }
 .es-all-courses-archive .es-aca-inner .es-course-archives .es-ca-course-list .es-ca-course-item .es-ca-course-details-wrap {
   padding: 20px;
@@ -915,7 +913,7 @@ header .es-header-mobile-navigation-wrapper ul li a img {
   font-size: 16px;
   font-weight: 500;
   line-height: 24px;
-  margin: 0px;
+  margin: 0px 0 5px;
 }
 .es-all-courses-archive .es-aca-inner .es-course-archives .es-ca-course-list .es-ca-course-item .es-ca-course-details-wrap .es-ca-course-details-title p {
   border: 1px solid rgba(8, 105, 214, 0.4980392157);
@@ -932,11 +930,12 @@ header .es-header-mobile-navigation-wrapper ul li a img {
 .es-all-courses-archive .es-aca-inner .es-course-archives .es-ca-course-list .es-ca-course-item .es-ca-course-details-wrap .es-course-description {
   font-size: 14px;
   line-height: 20px;
-  margin-top: 0px;
+  margin: 10px 0px 0px;
 }
 .es-all-courses-archive .es-aca-inner .es-course-archives .es-ca-course-list .es-ca-course-item .es-ca-course-details-wrap .es-ca-course-details-meta-area {
   display: flex;
   justify-content: space-between;
+  margin-top: 10px;
 }
 .es-all-courses-archive .es-aca-inner .es-course-archives .es-ca-course-list .es-ca-course-item .es-ca-course-details-wrap .es-ca-course-details-meta-area .es-ca-course-details-meta-data {
   display: flex;
@@ -979,6 +978,21 @@ header .es-header-mobile-navigation-wrapper ul li a img {
   margin-top: 5px;
 }
 
+@media (min-width: 769px) and (max-width: 1024px) {
+  .es-all-courses-archive .es-aca-inner .es-course-categories {
+    width: 200px;
+  }
+}
+@media (max-width: 768px) {
+  .es-all-courses-archive .es-aca-inner {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+  }
+  .es-all-courses-archive .es-aca-inner .es-course-archives .es-ca-course-list .es-ca-course-item .es-ca-course-item-thubmnail {
+    display: block;
+  }
+}
 .engispace-single-course-wrapper .es-sc-top-nav {
   margin-top: 30px;
   display: flex;
@@ -1220,6 +1234,49 @@ header .es-header-mobile-navigation-wrapper ul li a img {
   height: 40px !important;
 }
 
+@media (max-width: 1024px) {
+  .engispace-single-course-wrapper .es-sc-content-box {
+    padding: 60px 20px;
+    gap: 100px;
+  }
+  .engispace-single-course-wrapper .es-sc-content-box .es-btn-orange {
+    padding: 16px 20px;
+  }
+  .engispace-single-course-wrapper .es-sc-content-box .es-sc-content-area {
+    width: calc(100% - 270px);
+  }
+  .engispace-single-course-wrapper .es-sc-content-box .es-sc-course-sidebar {
+    width: 190px;
+  }
+}
+@media (max-width: 768px) {
+  .engispace-single-course-wrapper .es-top-nav-item a {
+    padding: 12px 10px !important;
+  }
+  .engispace-single-course-wrapper .es-sc-content-box {
+    flex-direction: column;
+    gap: 60px;
+  }
+  .engispace-single-course-wrapper .es-sc-content-box .es-btn-orange {
+    padding: 16px 20px;
+  }
+  .engispace-single-course-wrapper .es-sc-content-box .es-sc-content-area {
+    width: 100%;
+  }
+  .engispace-single-course-wrapper .es-sc-content-box .es-sc-course-sidebar {
+    width: 300px;
+  }
+}
+@media (max-width: 768px) {
+  .engispace-single-course-wrapper .es-sc-content-box .es-sc-content-area .es-sc-course-header {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    border-bottom: 1px solid #E1E4E8;
+    padding-bottom: 25px;
+    margin-bottom: 25px;
+  }
+}
 .es-sc-comments-area {
   width: 760px;
 }

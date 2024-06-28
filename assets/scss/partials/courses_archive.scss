@@ -10,7 +10,7 @@
             width: 302px;
 
             ul {
-                margin: 0;
+                margin: 15px 0px 0px;
                 padding: 0;
 
                 li {
@@ -78,7 +78,6 @@
                         }
                     }
 
-                    @media (min-width: 1024px) {
                         .es-ca-course-item-background-thubmnail {
                             width: 220px;
                             background-size: cover;
@@ -88,7 +87,6 @@
                         .es-ca-course-item-thubmnail {
                             display: none;
                         }
-                    }
 
                     .es-ca-course-details-wrap {
                         padding: 20px;
@@ -104,7 +102,7 @@
                                 font-size: 16px;
                                 font-weight: 500;
                                 line-height: 24px;
-                                margin: 0px;
+                                margin: 0px 0 5px;
                             }
                             
                             p {
@@ -124,12 +122,13 @@
                         .es-course-description {
                             font-size: 14px;
                             line-height: 20px;
-                            margin-top: 0px;
+                            margin: 10px 0px 0px;
                         }
 
                         .es-ca-course-details-meta-area {
                             display: flex;
                             justify-content: space-between;
+                            margin-top: 10px;
                             .es-ca-course-details-meta-data {
                                 display: flex;
                                 gap: 20px;
@@ -178,6 +177,28 @@
             line-height: 24px;
             color: #3C3F41;
             margin-top: 5px;
+        }
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .es-all-courses-archive .es-aca-inner .es-course-categories {
+        width: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .es-all-courses-archive {
+        .es-aca-inner {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column-reverse;
+
+            .es-course-archives {
+                .es-ca-course-list .es-ca-course-item .es-ca-course-item-thubmnail {
+                    display: block;
+                }
+            }
         }
     }
 }
