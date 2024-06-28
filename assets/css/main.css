@@ -427,6 +427,7 @@ header .es-header-mobile-navigation-wrapper ul li a img {
   padding: 80px 72px;
   background-size: cover;
   background-repeat: no-repeat;
+  border-radius: 6px;
 }
 .courses-header-slider .es-slide h4 {
   color: #fff;

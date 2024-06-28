@@ -79,6 +79,8 @@ class Courses {
                 
                 wp_reset_postdata();
             }
+        } else {
+            printf('Sorry, no results found!', 'engispace-theme');
         }
     }
 
@@ -189,6 +191,10 @@ class Courses {
                     'terms' => $current_course_category_id,
                 ),
             );
+        }
+
+        if ( is_search() && get_search_query() ) {
+            $query_args['s'] = get_search_query();
         }
 
         $args = wp_parse_args( $args, $query_args );

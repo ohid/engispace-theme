@@ -2,11 +2,7 @@
     <!-- Header mobile menu for user logged in state -->
     <div class="es-header-mobile-navigation-wrapper">
         <div class="site-search-form">
-            <form action="">
-                <div class="es-form-control">
-                    <input type="text" placeholder="<?php esc_attr_e( 'Search engispace', 'engispace' ); ?>">
-                </div>
-            </form>
+            <?php get_search_form(); ?>
         </div>
         <?php
             if ( function_exists( 'wp_nav_menu' ) ) {

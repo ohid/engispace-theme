@@ -385,3 +385,15 @@ function es_get_current_user_subscription() {
 
     return $user_role;
 }
+
+function es_all_courses_page_title() {
+    $current_course_category_id = get_queried_object()->term_id;
+
+    if ( $current_course_category_id ) {
+        printf('<h3>%s</h3>', __( 'View Courses from "' ) . get_queried_object()->name . '"');
+    } else if ( is_search() ) {
+        printf('<h3>%s</h3>', __( 'See results from "' ) . get_search_query() . '"');
+    } else {
+        printf('<h3>%s</h3>', __( 'All Courses', 'engispace' ));
+    }
+}

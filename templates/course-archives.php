@@ -15,15 +15,7 @@
             </div>
             <div class="es-course-archives">
                 <div class="es-ca-title">
-                    <?php
-                        $current_course_category_id = get_queried_object()->term_id;
-
-                        if ( $current_course_category_id ) {
-                            printf('<h3>%s</h3>', __( 'View Courses from "' ) . get_queried_object()->name . '"');
-                        } else {
-                            printf('<h3>%s</h3>', __( 'All Courses', 'engispace' ));
-                        }
-                    ?>
+                    <?php es_all_courses_page_title(); ?>
                 </div>
                 <div class="es-ca-course-list">
                     <?php
