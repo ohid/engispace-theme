@@ -11,7 +11,7 @@
 .es-pricing-courses-wrapper .es-pc-info-list {
   display: grid;
   gap: 25px;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: calc(50% - 10px) calc(50% - 10px);
   margin-top: 80px;
 }
 .es-pricing-courses-wrapper .es-pc-info-list div {
@@ -28,6 +28,28 @@
 .es-pricing-courses-wrapper .es-pc-info-list div img {
   width: 20px;
   height: 20px;
+}
+
+@media (max-width: 1124px) {
+  .es-pricing-courses-wrapper .es-pc-course-boxes {
+    flex-wrap: wrap;
+  }
+}
+@media (min-width: 641px) and (max-width: 930px) {
+  .es-pricing-courses-wrapper .es-pc-course-boxes .es-home-course-box {
+    max-width: calc(33% - 8px);
+  }
+}
+@media (max-width: 640px) {
+  .es-pricing-courses-wrapper .es-pc-course-boxes .es-home-course-box {
+    max-width: calc(50% - 8px);
+  }
+  .es-pricing-courses-wrapper .es-pc-info-list {
+    display: grid;
+    gap: 25px;
+    grid-template-columns: 1fr;
+    margin-top: 80px;
+  }
 }
 
 /*# sourceMappingURL=pricing_courses.css.map */

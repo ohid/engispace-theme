@@ -43,7 +43,10 @@
             }
         }
         .es-course-archives {
-            width: 820px;
+
+            @media (min-width: 768px) {
+                width: 820px;
+            }
 
             .es-ca-title {
                 border-bottom: 1px solid #E1E4E8;
@@ -90,7 +93,7 @@
 
                     .es-ca-course-details-wrap {
                         padding: 20px;
-                        width: calc(100% - 260px);
+                        width: calc(100% - 220px);
 
                         a {
                             text-decoration: none;
@@ -197,6 +200,31 @@
             .es-course-archives {
                 .es-ca-course-list .es-ca-course-item .es-ca-course-item-thubmnail {
                     display: block;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 671px) {
+    .es-all-courses-archive {
+        .es-aca-inner {
+            .es-course-archives {
+                .es-ca-course-list .es-ca-course-item {
+                    flex-direction: column;
+
+                    .es-ca-course-item-thubmnail img {
+                        width: 100%;
+                    }
+
+                    .es-ca-course-details-wrap {
+                        width: 100%;
+
+                        .es-ca-course-details-meta-area {
+                            flex-direction: column;
+                            gap: 15px;
+                        }
+                    }
                 }
             }
         }

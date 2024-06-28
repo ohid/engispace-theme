@@ -116,4 +116,18 @@
   font-size: 12px;
 }
 
+@media (max-width: 1024px) {
+  .es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan .es-pricing-plan-features {
+    padding: 0px 15px;
+  }
+}
+@media (max-width: 768px) {
+  .es-pricing-plan-wrapper .es-pricing-plans {
+    grid-template-columns: 1fr;
+  }
+  .es-pricing-plan-wrapper .es-pricing-plans .es-pricing-plan .es-pricing-plan-features {
+    padding: 0px 15px;
+  }
+}
+
 /*# sourceMappingURL=pricing_plan.css.map */

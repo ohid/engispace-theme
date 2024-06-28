@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
     <div class="es-ca-course-item-thubmnail">
         <a href="<?php echo esc_url( $course_link ); ?>">
-            <?php the_post_thumbnail(); ?>
+            <?php the_post_thumbnail( 'engispace-all-courses-thumbnail' ); ?>
         </a>
     </div>
     
