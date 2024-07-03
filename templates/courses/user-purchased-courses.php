@@ -5,8 +5,10 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 <div class="es-site-container">
     <div class="es-purchased-bar">
-        <span class="purchased-label">Purchased</span>
-        <a href="#" id="es-start-selling">Start Selling</a>
+        <span class="purchased-label"><?php esc_html_e( 'Purchased', 'engispace' ); ?></span>
+        <a href="/creator-dashboard" id="es-start-selling" <?php echo es_is_creator_user() ? ' class="es-creator-user"' : ''; ?>>
+            <?php esc_html_e( 'Start Selling', 'engispace' ); ?>
+        </a>
     </div>
 </div>
 
@@ -24,3 +26,10 @@ if ( ! defined( 'ABSPATH' ) ) exit;
     </div>
 </div>
 <?php endif; ?>
+
+<?php
+
+    if ( !es_is_creator_user() ) {
+        get_template_part( 'templates/modal/upgrade-subscription-creator' ); 
+    }
+?>

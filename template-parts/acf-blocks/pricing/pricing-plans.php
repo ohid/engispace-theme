@@ -67,7 +67,13 @@ function es_subscription_plan_class( $plan ) {
                             <button class="es-home-cta-signup es-btn-orange">Sign up</button>
                         <?php else: ?>
                             <a href="<?php echo es_get_membership_checkout_url( $plan ); ?>"class="es-btn-orange">
-                                <?php esc_html_e( 'Sign up', 'engispace' ); ?>
+                                <?php
+                                    if ( is_user_logged_in() ) {
+                                        esc_html_e( 'Upgrade', 'engispace' );
+                                    } else {
+                                        esc_html_e( 'Sign up', 'engispace' );
+                                    }
+                                ?>
                             </a>
                         <?php endif; ?>
                     </div>

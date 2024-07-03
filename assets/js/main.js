@@ -451,8 +451,15 @@
         },
 
         initStartSelling: function() {
-            $('#es-start-selling').on('click', function() {
-                console.log('adsf');
+            $('#es-start-selling').on('click', function(e) {
+                e.preventDefault();
+                
+                if ( $(this).hasClass('es-creator-user') ) {
+                    window.location.href = $(this).attr('href');
+                } else {
+                    $('#upgrade-subscription-modal').addClass('display-modal');
+                }
+                return;
             });
         },
 

@@ -68,3 +68,19 @@ h3 {
 .es-background-gray {
     background-color: #F5F5F5;
 }
+#edd_purchase_form {
+    .edd-stripe-card-element.StripeElement, 
+    .edd-stripe-card-exp-element.StripeElement, 
+    .edd-stripe-card-cvc-element.StripeElement {
+        box-sizing: border-box;
+        padding: 10px 12px !important;
+        border: 1px solid #ccc;
+        background-color: #fff;
+    }
+}
+#edd-card-wrap,
+#edd-card-exp-wrap, 
+#edd-card-cvv-wrap {
+    width: 48%;
+    margin-top: 20px;
+}

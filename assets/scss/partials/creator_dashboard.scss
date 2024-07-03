@@ -1,0 +1,93 @@
+.ir-frontend-dashboard-template-body #ir-coures-progress-donut span.apexcharts-legend-marker:after, 
+.ir-frontend-dashboard-template-body #ir-learner-progress-donut span.apexcharts-legend-marker:after, 
+.ir-frontend-dashboard-template-body .mantine-Progress-bar, 
+.ir-frontend-dashboard-template-body .primary-bg, 
+.ir-frontend-dashboard-template-body .ir-primary-bg, 
+.ir-frontend-dashboard-template-body .mantine-Pagination-item[data-active], 
+.ir-frontend-dashboard-template-body .mantine-Stepper-stepIcon[data-completed], 
+.ir-frontend-dashboard-template-body .wp-block-instructor-role-wisdm-tabs .mantine-Pagination-item:hover, 
+.ir-frontend-dashboard-template-body .wp-block-instructor-role-wisdm-tabs .mantine-Pagination-item:active, 
+.ir-frontend-dashboard-template-body .wp-block-instructor-role-submitted-essays .mantine-Menu-item:active, 
+.ir-frontend-dashboard-template-body .wp-block-instructor-role-submitted-essays .mantine-Menu-item:hover {
+    background-color: #E04B06 !important;
+}
+
+.ir-frontend-dashboard-template-body .wp-block-instructor-role-wisdm-tabs .tab-labels .tab-label.active, 
+.ir-frontend-dashboard-template-body .overview svg, 
+.ir-frontend-dashboard-template-body .wp-block-instructor-role-wisdm-tabs > .tab-labels .tab-label:hover,
+.ir-frontend-dashboard-template-body .primary-colour, 
+.ir-frontend-dashboard-template-body .ir-primary-color, 
+.ir-frontend-dashboard-template-body .ir-primary-colour, 
+.ir-frontend-dashboard-template-body .ir-courses-tabs > .active {
+    color: #E04B06 !important;
+}
+
+.ir-frontend-dashboard-template-body .apexcharts-legend-text[rel="1"],
+.ir-frontend-dashboard-template-body .apexcharts-legend-text[rel="2"],
+.ir-frontend-dashboard-template-body .apexcharts-legend-text[rel="3"] {
+    color: #E04B06 !important;
+}
+.ir-frontend-dashboard-template-body .apexcharts-legend-marker[rel="1"],
+.ir-frontend-dashboard-template-body .apexcharts-legend-marker[rel="2"],
+.ir-frontend-dashboard-template-body .apexcharts-legend-marker[rel="3"] {
+    color: #E04B06 !important;
+    background: #E04B06 !important;
+}
+
+.ir-frontend-dashboard-template-body .wp-block-instructor-role-overview-page .block.earnings {
+    display: none;
+}
+
+.page-template-ir-wisdm-dashboard-template .wp-block-instructor-role-wisdm-tabs>.tab-labels a[href="?tab=2"],
+.page-template-ir-wisdm-dashboard-template .wp-block-instructor-role-wisdm-tabs>.tab-labels a[href="?tab=3"],
+.page-template-ir-wisdm-dashboard-template .wp-block-instructor-role-wisdm-tabs>.tab-labels a[href="?tab=4"],
+.page-template-ir-wisdm-dashboard-template .wp-block-instructor-role-wisdm-tabs>.tab-labels a[href="?tab=5"],
+.page-template-ir-wisdm-dashboard-template .wp-block-instructor-role-wisdm-tabs>.tab-labels a[href="?tab=6"],
+.page-template-ir-wisdm-dashboard-template .wp-block-instructor-role-wisdm-tabs>.tab-labels a[href="?tab=7"],
+.page-template-ir-wisdm-dashboard-template .wp-block-instructor-role-wisdm-tabs>.tab-labels a[href="?tab=8"],
+.page-template-ir-wisdm-dashboard-template .wp-block-instructor-role-wisdm-tabs>.tab-labels a[href="?tab=9"],
+.page-template-ir-wisdm-dashboard-template .wp-block-instructor-role-wisdm-tabs>.tab-labels a[href="?tab=10"],
+.page-template-ir-wisdm-dashboard-template .wp-block-instructor-role-wisdm-tabs>.tab-labels a[href="?tab=11"],
+.page-template-ir-wisdm-dashboard-template .wp-block-instructor-role-wisdm-tabs>.tab-labels a[href="?tab=12"] {
+    display: none;
+}
+
+.ir-frontend-dashboard-template-body {
+    width: 1180px;
+    margin: auto;
+    box-sizing: border-box;
+    padding: 0px 15px;
+}
+.page-template-ir-wisdm-dashboard-template .ir-frontend-dashboard-template-body .wp-block-instructor-role-wisdm-tabs>.tab-labels {
+    position: relative;
+    border-radius: 0px 0px 6px 6px;
+    width: 220px;
+    margin-right: 30px;
+
+    .topButton {
+        width: 100%;
+    }
+
+    .ir-toggle-sidebar {
+        display: none;
+    }
+}
+
+.ir-course-builder-container {
+    .mantine-UnstyledButton-root.mantine-Button-root.ir-primary-colour.mantine-1i2npme {
+        display: none;
+    }
+    .mantine-Tabs-tab[data-active] {
+        border-color: #E04B06 !important;
+        color: #E04B06 !important;
+    }
+    .ir-primary-colour {
+        color: #E04B06 !important;
+        stroke: #E04B06 !important;
+    }
+    .ir-primary-btn, .mantine-Select-item[data-selected], [modal="course-published"] .mantine-Modal-body .mantine-Group-root > .mantine-Button-root:nth-last-child(1), [modal="delete-module"] .mantine-Modal-body .mantine-Group-root > .mantine-Button-root:nth-last-child(1) {
+        color: #ffffff !important;
+        background-color: #E04B06 !important;
+        border-color: #E04B06 !important;
+    }
+}

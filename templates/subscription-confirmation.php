@@ -20,7 +20,7 @@ get_header();
                 <a href="<?php echo home_url( '/courses' ); ?>" class="es-btn-default">
                     <?php esc_html_e( 'View Course', 'engispace' ); ?>
                 </a>
-                <a href="<?php echo home_url( '/instructor-dashboard' ); ?>" class="es-btn-orange">
+                <a href="<?php echo home_url( '/creator-dashboard' ); ?>" class="es-btn-orange">
                     <?php esc_html_e( 'Start Selling', 'engispace' ); ?>
                 </a>
             </div>

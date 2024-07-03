@@ -386,6 +386,22 @@ function es_get_current_user_subscription() {
     return $user_role;
 }
 
+function es_is_creator_user() {
+    if ( !is_user_logged_in() ) {
+        return;
+    }
+
+    $user = get_user_by( 'id', get_current_user_id() );
+    $user_roles = $user->roles;
+
+    // check for creator subscription user
+    if ( in_array( 'wdm_instructor', $user_roles ) || in_array( 'engispace_user_creator', $user_roles ) ) {
+        return true;
+    }
+
+    return;
+}
+
 function es_all_courses_page_title() {
     $current_course_category_id = get_queried_object()->term_id;
 

@@ -27,7 +27,7 @@
             display: none;
         }
 
-        .close-modal {
+        span.close-modal {
             position: absolute;
             right: 20px;
             top: 15px;
@@ -35,6 +35,15 @@
         }
 
         .es-modal-content {
+            .es-privacy-statement p {
+                color: #959595;
+                font-size: 12px;
+                text-align: center;
+
+                a {
+                    text-decoration: underline
+                }
+            }
             .es-form-control {
                 margin-bottom: 15px;
                 position: relative;
@@ -155,7 +164,12 @@
         }
 
         .modal-header {
-            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            img {
+                margin: auto;
+            }
             h3 {
                 margin-top: 0px;
                 display: flex;
@@ -295,6 +309,10 @@
             width: 800px;
             text-align: center;
 
+            @media (max-width: 768px) {
+                width: calc(100% - 30px);
+            }
+
             h3 {
                 font-size: 24px;
                 font-weight: 700;
@@ -302,6 +320,32 @@
             p {
                 font-size: 22px;
                 font-weight: 300;
+            }
+        }
+    }
+    
+    &[modal-type="upgrade-subscription-modal"] {
+        .es-site-modal {
+            min-height: 260px;
+            width: 500px;
+            text-align: center;
+
+            @media (max-width: 768px) {
+                width: calc(100% - 30px);
+            }
+
+            h3 {
+                font-size: 24px;
+                font-weight: 700;
+            }
+            p {    
+                font-size: 14px;
+                font-weight: 400;
+                color: #999999;
+            }
+
+            .es-modal-buttons {
+                margin-top: 40px;
             }
         }
     }

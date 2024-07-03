@@ -94,6 +94,18 @@
                             Sign Up
                         </button>
                     </div>
+
+                    <div class="es-form-control es-privacy-statement">
+                        <p>
+                            <?php
+                                printf(
+                                    'By clicking "Sign Up", you agree to our <a href="%s">terms of service</a> and <a href="%s">privacy statement</a>',
+                                    home_url( '/terms' ),
+                                    home_url( '/privacy-policy' ),
+                                )
+                            ?>
+                        </p>
+                    </div>
                 </form>
             </div>
             <div class="es-modal-footer">

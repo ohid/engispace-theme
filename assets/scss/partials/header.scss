@@ -125,6 +125,10 @@ header {
                 li {
                     list-style: none;
                     height: 100%;
+                    
+                    &:last-child {
+                        display: none;
+                    }
 
                     a {
                         text-decoration: none;

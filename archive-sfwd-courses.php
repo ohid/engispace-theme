@@ -6,8 +6,10 @@ get_header();
     // Get Courses Header
     get_template_part( 'templates/courses/header-slider' );
 
-    // Get User Purchased Courses
-    get_template_part( 'templates/courses/user-purchased-courses' );
+    if ( is_user_logged_in() ) {
+        // Get User Purchased Courses
+        get_template_part( 'templates/courses/user-purchased-courses' );
+    }
 
     // Get Courses Grid
     get_template_part( 'templates/courses/courses-grid' );
