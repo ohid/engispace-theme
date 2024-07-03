@@ -116,6 +116,7 @@ class Theme {
             new Components\Rewrite_Pages(),
             new Components\Membership(),
             new Components\User_Roles(),
+            new Components\Settings(),
         );
         
         return $components;
