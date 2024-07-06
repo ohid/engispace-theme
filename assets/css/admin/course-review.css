@@ -1,0 +1,118 @@
+#wpcontent {
+    padding-left: 0px;
+}
+
+.es-admin-course-review-wrapper {
+    background-color: #f0f0f1;
+    padding: 20px 40px;
+}
+
+.es-admin-course-review-wrapper .es-acr-container {
+    margin-top: 10px;
+    background-color: white;
+    width: 100%;
+    max-width: 900px;
+    padding: 20px 20px 40px;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.es-admin-course-review-wrapper .es-course-header {
+    margin-bottom: 30px;
+    border-bottom: 1px solid #f0f0f1;
+    padding-bottom: 15px;
+}
+.es-admin-course-review-wrapper .es-course-header h3 {
+    font-size: 24px;
+    margin: 10px 0px;
+    font-weight: 400;
+}
+
+.es-admin-course-review-wrapper .es-course-header h3 span {
+    font-weight: 500;
+}
+.es-admin-course-review-wrapper .es-course-header .es-acr-course-meta {
+    margin-top: 15px;
+}
+.es-admin-course-review-wrapper .es-course-header .es-acr-course-label {
+    font-weight: 500;
+}
+.es-admin-course-review-wrapper .es-course-header .es-acr-course-author {
+}
+
+.es-course-reviews-list,
+.es-course-review-form {
+    padding: 0px 20px;
+}
+.es-course-reviews-list .course-reviews-title {
+
+}
+.es-course-reviews-list .es-course-review {
+    margin-bottom: 30px;
+    padding: 15px 25px 5px;
+    background: #f0f0f173;
+    border-radius: 4px;
+}
+.es-course-reviews-list .es-course-review .course-reviews-title{
+
+}
+.es-course-reviews-list .es-course-review .es-author{
+    display: flex;
+    gap: 10px;
+}
+.es-course-reviews-list .es-course-review .es-author .course-author{
+    font-size: 14px;
+    font-weight: 500;
+}
+.es-course-reviews-list .es-course-review .es-author .es-date{
+    font-style: italic;
+}
+.es-course-reviews-list .es-course-review .es-review-body{}
+
+.es-course-review-form {
+    margin-top: 50px;
+}
+
+.es-course-review-form .es-form-control{}
+.es-course-review-form .es-form-control textarea {
+    border: 1px solid #f0f0f1;
+    width: 100%;
+    height: 120px;
+    padding: 15px;
+    resize: none;
+}
+.es-course-review-form .es-form-control textarea:focus {
+    outline: none;
+}
+.es-course-review-form .es-form-submit{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+.es-course-review-form .es-form-submit button {
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+    background: #E04B06;
+    border-radius: 6px;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s ease-in;
+    cursor: pointer;
+    border: none;
+    width: 176px;
+    height: 48px;
+}
+.es-course-review-form .es-form-submit.btn-loading button .btn-text,
+.es-course-review-form .es-form-submit button .btn-icon {
+    display: none;
+}
+.es-course-review-form .es-form-submit.btn-loading button .btn-icon {
+    display: block;
+}
+.es-course-review-form .es-form-submit button .btn-icon svg {
+    width: 35px;
+    height: 35px;
+    transform: translateY(-3px);
+}

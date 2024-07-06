@@ -117,6 +117,7 @@ class Theme {
             new Components\Membership(),
             new Components\User_Roles(),
             new Components\Settings(),
+            new Components\Review_Course(),
         );
         
         return $components;

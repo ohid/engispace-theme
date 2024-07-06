@@ -70,5 +70,10 @@ class Styles implements Component_Interface {
                 get_template_directory_uri() . '/assets/css/admin/theme-settings.css' 
             );
         }
+
+        wp_register_style(
+            'engispace-admin-course-review-style',
+            get_template_directory_uri() . '/assets/css/admin/course-review.css' 
+        );
     }
 }

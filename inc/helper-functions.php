@@ -209,6 +209,21 @@ function es_get_current_user_display_name() {
 }
 
 /**
+ * Get user's display_name
+ * 
+ * @since 1.0.0
+ * 
+ * @return null|string
+ */
+function es_get_user_display_name( $user_id ) {
+    $user = get_user_by( 'id', $user_id );
+    if ( !$user ) {
+        return;
+    }
+    return $user->first_name . ' ' . $user->last_name;
+}
+
+/**
  * Get current logged in user's profile avatar
  * 
  * @since 1.0.0

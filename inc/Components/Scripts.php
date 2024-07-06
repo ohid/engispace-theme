@@ -22,6 +22,7 @@ class Scripts implements Component_Interface {
 	 */
     public function initialize() {
         add_action( 'wp_enqueue_scripts', array( $this, 'theme_scripts') );
+        add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts') );
     }
 
     /**
@@ -62,5 +63,13 @@ class Scripts implements Component_Interface {
         if ( is_singular() && comments_open() && get_option( 'thread_comment' ) ) {
             wp_enqueue_script( 'comment-reply' );
         }
+    }
+
+    public function admin_scripts() {
+        wp_register_script( 
+            'engispace-admin-course-review-script', 
+            get_template_directory_uri() . '/assets/js/admin/course-review.js', 
+            ['jquery'] 
+        );
     }
 }
