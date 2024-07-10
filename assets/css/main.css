@@ -1618,6 +1618,7 @@ header .es-header-mobile-navigation-wrapper ul li a img {
   padding: 10px 20px;
   text-align: center;
   margin: 25px 0px -10px;
+  border-radius: 4px;
 }
 .es-modal-wrapper .es-auth-modal .es-form-message.form-success, .es-modal-wrapper .es-auth-modal .es-form-message.form-error {
   display: block;
@@ -3400,6 +3401,56 @@ header .es-header-mobile-navigation-wrapper ul li a img {
   margin-top: 40px;
   display: flex;
   justify-content: end;
+}
+.es-settings-page-inner .es-settings-page-content .es-settings-update-password .es-submit-btn button {
+  font-size: 14px;
+  font-weight: 500;
+  color: white;
+  background: #E04B06;
+  border-radius: 6px;
+  padding: 10px 20px;
+  text-decoration: none;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease-in;
+  cursor: pointer;
+  border: none;
+  width: 130px;
+  height: 53px;
+}
+.es-settings-page-inner .es-settings-page-content .es-settings-update-password .es-submit-btn button .btn-icon {
+  display: none;
+}
+.es-settings-page-inner .es-settings-page-content .es-settings-update-password .es-submit-btn button .btn-icon svg {
+  width: 35px;
+  height: 35px;
+  transform: translateY(-3px);
+}
+.es-settings-page-inner .es-settings-page-content .es-settings-update-password .es-submit-btn button.btn-loading .btn-text {
+  display: none;
+}
+.es-settings-page-inner .es-settings-page-content .es-settings-update-password .es-submit-btn button.btn-loading .btn-icon {
+  display: block;
+}
+.es-settings-page-inner .es-settings-page-content .es-settings-update-password .es-form-message {
+  display: none;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  padding: 10px 20px;
+  text-align: center;
+  margin: 25px 0px -10px;
+  border-radius: 4px;
+}
+.es-settings-page-inner .es-settings-page-content .es-settings-update-password .es-form-message.form-success, .es-settings-page-inner .es-settings-page-content .es-settings-update-password .es-form-message.form-error {
+  display: block;
+}
+.es-settings-page-inner .es-settings-page-content .es-settings-update-password .es-form-message.form-success {
+  background: #1d9647;
+}
+.es-settings-page-inner .es-settings-page-content .es-settings-update-password .es-form-message.form-error {
+  background: #9f3e0d;
 }
 
 .es-not-found-wrapper .es-not-found-inner {

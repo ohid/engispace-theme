@@ -501,6 +501,84 @@
                 });
         },
 
+        initUpdateUserPassword: function() {
+            // Validate the signup form inputs 
+            $("#es-update-user-password").validate({
+                // Specify validation rules
+                rules: {
+                    // The key name on the left side is the name attribute
+                    // of an input field. Validation rules are defined
+                    // on the right side
+                    old_password: "required",
+                    new_password: "required",
+                    confirm_password: "required",
+                    new_password: {
+                        required: true,
+                        minlength: 8
+                    },
+                    confirm_password: {
+                        required: true,
+                        minlength: 8,
+                        equalTo : "#new_password"
+                    }
+                },
+                // Specify validation error messages
+                messages: {
+                    old_password: {
+                        required: "Please enter your old password",
+                        minlength: "Your password must be at least 8 characters long"
+                    },
+                    new_password: {
+                        required: "Please enter a new password",
+                        minlength: "Your password must be at least 8 characters long"
+                    },
+                    password_confirm: {
+                        required: "Please enter a new password",
+                        minlength: "Your password must be at least 8 characters long"
+                    },
+                },
+                submitHandler: function( form ) {
+                    const thisForm = $(form);
+                    const formMessageBox = thisForm.find('.es-form-message');
+                    const formData = thisForm.serialize();
+
+                    // clear out the fields and messages
+                    formMessageBox
+                        .html("")
+                        .removeClass('form-error form-success');
+                    thisForm.find('.es-submit-btn button').addClass('btn-loading');
+
+                    // AJAX submit the form
+                    $.ajax({
+                        url: engisapce_obj.ajaxurl,
+                        method: 'POST',
+                        data: formData,
+                        success: function(response) {
+                            console.log(response);
+                            thisForm.find('.es-submit-btn button').removeClass('btn-loading');
+                            // if input validation failed from back end
+                            if ( !response.success ) {
+                                formMessageBox
+                                    .html( "There's something wrong updating your password" )
+                                    .addClass('form-error')
+                                    .removeClass('form-success');
+                                return;
+                            } else {
+                                formMessageBox
+                                    .html( "Password updated successfully" )
+                                    .addClass('form-success')
+                                    .removeClass('form-error');
+                            }
+
+                            // On successful form signup request
+                            // reset the form 
+                            $('#es-update-user-password')[0].reset();
+                        }
+                    })
+                }
+            });
+        },
+
         init: function() {
             window.engispace.initHeaderFunctions();
             window.engispace.initCourseSliders();
@@ -512,6 +590,7 @@
             window.engispace.initSocialShare();
             window.engispace.initStartSelling();
             window.engispace.initSmoothScrolling();
+            window.engispace.initUpdateUserPassword();
 
             jQuery(window).on('resize', function() {
                 course_details_hover_box();
