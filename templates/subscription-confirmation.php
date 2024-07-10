@@ -26,11 +26,5 @@ get_header();
             </div>
         </div>
     </div>
-
-    <script>
-        setTimeout(function() {
-            window.location.href = engisapce_obj.siteurl + '/courses'
-        }, 3000);
-    </script>
 <?php
 get_footer();

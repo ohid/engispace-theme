@@ -19,6 +19,7 @@ class Membership implements Component_Interface {
 
     public function initialize() {
         add_action( 'edd_after_payment_actions', [ $this, 'member_subscription' ], 10, 3 );
+        add_action( 'edd_after_payment_actions_delay', [ $this, 'edd_payment_action_delay' ], 20, 1 );
         add_action( 'template_redirect', [ $this, 'membership_cart_empty' ], 10 );
     }
 
@@ -34,6 +35,10 @@ class Membership implements Component_Interface {
 
         // Update user role
         $this->update_user_role( $membership_type, $user_id );
+    }
+
+    public function edd_payment_action_delay( $payment_id ) {
+        return 0;
     }
 
     /**

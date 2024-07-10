@@ -91,3 +91,15 @@
         border-color: #E04B06 !important;
     }
 }
+
+.wp-block-instructor-role-wisdm-tabs {
+    ul.tab-labels[role="tablist"] {
+    }
+}
+
+.page-template-ir-wisdm-dashboard-template 
+.ir-frontend-dashboard-template-body 
+.wp-block-instructor-role-wisdm-tabs > .tab-labels {
+    margin-top: 30px;
+    border-radius: 6px;
+}

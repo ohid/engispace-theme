@@ -36,6 +36,15 @@ class Styles implements Component_Interface {
             'https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400;1,500;1,700&display=swap',
             false
         );
+
+        // Only enqueue stylesheet for the 404 page
+        if ( is_404() ) {
+            wp_enqueue_style(
+                'engispace-fredokaone-font', 
+                'https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap',
+                false
+            );
+        }
         
         wp_enqueue_style( 
             'engispace-owl-carousel', 
