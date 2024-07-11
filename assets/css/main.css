@@ -3452,6 +3452,68 @@ header .es-header-mobile-navigation-wrapper ul li a img {
 .es-settings-page-inner .es-settings-page-content .es-settings-update-password .es-form-message.form-error {
   background: #9f3e0d;
 }
+.es-settings-page-inner .es-settings-subscription-tab h3 {
+  font-size: 20px;
+  line-height: 30px;
+  margin: 20px 0px;
+}
+.es-settings-page-inner .es-settings-subscription-tab h3 span {
+  font-weight: 500;
+}
+.es-settings-page-inner .es-settings-tab-content {
+  margin-bottom: 50px;
+}
+.es-settings-page-inner .es-membership-plans .es-membership-plan {
+  background: #A9B7C7;
+  border-radius: 4px;
+  padding: 25px;
+  color: #E1E4E8;
+}
+.es-settings-page-inner .es-membership-plans .es-membership-plan.es_plan_creator {
+  background: #648055;
+}
+.es-settings-page-inner .es-membership-plans .es-membership-plan.es_plan_pro {
+  background: #33465C;
+}
+.es-settings-page-inner .es-membership-plans .es-membership-plan label {
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+.es-settings-page-inner .es-membership-plans .es-membership-plan.es_plan_freemium label {
+  cursor: not-allowed;
+}
+.es-settings-page-inner .es-membership-plans .es-membership-plan input[type=radio] {
+  display: none;
+}
+.es-settings-page-inner .es-membership-plans .es-membership-plan .es-left {
+  gap: 15px;
+  align-items: center;
+}
+.es-settings-page-inner .es-membership-plans .es-membership-plan .es-circle {
+  width: 20px;
+  height: 20px;
+  background-color: #E1E4E8;
+  border-radius: 100px;
+  box-sizing: border-box;
+}
+.es-settings-page-inner .es-membership-plans .es-membership-plan .es-membership-title {
+  font-size: 18px;
+  font-weight: 500;
+}
+.es-settings-page-inner .es-membership-plans .es-membership-plan .es-membership-help-text {
+  font-size: 14px;
+}
+.es-settings-page-inner .es-membership-plans .es-membership-plan .es-membership-text-group {
+  flex-direction: column;
+}
+.es-settings-page-inner .es-membership-plans .es-membership-plan .es-membership-price span {
+  font-size: 22px;
+  font-weight: 500;
+}
+.es-settings-page-inner .es-membership-plans .es-membership-plan[data-current-plan=true] .es-circle {
+  border: 5px solid #E04B06;
+}
 
 .es-not-found-wrapper .es-not-found-inner {
   padding: 200px 0px;

@@ -168,4 +168,91 @@
             }
         }
     }
+
+    .es-settings-subscription-tab {
+        h3 {
+            font-size: 20px;
+            line-height: 30px;
+            margin: 20px 0px;
+            span {
+                font-weight: 500;
+            }
+        }
+    }
+
+    .es-settings-tab-content {
+        margin-bottom: 50px;
+        
+    }
+
+    .es-membership-plans {
+        .es-membership-plan {
+            background: #A9B7C7;
+            border-radius: 4px;
+            padding: 25px;
+            color: #E1E4E8;
+        
+            &.es_plan_creator {
+                background: #648055;
+            }
+            &.es_plan_pro {
+                background: #33465C;
+            }
+
+            label {
+                justify-content: space-between;
+                align-items: center;
+                cursor: pointer;
+            }
+
+            &.es_plan_freemium {
+                label {
+                    cursor: not-allowed;
+                }
+            }
+
+            input[type="radio"] {
+                display: none;
+            }
+
+            .es-left {
+                gap: 15px;
+                align-items: center;
+            }
+
+            .es-circle {
+                width: 20px;
+                height: 20px;
+                background-color: #E1E4E8;
+                border-radius: 100px;
+                box-sizing: border-box;
+            }
+
+            .es-membership-title {
+                font-size: 18px;
+                font-weight: 500;
+            }
+
+            .es-membership-help-text {
+                font-size: 14px;
+            }
+
+            .es-membership-text-group {
+                flex-direction: column;
+            }
+
+            .es-membership-price {
+                span {
+                    font-size: 22px;
+                    font-weight: 500;
+                }
+            }
+
+            &[data-current-plan='true'] {
+                .es-circle {
+                    border: 5px solid #E04B06;
+                }
+            }
+        }
+    }
 }
