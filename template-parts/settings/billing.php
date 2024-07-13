@@ -21,12 +21,12 @@
     ]
 ?>
 
-<div class="es-content-title">
+<!-- <div class="es-content-title">
     <h3>Billing</h3>
-</div>
+</div> -->
 
-<div class="es-settings-tab-content">    
-</div>
+<!-- <div class="es-settings-tab-content">    
+</div> -->
 
 <div class="es-content-title">
     <h3>Subscription</h3>

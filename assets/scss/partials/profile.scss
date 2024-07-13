@@ -1,0 +1,370 @@
+.es-profile-page {
+    padding: 60px 0px;
+
+    .es-profile-inner {
+        display: flex;
+        justify-content: space-between;
+        gap: 80px;
+
+        .es-sidebar {
+            width: 240px;
+            .es-user-personal-details {
+                img {
+                    width: 130px;
+                    border-radius: 52px;
+                }
+
+                .es-person-name {
+                    margin-top: 20px;
+                    display: flex;
+                    align-items: center;
+                    gap: 20px;
+                }
+
+                h3 {
+                    font-size: 20px;
+                    font-weight: 500;
+                    line-height: 30px;
+                }
+
+                p {
+                    font-size: 14px;
+                    font-weight: 400;
+                    line-height: 20px;
+                }
+            }
+
+            .es-user-details-section {
+                margin-top: 30px;
+
+                .es-title {
+                    display: flex;
+                    border-bottom: 1px solid #E1E4E8;
+                    justify-content: space-between;
+                    padding-bottom: 4px;
+                    margin-bottom: 20px;
+                }
+
+                .es-ups-content {
+                    ul {
+                        li {
+                            display: flex;
+                            align-items: center;
+                            gap: 10px;
+                            font-size: 14px;
+                            font-weight: 400;
+                            line-height: 20px;
+                            margin-bottom: 10px;
+                        }
+                    }
+                }
+            }
+
+            .es-user-cv-section {
+                .es-ups-content {
+                    a {
+                        color: #0366D6;
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+        .es-content {
+            width: calc(100% - 400px);
+            position: relative;
+
+            &:before {
+                content: "";
+                position: absolute;
+                left: -60px;
+                background: linear-gradient(180deg, #E1E4E8 47.09%, rgba(225, 228, 232, 0.0001) 100%);
+                height: 300px;
+                width: 1px;
+            }
+
+            .es-profile-content-tabs {
+                display: flex;
+                justify-content: flex-end;
+                border-bottom: 1px solid #E1E4E8;
+                padding-right: 15px;
+
+
+                ul {
+                    display: flex;
+                    gap: 3px;
+                    li {
+                        a {
+                            font-size: 14px;
+                            font-weight: 500;
+                            color: #3C3F41;
+                            display: inline-flex;
+                            border: 1px solid #E1E4E8;
+                            border-bottom: 0px;
+                            padding: 4px 16px;
+                            border-radius: 4px 4px 0 0;
+                        }
+
+                        &.active {
+                            a {
+                                color: #E04B06;
+                                position: relative;
+
+                                &:after {
+                                    content: "";
+                                    position: absolute;
+                                    width: 100%;
+                                    height: 4px;
+                                    background-color: #fff;
+                                    left: 0px;
+                                    bottom: -2px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .es-profile-page-content {
+                padding-top: 15px;
+            }
+
+            .es-creator-courses-list {
+                .es-ca-course-item {
+                    display: flex;
+                    border: 1px solid #e1e4e8;
+                    border-radius: 6px;
+                    margin-bottom: 10px;
+
+                    &:hover {
+                        background: #FFFBEA;
+                    }
+
+                    @media (max-width: 768px) {
+                        .es-ca-course-item-thubmnail {
+                            img {
+                                width: 218px;
+                                height: auto;
+                                border-radius: 6px;
+                            }
+                        }
+                        .es-ca-course-item-background-thubmnail {
+                            display: none;
+                        }
+                    }
+
+                        .es-ca-course-item-background-thubmnail {
+                            width: 270px;
+                            background-size: cover;
+                            background-repeat: no-repeat;
+                            background-position: center;
+                        }
+                        .es-ca-course-item-thubmnail {
+                            display: none;
+                        }
+
+                    .es-ca-course-details-wrap {
+                        padding: 20px;
+                        width: calc(100% - 270px);
+
+                        a {
+                            text-decoration: none;
+                        }
+
+                        .es-ca-course-details-title {
+                            h4 {
+                                color: #0366D6;
+                                font-size: 16px;
+                                font-weight: 500;
+                                line-height: 24px;
+                                margin: 0px 0 5px;
+                            }
+                            
+                            p {
+                                border: 1px solid rgba(8, 105, 214, 0.4980392157);
+                                color: #0366D6;
+                                display: inline-block;
+                                padding: 3px 15px;
+                                font-size: 12px;
+                                font-weight: 700;
+                                line-height: 16px;
+                                font-weight: 500;
+                                text-decoration: none;
+                                border-radius: 5px;
+                            }
+                        }
+
+                        .es-course-description {
+                            font-size: 14px;
+                            line-height: 20px;
+                            margin: 10px 0px 0px;
+                        }
+
+                        .es-ca-course-details-meta-area {
+                            display: flex;
+                            justify-content: space-between;
+                            margin-top: 10px;
+                            .es-ca-course-details-meta-data {
+                                display: flex;
+                                gap: 20px;
+
+                                .es-course-meta-item {
+                                    font-size: 12px;
+                                    font-weight: 500;
+                                    line-height: 16px;
+                                    text-align: left;
+                                    display: flex;
+                                    align-items: center;
+                                    gap: 5px;
+                                    color: #646667B2;
+
+                                    a {
+                                        display: flex;
+                                        align-items: center;
+                                        gap: 5px;
+                                        color: #0366D6;
+
+                                        svg {
+                                            width: 14px;
+                                            path {
+                                                fill: #0366D6;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            .es-course-price-wrap {
+                                display: flex;
+                                align-items: center;
+                                gap: 6px;
+                                ins {
+                                    color: #3C3F41;
+                                    font-size: 16px;
+                                    font-weight: 500;
+                                    line-height: 24px;
+                                    text-decoration: none;
+                                }
+                    
+                                del {
+                                    color: #646667B2;
+                                    font-size: 12px;
+                                    line-height: 16px;
+                                    font-weight: 500;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .es-creator-update-course-metadata {
+                h3 {
+                    font-size: 24px;
+                    font-weight: 500;
+                    margin-bottom: 30px;
+                }
+
+                form {
+                    width: 100%;
+                    max-width: 500px;
+
+                    h4 {
+                        font-size: 16px;
+                        line-height: 26px;
+                        border-bottom: 1px solid #E1E4E8;
+                        padding-bottom: 6px;
+                        font-weight: 500;
+                        margin-bottom: 20px;
+                    }
+
+                    .es-form-group {
+                        margin-bottom: 15px;
+
+                        label {
+                            font-size: 14px;
+                            display: block;
+                            margin-bottom: 4px;
+
+                            &.error {
+                                color: #cd6363;
+                            }
+                        }
+                        input, textarea {
+                            width: 100%;
+                            border: 1px solid #E1E4E8;
+                            border-radius: 4px;
+                            padding: 6px 10px;
+
+                            &:focus {
+                                outline: 1px solid #e95d1c;
+                            }
+
+                            &.error {
+                                border-color: #cd6363;
+                            }
+                        }
+                        textarea {
+                            height: 140px;
+                        }
+                        input {
+                            height: 40px;
+                        }
+                    }
+
+                    .es-submit-btn {
+                        display: flex;
+                        justify-content: end;
+                        margin-top: 30px;
+
+                        button {
+                            text-transform: uppercase;
+                            letter-spacing: 1px;
+
+                            .btn-icon {
+                                display: none;
+
+                                svg {
+                                    width: 35px;
+                                    height: 35px;
+                                    transform: translateY(-3px);
+                                }
+                            }
+
+                            &.btn-loading {
+                                .btn-text {
+                                    display: none;
+                                }
+                                .btn-icon {
+                                    display: block;
+                                }
+                            }
+                        }
+                    }
+
+                    .es-form-message {
+                        display: none;
+                        font-size: 14px;
+                        font-weight: 700;
+                        color: #fff;
+                        padding: 10px 20px;
+                        text-align: center;
+                        margin: 25px 0px -10px;
+                        border-radius: 4px;
+
+                        &.form-success, &.form-error {
+                            display: block;
+                        }
+
+                        &.form-success {
+                            background: #1d9647;
+                        }
+                        
+                        &.form-error {
+                            background: #9f3e0d;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

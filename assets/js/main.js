@@ -579,6 +579,62 @@
             });
         },
 
+        initUpdateCourseMetadata: function() {
+            // Validate the signup form inputs 
+            $("#creator-update-course-metadata").validate({
+                // Specify validation rules
+                rules: {
+                    es_course_short_description: "required",
+                    es_course_difficulty_level: "required",
+                    es_course_duration: "required",
+                    es_course_original_price: "required",
+                },
+                // Specify validation error messages
+                messages: {
+                    es_course_short_description: {
+                        required: "You must enter a value",
+                    },
+                    es_course_difficulty_level: {
+                        required: "You must enter a value",
+                    },
+                    es_course_duration: {
+                        required: "You must enter a value",
+                    },
+                    es_course_original_price: {
+                        required: "You must enter a value",
+                    },
+                },
+                submitHandler: function( form ) {
+                    const thisForm = $(form);
+                    thisForm.find('.es-submit-btn button').addClass('btn-loading');
+                    const formMessageBox = thisForm.find('.es-form-message');
+                    const formData = thisForm.serialize();
+
+                    // clear out the fields and messages
+                    formMessageBox
+                        .html("")
+                        .removeClass('form-error form-success');
+
+                    // AJAX submit the form
+                    $.ajax({
+                        url: engisapce_obj.ajaxurl,
+                        method: 'POST',
+                        data: formData,
+                        success: function(response) {
+                            thisForm.find('.es-submit-btn button').removeClass('btn-loading');
+                            // if input validation failed from back end
+                            if ( response.success ) {
+                                formMessageBox
+                                    .html( "Successfully updated course metadata" )
+                                    .addClass('form-success')
+                                    .removeClass('form-error');
+                            }
+                        }
+                    })
+                }
+            });
+        },
+
         init: function() {
             window.engispace.initHeaderFunctions();
             window.engispace.initCourseSliders();
@@ -591,6 +647,7 @@
             window.engispace.initStartSelling();
             window.engispace.initSmoothScrolling();
             window.engispace.initUpdateUserPassword();
+            window.engispace.initUpdateCourseMetadata();
 
             jQuery(window).on('resize', function() {
                 course_details_hover_box();

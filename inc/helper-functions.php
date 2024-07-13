@@ -410,7 +410,11 @@ function es_is_creator_user() {
     $user_roles = $user->roles;
 
     // check for creator subscription user
-    if ( in_array( 'wdm_instructor', $user_roles ) || in_array( 'engispace_user_creator', $user_roles ) ) {
+    if ( 
+        in_array( 'wdm_instructor', $user_roles ) || 
+        in_array( 'engispace_user_creator', $user_roles ) ||
+        in_array( 'administrator', $user_roles )
+    ) {
         return true;
     }
 

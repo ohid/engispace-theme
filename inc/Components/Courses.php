@@ -7,7 +7,7 @@ use Engispace\Component_Interface;
 // File Security Check
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-class Courses {
+class Courses implements Component_Interface {
 	/**
 	 * Gets the unique identifier for the theme component.
 	 *
@@ -16,6 +16,10 @@ class Courses {
 	public function get_slug() : string {
 		return 'courses';
 	}
+
+    public function initialize() {
+        add_action( 'wp_ajax_creator_save_course_metadata', [ $this, 'creator_save_course_metadata' ], 10, 3 );
+    }
 
     public static function sidebar_categories_html() {
         $current_course_category_id = get_queried_object()->term_id;
@@ -207,5 +211,85 @@ class Courses {
         }
 
         return $courses;
+    }
+
+    public static function get_creator_courses() {
+        $query_args = array(
+            'post_type' => 'sfwd-courses',
+            'limit' => 20,
+            'post_status' => 'publish',
+            'order' => 'DESC',
+            'author' => get_current_user_id()
+        );
+
+        // run the query
+        $courses = new \WP_Query( $query_args );
+
+        if ( is_wp_error( $courses ) ) {
+            return;
+        }
+
+        return $courses;
+    }
+
+    public static function get_creator_courses_html() {
+        $courses = self::get_creator_courses();
+        
+        if ( $courses->have_posts() ) {
+            echo '<div class="es-creator-courses-list">';
+            while ( $courses->have_posts() ) {
+                $courses->the_post();
+                
+                $es_currency = '$';
+                
+                $post_id = get_the_ID();
+                $course_link = get_the_permalink( $post_id );
+                $thumbnail_url = wp_get_attachment_image_url( get_post_thumbnail_id($post_id), 'full' );
+                // Course category
+                $course_category = wp_get_post_terms( $post_id, 'ld_course_category' );
+                if ( isset( $course_category[0] ) ) {
+                    $course_category_page = get_term_link( $course_category[0], 'ld_course_category' );
+                }
+                // Get the related post meta
+                $short_description = get_post_meta( $post_id, 'es_course_short_description', true );
+                $difficulty_level = get_post_meta( $post_id, 'es_course_difficulty_level', true );
+                $course_duration = get_post_meta( $post_id, 'es_course_duration', true );
+                $original_price = get_post_meta( $post_id, 'es_course_original_price', true );
+                // Get learndash course data
+                $price_args = learndash_get_course_price( $post_id );
+                $lessons_data = learndash_course_get_steps_by_type( $post_id, 'sfwd-lessons' );
+
+                // Include the template
+                include locate_template('template-parts/profile/creator-courses-template.php');
+
+                wp_reset_postdata();
+            }
+            echo '</div>';
+        } else {
+            printf('<p>%s</p>', esc_html__( 'Sorry, you don\'t have any courses', 'engispace' ));
+        }
+    }
+
+    public function creator_save_course_metadata() {
+        if ( !wp_doing_ajax() ) {
+            return;
+        }
+        check_ajax_referer('es_nonce', 'es_update_course_metadata'); // Check nonce
+        $data = $_POST;
+
+        $course_id = !empty( $data['course_id'] ) ? sanitize_text_field( $data['course_id'] ) : '';
+        // remove unnecessary data
+        unset( $data[ 'action' ] );
+        unset( $data[ 'course_id' ] );
+        unset( $data[ '_wp_http_referer' ] );
+        unset( $data[ 'es_update_course_metadata' ] );
+
+        foreach( $data as $meta_key => $meta_value ) {
+            $field = !empty( $field ) ? sanitize_text_field( $field ) : '';
+            update_post_meta( $course_id, $meta_key, $meta_value );
+        }
+
+        wp_send_json_success();
+        die;
     }
 }

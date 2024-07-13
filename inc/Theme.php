@@ -115,8 +115,10 @@ class Theme {
             new Components\ACF_Blocks(),
             new Components\Rewrite_Pages(),
             new Components\Membership(),
+            new Components\Courses(),
             new Components\User_Roles(),
             new Components\Settings(),
+            new Components\Profile(),
             new Components\Review_Course(),
         );
         
