@@ -635,6 +635,70 @@
             });
         },
 
+        initUserProfileModals: function() {
+            $('#es-user-profile-details').on('click', function() {
+                $('#user-proifle-details-modal').addClass('display-modal').attr('modal-type', 'es-user-profile-details');
+            });
+        },
+
+        initUpdateUserProfileDetails: function() {
+            // Validate the signup form inputs 
+            $("#es-update-user-details-form").validate({
+                // Specify validation rules
+                rules: {
+                    es_person_first_name: "required",
+                    es_person_last_name: "required",
+                    es_person_description: "required"
+                },
+                // Specify validation error messages
+                messages: {
+                    es_person_first_name: {
+                        required: "You must enter a value",
+                    },
+                    es_person_last_name: {
+                        required: "You must enter a value",
+                    },
+                    es_person_description: {
+                        required: "You must enter a value",
+                    }
+                },
+                submitHandler: function( form ) {
+                    $( '#es-update-user-details-form' ).on('submit', function( e ) {
+                        e.preventDefault();
+                        const thisForm = $( this );
+                        thisForm.find('.es-submit-btn button').addClass('btn-loading');
+                        const formMessageBox = thisForm.find('.es-form-message');
+                        var formData = new FormData( this );
+        
+                        // clear out the fields and messages
+                        formMessageBox
+                            .html("")
+                            .removeClass('form-error form-success');
+        
+                        // AJAX submit the form
+                        $.ajax({
+                            url: engisapce_obj.ajaxurl,
+                            method: 'POST',
+                            data: formData,
+                            contentType: false,
+                            processData: false,
+                            success: function(response) {
+                                thisForm.find('.es-submit-btn button').removeClass('btn-loading');
+                                // if input validation failed from back end
+                                if ( response.success ) {
+                                    formMessageBox
+                                        .html( "Successfully updated personal details" )
+                                        .addClass('form-success')
+                                        .removeClass('form-error');
+                                }
+                            }
+                        })
+                    }); 
+                }
+            });
+
+        },
+
         init: function() {
             window.engispace.initHeaderFunctions();
             window.engispace.initCourseSliders();
@@ -648,6 +712,8 @@
             window.engispace.initSmoothScrolling();
             window.engispace.initUpdateUserPassword();
             window.engispace.initUpdateCourseMetadata();
+            window.engispace.initUserProfileModals();
+            window.engispace.initUpdateUserProfileDetails();
 
             jQuery(window).on('resize', function() {
                 course_details_hover_box();

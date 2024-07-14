@@ -8,6 +8,11 @@
 
         .es-sidebar {
             width: 240px;
+            
+            .es-icon {
+                cursor: pointer;
+            }
+
             .es-user-personal-details {
                 img {
                     width: 130px;
@@ -364,6 +369,95 @@
                         }
                     }
                 }
+            }
+        }
+    }
+}
+
+[modal-type="es-user-profile-details"] {
+    .es-update-user-details-form {
+        .es-form-group {
+            margin-bottom: 15px;
+
+            label {
+                font-size: 14px;
+                display: block;
+                margin-bottom: 4px;
+
+                &.error {
+                    color: #cd6363;
+                }
+            }
+            input, textarea {
+                width: 100%;
+                border: 1px solid #E1E4E8;
+                border-radius: 4px;
+                padding: 6px 10px;
+
+                &:focus {
+                    outline: 1px solid #e95d1c;
+                }
+
+                &.error {
+                    border-color: #cd6363;
+                }
+            }
+            textarea {
+                height: 140px;
+            }
+            input {
+                height: 40px;
+            }
+        }
+
+        .es-submit-btn {
+            margin-top: 30px;
+
+            button {
+                text-transform: uppercase;
+                letter-spacing: 1px;
+
+                .btn-icon {
+                    display: none;
+
+                    svg {
+                        width: 35px;
+                        height: 35px;
+                        transform: translateY(-3px);
+                    }
+                }
+
+                &.btn-loading {
+                    .btn-text {
+                        display: none;
+                    }
+                    .btn-icon {
+                        display: block;
+                    }
+                }
+            }
+        }
+
+        .es-form-message {
+            display: none;
+            font-size: 14px;
+            font-weight: 700;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+            margin: 25px 0px -10px;
+            border-radius: 4px;
+
+            &.form-success, &.form-error {
+                display: block;
+            }
+
+            &.form-success {
+                background: #1d9647;
+            }
+            
+            &.form-error {
+                background: #9f3e0d;
             }
         }
     }

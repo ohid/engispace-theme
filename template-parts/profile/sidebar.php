@@ -5,15 +5,13 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 <div class="es-user-personal-details">
     <?php
-        es_img_with_srcset(
-            THEME_URI . '/assets/img/profile-avatar.png'
-        );
+        printf( '<img src="%s"/>', es_user_profile_avatar() );
     ?>
     <div class="es-person-name">
-        <h3>Jeffrey Gonzales</h3>
-        <?php echo es_get_svg_icon( '/assets/img/pencil' ); ?>
+        <h3><?php echo es_get_current_user_display_name(); ?></h3>
+        <span class="es-icon" id="es-user-profile-details"><?php echo es_get_svg_icon( '/assets/img/pencil' ); ?></span>
     </div>
-    <p>Co-founder at Rendevous & Project Managing other awesome projects.</p>
+    <p><?php echo es_get_current_user_profile_bio(); ?></p>
 </div>
 
 <div class="es-user-details-section">
@@ -65,3 +63,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
         </ul>
     </div>
 </div> -->
+
+<?php 
+    get_template_part( 'template-parts/modals/user-profile-details' );
+?>

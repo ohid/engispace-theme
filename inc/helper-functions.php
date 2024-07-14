@@ -193,6 +193,22 @@ function es_get_current_user_firstname() {
 }
 
 /**
+ * Get current logged in user's lastname
+ * 
+ * @since 1.0.0
+ * 
+ * @return null|string
+ */
+function es_get_current_user_lastname() {
+    if ( !is_user_logged_in() ) {
+        return;
+    }
+
+    $current_user = wp_get_current_user();
+    return $current_user->user_lastname;
+}
+
+/**
  * Get current logged in user's display_name
  * 
  * @since 1.0.0
@@ -206,6 +222,44 @@ function es_get_current_user_display_name() {
 
     $current_user = wp_get_current_user();
     return $current_user->first_name . ' ' . $current_user->last_name;
+}
+
+/**
+ * Get current logged in user's profile bio
+ * 
+ * @since 1.0.0
+ * 
+ * @return null|string
+ */
+function es_get_current_user_profile_bio() {
+    if ( !is_user_logged_in() ) {
+        return;
+    }
+
+    $current_user = wp_get_current_user();
+    return $current_user->description;
+}
+
+/**
+ * Get current logged in user's profile avatar
+ * 
+ * @since 1.0.0
+ * 
+ * @return null|string
+ */
+function es_user_profile_avatar() {
+    if ( !is_user_logged_in() ) {
+        return;
+    }
+
+    $profile_avatar = '';
+
+    $user_avatar = get_user_meta( get_current_user_id(), 'es_user_profile_avatar' );
+    if ( !empty( $user_avatar[0] ) ) {
+        $profile_avatar = $user_avatar[0];
+    }
+
+    return $profile_avatar;
 }
 
 /**
