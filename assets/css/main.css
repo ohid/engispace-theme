@@ -268,6 +268,12 @@ header .es-site-header-right .site-right-buttons .es-user-profile-button .es-use
   margin-right: 10px;
   text-transform: uppercase;
 }
+header .es-site-header-right .site-right-buttons .es-user-profile-button .es-user-avater-img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  border-radius: 11px;
+}
 header .es-site-header-right .site-right-buttons .es-user-profile-button .es-user-avatar {
   color: rgba(199, 199, 199, 0.91);
   font-size: 14px;
@@ -436,6 +442,78 @@ header .es-header-mobile-navigation-wrapper ul li a img {
     margin-bottom: 30px;
     margin-top: 10px;
   }
+}
+
+.es-form-group {
+  margin-bottom: 15px;
+}
+.es-form-group label {
+  font-size: 14px;
+  display: block;
+  margin-bottom: 4px;
+}
+.es-form-group label.error {
+  color: #cd6363;
+}
+.es-form-group input, .es-form-group textarea {
+  width: 100%;
+  border: 1px solid #E1E4E8;
+  border-radius: 4px;
+  padding: 6px 10px;
+}
+.es-form-group input:focus, .es-form-group textarea:focus {
+  outline: 1px solid #e95d1c;
+}
+.es-form-group input.error, .es-form-group textarea.error {
+  border-color: #cd6363;
+}
+.es-form-group textarea {
+  height: 140px;
+}
+.es-form-group input {
+  height: 40px;
+}
+
+.es-submit-btn {
+  margin-top: 30px;
+}
+.es-submit-btn button {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.es-submit-btn button .btn-icon {
+  display: none;
+}
+.es-submit-btn button .btn-icon svg {
+  width: 35px;
+  height: 35px;
+  transform: translateY(-3px);
+}
+.es-submit-btn button.btn-loading .btn-text {
+  display: none;
+}
+.es-submit-btn button.btn-loading .btn-icon {
+  display: block;
+}
+
+.es-form-message {
+  display: none;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  padding: 10px 20px;
+  text-align: center;
+  margin: 25px 0px -10px;
+  border-radius: 4px;
+}
+.es-form-message.form-success, .es-form-message.form-error {
+  display: block;
+}
+.es-form-message.form-success {
+  background: #1d9647;
+}
+.es-form-message.form-error {
+  background: #9f3e0d;
 }
 
 .courses-header-slider {
@@ -3819,76 +3897,6 @@ header .es-header-mobile-navigation-wrapper ul li a img {
   background: #1d9647;
 }
 .es-profile-page .es-profile-inner .es-content .es-creator-update-course-metadata form .es-form-message.form-error {
-  background: #9f3e0d;
-}
-
-[modal-type=es-user-profile-details] .es-update-user-details-form .es-form-group {
-  margin-bottom: 15px;
-}
-[modal-type=es-user-profile-details] .es-update-user-details-form .es-form-group label {
-  font-size: 14px;
-  display: block;
-  margin-bottom: 4px;
-}
-[modal-type=es-user-profile-details] .es-update-user-details-form .es-form-group label.error {
-  color: #cd6363;
-}
-[modal-type=es-user-profile-details] .es-update-user-details-form .es-form-group input, [modal-type=es-user-profile-details] .es-update-user-details-form .es-form-group textarea {
-  width: 100%;
-  border: 1px solid #E1E4E8;
-  border-radius: 4px;
-  padding: 6px 10px;
-}
-[modal-type=es-user-profile-details] .es-update-user-details-form .es-form-group input:focus, [modal-type=es-user-profile-details] .es-update-user-details-form .es-form-group textarea:focus {
-  outline: 1px solid #e95d1c;
-}
-[modal-type=es-user-profile-details] .es-update-user-details-form .es-form-group input.error, [modal-type=es-user-profile-details] .es-update-user-details-form .es-form-group textarea.error {
-  border-color: #cd6363;
-}
-[modal-type=es-user-profile-details] .es-update-user-details-form .es-form-group textarea {
-  height: 140px;
-}
-[modal-type=es-user-profile-details] .es-update-user-details-form .es-form-group input {
-  height: 40px;
-}
-[modal-type=es-user-profile-details] .es-update-user-details-form .es-submit-btn {
-  margin-top: 30px;
-}
-[modal-type=es-user-profile-details] .es-update-user-details-form .es-submit-btn button {
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-[modal-type=es-user-profile-details] .es-update-user-details-form .es-submit-btn button .btn-icon {
-  display: none;
-}
-[modal-type=es-user-profile-details] .es-update-user-details-form .es-submit-btn button .btn-icon svg {
-  width: 35px;
-  height: 35px;
-  transform: translateY(-3px);
-}
-[modal-type=es-user-profile-details] .es-update-user-details-form .es-submit-btn button.btn-loading .btn-text {
-  display: none;
-}
-[modal-type=es-user-profile-details] .es-update-user-details-form .es-submit-btn button.btn-loading .btn-icon {
-  display: block;
-}
-[modal-type=es-user-profile-details] .es-update-user-details-form .es-form-message {
-  display: none;
-  font-size: 14px;
-  font-weight: 700;
-  color: #fff;
-  padding: 10px 20px;
-  text-align: center;
-  margin: 25px 0px -10px;
-  border-radius: 4px;
-}
-[modal-type=es-user-profile-details] .es-update-user-details-form .es-form-message.form-success, [modal-type=es-user-profile-details] .es-update-user-details-form .es-form-message.form-error {
-  display: block;
-}
-[modal-type=es-user-profile-details] .es-update-user-details-form .es-form-message.form-success {
-  background: #1d9647;
-}
-[modal-type=es-user-profile-details] .es-update-user-details-form .es-form-message.form-error {
   background: #9f3e0d;
 }
 
