@@ -20,6 +20,7 @@ class Profile implements Component_Interface {
     public function initialize() {
         add_action( 'template_redirect', [ $this, 'redirect_profile_page' ] );
         add_action( 'wp_ajax_es_update_profile_details', [ $this, 'update_profile_details' ] );
+        add_action( 'wp_ajax_es_update_contact_details', [ $this, 'es_update_contact_details' ] );
     }
 
     public function redirect_profile_page() {
@@ -85,5 +86,32 @@ class Profile implements Component_Interface {
         update_user_meta( $user_id, 'es_user_profile_avatar', $avatar_url );
 
         return true;
+    }
+
+    public function es_update_contact_details() {
+        if ( !wp_doing_ajax() ) {
+            return;
+        }
+        check_ajax_referer('es_nonce', 'es_update_contact_details'); // Check nonce
+
+        $es_user_phone = !empty( $_POST['es_user_phone'] ) ? sanitize_text_field( $_POST['es_user_phone'] ) : '';
+        $es_user_email = !empty( $_POST['es_user_email'] ) ? sanitize_text_field( $_POST['es_user_email'] ) : '';
+        $es_user_url = !empty( $_POST['es_user_url'] ) ? sanitize_text_field( $_POST['es_user_url'] ) : '';
+
+        // Get the current user ID
+        $user_id = get_current_user_id();
+
+        if ( !empty( $es_user_phone ) ) {
+            update_user_meta( $user_id, 'es_user_phone', $es_user_phone );
+        }
+        if ( !empty( $es_user_email ) ) {
+            update_user_meta( $user_id, 'es_user_email', $es_user_email );
+        }
+        if ( !empty( $es_user_url ) ) {
+            update_user_meta( $user_id, 'es_user_url', $es_user_url );
+        }
+
+        wp_send_json_success();
+        die;
     }
 }

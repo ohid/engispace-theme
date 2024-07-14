@@ -639,6 +639,9 @@
             $('#es-user-profile-details').on('click', function() {
                 $('#user-proifle-details-modal').addClass('display-modal').attr('modal-type', 'es-user-profile-details');
             });
+            $('#es-user-contact-details').on('click', function() {
+                $('#user-contact-details-modal').addClass('display-modal').attr('modal-type', 'es-user-contact-details');
+            });
         },
 
         initUpdateUserProfileDetails: function() {
@@ -696,7 +699,58 @@
                     }); 
                 }
             });
+        },
 
+        initUpdateUserContactDetails: function() {
+            // Validate the signup form inputs 
+            $("#es-update-user-contact-details-form").validate({
+                // Specify validation rules
+                rules: {
+                    es_person_phone_number: "required",
+                    es_person_email: "required",
+                    es_person_url: "required"
+                },
+                // Specify validation error messages
+                messages: {
+                    es_person_phone_number: {
+                        required: "You must enter a value",
+                    },
+                    es_person_email: {
+                        required: "You must enter a value",
+                    },
+                    es_person_url: {
+                        required: "You must enter a value",
+                    }
+                },
+                submitHandler: function( form ) {
+                    const thisForm = $( form );
+                    thisForm.find('.es-submit-btn button').addClass('btn-loading');
+                    const formMessageBox = thisForm.find('.es-form-message');
+                    var formData = thisForm.serialize();
+    
+                    // clear out the fields and messages
+                    formMessageBox
+                        .html("")
+                        .removeClass('form-error form-success');
+    
+                    // AJAX submit the form
+                    $.ajax({
+                        url: engisapce_obj.ajaxurl,
+                        method: 'POST',
+                        data: formData,
+                        success: function(response) {
+                            thisForm.find('.es-submit-btn button').removeClass('btn-loading');
+                            // if input validation failed from back end
+                            if ( response.success ) {
+                                formMessageBox
+                                    .html( "Successfully updated personal details" )
+                                    .addClass('form-success')
+                                    .removeClass('form-error');
+                            }
+                        }
+                    })
+                }
+            });
         },
 
         init: function() {
@@ -714,6 +768,7 @@
             window.engispace.initUpdateCourseMetadata();
             window.engispace.initUserProfileModals();
             window.engispace.initUpdateUserProfileDetails();
+            window.engispace.initUpdateUserContactDetails();
 
             jQuery(window).on('resize', function() {
                 course_details_hover_box();

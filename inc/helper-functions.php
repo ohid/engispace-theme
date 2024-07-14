@@ -241,6 +241,51 @@ function es_get_current_user_profile_bio() {
 }
 
 /**
+ * Get current logged in user's personal phone
+ * 
+ * @since 1.0.0
+ * 
+ * @return null|string
+ */
+function es_get_current_user_phone() {
+    if ( !is_user_logged_in() ) {
+        return;
+    }
+    $user_id = get_current_user_id();
+    return get_user_meta( $user_id, 'es_user_phone', true );
+}
+
+/**
+ * Get current logged in user's personal email
+ * 
+ * @since 1.0.0
+ * 
+ * @return null|string
+ */
+function es_get_current_user_email() {
+    if ( !is_user_logged_in() ) {
+        return;
+    }
+    $user_id = get_current_user_id();
+    return get_user_meta( $user_id, 'es_user_email', true );
+}
+
+/**
+ * Get current logged in user's personal url
+ * 
+ * @since 1.0.0
+ * 
+ * @return null|string
+ */
+function es_get_current_user_url() {
+    if ( !is_user_logged_in() ) {
+        return;
+    }
+    $user_id = get_current_user_id();
+    return get_user_meta( $user_id, 'es_user_url', true );
+}
+
+/**
  * Get current logged in user's profile avatar
  * 
  * @since 1.0.0
@@ -252,7 +297,7 @@ function es_user_profile_avatar() {
         return;
     }
 
-    $profile_avatar = '';
+    $profile_avatar = THEME_URI . '/assets/img/default-avatar.jpg';
 
     $user_avatar = get_user_meta( get_current_user_id(), 'es_user_profile_avatar' );
     if ( !empty( $user_avatar[0] ) ) {
@@ -291,7 +336,7 @@ function es_get_current_user_avatar() {
     $avatar_html = '';
 
     $current_user = wp_get_current_user();
-    $user_avatar = get_user_meta( $current_user->data->ID, '_es_user_avatar', true );
+    $user_avatar = get_user_meta( $current_user->data->ID, 'es_user_profile_avatar', true );
     if ( $user_avatar ) {
         $avatar_html = '<img class="es-user-avater-img" src="'. esc_url( $user_avatar ) .'" ?>';
     } else {
