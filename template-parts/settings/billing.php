@@ -45,7 +45,7 @@
         <?php 
             foreach( $memberships as $key => $membership ) :
         ?>
-            <div class="es-membership-plan es_plan_<?php echo esc_attr( $key ); ?>" data-current-plan="<?php echo $key === es_get_current_user_subscription() ? 'true' : 'false' ?>">
+            <div class="es-membership-plan es_plan_<?php echo esc_attr( $key ); ?>" data-current-plan="<?php echo $key === es_get_current_user_subscription() ? 'true' : 'false' ?>" data-download-id="<?php echo esc_attr( $membership['download_id'] ); ?>" data-price-id="<?php echo esc_attr( $membership['price_id'] ); ?>">
                 <input type="radio" name="membership_plan" id="membership_<?php echo esc_attr( $key ); ?>">
                 <label for="membership_<?php echo esc_attr( $key ); ?>" class="es-flex">
                     <div class="es-flex es-left">
@@ -64,8 +64,8 @@
             endforeach;
         ?>
 
-        <div class="es-upgrade-membership">
-            <div class="es-btn-orange">Upgrade</div>
+        <div class="es-upgrade-membership" data-button-disabled="true">
+            <a href="/pricing" class="es-btn-orange">Upgrade</a>
         </div>
     </div>
 </div>

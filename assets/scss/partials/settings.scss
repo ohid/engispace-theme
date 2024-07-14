@@ -205,12 +205,6 @@
                 cursor: pointer;
             }
 
-            &.es_plan_freemium {
-                label {
-                    cursor: not-allowed;
-                }
-            }
-
             input[type="radio"] {
                 display: none;
             }
@@ -259,6 +253,11 @@
             margin-top: 30px;
             display: flex;
             justify-content: flex-end;
+
+            &[data-button-disabled="true"] a {
+                background-color: #9f9e9e;
+                cursor: not-allowed;
+            }
         }
     }
 }

@@ -3558,9 +3558,6 @@ header .es-header-mobile-navigation-wrapper ul li a img {
   align-items: center;
   cursor: pointer;
 }
-.es-settings-page-inner .es-membership-plans .es-membership-plan.es_plan_freemium label {
-  cursor: not-allowed;
-}
 .es-settings-page-inner .es-membership-plans .es-membership-plan input[type=radio] {
   display: none;
 }
@@ -3596,6 +3593,10 @@ header .es-header-mobile-navigation-wrapper ul li a img {
   margin-top: 30px;
   display: flex;
   justify-content: flex-end;
+}
+.es-settings-page-inner .es-membership-plans .es-upgrade-membership[data-button-disabled=true] a {
+  background-color: #9f9e9e;
+  cursor: not-allowed;
 }
 
 .es-profile-page {

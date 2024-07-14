@@ -753,6 +753,28 @@
             });
         },
 
+        initProfileMembershipUpgrade: function() {
+            $('.es-membership-plan').on('click', function() {
+                const self = $(this),
+                    downloadId = self.attr('data-download-id'),
+                    priceId = self.attr('data-price-id');
+                    
+                // Build the checkout URL
+                let checkoutUrl = engisapce_obj.siteurl + '/checkout?edd_action=add_to_cart&download_id='+ downloadId +'&edd_options[price_id]=' + priceId;
+
+                self.siblings().attr( 'data-current-plan', false );
+                self.attr( 'data-current-plan', true );
+
+                // remove attribute and set checkout url
+                $('.es-upgrade-membership').removeAttr( 'data-button-disabled' );
+                $('.es-upgrade-membership a').attr( 'href', checkoutUrl );
+            });
+
+            $(document).on('click', '.es-upgrade-membership[data-button-disabled="true"] a', function(e) {
+                e.preventDefault();
+            })
+        },
+
         init: function() {
             window.engispace.initHeaderFunctions();
             window.engispace.initCourseSliders();
@@ -769,6 +791,7 @@
             window.engispace.initUserProfileModals();
             window.engispace.initUpdateUserProfileDetails();
             window.engispace.initUpdateUserContactDetails();
+            window.engispace.initProfileMembershipUpgrade();
 
             jQuery(window).on('resize', function() {
                 course_details_hover_box();
