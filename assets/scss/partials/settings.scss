@@ -18,12 +18,19 @@
                     line-height: 20px;
                     display: flex;
                     gap: 8px;
+                    align-items: center;
                     padding: 6px 13px;
                 }
 
                 &.active {
                     a {
                         background: #F6F7F9;
+                    }
+                }
+
+                svg {
+                    path {
+                        fill: #a9b7c7;
                     }
                 }
             }
@@ -259,5 +266,31 @@
                 cursor: not-allowed;
             }
         }
+    }
+}
+
+.es-creator-stripe-api-form {
+    margin-top: 30px;
+    p {
+        a {
+            color: #f24c00;
+        }
+    }
+    form {
+        margin-top: 30px;
+
+        label {
+            font-weight: 500;
+        }
+    }
+}
+
+.es-user-upgrade-to-creator {
+    font-size: 18px;
+    margin-top: 30px;
+
+    a {
+        text-decoration: underline;
+        color: #f24c00;
     }
 }

@@ -20,6 +20,7 @@ class Settings implements Component_Interface {
     public function initialize() {
         add_action( 'template_redirect', [ $this, 'redirect_settings_page' ] );
         add_action( 'wp_ajax_es_update_password', [ $this, 'update_user_password' ] );
+        add_action( 'wp_ajax_es_creator_stripe_api_form', [ $this, 'creator_stripe_api_form' ] );
     }
 
     public function redirect_settings_page() {
@@ -51,6 +52,23 @@ class Settings implements Component_Interface {
 
         // Set the new password
         wp_set_password( $new_password, get_current_user_id() );
+
+        wp_send_json_success();
+    }
+
+    public function creator_stripe_api_form() {
+        if ( !wp_doing_ajax() || !is_user_logged_in() ) {
+            return;
+        }
+        check_ajax_referer('es_nonce', 'es_stripe_api_form'); // Check nonce
+        if ( empty( $_POST['es_creator_stripe_api'] ) || strlen( $_POST['es_creator_stripe_api'] ) < 10 ) {
+            wp_send_json_error();
+        }
+
+        $user_id = get_current_user_id();
+        $stripe_api = sanitize_text_field( $_POST['es_creator_stripe_api'] );
+
+        update_user_meta( $user_id, '_es_creator_stripe_connect_id', $stripe_api );
 
         wp_send_json_success();
     }

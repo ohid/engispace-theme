@@ -775,6 +775,55 @@
             })
         },
 
+        initCreatorStripeForm: function() {
+            // Validate the form inputs 
+            $("#creator-stripe-api-form").validate({
+                // Specify validation rules
+                rules: {
+                    es_creator_stripe_api_field: "required",
+                },
+                // Specify validation error messages
+                messages: {
+                    es_creator_stripe_api_field: {
+                        required: "You must enter a value",
+                    },
+                },
+                submitHandler: function( form ) {
+                    const thisForm = $(form);
+                    thisForm.find('.es-submit-btn button').addClass('btn-loading');
+                    const formMessageBox = thisForm.find('.es-form-message');
+                    const formData = thisForm.serialize();
+
+                    // clear out the fields and messages
+                    formMessageBox
+                        .html("")
+                        .removeClass('form-error form-success');
+
+                    // AJAX submit the form
+                    $.ajax({
+                        url: engisapce_obj.ajaxurl,
+                        method: 'POST',
+                        data: formData,
+                        success: function(response) {
+                            console.log(response);
+                            thisForm.find('.es-submit-btn button').removeClass('btn-loading');
+                            // if input validation failed from back end
+                            if ( !response.success ) {
+                                formMessageBox
+                                    .html( "There's something wrong updating the form" )
+                                    .addClass('form-error');
+                            }
+                            if ( response.success ) {
+                                formMessageBox
+                                    .html( "Successfully updated course metadata" )
+                                    .addClass('form-success');
+                            }
+                        }
+                    })
+                }
+            });
+        },
+
         init: function() {
             window.engispace.initHeaderFunctions();
             window.engispace.initCourseSliders();
@@ -792,6 +841,7 @@
             window.engispace.initUpdateUserProfileDetails();
             window.engispace.initUpdateUserContactDetails();
             window.engispace.initProfileMembershipUpgrade();
+            window.engispace.initCreatorStripeForm();
 
             jQuery(window).on('resize', function() {
                 course_details_hover_box();

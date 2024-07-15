@@ -3409,10 +3409,14 @@ header .es-header-mobile-navigation-wrapper ul li a img {
   line-height: 20px;
   display: flex;
   gap: 8px;
+  align-items: center;
   padding: 6px 13px;
 }
 .es-settings-page-inner .es-settings-page-tabs ul li.active a {
   background: #F6F7F9;
+}
+.es-settings-page-inner .es-settings-page-tabs ul li svg path {
+  fill: #a9b7c7;
 }
 .es-settings-page-inner .es-settings-page-tabs:after {
   content: "";
@@ -3597,6 +3601,28 @@ header .es-header-mobile-navigation-wrapper ul li a img {
 .es-settings-page-inner .es-membership-plans .es-upgrade-membership[data-button-disabled=true] a {
   background-color: #9f9e9e;
   cursor: not-allowed;
+}
+
+.es-creator-stripe-api-form {
+  margin-top: 30px;
+}
+.es-creator-stripe-api-form p a {
+  color: #f24c00;
+}
+.es-creator-stripe-api-form form {
+  margin-top: 30px;
+}
+.es-creator-stripe-api-form form label {
+  font-weight: 500;
+}
+
+.es-user-upgrade-to-creator {
+  font-size: 18px;
+  margin-top: 30px;
+}
+.es-user-upgrade-to-creator a {
+  text-decoration: underline;
+  color: #f24c00;
 }
 
 .es-profile-page {

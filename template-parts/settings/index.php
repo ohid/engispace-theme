@@ -26,6 +26,11 @@ if ( ! defined( 'ABSPATH' ) ) exit;
             'icon' => 'billing'
         ],
         [
+            'page' => 'stripe',
+            'title' => esc_html__( 'Stripe', 'engispace' ),
+            'icon' => 'stripe'
+        ],
+        [
             'page' => 'logout',
             'title' => esc_html__( 'Logout', 'engispace' ),
             'icon' => 'logout'
