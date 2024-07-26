@@ -22,6 +22,8 @@ class Authentication implements Component_Interface {
         add_action( 'wp_ajax_nopriv_es_site_signin', array( $this, 'signin' ) );
         add_action( 'wp_ajax_es_site_signup', array( $this, 'signup' ) );
         add_action( 'wp_ajax_nopriv_es_site_signup', array( $this, 'signup' ) );
+        add_action( 'wp_ajax_es_site_forget_password', array( $this, 'forget_password' ) );
+        add_action( 'wp_ajax_nopriv_es_site_forget_password', array( $this, 'forget_password' ) );
 
         add_action( 'wp_ajax_es_auth_required_modal', array( $this, 'auth_required_modal' ) );
         add_action( 'wp_ajax_nopriv_es_auth_required_modal', array( $this, 'auth_required_modal' ) );
@@ -109,6 +111,26 @@ class Authentication implements Component_Interface {
         die();
     }
 
+    public function forget_password() {
+        if ( !wp_doing_ajax() ) {
+            return;
+        }
+        check_ajax_referer('es_nonce', 'es_site_forget_password'); // Check nonce
+
+        if ( empty( $_POST['email'] ) ) {
+            wp_send_json_error();
+        }
+        $email = filter_var( $_POST['email'], FILTER_VALIDATE_EMAIL );
+
+        if ( ! email_exists( $email ) ) {
+            wp_send_json_error();
+        }
+
+        $this->send_password_reset_email( $email );
+
+        wp_send_json_success();
+    }
+
     public function validate_input_fields( $data ) {
         $fields = $this->get_form_fields( $data );
         $validated = true;
@@ -170,5 +192,19 @@ class Authentication implements Component_Interface {
         $modal = ob_get_clean();
 
         wp_send_json_success( $modal );
+    }
+
+    public function send_password_reset_email( $to ) {
+        $subject = esc_html__( 'Reset your password', 'engispace' );
+        $user = get_user_by_email( $to );
+        $key = get_password_reset_key( $user );
+
+        $message = __('To set your password, visit the following address:') . "\r\n\r\n";
+        $message .= '<' . network_site_url("wp-login.php?action=rp&key=$key&login=" . rawurlencode($user->user_login), 'login') . ">\r\n\r\n";
+        $message .= wp_login_url() . "\r\n";
+
+        $headers = array('Content-Type: text/html; charset=UTF-8','From: My Site Name <support@example.com>');
+
+        wp_mail( $to, $subject, $message, $headers );
     }
 }

@@ -275,6 +275,63 @@
             });
         },
 
+        initForgetPassword: function() {
+            const forgetPasswordHandler = (e, thisForm) => {
+                e.preventDefault();
+                let formMessageBox = thisForm.find('.es-form-message');
+
+                formMessageBox
+                    .html("")
+                    .removeClass('form-error form-success');
+
+                const emailField = thisForm.find('#forget_email').val();
+
+                // return form submit if one of the field is empty
+                if ( !emailField ) {
+                    formMessageBox
+                        .html("Please enter email")
+                        .removeClass('form-success')
+                        .addClass('form-error');
+
+                    return;
+                }
+
+                // Get the form input data
+                const formData = thisForm.serialize();
+
+                // Make AJAX sign in request
+                $.ajax({
+                    url: engisapce_obj.ajaxurl,
+                    method: 'POST',
+                    data: formData,
+                    success: function( response ) {
+                        // handle sign in error response
+                        if ( ! response.success ) {
+                            thisForm.find('.es-form-message')
+                                .html( "There's something wrong with your request" )
+                                .addClass('form-error')
+                                .removeClass('form-success');
+                        } else {
+                            thisForm.find('.es-form-message')
+                                .html( "Please check your email for reset link" )
+                                .addClass('form-success')
+                                .removeClass('form-error');
+
+                            $('#ees-forget-password-form')[0].reset();
+                        }
+                        return;
+                    }
+                })
+            }
+            
+            /**
+             * Forget password form handle submit event
+             */
+            $('#es-forget-password-form').on('submit', function(e) {
+                forgetPasswordHandler(e, $(this));
+            } );
+        },
+
         /**
          * Init authentication modal on button clicks
          */
@@ -313,6 +370,16 @@
                 }
                 // open the signin modal
                 $('#site-auth-modal').addClass('display-modal').attr('modal-type', 'signup-modal');
+            });
+
+            // Open forget password modal from auth modal
+            $(document).on('click', '#es-open-forget-password-form', function() {
+                // Close the auth required modal first
+                if ($('.es-modal-wrapper[modal-type="auth-require-modal"]')) {
+                    $('.es-modal-wrapper[modal-type="auth-require-modal"]').remove();
+                }
+                // open the forgot password modal
+                $('#site-auth-modal').addClass('display-modal').attr('modal-type', 'forget-password-modal');
             });
 
             // Swith modal content from signin form to signup form
@@ -830,6 +897,7 @@
             window.engispace.initCourseItemHover();
             window.engispace.initSignIn();
             window.engispace.initSignUp();
+            window.engispace.initForgetPassword();
             window.engispace.initAuthModal();
             window.engispace.initCoursePurchase();
             window.engispace.initSocialShare();

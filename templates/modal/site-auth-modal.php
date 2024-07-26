@@ -25,6 +25,9 @@
                             <span class="password-hidden"><?php echo es_get_svg_icon( '/assets/img/eye-slash-icon' ); ?></span>
                         </span>
                     </div>
+                    <div class="es-form-control es-forget-password-control">
+                        <button id="es-open-forget-password-form" type="button"><?php esc_html_e( 'Forget password?', 'engispace' ); ?></button>
+                    </div>
                     <p class="es-form-message"></p>
                     <div class="es-form-control es-submit-btn">
                         <input type="hidden" name="action" value="es_site_signin">
@@ -94,7 +97,7 @@
                             Sign Up
                         </button>
                     </div>
-
+                    <?php echo do_shortcode( '[xs_social_login provider="facebook,google,linkedin" class="custom-class"]' ); ?>
                     <div class="es-form-control es-privacy-statement">
                         <p>
                             <?php
@@ -110,6 +113,39 @@
             </div>
             <div class="es-modal-footer">
                 <p>Have an account? <button class="es-btn-switch-to-login">Log in</button> </p>
+            </div>
+        </div>
+        <div class="es-modal-body" id="es-user-forget-password-modal-body">
+            <span class="close-modal">
+                <?php echo es_get_svg_icon('/assets/img/cross-times'); ?>
+            </span>
+            <div class="modal-header">
+                <?php
+                    es_img_with_srcset(
+                        esc_url( THEME_URI . '/assets/img/engispace-logo.png' ),
+                    );
+                ?>
+                <h3><?php esc_html_e('Forgot password?', 'engispace'); ?></h3>
+            </div>
+            <div class="es-modal-content">
+                <form id="es-forget-password-form">
+                    <div class="es-form-control">
+                        <label for="forget_email">Email</label>
+                        <input type="email" id="forget_email" name="email" class="es-form-input">
+                    </div>
+                    <div class="es-form-control es-remember-password-control">
+                        <p>Remember password? </p> <button type="button" class="es-btn-switch-to-login">Log in</button> </p>
+                    </div>
+                    <div class="es-form-message"></div>
+                    <div class="es-form-control es-submit-btn">
+                        <input type="hidden" name="action" value="es_site_forget_password">
+                        <?php wp_nonce_field( 'es_nonce', 'es_site_forget_password' ); ?>
+                        <button type="submit" class="es-btn-orange">
+                            <span class="loader-icon"><?php echo es_get_svg_icon( '/assets/img/loader' ); ?></span>
+                            Submit
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

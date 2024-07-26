@@ -19,6 +19,7 @@ class Courses implements Component_Interface {
 
     public function initialize() {
         add_action( 'wp_ajax_creator_save_course_metadata', [ $this, 'creator_save_course_metadata' ], 10, 3 );
+        add_filter( 'comment_author', [ $this, 'comment_author' ], 10, 2 );
     }
 
     public static function sidebar_categories_html() {
@@ -291,5 +292,12 @@ class Courses implements Component_Interface {
 
         wp_send_json_success();
         die;
+    }
+
+    public function comment_author( $comment_author, $comment_id ) {
+        $comment = get_comment( $comment_id );
+        $comment_author_id = $comment -> user_id;
+
+        return es_get_user_display_name($comment_author_id);
     }
 }

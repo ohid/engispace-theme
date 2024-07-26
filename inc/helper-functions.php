@@ -319,7 +319,13 @@ function es_get_user_display_name( $user_id ) {
     if ( !$user ) {
         return;
     }
-    return $user->first_name . ' ' . $user->last_name;
+    $user_display_name = $user->first_name . ' ' . $user->last_name;
+
+    if ( empty( $user->first_name ) ) {
+        return $user->user_login;
+    }
+
+    return $user_display_name;
 }
 
 /**

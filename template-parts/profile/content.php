@@ -10,8 +10,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
             'title' => esc_html__( 'Courses', 'engispace' ),
         ],
         [
-            'page' => 'code_exchange',
-            'title' => esc_html__( 'Code Exchange', 'engispace' ),
+            'page' => 'forum',
+            'title' => esc_html__( 'Forum Questions', 'engispace' ),
         ],
         [
             'page' => 'comments_and_answer',
