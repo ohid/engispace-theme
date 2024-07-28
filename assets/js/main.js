@@ -891,6 +891,19 @@
             });
         },
 
+        initCouseSidebarExpandableMenu: function() {
+            $('#es-course-categories-menu > li').each(function( index, el ) {
+                if($(el).children( 'ul.children' ).length) {
+                    $(el).addClass('es-has-children').append('<span class="es-expand-menu" id="es-sidebar-expand-menu"><svg width="8px" height="13px" viewBox="0 0 8 13" version="1.1" style="transition: all 0.2s ease 0s; transform: initial;"><title></title><desc></desc><defs></defs><g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="courses_view_all" transform="translate(-417.000000, -404.000000)" fill="#C2C7CA"><g id="related" transform="translate(133.000000, 144.000000)"><g id="icons/dropdown" transform="translate(277.000000, 256.000000)"><path d="M10.4285714,12.4285714 L10.4285714,7.28571429 C10.4285714,6.57563389 11.0042053,6 11.7142857,6 C12.4243661,6 13,6.57563389 13,7.28571429 L13,13.7142857 C13,14.4243661 12.4243661,15 11.7142857,15 L5.28571429,15 C4.57563389,15 4,14.4243661 4,13.7142857 C4,13.0042053 4.57563389,12.4285714 5.28571429,12.4285714 L10.4285714,12.4285714 Z" id="cross/white" transform="translate(8.500000, 10.500000) rotate(-45.000000) translate(-8.500000, -10.500000) "></path></g></g></g></g></svg></span>');
+                }
+            });
+
+            $( document ).on( 'click', '#es-sidebar-expand-menu', function() {
+                let thisEl = $( this );
+                thisEl.closest( 'li' ).toggleClass('menu-expanded').find('ul.children').slideToggle();
+            } );
+        },
+
         init: function() {
             window.engispace.initHeaderFunctions();
             window.engispace.initCourseSliders();
@@ -910,6 +923,7 @@
             window.engispace.initUpdateUserContactDetails();
             window.engispace.initProfileMembershipUpgrade();
             window.engispace.initCreatorStripeForm();
+            window.engispace.initCouseSidebarExpandableMenu();
 
             jQuery(window).on('resize', function() {
                 course_details_hover_box();

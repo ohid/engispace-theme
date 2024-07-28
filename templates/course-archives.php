@@ -4,7 +4,7 @@
             <div class="es-course-categories">
                 <h3><?php esc_html_e( 'Categories', 'engispace' ) ?></h3>
                 <?php
-                    echo '<ul>';
+                    echo '<ul id="es-course-categories-menu">';
                         wp_list_categories( array(
                             'taxonomy'   => 'ld_course_category',
                             'title_li' => ''

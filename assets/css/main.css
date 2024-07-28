@@ -204,9 +204,6 @@ header .es-site-header-right .site-menu ul li {
   list-style: none;
   height: 100%;
 }
-header .es-site-header-right .site-menu ul li:last-child {
-  display: none;
-}
 header .es-site-header-right .site-menu ul li a {
   text-decoration: none;
   font-size: 11px;
@@ -525,7 +522,7 @@ header .es-header-mobile-navigation-wrapper ul li a img {
   background-size: 100% 100%;
   background-repeat: no-repeat;
   border-radius: 6px;
-  min-height: 310px;
+  min-height: 306px;
 }
 .courses-header-slider .es-slide h4 {
   color: #fff;
@@ -943,13 +940,14 @@ header .es-header-mobile-navigation-wrapper ul li a img {
   list-style: none;
   margin-bottom: 10px;
   transition: all 0.1s ease-in;
+  position: relative;
 }
 .es-all-courses-archive .es-aca-inner .es-course-categories ul li a {
   text-decoration: none;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 700;
   line-height: 20px;
-  color: #0366D6;
+  color: #0366d6;
   display: block;
 }
 .es-all-courses-archive .es-aca-inner .es-course-categories ul li a:hover {
@@ -958,9 +956,26 @@ header .es-header-mobile-navigation-wrapper ul li a img {
 .es-all-courses-archive .es-aca-inner .es-course-categories ul li.current-cat > a {
   font-weight: 700;
 }
+.es-all-courses-archive .es-aca-inner .es-course-categories ul li .es-expand-menu {
+  position: absolute;
+  right: 0px;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.es-all-courses-archive .es-aca-inner .es-course-categories ul li.menu-expanded .es-expand-menu {
+  transform: rotate(-90deg);
+}
 .es-all-courses-archive .es-aca-inner .es-course-categories ul li .children {
   padding-left: 15px;
   margin-top: 10px;
+  display: none;
 }
 @media (min-width: 768px) {
   .es-all-courses-archive .es-aca-inner .es-course-archives {
@@ -1434,7 +1449,6 @@ header .es-header-mobile-navigation-wrapper ul li a img {
 .es-sc-comments-area .comment-list li .the-comment .comment-text {
   font-size: 16px;
   line-height: 24px;
-  margin: 15px 0px;
 }
 .es-sc-comments-area .comment-list li .the-comment .comment-reply-link {
   text-decoration: none;
@@ -1593,7 +1607,8 @@ header .es-header-mobile-navigation-wrapper ul li a img {
   border-radius: 8px;
 }
 .es-modal-wrapper .es-site-modal #es-user-signin-modal-body,
-.es-modal-wrapper .es-site-modal #es-user-signup-modal-body {
+.es-modal-wrapper .es-site-modal #es-user-signup-modal-body,
+.es-modal-wrapper .es-site-modal #es-user-forget-password-modal-body {
   display: none;
 }
 .es-modal-wrapper .es-site-modal span.close-modal {
@@ -1613,20 +1628,6 @@ header .es-header-mobile-navigation-wrapper ul li a img {
 .es-modal-wrapper .es-site-modal .es-modal-content .es-form-control {
   margin-bottom: 15px;
   position: relative;
-}
-.es-modal-wrapper .es-site-modal .es-modal-content .es-forget-password-control {
-  display: flex;
-  justify-content: end;
-  margin-bottom: 0;
-}
-.es-modal-wrapper .es-site-modal .es-modal-content .es-remember-password-control {
-  display: flex;
-  gap: 10px
-}
-.es-modal-wrapper .es-site-modal .es-modal-content .es-forget-password-control button {
-  color: #8e8e8e;
-  font-weight: 500;
-  font-size: 14px;
 }
 .es-modal-wrapper .es-site-modal .es-modal-content .es-form-control label {
   display: block;
@@ -1787,32 +1788,38 @@ header .es-header-mobile-navigation-wrapper ul li a img {
   left: 0px;
   opacity: 1;
   visibility: visible;
-}
-.es-modal-wrapper.display-modal[modal-type="signup-modal"] {
-  overflow-y: scroll;
-  padding: 30px 0;
   width: calc(100% + 30px);
+  overflow-x: scroll;
+  padding: 30px;
 }
-.es-modal-wrapper.display-modal[modal-type="signup-modal"] .es-auth-modal {
-  margin-top: 200px;
+.es-modal-wrapper.display-modal[modal-type=signup-modal] .es-site-modal {
+  top: 140px;
 }
 .es-modal-wrapper.display-modal .es-site-modal {
   transform: scale(1);
   margin-bottom: 0px;
 }
-.es-modal-wrapper #es-user-signup-modal-body,
-.es-modal-wrapper #es-user-signin-modal-body,
-.es-modal-wrapper #es-user-forget-password-modal-body {
-  display: none;
+.es-modal-wrapper[modal-type=signin-modal] #es-user-signin-modal-body {
+  display: block;
 }
-.es-modal-wrapper[modal-type=signin-modal] #es-user-signin-modal-body,
-.es-modal-wrapper[modal-type=signup-modal] #es-user-signup-modal-body,
+.es-modal-wrapper[modal-type=signup-modal] #es-user-signup-modal-body {
+  display: block;
+}
 .es-modal-wrapper[modal-type=forget-password-modal] #es-user-forget-password-modal-body {
   display: block;
 }
 .es-modal-wrapper[modal-type=forget-password-modal] .modal-header {
-  flex-direction: column;
   gap: 20px;
+  flex-direction: column;
+}
+.es-modal-wrapper[modal-type=forget-password-modal] .es-remember-password-control {
+  display: flex;
+  font-size: 14px;
+  color: #8e8e8e;
+  gap: 10px;
+}
+.es-modal-wrapper[modal-type=forget-password-modal] .es-remember-password-control button {
+  text-decoration: underline;
 }
 .es-modal-wrapper[modal-type=auth-require-modal] .es-site-modal {
   min-height: 300px;
@@ -1974,6 +1981,18 @@ header .es-header-mobile-navigation-wrapper ul li a img {
   text-align: center;
   padding-top: 100px;
   padding-bottom: 400px;
+}
+.es-course-notification-page .es-site-container {
+  position: relative;
+}
+.es-course-notification-page .es-close-page {
+  position: absolute;
+  top: -55px;
+  left: 10px;
+}
+.es-course-notification-page .es-close-page svg {
+  width: 35px;
+  height: 35px;
 }
 .es-course-notification-page img {
   width: 110px;
@@ -2921,6 +2940,15 @@ header .es-header-mobile-navigation-wrapper ul li a img {
   padding: 5px 14px;
   display: inline-block;
 }
+.es-section-title span.es-boxed-title-white {
+  background: transparent;
+  color: #EF4D1C;
+  border-radius: 2px;
+  padding: 4px 13px;
+  display: inline-block;
+  border: 1px solid #EF4D1C;
+  margin-left: 10px;
+}
 .es-section-title h3 {
   font-size: 36px;
   line-height: 45px;
@@ -3573,10 +3601,9 @@ header .es-header-mobile-navigation-wrapper ul li a img {
 }
 .es-settings-page-inner .es-membership-plans .es-membership-plan {
   background: #A9B7C7;
-  color: #E1E4E8;
   border-radius: 4px;
   padding: 25px;
-  margin-bottom: 15px;
+  color: #E1E4E8;
 }
 .es-settings-page-inner .es-membership-plans .es-membership-plan.es_plan_creator {
   background: #648055;
@@ -3957,7 +3984,8 @@ header .es-header-mobile-navigation-wrapper ul li a img {
 .es-not-found-wrapper .es-not-found-inner {
   padding: 200px 0px;
   text-align: center;
-  width: 600px;
+  max-width: 600px;
+  width: 100%;
   margin: auto;
 }
 .es-not-found-wrapper .es-not-found-inner h1 {

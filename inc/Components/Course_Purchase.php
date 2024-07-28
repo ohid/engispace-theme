@@ -84,6 +84,7 @@ class Course_Purchase implements Component_Interface {
         $product_price = (int) $product_price * 100;
 
         $session_args = [
+            'customer_email' => es_get_current_user_email(),
             'payment_method_types' => ['card'],
             'line_items' => [
                 [

@@ -2,6 +2,21 @@
     text-align: center;
     padding-top: 100px;
     padding-bottom: 400px;
+    
+    .es-site-container {
+        position: relative;
+    }
+
+    .es-close-page {
+        position: absolute;
+        top: -55px;
+        left: 10px;
+
+        svg {
+            width: 35px;
+            height: 35px;
+        }
+    }
 
     img {
         width: 110px;

@@ -22,12 +22,16 @@ $title_boxed = get_field( 'title_boxed' );
 $header_title = get_field( 'title' );
 $header_description = get_field( 'description' );
 $section_image = get_field( 'section_image' );
+$is_coming_soon = get_field( 'is_coming_soon' );
 ?>
 
 <div id="<?php echo esc_attr($id); ?>" class="<?php echo esc_attr($className); ?>" style="background-image:url(<?php echo esc_url( $header_image ); ?>)">
     <div class="es-site-container">
         <div class="es-section-title">
             <span class="boxed-title"><?php esc_html_e( $title_boxed ); ?></span>
+            <?php if ( $is_coming_soon ) : ?>
+                <span class="es-boxed-title-white"><?php esc_html_e( 'Coming soon', 'engispace' ) ?></span>
+            <?php endif; ?>
             <h3><?php esc_html_e( $header_title ); ?></h3>
             <p><?php esc_html_e( $header_description ); ?></p>
         </div>

@@ -17,13 +17,14 @@
                     list-style: none;
                     margin-bottom: 10px;
                     transition: all 0.1s ease-in;
+                    position: relative;
 
                     a {
                         text-decoration: none;
                         font-size: 14px;
-                        font-weight: 500;
+                        font-weight: 700;
                         line-height: 20px;
-                        color: #0366D6;
+                        color: #0366d6;
                         display: block;
                         
                         &:hover {
@@ -35,9 +36,30 @@
                         font-weight: 700;
                     }
 
+                    .es-expand-menu {
+                        position: absolute;
+                        right: 0px;
+                        top: 0;
+                        width: 20px;
+                        height: 20px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        z-index: 9999;
+                        cursor: pointer;
+                        transition: all 0.3s ease;
+                    }
+
+                    &.menu-expanded {
+                        .es-expand-menu {
+                            transform: rotate(-90deg);
+                        }
+                    }
+
                     .children {
                         padding-left: 15px;
                         margin-top: 10px;
+                        display: none;
                     }
                 }
             }

@@ -266,8 +266,8 @@ function es_get_current_user_email() {
     if ( !is_user_logged_in() ) {
         return;
     }
-    $user_id = get_current_user_id();
-    return get_user_meta( $user_id, 'es_user_email', true );
+    $current_user = wp_get_current_user();
+    return $current_user->user_email;
 }
 
 /**

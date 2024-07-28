@@ -105,7 +105,7 @@ class Profile implements Component_Interface {
             update_user_meta( $user_id, 'es_user_phone', $es_user_phone );
         }
         if ( !empty( $es_user_email ) ) {
-            update_user_meta( $user_id, 'es_user_email', $es_user_email );
+            wp_update_user( array( 'ID' => $user_id, 'user_email' => $es_user_email ) );
         }
         if ( !empty( $es_user_url ) ) {
             update_user_meta( $user_id, 'es_user_url', $es_user_url );

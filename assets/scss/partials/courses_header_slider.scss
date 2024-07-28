@@ -4,9 +4,10 @@
 
     .es-slide {
         padding: 80px 72px;
-        background-size: cover;
+        background-size: 100% 100%;
         background-repeat: no-repeat;
         border-radius: 6px;
+        min-height: 306px;
 
         h4 {
             color: #fff;

@@ -23,7 +23,8 @@
         border-radius: 8px;
 
         #es-user-signin-modal-body, 
-        #es-user-signup-modal-body {
+        #es-user-signup-modal-body,
+        #es-user-forget-password-modal-body {
             display: none;
         }
 
@@ -238,6 +239,15 @@
         left: 0px;
         opacity: 1;
         visibility: visible;
+        width: calc(100% + 30px);
+        overflow-x: scroll;
+        padding: 30px;
+
+        &[modal-type="signup-modal"] {
+            .es-site-modal {
+                top: 140px;
+            }
+        }
 
         .es-site-modal {
             transform: scale(1);
@@ -249,16 +259,31 @@
         #es-user-signin-modal-body {
             display: block;
         }
-        #es-user-signup-modal-body {
-            display: none;
-        }
     }
     &[modal-type="signup-modal"] {
         #es-user-signup-modal-body {
             display: block;
         }
-        #es-user-signin-modal-body {
-            display: none;
+    }
+    &[modal-type="forget-password-modal"] {
+        #es-user-forget-password-modal-body {
+            display: block;
+        }
+
+        .modal-header {
+            gap: 20px;
+            flex-direction: column;
+        }
+        
+        .es-remember-password-control {
+            display: flex;
+            font-size: 14px;
+            color: #8e8e8e;
+            gap: 10px;
+
+            button {
+                text-decoration: underline;
+            }
         }
     }
     &[modal-type="auth-require-modal"] {
