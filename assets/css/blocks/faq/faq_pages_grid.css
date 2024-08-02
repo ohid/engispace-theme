@@ -1,0 +1,28 @@
+.es-faq-pages-grid {
+  background-color: rgb(249, 250, 251);
+  padding: 70px 0px;
+}
+.es-faq-pages-grid .es-faq-pages-grid-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+.es-faq-pages-grid .es-faq-pages-grid-inner > div {
+  padding: 25px;
+  text-align: center;
+}
+.es-faq-pages-grid .es-faq-pages-grid-inner > div h3 {
+  font-size: 1.25rem;
+  line-height: 1;
+  font-weight: 500;
+  margin-top: 15px;
+}
+.es-faq-pages-grid .es-faq-pages-grid-inner > div img {
+  width: 70px;
+  margin: auto;
+}
+.es-faq-pages-grid .es-faq-pages-grid-inner > div p {
+  margin-top: 10px;
+}
+
+/*# sourceMappingURL=faq_pages_grid.css.map */

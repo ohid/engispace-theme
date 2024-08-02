@@ -1,0 +1,38 @@
+.es-faq-accordion-section {
+    background-color: rgb(249 250 251);
+    padding: 70px 0px;
+
+    .es-faq-group {
+        margin-bottom: 20px;
+        position: relative;
+
+        h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            cursor: pointer;
+            user-select: none;
+        }
+        p {
+            color: rgb(107 114 128);
+            display: none;
+            font-size: 16px;
+        }
+
+        .down-arrow {
+            position: absolute;
+            right: 0px;
+            top: 10px;
+            transition: all 0.2s ease-in;
+        }
+
+        &.active {
+            p {
+                display: block;
+            }
+            .down-arrow {
+                transform: rotate(-180deg);
+            }
+        }
+    }
+}

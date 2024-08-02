@@ -3,6 +3,7 @@
 @import 'partials/header.scss';
 @import 'partials/footer.scss';
 @import 'partials/form.scss';
+@import 'partials/page.scss';
 @import 'partials/courses_header_slider.scss';
 @import 'partials/user_courses_grid.scss';
 @import 'partials/marketplace_banner.scss';
@@ -38,6 +39,10 @@
 
 @import 'blocks/pricing/pricing_plan.scss';
 @import 'blocks/pricing/pricing_courses.scss';
+
+@import 'blocks/faq/faq_header.scss';
+@import 'blocks/faq/faq_pages_grid.scss';
+@import 'blocks/faq/faq_accordion.scss';
 
 @import 'partials/creator_dashboard';
 @import 'partials/settings';

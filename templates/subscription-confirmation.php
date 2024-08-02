@@ -20,7 +20,7 @@ get_header();
             </div>
             <h3><?php esc_html_e( 'Thank you for subscribing.', 'engispace' ); ?></h3>
             <div class="es-flex es-justify-center es-gap-2.5 es-mt-16">
-                <a class="es-btn-default">
+                <a href="<?php echo home_url( '/marketplace' ); ?>" class="es-btn-default">
                     <?php esc_html_e( 'Go to MarketPlace', 'engispace' ); ?>
                 </a>
                 <a href="<?php echo home_url( '/creator-dashboard' ); ?>" class="es-btn-orange">

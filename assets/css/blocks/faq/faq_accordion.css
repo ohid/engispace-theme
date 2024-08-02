@@ -1,0 +1,34 @@
+.es-faq-accordion-section {
+  background-color: rgb(249, 250, 251);
+  padding: 70px 0px;
+}
+.es-faq-accordion-section .es-faq-group {
+  margin-bottom: 20px;
+  position: relative;
+}
+.es-faq-accordion-section .es-faq-group h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  cursor: pointer;
+  user-select: none;
+}
+.es-faq-accordion-section .es-faq-group p {
+  color: rgb(107, 114, 128);
+  display: none;
+  font-size: 16px;
+}
+.es-faq-accordion-section .es-faq-group .down-arrow {
+  position: absolute;
+  right: 0px;
+  top: 10px;
+  transition: all 0.2s ease-in;
+}
+.es-faq-accordion-section .es-faq-group.active p {
+  display: block;
+}
+.es-faq-accordion-section .es-faq-group.active .down-arrow {
+  transform: rotate(-180deg);
+}
+
+/*# sourceMappingURL=faq_accordion.css.map */

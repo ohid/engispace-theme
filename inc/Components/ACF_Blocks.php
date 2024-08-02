@@ -35,6 +35,7 @@ class ACF_Blocks implements Component_Interface {
         $this->register_blocks_for_features_page();
         $this->register_blocks_for_courses_page();
         $this->register_blocks_for_pricing_page();
+        $this->register_blocks_for_faq_page();
     }
 
     /**
@@ -467,6 +468,74 @@ class ACF_Blocks implements Component_Interface {
                 // only enqueue the block assets for the admin gutenberg editor
                 if ( is_admin() ) {
                     wp_enqueue_style( 'pricing_courses', THEME_URI . '/assets/css/blocks/pricing_courses.css' );
+                }
+            },
+            'example'  => array(
+                'attributes' => array(
+                    'mode' => 'preview'
+                )
+            ),
+        ));
+    }
+
+    public function register_blocks_for_faq_page() {
+        // FAQ Header
+        acf_register_block_type(array(
+            'name'              => 'es_faq_header_block',
+            'title'             => __('Engispace - FAQ Header Block'),
+            'description'       => __('FAQ Header'),
+            'render_template'   => 'template-parts/acf-blocks/faq/header.php',
+            'category'          => 'engispace-theme',
+            'icon'              => $this->es_logo,
+            'keywords'          => array( 'faq', 'faq-header', 'header', 'engispace', 'es' ),
+            'enqueue_assets' => function() {
+                // only enqueue the block assets for the admin gutenberg editor
+                if ( is_admin() ) {
+                    wp_enqueue_style( 'faq_header', THEME_URI . '/assets/css/blocks/faq/faq_header.css' );
+                }
+            },
+            'example'  => array(
+                'attributes' => array(
+                    'mode' => 'preview'
+                )
+            ),
+        ));
+
+        // FAQ Pages Grid
+        acf_register_block_type(array(
+            'name'              => 'es_faq_pages_grid',
+            'title'             => __('Engispace - FAQ Pages Grid'),
+            'description'       => __('FAQ Pages Grid'),
+            'render_template'   => 'template-parts/acf-blocks/faq/pages-grid.php',
+            'category'          => 'engispace-theme',
+            'icon'              => $this->es_logo,
+            'keywords'          => array( 'faq', 'faq-pages-grid', 'faq-pages', 'faq pages', 'engispace', 'es' ),
+            'enqueue_assets' => function() {
+                // only enqueue the block assets for the admin gutenberg editor
+                if ( is_admin() ) {
+                    wp_enqueue_style( 'faq_pages_grid', THEME_URI . '/assets/css/blocks/faq/faq_pages_grid.css' );
+                }
+            },
+            'example'  => array(
+                'attributes' => array(
+                    'mode' => 'preview'
+                )
+            ),
+        ));
+
+        // FAQ Accordion
+        acf_register_block_type(array(
+            'name'              => 'es_faq_according',
+            'title'             => __('Engispace - FAQ Accordion'),
+            'description'       => __('FAQ Accordion'),
+            'render_template'   => 'template-parts/acf-blocks/faq/accordion.php',
+            'category'          => 'engispace-theme',
+            'icon'              => $this->es_logo,
+            'keywords'          => array( 'faq', 'accordion', 'engispace', 'es' ),
+            'enqueue_assets' => function() {
+                // only enqueue the block assets for the admin gutenberg editor
+                if ( is_admin() ) {
+                    wp_enqueue_style( 'faq_accordion', THEME_URI . '/assets/css/blocks/faq/faq_accordion.css' );
                 }
             },
             'example'  => array(

@@ -904,6 +904,16 @@
             } );
         },
 
+        miscEvents: function() {
+            $( document ).on('click', '.es-faq-selected-page', function() {
+                $(this).closest('.es-faq-pages-menu').toggleClass('active');
+            });
+            
+            $( document ).on('click', '.es-faq-question', function() {
+                $(this).closest('.es-faq-group').toggleClass('active');
+            });
+        },
+
         init: function() {
             window.engispace.initHeaderFunctions();
             window.engispace.initCourseSliders();
@@ -924,6 +934,7 @@
             window.engispace.initProfileMembershipUpgrade();
             window.engispace.initCreatorStripeForm();
             window.engispace.initCouseSidebarExpandableMenu();
+            window.engispace.miscEvents();
 
             jQuery(window).on('resize', function() {
                 course_details_hover_box();

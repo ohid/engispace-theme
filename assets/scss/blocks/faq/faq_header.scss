@@ -1,0 +1,87 @@
+.es-faq-header {
+    .es-faq-header-inner {
+        padding: 120px 0px;
+        text-align: center;
+
+        .es-faq-header-faqs-link {
+            color: #f24c00;
+            p {
+                font-weight: 700;
+                font-size: 12px;
+            }
+        }
+        .es-faq-header-title {
+            font-size: 3rem;
+            line-height: 1;
+            font-weight: 600;
+            margin-top: .75rem;
+        } 
+        .es-faq-header-description {
+            font-size: 1.5rem;
+            line-height: 2rem;
+            color: rgb(107 114 128);
+            margin-top: 20px;
+        }
+
+        .es-faq-pages-menu {
+            margin: 60px auto 0px;
+            width: 280px;
+            position: relative;
+
+            &.active {
+                .es-faq-all-pages {
+                    display: block;
+                }
+
+                .es-faq-selected-page {
+                    svg {
+                        transform: rotate(180deg);
+                    }
+                }
+            }
+
+            .es-faq-selected-page {
+                cursor: pointer;
+                padding: 10px 20px;
+                border: 1px solid rgb(209, 213, 219);
+                width: 100%;
+                height: 50px;
+                display: block;
+                border-radius: 10px;
+                font-size: 18px;
+                text-align: left;
+                user-select: none;
+                
+                svg {
+                    position: absolute;
+                    right: 18px;
+                    top: 16px;
+                }
+            }
+
+            .es-faq-all-pages {
+                position: absolute;
+                width: 100%;
+                top: 55px;
+                left: 0px;
+                padding: 10px 0px;
+                border-radius: 10px;
+                border: 1px solid rgb(209, 213, 219);
+                background-color: #ffffff;
+                display: none;
+
+                li {
+                    padding: 2px 0px;
+
+                    a {
+                        color: #f24c00;
+                        &:hover {
+                            cursor: pointer;
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

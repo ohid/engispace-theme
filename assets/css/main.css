@@ -513,6 +513,36 @@ header .es-header-mobile-navigation-wrapper ul li a img {
   background: #9f3e0d;
 }
 
+.es-page-header {
+  padding: 120px 0px;
+  background-color: #f5f5f5;
+}
+.es-page-header h2 {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 500;
+}
+
+.es-page-wrapper {
+  margin: 40px 0px;
+}
+.es-page-wrapper h1, .es-page-wrapper h2, .es-page-wrapper h3, .es-page-wrapper h4, .es-page-wrapper h5, .es-page-wrapper h6 {
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+.es-page-wrapper p, .es-page-wrapper ul {
+  margin-bottom: 15px;
+}
+.es-page-wrapper ul {
+  list-style: auto;
+  margin-left: 20px;
+}
+@media (min-width: 1024px) {
+  .es-page-wrapper .es-terms-page {
+    padding: 0px 100px;
+  }
+}
+
 .courses-header-slider {
   margin-top: 30px;
   position: relative;
@@ -3345,6 +3375,139 @@ header .es-header-mobile-navigation-wrapper ul li a img {
     margin-top: 80px;
   }
 }
+.es-faq-header .es-faq-header-inner {
+  padding: 120px 0px;
+  text-align: center;
+}
+.es-faq-header .es-faq-header-inner .es-faq-header-faqs-link {
+  color: #f24c00;
+}
+.es-faq-header .es-faq-header-inner .es-faq-header-faqs-link p {
+  font-weight: 700;
+  font-size: 12px;
+}
+.es-faq-header .es-faq-header-inner .es-faq-header-title {
+  font-size: 3rem;
+  line-height: 1;
+  font-weight: 600;
+  margin-top: 0.75rem;
+}
+.es-faq-header .es-faq-header-inner .es-faq-header-description {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  color: rgb(107, 114, 128);
+  margin-top: 20px;
+}
+.es-faq-header .es-faq-header-inner .es-faq-pages-menu {
+  margin: 60px auto 0px;
+  width: 280px;
+  position: relative;
+}
+.es-faq-header .es-faq-header-inner .es-faq-pages-menu.active .es-faq-all-pages {
+  display: block;
+}
+.es-faq-header .es-faq-header-inner .es-faq-pages-menu.active .es-faq-selected-page svg {
+  transform: rotate(180deg);
+}
+.es-faq-header .es-faq-header-inner .es-faq-pages-menu .es-faq-selected-page {
+  cursor: pointer;
+  padding: 10px 20px;
+  border: 1px solid rgb(209, 213, 219);
+  width: 100%;
+  height: 50px;
+  display: block;
+  border-radius: 10px;
+  font-size: 18px;
+  text-align: left;
+  user-select: none;
+}
+.es-faq-header .es-faq-header-inner .es-faq-pages-menu .es-faq-selected-page svg {
+  position: absolute;
+  right: 18px;
+  top: 16px;
+}
+.es-faq-header .es-faq-header-inner .es-faq-pages-menu .es-faq-all-pages {
+  position: absolute;
+  width: 100%;
+  top: 55px;
+  left: 0px;
+  padding: 10px 0px;
+  border-radius: 10px;
+  border: 1px solid rgb(209, 213, 219);
+  background-color: #ffffff;
+  display: none;
+}
+.es-faq-header .es-faq-header-inner .es-faq-pages-menu .es-faq-all-pages li {
+  padding: 2px 0px;
+}
+.es-faq-header .es-faq-header-inner .es-faq-pages-menu .es-faq-all-pages li a {
+  color: #f24c00;
+}
+.es-faq-header .es-faq-header-inner .es-faq-pages-menu .es-faq-all-pages li a:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.es-faq-pages-grid {
+  background-color: rgb(249, 250, 251);
+  padding: 70px 0px;
+}
+.es-faq-pages-grid .es-faq-pages-grid-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+.es-faq-pages-grid .es-faq-pages-grid-inner > div {
+  padding: 25px;
+  text-align: center;
+}
+.es-faq-pages-grid .es-faq-pages-grid-inner > div h3 {
+  font-size: 1.25rem;
+  line-height: 1;
+  font-weight: 500;
+  margin-top: 15px;
+}
+.es-faq-pages-grid .es-faq-pages-grid-inner > div img {
+  width: 70px;
+  margin: auto;
+}
+.es-faq-pages-grid .es-faq-pages-grid-inner > div p {
+  margin-top: 10px;
+}
+
+.es-faq-accordion-section {
+  background-color: rgb(249, 250, 251);
+  padding: 70px 0px;
+}
+.es-faq-accordion-section .es-faq-group {
+  margin-bottom: 20px;
+  position: relative;
+}
+.es-faq-accordion-section .es-faq-group h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  cursor: pointer;
+  user-select: none;
+}
+.es-faq-accordion-section .es-faq-group p {
+  color: rgb(107, 114, 128);
+  display: none;
+  font-size: 16px;
+}
+.es-faq-accordion-section .es-faq-group .down-arrow {
+  position: absolute;
+  right: 0px;
+  top: 10px;
+  transition: all 0.2s ease-in;
+}
+.es-faq-accordion-section .es-faq-group.active p {
+  display: block;
+}
+.es-faq-accordion-section .es-faq-group.active .down-arrow {
+  transform: rotate(-180deg);
+}
+
 .ir-frontend-dashboard-template-body #ir-coures-progress-donut span.apexcharts-legend-marker:after,
 .ir-frontend-dashboard-template-body #ir-learner-progress-donut span.apexcharts-legend-marker:after,
 .ir-frontend-dashboard-template-body .mantine-Progress-bar,
@@ -3604,6 +3767,7 @@ header .es-header-mobile-navigation-wrapper ul li a img {
   border-radius: 4px;
   padding: 25px;
   color: #E1E4E8;
+  margin-bottom: 15px;
 }
 .es-settings-page-inner .es-membership-plans .es-membership-plan.es_plan_creator {
   background: #648055;
