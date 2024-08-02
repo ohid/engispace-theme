@@ -21,6 +21,10 @@ class Profile implements Component_Interface {
         add_action( 'template_redirect', [ $this, 'redirect_profile_page' ] );
         add_action( 'wp_ajax_es_update_profile_details', [ $this, 'update_profile_details' ] );
         add_action( 'wp_ajax_es_update_contact_details', [ $this, 'es_update_contact_details' ] );
+        add_action( 'init', [ $this, 'es_redirect_users' ] );
+        if ( !is_user_logged_in() ) {
+            return;
+        }
     }
 
     public function redirect_profile_page() {
@@ -113,5 +117,20 @@ class Profile implements Component_Interface {
 
         wp_send_json_success();
         die;
+    }
+
+    /**
+     * Redirect all other user roles except admin to access the admin page
+     * 
+     * @since 1.0.0
+     */
+    public function es_redirect_users() {
+        if ( !is_user_logged_in() || !is_admin() ) {
+            return;
+        }
+        if ( !current_user_can( 'manage_posts' ) ) {
+            wp_redirect( home_url( '/profile' ) );
+            exit;
+        }
     }
 }
