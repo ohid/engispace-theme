@@ -23,6 +23,7 @@
   right: 0px;
   top: 10px;
   transition: all 0.2s ease-in;
+  cursor: pointer;
 }
 .es-faq-accordion-section .es-faq-group.active p {
   display: block;

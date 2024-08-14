@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":["../../../scss/blocks/faq/faq_pages_grid.scss"],"names":[],"mappings":"AAAA;EACI;EACA;;AAEA;EACI;EACA;EACA;;AAEA;EACI;EACA;;AAEA;EACI;EACA;EACA;EACA;;AAGJ;EACI;EACA;;AAGJ;EACI","file":"faq_pages_grid.css"}
+{"version":3,"sourceRoot":"","sources":["../../../scss/blocks/faq/faq_pages_grid.scss"],"names":[],"mappings":"AAAA;EACI;EACA;;AAEA;EACI;EACA;EACA;;AAEA;EACI;EACA;;AAEA;EACI;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;;AAEA;EACI;;AAIR;EACI","file":"faq_pages_grid.css"}

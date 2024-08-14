@@ -3384,7 +3384,7 @@ header .es-header-mobile-navigation-wrapper ul li a img {
 }
 .es-faq-header .es-faq-header-inner .es-faq-header-faqs-link p {
   font-weight: 700;
-  font-size: 12px;
+  font-size: 15px;
 }
 .es-faq-header .es-faq-header-inner .es-faq-header-title {
   font-size: 3rem;
@@ -3467,9 +3467,16 @@ header .es-header-mobile-navigation-wrapper ul li a img {
   font-weight: 500;
   margin-top: 15px;
 }
-.es-faq-pages-grid .es-faq-pages-grid-inner > div img {
-  width: 70px;
+.es-faq-pages-grid .es-faq-pages-grid-inner > div .es-faq-pages-grid-img {
+  width: 50px;
+  padding: 16px;
   margin: auto;
+  box-sizing: border-box;
+  border-radius: 100%;
+  background-color: #f24c00;
+}
+.es-faq-pages-grid .es-faq-pages-grid-inner > div .es-faq-pages-grid-img img {
+  width: 100%;
 }
 .es-faq-pages-grid .es-faq-pages-grid-inner > div p {
   margin-top: 10px;
@@ -3500,6 +3507,7 @@ header .es-header-mobile-navigation-wrapper ul li a img {
   right: 0px;
   top: 10px;
   transition: all 0.2s ease-in;
+  cursor: pointer;
 }
 .es-faq-accordion-section .es-faq-group.active p {
   display: block;

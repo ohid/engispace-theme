@@ -198,12 +198,13 @@ class Authentication implements Component_Interface {
         $subject = esc_html__( 'Reset your password', 'engispace' );
         $user = get_user_by_email( $to );
         $key = get_password_reset_key( $user );
+        $reset_url = network_site_url("wp-login.php?action=rp&key=$key&login=" . rawurlencode($user->user_login), 'login');
 
-        $message = __('To set your password, visit the following address:') . "\r\n\r\n";
-        $message .= '<' . network_site_url("wp-login.php?action=rp&key=$key&login=" . rawurlencode($user->user_login), 'login') . ">\r\n\r\n";
-        $message .= wp_login_url() . "\r\n";
+        ob_start();
+        include( locate_template( 'templates/email/reset-password.php', false, false ) );
+        $message = ob_get_clean();
 
-        $headers = array('Content-Type: text/html; charset=UTF-8','From: My Site Name <support@example.com>');
+        $headers = array('Content-Type: text/html; charset=UTF-8','From: EngiSpace <admin@engiversity.com>');
 
         wp_mail( $to, $subject, $message, $headers );
     }

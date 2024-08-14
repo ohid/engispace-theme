@@ -909,7 +909,7 @@
                 $(this).closest('.es-faq-pages-menu').toggleClass('active');
             });
             
-            $( document ).on('click', '.es-faq-question', function() {
+            $( document ).on('click', '.es-faq-question, .es-faq-group .down-arrow', function() {
                 $(this).closest('.es-faq-group').toggleClass('active');
             });
         },

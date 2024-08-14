@@ -27,7 +27,9 @@ $pages = get_field( 'pages' );
             <?php foreach( $pages as $page ) : ?>
                 <div>
                     <?php
-                        es_img_with_srcset( $page['icon'] ); 
+                        echo '<div class="es-faq-pages-grid-img">';
+                            es_img_with_srcset( $page['icon'] );
+                        echo '</div>';
 
                         printf(
                             '<a href="%s"><h3>%s</h3></a>',

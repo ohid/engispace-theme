@@ -128,7 +128,7 @@ class Profile implements Component_Interface {
         if ( !is_user_logged_in() || !is_admin() ) {
             return;
         }
-        if ( !current_user_can( 'manage_posts' ) ) {
+        if ( !current_user_can( 'manage_options' ) ) {
             wp_redirect( home_url( '/profile' ) );
             exit;
         }

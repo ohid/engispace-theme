@@ -18,9 +18,17 @@
                 margin-top: 15px;
             }
 
-            img {
-                width: 70px;
+            .es-faq-pages-grid-img {
+                width: 50px;
+                padding: 16px;
                 margin: auto;
+                box-sizing: border-box;
+                border-radius: 100%;
+                background-color: #f24c00;
+
+                img {
+                    width: 100%;
+                }
             }
 
             p {
