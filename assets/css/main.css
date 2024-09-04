@@ -2042,6 +2042,72 @@ header .es-header-mobile-navigation-wrapper ul li a img {
   font-weight: 700;
 }
 
+.es-resetpass-wrapper {
+  min-height: 600px;
+}
+
+.engispace-lost-password {
+  width: 100%;
+  max-width: 600px;
+  margin: -110px auto 50px;
+  background: #fff;
+  padding: 38px;
+  box-sizing: border-box;
+  box-shadow: 0px 9px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+}
+.engispace-lost-password .es-form-label {
+  text-align: center;
+  color: #9c9c9c;
+}
+.engispace-lost-password form {
+  margin-top: 50px;
+}
+.engispace-lost-password .tml-field {
+  color: #495057;
+  border: 1px solid #e1e4e8;
+  font-weight: 400;
+  font-size: 16px;
+  border-radius: 4px;
+  display: block;
+  width: 100%;
+  height: 50px;
+  padding: 0px 10px;
+  box-sizing: border-box;
+}
+.engispace-lost-password .tml-button {
+  font-size: 14px;
+  font-weight: 500;
+  color: white;
+  background: #E04B06;
+  border-radius: 6px;
+  padding: 16px 30px;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.2s ease-in;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+}
+.engispace-lost-password .tml-button:hover {
+  background: #ea530d;
+}
+.engispace-lost-password .tml-links {
+  margin: 40px auto 0;
+  display: inline-flex;
+  gap: 20px;
+  color: #E04B06;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.engispace-lost-password .tml-links .tml-register-link {
+  display: none;
+}
+.engispace-lost-password .tml-links li {
+  list-style: none;
+}
+
 .es-course-learn-context {
   border: 1px solid #E1E4E8;
   background: #FAFBFC;
@@ -3853,6 +3919,7 @@ header .es-header-mobile-navigation-wrapper ul li a img {
 
 .es-profile-page {
   padding: 60px 0px;
+  min-height: 1000px;
 }
 .es-profile-page .es-profile-inner {
   display: flex;
