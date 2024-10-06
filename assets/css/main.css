@@ -21,6 +21,14 @@ h3 {
   line-height: 42px;
 }
 
+h4 {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  color: #3C3F41;
+  margin-top: 12px;
+}
+
 .es-site-container {
   width: 100%;
   margin: auto;
@@ -4262,6 +4270,231 @@ header .es-header-mobile-navigation-wrapper ul li a img {
   color: #0366D6;
   margin-top: 40px;
   display: inline-block;
+}
+
+.es-forum-header-banner {
+  margin-top: 25px;
+}
+.es-forum-header-banner .es-fhb-inner {
+  background: #FAFBFC;
+  display: flex;
+  border-radius: 8px;
+}
+.es-forum-header-banner .es-fhb-inner .es-fhb-item {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 50px 40px;
+  position: relative;
+}
+.es-forum-header-banner .es-fhb-inner .es-fhb-item:not(:last-child):after {
+  content: "";
+  position: absolute;
+  right: 0px;
+  width: 1px;
+  height: 114px;
+  background: #E1E4E8;
+  top: 50%;
+  margin-top: -57px;
+}
+.es-forum-header-banner .es-fhb-inner .es-fhb-item h4 {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  color: #3C3F41;
+  margin-top: 12px;
+}
+.es-forum-header-banner .es-fhb-inner .es-fhb-item p {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: center;
+  color: #3C3F41;
+  margin-top: 7px;
+}
+.es-forum-header-banner .es-fhb-inner .es-fhb-item img {
+  max-width: 110px;
+}
+
+.es-forum-content-inner {
+  display: flex;
+  padding-top: 20px;
+}
+.es-forum-content-inner .es-forum-sidebar {
+  width: 380px;
+  padding: 0 40px 0 20px;
+}
+.es-forum-content-inner .es-forum-sidebar .es-sidebar-widget {
+  padding: 0px 0px 20px 0px;
+  margin-bottom: 30px;
+}
+.es-forum-content-inner .es-forum-sidebar .es-sidebar-widget:not(:last-child) {
+  border-bottom: 1px solid #E1E4E8;
+}
+.es-forum-content-inner .es-forum-sidebar .es-sidebar-widget .widget-header h4 {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+}
+.es-forum-content-inner .es-forum-sidebar .es-sidebar-widget .es-widget-content {
+  margin-top: 20px;
+}
+.es-forum-content-inner .es-forum-sidebar .es-sidebar-widget .es-widget-content ul li {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.es-forum-content-inner .es-forum-sidebar .es-sidebar-widget .es-widget-content ul li a {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  color: #0366D6;
+}
+.es-forum-content-inner .es-forum-sidebar .es-sidebar-widget.es-widget-question .widget-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.es-forum-content-inner .es-forum-sidebar .es-sidebar-widget.es-widget-question .widget-header a {
+  padding: 4px 20px;
+}
+.es-forum-content-inner .es-forum-sidebar .es-sidebar-widget.es-widget-question .es-widget-content ul li span {
+  font-size: 12px;
+  line-height: 20px;
+  text-align: center;
+  color: rgba(100, 102, 103, 0.6980392157);
+  background: #C3CDD8;
+  height: 20px;
+  width: 20px;
+  border-radius: 4px;
+  min-width: 20px;
+  margin-top: 2px;
+}
+.es-forum-content-inner .es-forum-content {
+  width: calc(100% - 380px);
+  padding: 0px 20px 0px 40px;
+}
+.es-forum-content-inner .es-forum-content .es-load-more-content {
+  margin-top: 30px;
+}
+.es-forum-content-inner .es-forum-content .es-load-more-content .es-load-more-btn {
+  border: 1px solid rgba(169, 183, 199, 0.2);
+  background: linear-gradient(180deg, #FFFFFF 0%, #EDF0F3 100%);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 15px 25px;
+  border-radius: 4px;
+  display: inline-block;
+  transition: all 0.2s ease-in;
+}
+.es-forum-content-inner .es-forum-content .es-load-more-content .es-load-more-btn:hover {
+  background: linear-gradient(180deg, #EDF0F3 0%, #dadee2 100%);
+}
+
+.es-forum-content-filter-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #E1E4E8;
+  padding-right: 10px;
+}
+.es-forum-content-filter-navigation .es-filter-label {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+}
+.es-forum-content-filter-navigation .es-filter-tabs {
+  display: flex;
+  gap: 8px;
+}
+.es-forum-content-filter-navigation .es-filter-tabs a {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  padding: 3px 13px;
+  border: 1px solid #E1E4E8;
+  border-bottom: 0px;
+  border-radius: 4px 4px 0 0;
+}
+.es-forum-content-filter-navigation .es-filter-tabs a:hover {
+  color: #E04B06;
+  position: relative;
+}
+.es-forum-content-filter-navigation .es-filter-tabs a.active {
+  color: #E04B06;
+  position: relative;
+}
+.es-forum-content-filter-navigation .es-filter-tabs a.active:after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 2px;
+  background-color: #ffffff;
+  bottom: -1px;
+  left: 0;
+}
+
+.es-forum-content-wrap {
+  padding-top: 25px;
+}
+.es-forum-content-wrap .es-forum-content-entry {
+  display: flex;
+  gap: 15px;
+  border: 1px solid #E1E4E8;
+  padding: 15px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+.es-forum-content-wrap .es-forum-content-entry:hover {
+  background: #FFFBEA;
+}
+.es-forum-content-wrap .es-forum-content-entry .es-comments-counter {
+  background: #E8B097;
+  width: 40px;
+  height: 50px;
+  color: #ffffff;
+  display: inline-flex;
+  gap: 3px;
+  border-radius: 4px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+.es-forum-content-wrap .es-forum-content-entry .es-fce-title h3 {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  color: #0366D6;
+}
+.es-forum-content-wrap .es-forum-content-entry .es-fce-title p {
+  font-size: 14px;
+  margin-top: 5px;
+}
+.es-forum-content-wrap .es-forum-content-entry .es-fce-meta-data {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.es-forum-content-wrap .es-forum-content-entry .es-fce-meta-data .es-fce-entry-categories span {
+  color: #0366D6;
+  padding: 3px 10px;
+  border: 1px solid #0366D6;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.es-forum-content-wrap .es-forum-content-entry .es-fce-meta-data .es-right {
+  display: flex;
+  gap: 5px;
+}
+.es-forum-content-wrap .es-forum-content-entry .es-fce-meta-data .es-entry-author {
+  font-size: 14px;
+  font-weight: 500;
+}
+.es-forum-content-wrap .es-forum-content-entry .es-fce-meta-data .es-entry-date {
+  font-size: 14px;
+  color: rgba(100, 102, 103, 0.6980392157);
 }
 
 /*# sourceMappingURL=main.css.map */
