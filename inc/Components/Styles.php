@@ -37,6 +37,18 @@ class Styles implements Component_Interface {
             false
         );
 
+        wp_enqueue_style( 
+            'highlight-js-style', 
+            'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/monokai-sublime.min.css',
+            false
+        );
+
+        wp_enqueue_style( 
+            'quill-snow-style', 
+            'https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css',
+            false
+        );
+
         // Only enqueue stylesheet for the 404 page
         if ( is_404() ) {
             wp_enqueue_style(

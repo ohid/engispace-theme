@@ -120,6 +120,7 @@ class Theme {
             new Components\Settings(),
             new Components\Profile(),
             new Components\Review_Course(),
+            new Components\CPT(),
         );
         
         return $components;

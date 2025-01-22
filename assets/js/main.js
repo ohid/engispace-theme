@@ -914,6 +914,17 @@
             });
         },
 
+        highlightJS: function() {
+            hljs.highlightAll();
+
+            const quill = new Quill('#es-post-answer-editor', {
+                theme: 'snow'
+            });
+            const delta = quill.getContents();
+            console.log(delta);
+            
+        },
+
         init: function() {
             window.engispace.initHeaderFunctions();
             window.engispace.initCourseSliders();
@@ -935,6 +946,7 @@
             window.engispace.initCreatorStripeForm();
             window.engispace.initCouseSidebarExpandableMenu();
             window.engispace.miscEvents();
+            window.engispace.highlightJS();
 
             jQuery(window).on('resize', function() {
                 course_details_hover_box();

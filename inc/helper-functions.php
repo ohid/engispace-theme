@@ -292,14 +292,14 @@ function es_get_current_user_url() {
  * 
  * @return null|string
  */
-function es_user_profile_avatar() {
-    if ( !is_user_logged_in() ) {
-        return;
+function es_user_profile_avatar( $user_id = null ) {
+    if ( !$user_id ) {
+        $user_id = get_current_user_id();
     }
 
     $profile_avatar = THEME_URI . '/assets/img/default-avatar.jpg';
 
-    $user_avatar = get_user_meta( get_current_user_id(), 'es_user_profile_avatar' );
+    $user_avatar = get_user_meta( $user_id, 'es_user_profile_avatar' );
     if ( !empty( $user_avatar[0] ) ) {
         $profile_avatar = $user_avatar[0];
     }

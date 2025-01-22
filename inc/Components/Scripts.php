@@ -42,6 +42,24 @@ class Scripts implements Component_Interface {
             'https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js', 
             ['jquery'] 
         );
+        
+        wp_enqueue_script( 
+            'highlight-js', 
+            'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js', 
+            ['jquery'] 
+        );
+        
+        wp_enqueue_script( 
+            'jquery-validation', 
+            'https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js', 
+            ['jquery'] 
+        );
+
+        wp_enqueue_script( 
+            'quill-js',
+            'https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js',
+            ['jquery'] 
+        );
 
         wp_enqueue_script( 
             'engispace-scripts', 
