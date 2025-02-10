@@ -46,4 +46,37 @@ class Questions {
             esc_html( $author_name )
         );
     }
+
+    public function get_related_questions($post_id, $limit = 8) {
+        // Get current post's categories
+        $categories = get_the_terms($post_id, 'categories');
+        $cat_ids = array();
+        
+        if ($categories) {
+            foreach ($categories as $cat) {
+                $cat_ids[] = $cat->term_id;
+            }
+        }
+    
+        // Query args for related posts
+        $args = array(
+            'post_type' => 'question',
+            'posts_per_page' => $limit,
+            'post__not_in' => array($post_id),
+            'orderby' => 'rand'
+        );
+    
+        // Add category filter if we have categories
+        if (!empty($cat_ids)) {
+            $args['tax_query'] = array(
+                array(
+                    'taxonomy' => 'categories',
+                    'field' => 'term_id',
+                    'terms' => $cat_ids
+                )
+            );
+        }
+    
+        return new WP_Query($args);
+    }
 }

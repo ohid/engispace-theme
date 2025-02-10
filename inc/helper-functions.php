@@ -537,3 +537,102 @@ function es_all_courses_page_title() {
         printf('<h3>%s</h3>', __( 'All Courses', 'engispace' ));
     }
 }
+
+/**
+ * Custom callback function to display answers (comments) for questions
+ * 
+ * This function renders the HTML markup for individual answers in the forum.
+ * It displays the answer content, author information, avatar, and posting date
+ * in the forum's custom layout structure.
+ * 
+ * @since 1.0.0
+ * @param WP_Comment $comment The comment object
+ * @param array     $args    An array of arguments
+ * @param int       $depth   The depth of the current comment in the tree
+ * 
+ * @return void
+ */
+function es_answer_callback($comment, $args, $depth) {
+    ?>
+    <div class="es-forum-answer">
+        <!-- <div class="es-answer-reputation"></div> -->
+        <div class="es-answer-content">
+            <div class="es-answer-author">
+                <span class="es-author-img">
+                    <?php 
+                        $user = get_user_by( 'email', $comment->comment_author_email );
+                        if ( es_user_profile_avatar( $user->ID ) ) {
+                            printf('<img src="%s" />', es_user_profile_avatar( $user->ID ));
+                        } else {
+                            echo get_avatar($comment, 50); 
+                        }
+                    ?>
+                </span>
+                <div class="es-right">
+                    <span class="es-author-name">
+                        <a href="<?php echo esc_url(get_comment_author_url($comment)); ?>">
+                            <?php echo esc_html(get_comment_author($comment)); ?>
+                        </a>
+                    </span>
+                    <span class="es-posted-date">
+                        <?php echo esc_html(get_comment_date('F j, Y', $comment)); ?>
+                    </span>
+                </div>
+            </div>
+            <div class="es-answer-text">
+                <?php comment_text(); ?>
+            </div>
+        </div>
+    </div>
+    <?php
+}
+
+/**
+ * Get the number of answers (approved comments) for the current question
+ *
+ * @since 1.0.0
+ * @return int Number of approved comments
+ */
+function es_get_question_answer_count() {
+    $post_id = get_the_ID();
+    if (!$post_id) {
+        return 0;
+    }
+
+    // Get approved comments count only
+    $comments_count = get_comments([
+        'post_id' => $post_id,
+        'status' => 'approve',
+        'count' => true
+    ]);
+
+    return absint($comments_count);
+}
+
+
+/**
+ * Get and update the view count for the current question
+ *
+ * @return int Current view count
+ */
+function es_get_question_view_count() {
+    $post_id = get_the_ID();
+    if (!$post_id) {
+        return 0;
+    }
+
+    $view_count = absint(get_post_meta($post_id, 'es_question_view_count', true));
+
+    // Increment view count only when actually viewing the page
+    if (!is_admin() && !is_preview()) {
+        $view_count++;
+        $updated = update_post_meta($post_id, 'es_question_view_count', $view_count);
+        
+        if (false === $updated) {
+            error_log(sprintf('Failed to update view count for question ID: %d', $post_id));
+            return $view_count - 1; // Return non-incremented count if update fails
+        }
+    }
+
+    return $view_count;
+}

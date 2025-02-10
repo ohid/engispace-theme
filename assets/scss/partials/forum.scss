@@ -389,10 +389,6 @@
                     font-size: 14px;
                     border-radius: 5px;
                 }
-
-                button{
-                    display: none;
-                }
             }
         }
     }
@@ -428,25 +424,29 @@
                         color: #646667B2;
                     }
                 }
+                p {
+                    font-size: 12px;
+                    font-weight: 500;
+                    line-height: 15px;
+                    color: #646667B2;
+                }
             }
 
-            .es-fpa-categories {
-                ul {
-                    display: flex;
-                    flex-direction: column;
-                    margin: 15px 0px;
-                    gap: 10px;
-                    li {
-                        a {
-                            color: #0366D6;
-                            padding: 4px 10px;
-                            border: 1px solid #0366D6;
-                            border-radius: 4px;    
-                            font-size: 12px;
-                            font-weight: 500;
-                            line-height: 16px;
-                            margin-top: 6px;
-                        }
+            .es-fce-entry-categories {
+                display: flex;
+                flex-direction: column;
+                margin: 15px 0px;
+                gap: 10px;
+                span {
+                    a {
+                        color: #0366D6;
+                        padding: 4px 10px;
+                        border: 1px solid #0366D6;
+                        border-radius: 4px;    
+                        font-size: 12px;
+                        font-weight: 500;
+                        line-height: 16px;
+                        margin-top: 6px;
                     }
                 }
             }
@@ -498,6 +498,8 @@
             ul {
                 li {
                     margin-bottom: 10px;
+                    position: relative;
+                    padding-left: 28px;
 
                     .es-post-answers {
                         background: #ededed;
@@ -511,6 +513,9 @@
                         align-items: center;
                         justify-content: center;
                         margin-right: 10px;
+                        position: absolute;
+                        left: 00px;
+                        top: 3px;
                     }
 
                     a {
@@ -582,14 +587,22 @@
 
     .es-form-post-answer {
         margin-top: 20px;
+        width: 760px;
+
+        .logged-in-as {
+            display: none;
+        }
 
         .es-comment-title {
             margin-bottom: 25px;
+            border-bottom: 1px solid #E1E4E8;
         }
     }
 
     .ql-toolbar.ql-snow + .ql-container.ql-snow {
         min-height: 150px;
+        width: 100%;
+        padding: 15px;
     }
 
     .es-post-answer-submit {

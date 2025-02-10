@@ -1,60 +1,56 @@
-<div class="es-forum-answers-section">
+<?php
+if ( post_password_required() ) {
+    return;
+}
+?>
+
+<div id="answers" class="es-forum-answers-section">
     <div class="es-forum-answers">
-        <div class="es-comment-title">2 Answers</div>
-        <div class="es-forum-answers-list">
-            <div class="es-forum-answer">
-                <div class="es-answer-reputation"></div>
-                <div class="es-answer-content">
-                    <div class="es-answer-author">
-                        <span class="es-author-img"><img src="<?php echo es_user_profile_avatar(); ?>" alt=""></span>
-                        <div class="es-right">
-                            <span class="es-author-name"><a href="#">John Doe</a></span>
-                            <span class="es-posted-date">July 24, 2023</span>
-                        </div>
-                    </div>
-                    <div class="es-answer-text">
-                        <p>Yes, it is possible. You can use the following code to achieve that:</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="es-forum-answer">
-                <div class="es-answer-reputation"></div>
-                <div class="es-answer-content">
-                    <div class="es-answer-author">
-                        <span class="es-author-img"><img src="<?php echo es_user_profile_avatar(); ?>" alt=""></span>
-                        <div class="es-right">
-                            <span class="es-author-name"><a href="#">John Doe</a></span>
-                            <span class="es-posted-date">July 24, 2023</span>
-                        </div>
-                    </div>
-                    <div class="es-answer-text">
-                        <pre><code>$("#phone").mask("(99) 9999?9-9999");
-$("#phone").on("blur", function() {
-    var last = $(this).val().substr( $(this).val().indexOf("-") + 1 );
-    if( last.length == 3 ) {
-        var move = $(this).val().substr( $(this).val().indexOf("-") - 1, 1 );
-        var lastfour = move + last;
-        var first = $(this).val().substr( 0, 9 );
-
-        $(this).val( first + '-' + lastfour );
-    }
-});</code></pre>
-                    </div>
-                </div>
-            </div>
+        <div class="es-comment-title">
+            <?php
+            $answer_count = get_comments_number();
+            printf(
+                esc_html(_n('%s Answer', '%s Answers', $answer_count, 'engispace-theme')),
+                number_format_i18n($answer_count)
+            );
+            ?>
         </div>
 
-        <div class="es-form-post-answer">
-            <div class="es-comment-title">
-                Your answer
+        <?php if ( have_comments() ) : ?>
+            <div class="es-forum-answers-list">
+                <?php
+                wp_list_comments(array(
+                    'short_ping' => true,
+                    'callback'   => 'es_answer_callback'
+                ));
+                ?>
             </div>
-            <div class="es-post-answer-editor" id="es-post-answer-editor">
+
+            <?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : ?>
+                <nav class="es-answer-navigation">
+                    <?php paginate_comments_links(); ?>
+                </nav>
+            <?php endif; ?>
+        <?php endif; ?>
+
+        <?php if ( comments_open() ) : ?>
+            <div class="es-form-post-answer">
+                <div class="es-comment-title">
+                    <?php esc_html_e('Your answer', 'engispace-theme'); ?>
+                </div>
+                
+                <?php
+                comment_form(array(
+                    'title_reply'          => '',
+                    'comment_field'        => '<div class="es-post-answer-editor"><textarea id="comment" class="quill-editor" name="comment" placeholder="' . esc_attr__('Write your answer here...', 'engispace-theme') . '"></textarea></div>',
+                    'submit_button'        => '<div class="es-post-answer-submit"><button type="submit" class="es-btn-orange">%4$s</button></div>',
+                    'submit_field'         => '%1$s %2$s',
+                    'comment_type'         => 'answer',
+                    'label_submit'         => esc_html__('Post your answer', 'engispace-theme'),
+                ));
+                ?>
             </div>
-            <div class="es-post-answer-submit">
-                <button class="es-btn-orange"><?php esc_html_e( 'Post your answer', 'engispace-theme' ); ?></button>
-            </div>
-        </div>
+        <?php endif; ?>
     </div>
     <div class="es-forum-answers-sidebar">
         <div class="es-forum-related-questions">
@@ -64,18 +60,26 @@ $("#phone").on("blur", function() {
         </div>
         <div class="es-forum-related-questions-list">
             <ul>
-                <li>
-                    <span class="es-post-answers">0</span><a href="#">How to create a custom WordPress theme?</a>
-                </li>
-                <li>
-                    <span class="es-post-answers">0</span><a href="#">How to create a custom WordPress theme?</a>
-                </li>
-                <li>
-                    <span class="es-post-answers">0</span><a href="#">How to create a custom WordPress theme?</a>
-                </li>
-                <li>
-                    <span class="es-post-answers">0</span><a href="#">How to create a custom WordPress theme?</a>
-                </li>
+                <?php
+                $questions = new Engispace\Services\Questions();
+                $related_questions = $questions->get_related_questions(get_the_ID());
+                
+                if ($related_questions->have_posts()) :
+                    while ($related_questions->have_posts()) : $related_questions->the_post();
+                        ?>
+                        <li>
+                            <span class="es-post-answers"><?php echo get_comments_number(); ?></span>
+                            <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                        </li>
+                        <?php
+                    endwhile;
+                    wp_reset_postdata();
+                else:
+                    ?>
+                    <li><?php esc_html_e('No related questions found', 'engispace-theme'); ?></li>
+                    <?php
+                endif;
+                ?>
             </ul>
         </div>
     </div>

@@ -10,7 +10,7 @@ get_header();
     <div class="es-site-container">
         <?php get_template_part( 'template-parts/forum/top-nav' ); ?>
         <?php get_template_part( 'template-parts/forum/single/content' ); ?>
-        <?php get_template_part( 'template-parts/forum/single/answers' ); ?>
+        <?php comments_template( '/template-parts/forum/single/answers.php' ); ?>
     </div>
 </div>
 

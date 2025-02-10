@@ -917,12 +917,11 @@
         highlightJS: function() {
             hljs.highlightAll();
 
-            const quill = new Quill('#es-post-answer-editor', {
-                theme: 'snow'
+            document.querySelectorAll('.quill-editor').forEach(function(element) {
+                new Quill(element, {
+                    theme: 'snow'
+                });
             });
-            const delta = quill.getContents();
-            console.log(delta);
-            
         },
 
         init: function() {

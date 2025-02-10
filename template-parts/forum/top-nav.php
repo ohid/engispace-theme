@@ -3,25 +3,30 @@
 // Exit if accessed directly
 if ( !ABSPATH ) exit;
 
+// Get and update view count
+$answer_count = es_get_question_answer_count();
+$view_count = es_get_question_view_count();
+
 $top_nav = [
-    [
-        'title' => 'votes',
-        'number' => 12,
-        'active' => true
-    ],
+    // [
+    //     'title' => 'votes',
+    //     'number' => 12,
+    //     'active' => true
+    // ],
     [
         'title' => 'answers',
-        'number' => 3,
+        'number' => $answer_count,
     ],
     [
-        'title' => 'viwes',
-        'number' => 432,
+        'title' => 'views',
+        'number' => $view_count,
     ],
-    [
-        'title' => 'bookmarks',
-        'number' => 1,
-    ]
+    // [
+    //     'title' => 'bookmarks',
+    //     'number' => 1,
+    // ]
 ];
+
 ?>
 
 <div class="es-forum-top-nav">

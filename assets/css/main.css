@@ -4608,9 +4608,6 @@ header .es-header-mobile-navigation-wrapper ul li a img {
   font-size: 14px;
   border-radius: 5px;
 }
-.es-forum-single-content-wrapper .es-content-area .post-comment form button {
-  display: none;
-}
 .es-forum-single-content-wrapper .es-content-sidebar {
   width: calc(100% - 760px);
   position: relative;
@@ -4636,13 +4633,19 @@ header .es-header-mobile-navigation-wrapper ul li a img {
   line-height: 15px;
   color: rgba(100, 102, 103, 0.6980392157);
 }
-.es-forum-single-content-wrapper .es-content-sidebar .es-forum-post-author .es-fpa-categories ul {
+.es-forum-single-content-wrapper .es-content-sidebar .es-forum-post-author .es-fpa-author-info p {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 15px;
+  color: rgba(100, 102, 103, 0.6980392157);
+}
+.es-forum-single-content-wrapper .es-content-sidebar .es-forum-post-author .es-fce-entry-categories {
   display: flex;
   flex-direction: column;
   margin: 15px 0px;
   gap: 10px;
 }
-.es-forum-single-content-wrapper .es-content-sidebar .es-forum-post-author .es-fpa-categories ul li a {
+.es-forum-single-content-wrapper .es-content-sidebar .es-forum-post-author .es-fce-entry-categories span a {
   color: #0366D6;
   padding: 4px 10px;
   border: 1px solid #0366D6;
@@ -4688,6 +4691,8 @@ header .es-header-mobile-navigation-wrapper ul li a img {
 }
 .es-forum-answers-section .es-forum-answers-sidebar .es-forum-related-questions-list ul li {
   margin-bottom: 10px;
+  position: relative;
+  padding-left: 28px;
 }
 .es-forum-answers-section .es-forum-answers-sidebar .es-forum-related-questions-list ul li .es-post-answers {
   background: #ededed;
@@ -4701,6 +4706,9 @@ header .es-header-mobile-navigation-wrapper ul li a img {
   align-items: center;
   justify-content: center;
   margin-right: 10px;
+  position: absolute;
+  left: 0px;
+  top: 3px;
 }
 .es-forum-answers-section .es-forum-answers-sidebar .es-forum-related-questions-list ul li a {
   color: #0366D6;
@@ -4751,12 +4759,19 @@ header .es-header-mobile-navigation-wrapper ul li a img {
 }
 .es-forum-answers-section .es-form-post-answer {
   margin-top: 20px;
+  width: 760px;
+}
+.es-forum-answers-section .es-form-post-answer .logged-in-as {
+  display: none;
 }
 .es-forum-answers-section .es-form-post-answer .es-comment-title {
   margin-bottom: 25px;
+  border-bottom: 1px solid #E1E4E8;
 }
 .es-forum-answers-section .ql-toolbar.ql-snow + .ql-container.ql-snow {
   min-height: 150px;
+  width: 100%;
+  padding: 15px;
 }
 .es-forum-answers-section .es-post-answer-submit {
   margin-top: 20px;
