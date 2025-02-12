@@ -13,15 +13,64 @@ class Questions implements Component_Interface {
 
     public function initialize() {
         add_action( 'wp_ajax_create_forum_question', [ $this, 'create_forum_question' ], 10, 3 );
+        add_action( 'template_redirect', [ $this, 'track_question_view' ] );
     }
 
-    public function get_questions() {
+    public function track_question_view() {
+        if ( !is_singular('question') ) {
+            return;
+        }
+
+        $post_id = get_the_ID();
+        $viewed_posts = isset($_COOKIE['es_viewed_questions']) ? explode(',', sanitize_text_field($_COOKIE['es_viewed_questions'])) : array();
+
+        if (!in_array($post_id, $viewed_posts)) {
+            $views = (int) get_post_meta($post_id, 'question_views', true);
+            update_post_meta($post_id, 'question_views', ++$views);
+
+            $viewed_posts[] = $post_id;
+            setcookie('es_viewed_questions', implode(',', $viewed_posts), time() + (DAY_IN_SECONDS * 30), COOKIEPATH, COOKIE_DOMAIN);
+        }
+    }
+
+    public function get_questions( $sort = 'recent', $category = null, $limit = 10  ) {
+        $sort = isset( $_GET['sort'] ) ? sanitize_text_field($_GET['sort']) : $sort;
+
         $args = array(
             'post_type' => 'question',
-            'posts_per_page' => 10,
-            'orderby' => 'comment_count',
-            'order' => 'DESC'
+            'posts_per_page' => $limit
         );
+
+        switch ($sort) {
+            case 'popular':
+                $args['meta_key'] = 'question_views';
+                $args['orderby'] = array(
+                    'meta_value_num' => 'DESC',
+                    'comment_count' => 'DESC'
+                );
+                break;
+
+            case 'active':
+                $args['orderby'] = 'comment_date';
+                break;
+
+            case 'recent':
+            default:
+                $args['orderby'] = 'date';
+                break;
+        }
+
+        $args['order'] = 'DESC';
+
+        if ($category) {
+            $args['tax_query'] = array(
+                array(
+                    'taxonomy' => 'categories',
+                    'field' => 'term_id',
+                    'terms' => $category
+                )
+            );
+        }
 
         $query = new WP_Query( $args );
 

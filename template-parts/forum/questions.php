@@ -3,7 +3,7 @@
 use Engispace\Services\Questions;
 
 $questions = new Questions();
-$query = $questions->get_questions();
+$query = $questions->get_questions( 'recent' );
 ?>
 
 <?php if ( $query->have_posts() ) : ?>
