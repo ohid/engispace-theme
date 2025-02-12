@@ -2,9 +2,18 @@
 
 namespace Engispace\Services;
 
+use Engispace\Component_Interface;
 use WP_Query;
 
-class Questions {
+class Questions implements Component_Interface {
+
+    public function get_slug() : string {
+        return 'questions';
+    }
+
+    public function initialize() {
+        add_action( 'wp_ajax_create_forum_question', [ $this, 'create_forum_question' ], 10, 3 );
+    }
 
     public function get_questions() {
         $args = array(
@@ -19,9 +28,21 @@ class Questions {
         return $query;
     }
 
+    public function get_questions_categories() {
+        $args = array(
+            'taxonomy' => 'categories',
+            'hide_empty' => false,
+            'orderby' => 'name',
+            'order' => 'ASC'
+        );
+
+        $categories = get_terms($args);
+
+        return $categories;
+    }
+
     public function print_categories( $post_id ) {
         $categories = get_the_terms( $post_id, 'categories');
-        ray($categories);
         if (!empty($categories)) : ?>
             <div class="es-fce-entry-categories">
                 <?php foreach ($categories as $category) : ?>
@@ -78,5 +99,129 @@ class Questions {
         }
     
         return new WP_Query($args);
+    }
+
+    public function get_user_questions($limit = 10) {
+        // Get current user ID
+        $current_user_id = get_current_user_id();
+
+        if (!$current_user_id) {
+            return false;
+        }
+
+        // Query args for user's questions
+        $args = array(
+            'post_type' => 'question',
+            'posts_per_page' => $limit,
+            'author' => $current_user_id,
+            'orderby' => 'date',
+            'order' => 'DESC'
+        );
+
+        return new WP_Query($args);
+    }
+
+    public function create_forum_question() {
+        if (!wp_doing_ajax() || !is_user_logged_in()) {
+            wp_send_json_error(array('message' => 'Unauthorized access'));
+            die;
+        }
+
+        // Verify nonce
+        check_ajax_referer('es_nonce', 'nonce');
+
+        // Sanitize and validate input fields
+        $title = isset($_POST['title']) ? sanitize_text_field($_POST['title']) : '';
+        $content = isset($_POST['content']) ? wp_kses_post($_POST['content']) : '';
+        $category = isset($_POST['category']) ? absint($_POST['category']) : 0;
+
+        // Validate required fields
+        if (empty($title) || empty($content) || empty($category)) {
+            wp_send_json_error(array('message' => 'All fields are required'));
+            die;
+        }
+
+        // Create post array
+        $post_data = array(
+            'post_title' => $title,
+            'post_content' => $content,
+            'post_status' => 'publish',
+            'post_type' => 'question',
+            'post_author' => get_current_user_id()
+        );
+
+        // Insert the post
+        $post_id = wp_insert_post($post_data);
+
+        if (is_wp_error($post_id)) {
+            wp_send_json_error(array('message' => 'Failed to create question'));
+            die;
+        }
+
+        // Set question category
+        wp_set_object_terms($post_id, $category, 'question_category');
+
+        wp_send_json_success(array(
+            'message' => 'Question created successfully',
+            'post_id' => $post_id,
+            'post_url' => get_permalink($post_id)
+        ));
+        die;
+    }
+
+    public function get_question_comments() {
+        // Get the current post ID (if you're in a loop or a singular post page)
+        $post_id = get_the_ID();
+
+        // Set up the arguments to retrieve only 'question_answer' comments for this post.
+        $args = array(
+            'post_id' => $post_id,
+            'status'  => 'approve',           // Only get approved comments.
+            'type'    => 'question_comment',   // Filter by your custom comment type.
+        );
+
+        // Retrieve the comments.
+        $qa_comments = get_comments( $args );
+
+        return $qa_comments;
+    }
+
+    public function get_question_answers( $post_id = null ) {
+        // Get the current post ID (if you're in a loop or a singular post page)
+        if ( !$post_id ) {
+            $post_id = get_the_ID();
+        }
+
+        // Set up the arguments to retrieve only 'question_answer' comments for this post.
+        $args = array(
+            'post_id' => $post_id,
+            'status'  => 'approve',           // Only get approved comments.
+            'type'    => 'question_answers',   // Filter by your custom comment type.
+        );
+
+        // Retrieve the comments.
+        $qa_comments = get_comments( $args );
+
+        return $qa_comments;
+    }
+
+    public function get_question_answers_count( $post_id = null ) {
+        // Get the current post ID (if you're in a loop or a singular post page)
+        if ( !$post_id ) {
+            $post_id = get_the_ID();
+        }
+
+        // Set up the arguments to retrieve only 'question_answer' comments for this post.
+        $args = array(
+            'post_id' => $post_id,
+            'status'  => 'approve',           // Only get approved comments.
+            'type'    => 'question_answers',   // Filter by your custom comment type.
+            'count'   => true,                 // Return only the comment count.
+        );
+
+        // Retrieve the comments.
+        $qa_comments = get_comments( $args );
+
+        return $qa_comments;
     }
 }

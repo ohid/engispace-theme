@@ -552,7 +552,7 @@ function es_all_courses_page_title() {
  * 
  * @return void
  */
-function es_answer_callback($comment, $args, $depth) {
+function es_answer_callback($comment) {
     ?>
     <div class="es-forum-answer">
         <!-- <div class="es-answer-reputation"></div> -->
@@ -636,3 +636,13 @@ function es_get_question_view_count() {
 
     return $view_count;
 }
+
+function qa_set_comment_type( $commentdata ) {
+    if ( $_POST['comment_type'] ) {
+        $comment_type = sanitize_text_field( $_POST['comment_type'] );
+        $commentdata['comment_type'] = $comment_type;
+    }
+
+    return $commentdata;
+}
+add_filter( 'preprocess_comment', 'qa_set_comment_type' );

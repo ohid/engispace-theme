@@ -116,6 +116,7 @@ class Theme {
             new Components\Rewrite_Pages(),
             new Components\Membership(),
             new Components\Courses(),
+            new Services\Questions(),
             new Components\User_Roles(),
             new Components\Settings(),
             new Components\Profile(),

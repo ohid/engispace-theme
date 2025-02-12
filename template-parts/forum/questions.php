@@ -4,7 +4,6 @@ use Engispace\Services\Questions;
 
 $questions = new Questions();
 $query = $questions->get_questions();
-
 ?>
 
 <?php if ( $query->have_posts() ) : ?>
@@ -15,7 +14,10 @@ $query = $questions->get_questions();
                 <div class="es-fce-left-item">
                     <span class="es-comments-counter">
                         <img src="<?php echo THEME_URI . '/assets/img/comments.svg' ?>" alt="">
-                        32
+                        <?php 
+                            $comments = $questions->get_question_answers_count(get_the_ID());
+                            echo $comments; 
+                        ?>
                     </span>
                 </div>
             </div>

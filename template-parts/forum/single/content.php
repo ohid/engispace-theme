@@ -18,43 +18,41 @@ $questions = new Questions();
         </div>
         <div class="es-content-comments">
             <ul>
-                <li>
-                    <span class="es-comment-comment">JHispa: please edit your answer, instead of adding code as a comment</span> -
-                    <span class="es-comment-author">
-                        <a href="#">Andre</a>
-                    </span>
-                    <span class="comment-date">
-                        Jul 24 '12 at 15:06 
-                    </span>
-                </li>
-                <li>
-                    <span class="es-comment-comment">JHispa: please edit your answer, instead of adding code as a comment</span> -
-                    <span class="es-comment-author">
-                        <a href="#">Andre</a>
-                    </span>
-                    <span class="comment-date">
-                        Jul 24 '12 at 15:06 
-                    </span>
-                </li>
-                <li>
-                    <span class="es-comment-comment">JHispa: please edit your answer, instead of adding code as a comment</span> -
-                    <span class="es-comment-author">
-                        <a href="#">Andre</a>
-                    </span>
-                    <span class="comment-date">
-                        Jul 24 '12 at 15:06 
-                    </span>
-                </li>
-                <li class="more-comments">
-                    <a href="#">View more comments</a>
-                </li>
+                <?php
+                $comments = $questions->get_question_comments(get_the_ID());
+                if ($comments) :
+                    foreach ($comments as $comment) : ?>
+                        <li>
+                            <span class="es-comment-comment"><?php echo esc_html($comment->comment_content); ?></span> -
+                            <span class="es-comment-author">
+                                <a href="<?php echo esc_url(get_author_posts_url($comment->user_id)); ?>">
+                                    <?php echo esc_html(get_comment_author($comment)); ?>
+                                </a>
+                            </span>
+                            <span class="comment-date">
+                                <?php echo get_comment_date('M d \'y \a\t H:i', $comment); ?>
+                            </span>
+                        </li>
+                    <?php endforeach;
+                    if (count($comments) > 3) : ?>
+                        <li class="more-comments">
+                            <a href="#">View more comments</a>
+                        </li>
+                    <?php endif;
+                endif; ?>
             </ul>
             <div class="post-comment">
                 <span class="es-author-img"><img src="<?php echo es_user_profile_avatar(); ?>" alt=""></span>
-                <form action="">
-                    <textarea name="comment" id="comment" placeholder="Write a comment"></textarea>
-                    <button type="submit">Post Comment</button>
-                </form>
+                <?php
+                    comment_form(array(
+                        'title_reply'          => '',
+                        'comment_field'        => '<div class="es-post-comment-editor"><textarea id="comment" name="comment" placeholder="' . esc_attr__('Write your comment here...', 'engispace-theme') . '"></textarea></div>',
+                        'submit_button'        => '<div class="es-post-comment-submit"><button type="submit" class="es-btn-orange">%4$s</button><input type="hidden" name="comment_type" value="question_comment" /></div>',
+                        'submit_field'         => '%1$s %2$s',
+                        'comment_type'         => 'question_comment',
+                        'label_submit'         => esc_html__('Post your comments', 'engispace-theme'),
+                    ));
+                ?>
             </div>
         </div>
     </div>

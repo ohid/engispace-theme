@@ -66,7 +66,13 @@ class Scripts implements Component_Interface {
             get_template_directory_uri() . '/assets/js/dist/main.min.js', 
             ['engispace-owl-carousel'] 
         );
-    
+
+        wp_enqueue_script( 
+            'engispace-select-theme', 
+            'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js', 
+            ['engispace-owl-carousel'] 
+        );
+
         wp_localize_script( 
             'engispace-scripts', 
             'engisapce_obj', 

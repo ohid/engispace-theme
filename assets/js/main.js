@@ -922,6 +922,79 @@
                     theme: 'snow'
                 });
             });
+
+            $('.engispace-select').select2();
+        },
+
+        askQuestion: function() {
+            $(document).on('submit', '#es_ask_question', function(e) {
+                e.preventDefault();
+                const form = $(this);
+                const formMessageBox = form.find('.es-form-message');
+
+                // Clear previous messages
+                formMessageBox
+                    .html("")
+                    .removeClass('form-error form-success');
+
+                // Validate required fields
+                const title = form.find('[name="question_title"]').val();
+                const content = form.find('[name="question_content"]').val();
+                const category = form.find('[name="question_category"]').val();
+
+                if (!title || !content || !category) {
+                    formMessageBox
+                        .html("Please fill in all required fields")
+                        .addClass('form-error');
+                    return;
+                }
+
+                const formData = {
+                    action: 'create_forum_question',
+                    nonce: engisapce_obj.nonce,
+                    title,
+                    content,
+                    category
+                };
+
+                $.ajax({
+                    url: engisapce_obj.ajaxurl,
+                    method: 'POST',
+                    data: formData,
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded",
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            // Reset form on success
+                            form[0].reset();
+                            // Show success message
+                            form.find('.es-form-message')
+                                .html('Question posted successfully')
+                                .addClass('form-success')
+                                .removeClass('form-error');
+                            
+                                // Redirect to question page after 3 seconds
+                                setTimeout(function() {
+                                    window.location.href = response.data.post_url;
+                                }, 3000);
+
+                        } else {
+                            // Show error message
+                            form.find('.es-form-message')
+                                .html(response.data.message || 'Error posting question')
+                                .addClass('form-error')
+                                .removeClass('form-success');
+                        }
+                    },
+                    error: function() {
+                        form.find('.es-form-message')
+                            .html('Server error occurred')
+                            .addClass('form-error')
+                            .removeClass('form-success');
+                    }
+                });
+            });
         },
 
         init: function() {
@@ -946,6 +1019,7 @@
             window.engispace.initCouseSidebarExpandableMenu();
             window.engispace.miscEvents();
             window.engispace.highlightJS();
+            window.engispace.askQuestion();
 
             jQuery(window).on('resize', function() {
                 course_details_hover_box();
