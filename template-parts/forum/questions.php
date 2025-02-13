@@ -29,9 +29,6 @@ $query = $questions->get_questions( 'recent' );
 
                 <div class="es-fce-meta-data">
                     <div class="es-left">
-                        <!-- <div class="es-fce-entry-categories">
-                            <span><a href="">Motion Control</a></span>
-                        </div> -->
                         <?php echo $questions->print_categories( get_the_ID() ); ?>
                     </div>
                     <div class="es-right">
@@ -42,4 +39,20 @@ $query = $questions->get_questions( 'recent' );
             </div>
         </div>
     <?php } ?>
+    
+    <div class="es-forum-pagination">
+        <?php
+        echo paginate_links(array(
+            'total' => $query->max_num_pages,
+            'current' => max(1, get_query_var('paged')),
+            'prev_text' => 'Prev',
+            'next_text' => 'Next',
+            'type' => 'list'
+        ));
+        ?>
+    </div>
+<?php else: ?>
+    <div class="es-forum-no-content">
+        <p><?php esc_html_e('No questions found', 'engispace-theme'); ?></p>
+    </div>
 <?php endif; ?>

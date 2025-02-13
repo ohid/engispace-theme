@@ -24,7 +24,7 @@ $questions = new Questions();
                             <?php
                                 $questions = new Engispace\Services\Questions();
                                 $user_questions = $questions->get_user_questions();
-                                
+
                                 if ($user_questions->have_posts()) :
                                     while ($user_questions->have_posts()) : $user_questions->the_post();
                                         $comment_count = $questions->get_question_answers_count(get_the_ID());
@@ -51,11 +51,17 @@ $questions = new Questions();
                     </div>
                     <div class="es-widget-content">
                         <ul>
-                            <li><a href="#">Electrical Engineering Practical Theory</a></li>
-                            <li><a href="#">Power Engineering</a></li>
-                            <li><a href="#">Industrial Controls and Automation</a></li>
-                            <li><a href="#">Instrumentation</a></li>
-                            <li><a href="#">Industrial Networks</a></li>
+                            <?php
+                            $categories = $questions->get_questions_categories();
+                            $current_term_id = get_queried_object_id();
+                            if ($categories) :
+                                foreach ($categories as $category) :
+                                    $is_active = $current_term_id === $category->term_id ? 'active' : ''; ?>
+                                    <li class="<?php echo esc_attr($is_active); ?>"><a href="<?php echo esc_url(get_term_link($category)); ?>"><?php echo esc_html($category->name); ?></a></li>
+                                <?php endforeach;
+                            else : ?>
+                                <li><?php esc_html_e('No categories found', 'engispace-theme'); ?></li>
+                            <?php endif; ?>
                         </ul>
                     </div>
                 </div>

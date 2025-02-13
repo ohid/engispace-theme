@@ -6,10 +6,14 @@ $filter_tabs = array(
 );
 
 $current_sort = isset($_GET['sort']) ? sanitize_text_field($_GET['sort']) : 'recent';
+
+// Get the current term if we're on a term archive page
+$current_term = get_queried_object();
+$filter_label = is_tax('categories') ? sprintf('You are seeing results from "%s"', esc_html($current_term->name)) : 'Questions';
 ?>
             <div class="es-forum-content">
                 <div class="es-forum-content-filter-navigation">
-                    <div class="es-filter-label">Questions</div>
+                    <div class="es-filter-label"><?php echo esc_html($filter_label); ?></div>
                     <div class="es-filter-tabs">
                         <?php
                         foreach ($filter_tabs as $sort_key => $sort_label) :

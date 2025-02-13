@@ -44,7 +44,7 @@ $comments = $questions->get_question_answers(get_the_ID());
             <?php endif; ?>
         <?php endif; ?>
 
-        <?php if ( comments_open() ) : ?>
+        <?php if ( comments_open() && is_user_logged_in() ) : ?>
             <div class="es-form-post-answer">
                 <div class="es-comment-title">
                     <?php esc_html_e('Your answer', 'engispace-theme'); ?>

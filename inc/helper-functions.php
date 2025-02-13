@@ -215,13 +215,17 @@ function es_get_current_user_lastname() {
  * 
  * @return null|string
  */
-function es_get_current_user_display_name() {
-    if ( !is_user_logged_in() ) {
+function es_get_current_user_display_name( $user_id = false ) {
+    if ( ! $user_id ) {
+        $user_id = get_current_user_id();
+    }
+
+    $user = get_user_by( 'id', $user_id );
+    if ( ! $user ) {
         return;
     }
 
-    $current_user = wp_get_current_user();
-    return $current_user->first_name . ' ' . $current_user->last_name;
+    return $user->first_name . ' ' . $user->last_name;
 }
 
 /**
@@ -231,13 +235,17 @@ function es_get_current_user_display_name() {
  * 
  * @return null|string
  */
-function es_get_current_user_profile_bio() {
-    if ( !is_user_logged_in() ) {
+function es_get_current_user_profile_bio( $user_id = false ) {
+    if ( ! $user_id ) {
+        $user_id = get_current_user_id();
+    }
+
+    $user = get_user_by( 'id', $user_id );
+    if ( ! $user ) {
         return;
     }
 
-    $current_user = wp_get_current_user();
-    return $current_user->description;
+    return $user->description;
 }
 
 /**
@@ -646,3 +654,16 @@ function qa_set_comment_type( $commentdata ) {
     return $commentdata;
 }
 add_filter( 'preprocess_comment', 'qa_set_comment_type' );
+
+
+
+/**
+ * Redirect non-logged in users away from ask question page
+ */
+function es_redirect_non_logged_in_users() {
+    if (is_page_template('template-ask-question.php') && !is_user_logged_in()) {
+        wp_redirect(home_url());
+        exit;
+    }
+}
+add_action('template_redirect', 'es_redirect_non_logged_in_users');

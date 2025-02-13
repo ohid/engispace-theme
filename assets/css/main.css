@@ -4380,6 +4380,9 @@ header .es-header-mobile-navigation-wrapper ul li a img {
   line-height: 24px;
   color: #0366D6;
 }
+.es-forum-content-inner .es-forum-sidebar .es-sidebar-widget .es-widget-content ul li.active a {
+  border-bottom: 1px solid #0366D6;
+}
 .es-forum-content-inner .es-forum-sidebar .es-sidebar-widget.es-widget-question .widget-header {
   display: flex;
   justify-content: space-between;
@@ -4409,22 +4412,6 @@ header .es-header-mobile-navigation-wrapper ul li a img {
     width: 100%;
     padding: 0px 20px;
   }
-}
-.es-forum-content-inner .es-forum-content .es-load-more-content {
-  margin-top: 30px;
-}
-.es-forum-content-inner .es-forum-content .es-load-more-content .es-load-more-btn {
-  border: 1px solid rgba(169, 183, 199, 0.2);
-  background: linear-gradient(180deg, #FFFFFF 0%, #EDF0F3 100%);
-  font-size: 14px;
-  font-weight: 500;
-  padding: 15px 25px;
-  border-radius: 4px;
-  display: inline-block;
-  transition: all 0.2s ease-in;
-}
-.es-forum-content-inner .es-forum-content .es-load-more-content .es-load-more-btn:hover {
-  background: linear-gradient(180deg, #EDF0F3 0%, #dadee2 100%);
 }
 
 .es-forum-content-filter-navigation {
@@ -4543,6 +4530,31 @@ header .es-header-mobile-navigation-wrapper ul li a img {
 .es-forum-content-wrap .es-forum-content-entry .es-fce-meta-data .es-entry-date {
   font-size: 14px;
   color: rgba(100, 102, 103, 0.6980392157);
+}
+.es-forum-content-wrap .es-forum-pagination {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+.es-forum-content-wrap .es-forum-pagination ul {
+  display: flex;
+  gap: 10px;
+}
+.es-forum-content-wrap .es-forum-pagination a.page-numbers,
+.es-forum-content-wrap .es-forum-pagination span.page-numbers {
+  border: 1px solid rgba(169, 183, 199, 0.2);
+  background: linear-gradient(180deg, #FFFFFF 0%, #EDF0F3 100%);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 15px 25px;
+  border-radius: 4px;
+  display: inline-block;
+  transition: all 0.2s ease-in;
+}
+.es-forum-content-wrap .es-forum-pagination a.page-numbers:hover, .es-forum-content-wrap .es-forum-pagination a.page-numbers.current,
+.es-forum-content-wrap .es-forum-pagination span.page-numbers:hover,
+.es-forum-content-wrap .es-forum-pagination span.page-numbers.current {
+  background: linear-gradient(180deg, #EDF0F3 0%, #dadee2 100%);
 }
 
 .es-forum-top-nav ul {

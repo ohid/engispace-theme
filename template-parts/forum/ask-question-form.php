@@ -6,6 +6,7 @@ if ( !ABSPATH ) exit;
 use Engispace\Services\Questions;
 
 $questions = new Questions();
+
 ?>
 
 <div class="es-aq-top">

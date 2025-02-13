@@ -6,6 +6,8 @@ if ( !ABSPATH ) exit;
 use Engispace\Services\Questions;
 
 $questions = new Questions();
+
+$post_user_id = get_post_field('post_author', get_the_ID());
 ?>
 
 <div class="es-forum-single-content-wrapper">
@@ -41,6 +43,9 @@ $questions = new Questions();
                     <?php endif;
                 endif; ?>
             </ul>
+            <?php
+                if ( comments_open() && is_user_logged_in() ) :
+            ?>
             <div class="post-comment">
                 <span class="es-author-img"><img src="<?php echo es_user_profile_avatar(); ?>" alt=""></span>
                 <?php
@@ -54,16 +59,17 @@ $questions = new Questions();
                     ));
                 ?>
             </div>
+            <?php endif; ?>
         </div>
     </div>
     <div class="es-content-sidebar">
         <div class="es-forum-post-author">
             <div class="es-fpa-name">
-                <span><img src="<?php echo es_user_profile_avatar(); ?>" alt=""></span>
-                <a href="#"><?php echo es_get_current_user_display_name(); ?></a>
+                <span><img src="<?php echo es_user_profile_avatar($post_user_id); ?>" alt=""></span>
+                <a href="#"><?php echo es_get_current_user_display_name($post_user_id); ?></a>
             </div>
             <div class="es-fpa-author-info">
-                <p><?php echo es_get_current_user_profile_bio(); ?></p>
+                <p><?php echo es_get_current_user_profile_bio($post_user_id); ?></p>
             </div>
             
             <?php echo $questions->print_categories( get_the_ID() ); ?>

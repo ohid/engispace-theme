@@ -33,13 +33,35 @@ class Questions implements Component_Interface {
         }
     }
 
-    public function get_questions( $sort = 'recent', $category = null, $limit = 10  ) {
+    public function get_questions( $sort = 'recent', $category = null, $limit = 1 ) {
         $sort = isset( $_GET['sort'] ) ? sanitize_text_field($_GET['sort']) : $sort;
+        $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 
         $args = array(
             'post_type' => 'question',
-            'posts_per_page' => $limit
+            'posts_per_page' => $limit,
+            'paged' => $paged
         );
+
+        // Check if we're on a taxonomy archive page
+        if (is_tax('categories')) {
+            $current_term = get_queried_object();
+            $args['tax_query'] = array(
+                array(
+                    'taxonomy' => 'categories',
+                    'field' => 'term_id',
+                    'terms' => $current_term->term_id
+                )
+            );
+        } elseif ($category) {
+            $args['tax_query'] = array(
+                array(
+                    'taxonomy' => 'categories',
+                    'field' => 'term_id',
+                    'terms' => $category
+                )
+            );
+        }
 
         switch ($sort) {
             case 'popular':
@@ -61,16 +83,6 @@ class Questions implements Component_Interface {
         }
 
         $args['order'] = 'DESC';
-
-        if ($category) {
-            $args['tax_query'] = array(
-                array(
-                    'taxonomy' => 'categories',
-                    'field' => 'term_id',
-                    'terms' => $category
-                )
-            );
-        }
 
         $query = new WP_Query( $args );
 
@@ -151,18 +163,10 @@ class Questions implements Component_Interface {
     }
 
     public function get_user_questions($limit = 10) {
-        // Get current user ID
-        $current_user_id = get_current_user_id();
-
-        if (!$current_user_id) {
-            return false;
-        }
-
         // Query args for user's questions
         $args = array(
             'post_type' => 'question',
             'posts_per_page' => $limit,
-            'author' => $current_user_id,
             'orderby' => 'date',
             'order' => 'DESC'
         );
@@ -208,7 +212,7 @@ class Questions implements Component_Interface {
         }
 
         // Set question category
-        wp_set_object_terms($post_id, $category, 'question_category');
+        wp_set_object_terms($post_id, $category, 'categories');
 
         wp_send_json_success(array(
             'message' => 'Question created successfully',

@@ -105,6 +105,12 @@
                             line-height: 24px;
                             color: #0366D6;
                         }
+
+                        &.active {
+                            a {
+                                border-bottom: 1px solid #0366D6;
+                            }
+                        }
                     }
                 }
             }
@@ -151,24 +157,6 @@
             padding: 0px 20px;
         }
 
-        .es-load-more-content {
-            margin-top: 30px;
-
-            .es-load-more-btn {
-                border: 1px solid #A9B7C733;
-                background: linear-gradient(180deg, #FFFFFF 0%, #EDF0F3 100%);
-                font-size: 14px;
-                font-weight: 500;
-                padding: 15px 25px;
-                border-radius: 4px;
-                display: inline-block;
-                transition: all 0.2s ease-in;
-
-                &:hover {
-                    background: linear-gradient(180deg, #EDF0F3 0%, #dadee2 100%);
-                }
-            }
-        }
     }
 }
 
@@ -302,6 +290,33 @@
             .es-entry-date {
                 font-size: 14px;
                 color: #646667B2;
+            }
+        }
+    }
+
+    .es-forum-pagination {
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+
+        ul {
+            display: flex;
+            gap: 10px;
+        }
+
+        a.page-numbers,
+        span.page-numbers {
+            border: 1px solid #A9B7C733;
+            background: linear-gradient(180deg, #FFFFFF 0%, #EDF0F3 100%);
+            font-size: 14px;
+            font-weight: 500;
+            padding: 15px 25px;
+            border-radius: 4px;
+            display: inline-block;
+            transition: all 0.2s ease-in;
+
+            &:hover, &.current {
+                background: linear-gradient(180deg, #EDF0F3 0%, #dadee2 100%);
             }
         }
     }
