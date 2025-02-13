@@ -30,9 +30,6 @@ $filter_label = is_tax('categories') ? sprintf('You are seeing results from "%s"
                         // Include forum content entry
                         get_template_part( 'template-parts/forum/questions' );
                     ?>
-                    <!-- <div class="es-load-more-content">
-                        <a href="" class="es-load-more-btn">Load more questions</a>
-                    </div> -->
                 </div>
             </div>
         </div>
