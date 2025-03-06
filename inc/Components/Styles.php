@@ -42,13 +42,7 @@ class Styles implements Component_Interface {
             'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/monokai-sublime.min.css',
             false
         );
-
-        wp_enqueue_style( 
-            'quill-snow-style', 
-            'https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css',
-            false
-        );
-   
+        
         wp_enqueue_style( 
             'trumbowyg-style', 
             get_template_directory_uri() . '/assets/css/trumbowyg.min.css',
