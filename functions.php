@@ -34,3 +34,9 @@ require trailingslashit( get_template_directory() ) . 'inc/helper-functions.php'
  *
  */
 $theme_setup = Theme::instance();
+
+
+add_filter('wp_editor_settings', function ($settings) {
+    $settings['tinymce'] = false;
+    return $settings;
+});

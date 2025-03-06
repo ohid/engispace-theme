@@ -33,7 +33,7 @@ class Questions implements Component_Interface {
         }
     }
 
-    public function get_questions( $sort = 'recent', $category = null, $limit = 1 ) {
+    public function get_questions( $sort = 'recent', $category = null, $limit = 10 ) {
         $sort = isset( $_GET['sort'] ) ? sanitize_text_field($_GET['sort']) : $sort;
         $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 

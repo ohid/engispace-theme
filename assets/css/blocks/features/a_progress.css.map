@@ -1,1 +1,7 @@
-{"version":3,"sourceRoot":"","sources":["../../../scss/blocks/features/a_progress.scss"],"names":[],"mappings":"AAAA;EACI;;AAEA;EAHJ;IAIQ;;EAEA;IACI;IACA","file":"a_progress.css"}
+{
+"version": 3,
+"mappings": "AAAA,uBAAwB;EACpB,OAAO,EAAE,SAAS;EAElB,0BAA2B;IAH/B,uBAAwB;MAIhB,OAAO,EAAE,aAAa;MAEtB,4CAAqB;QACjB,QAAQ,EAAE,OAAO;QACjB,UAAU,EAAE,IAAI",
+"sources": ["../../../scss/blocks/features/a_progress.scss"],
+"names": [],
+"file": "a_progress.css"
+}

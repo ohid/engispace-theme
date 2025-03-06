@@ -45,7 +45,13 @@ class Styles implements Component_Interface {
 
         wp_enqueue_style( 
             'quill-snow-style', 
-            'https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css',
+            'https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css',
+            false
+        );
+   
+        wp_enqueue_style( 
+            'trumbowyg-style', 
+            get_template_directory_uri() . '/assets/css/trumbowyg.min.css',
             false
         );
 

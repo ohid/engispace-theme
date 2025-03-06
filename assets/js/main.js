@@ -917,11 +917,10 @@
         highlightJS: function() {
             hljs.highlightAll();
 
-            document.querySelectorAll('.quill-editor').forEach(function(element) {
-                new Quill(element, {
-                    theme: 'snow'
-                });
-            });
+            $('.quill-editor').trumbowyg();
+
+            $.trumbowyg.svgPath = '/assets/my-custom-path/icons.svg';
+
 
             $('.engispace-select').select2();
         },
@@ -936,6 +935,7 @@
                 formMessageBox
                     .html("")
                     .removeClass('form-error form-success');
+
 
                 // Validate required fields
                 const title = form.find('[name="question_title"]').val();
@@ -964,6 +964,9 @@
                     headers: {
                         "Content-Type": "application/x-www-form-urlencoded",
                     },
+                    beforeSend: function() {
+                        form.find('.es-aq-form-submit button').html('Submitting...')
+                    },
                     success: function(response) {
                         if (response.success) {
                             // Reset form on success
@@ -974,10 +977,12 @@
                                 .addClass('form-success')
                                 .removeClass('form-error');
                             
-                                // Redirect to question page after 3 seconds
-                                setTimeout(function() {
-                                    window.location.href = response.data.post_url;
-                                }, 3000);
+                            form.find('.es-aq-form-submit button').html('Posted')
+                        
+                            // Redirect to question page after 3 seconds
+                            setTimeout(function() {
+                                window.location.href = response.data.post_url;
+                            }, 3000);
 
                         } else {
                             // Show error message
@@ -985,6 +990,8 @@
                                 .html(response.data.message || 'Error posting question')
                                 .addClass('form-error')
                                 .removeClass('form-success');
+                            
+                            form.find('.es-aq-form-submit button').html('Ask question')
                         }
                     },
                     error: function() {
@@ -992,6 +999,8 @@
                             .html('Server error occurred')
                             .addClass('form-error')
                             .removeClass('form-success');
+
+                        form.find('.es-aq-form-submit button').html('Ask question')
                     }
                 });
             });

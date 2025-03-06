@@ -60,6 +60,12 @@ class Scripts implements Component_Interface {
             'https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js',
             ['jquery'] 
         );
+        
+        wp_enqueue_script( 
+            'trumbowyg-js',
+            get_template_directory_uri() . '/assets/js/trumbowyg.min.js',
+            ['jquery'] 
+        );
 
         wp_enqueue_script( 
             'engispace-scripts', 

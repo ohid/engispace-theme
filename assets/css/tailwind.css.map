@@ -1,1 +1,7 @@
-{"version":3,"sourceRoot":"","sources":["../scss/tailwind.scss"],"names":[],"mappings":"AAAA;AACA;AACA","file":"tailwind.css"}
+{
+"version": 3,
+"mappings": "AAAA,cAAc;AACd,oBAAoB;AACpB,mBAAmB",
+"sources": ["../scss/tailwind.scss"],
+"names": [],
+"file": "tailwind.css"
+}
