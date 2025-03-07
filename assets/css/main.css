@@ -1510,6 +1510,8 @@ header {
   .es-modal-wrapper[modal-type="auth-require-modal"] .es-site-modal {
     min-height: 300px;
     text-align: center; }
+    .es-modal-wrapper[modal-type="auth-require-modal"] .es-site-modal h2 {
+      font-size: 24px; }
     .es-modal-wrapper[modal-type="auth-require-modal"] .es-site-modal p {
       font-size: 12px;
       color: #818181;

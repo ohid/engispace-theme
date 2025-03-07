@@ -22,9 +22,6 @@ class Profile implements Component_Interface {
         add_action( 'wp_ajax_es_update_profile_details', [ $this, 'update_profile_details' ] );
         add_action( 'wp_ajax_es_update_contact_details', [ $this, 'es_update_contact_details' ] );
         add_action( 'init', [ $this, 'es_redirect_users' ] );
-        if ( !is_user_logged_in() ) {
-            return;
-        }
     }
 
     public function redirect_profile_page() {
@@ -125,6 +122,9 @@ class Profile implements Component_Interface {
      * @since 1.0.0
      */
     public function es_redirect_users() {
+        if (wp_doing_ajax()) {
+            return;
+        }
         if ( !is_user_logged_in() || !is_admin() ) {
             return;
         }
