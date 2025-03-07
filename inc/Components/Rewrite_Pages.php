@@ -29,7 +29,7 @@ class Rewrite_Pages implements Component_Interface {
     }
 
     public function filter_request( $vars ) {
-        if ( isset( $vars['course-payment-success'] ) ) {
+        if ( isset( $vars['course-payment-success'] ) || $vars['name'] === 'course-payment-success' ) {
             $vars['course-payment-success'] = true;
         }
         if ( isset( $vars['course-payment-error'] ) ) {
@@ -40,12 +40,12 @@ class Rewrite_Pages implements Component_Interface {
 
     public function load_template( $template ) {
         global $wp_query;
-        if ( $wp_query->query_vars['pagename'] === 'course-payment-success') {
+        if ( $wp_query->query_vars['name'] === 'course-payment-success') {
             $post = get_queried_object();
             Course_Purchase::process_course_after_purchase();
             return get_template_part( 'template-parts/courses/course-payment-success' );
         }
-        if ( $wp_query->query_vars['pagename'] === 'course-payment-error') {
+        if ( $wp_query->query_vars['name'] === 'course-payment-error') {
             $post = get_queried_object();
             return get_template_part( 'template-parts/courses/course-payment-error' );
         }

@@ -122,10 +122,7 @@ class Profile implements Component_Interface {
      * @since 1.0.0
      */
     public function es_redirect_users() {
-        if (wp_doing_ajax()) {
-            return;
-        }
-        if ( !is_user_logged_in() || !is_admin() ) {
+        if ( !is_user_logged_in() || !is_admin() || wp_doing_ajax() ) {
             return;
         }
         if ( !current_user_can( 'manage_options' ) ) {
