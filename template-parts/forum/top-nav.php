@@ -34,7 +34,20 @@ $top_nav = [
         <?php
             foreach ( $top_nav as $nav ) {
                 $active = $nav['active'] ? 'active' : '';
-                echo sprintf( '<li class="es-top-nav-item %s"><strong>%s</strong> %s</li>', $active, $nav['number'], $nav['title'] );
+
+                if ( $nav['title'] === 'answers' ) {
+                    $color_code = es_eng_severity($answer_count);
+                } else {
+                    $color_code = es_eng_severity($answer_count, 6);
+                }
+
+                printf( 
+                    '<li class="es-top-nav-item %s %s"><strong>%s</strong> %s</li>', 
+                    $active, 
+                    'es-eng-severity-'. $color_code,
+                    $nav['number'], 
+                    $nav['title']
+                );
             }
         ?>
     </ul>

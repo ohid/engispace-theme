@@ -12,12 +12,10 @@ $query = $questions->get_questions( 'recent' );
         <div class="es-forum-content-entry">
             <div class="es-fce-left">
                 <div class="es-fce-left-item">
-                    <span class="es-comments-counter">
+                    <?php $commentsCount = $questions->get_question_answers_count(get_the_ID()); ?>
+                    <span class="es-comments-counter es-eng-severity-<?php echo es_eng_severity($commentsCount); ?>">
                         <img src="<?php echo THEME_URI . '/assets/img/comments.svg' ?>" alt="">
-                        <?php 
-                            $comments = $questions->get_question_answers_count(get_the_ID());
-                            echo $comments; 
-                        ?>
+                        <?php echo $commentsCount; ?>
                     </span>
                 </div>
             </div>

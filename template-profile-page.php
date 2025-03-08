@@ -4,12 +4,22 @@
  */
 
 get_header();
+
 ?>
 
 <div class="es-profile-page">
     <?php
-        // Include profile page template
-        get_template_part( 'template-parts/profile/index' );
+
+        $username = get_query_var('profile_username');
+        $user = get_user_by('login', $username);
+        if (!$user && is_user_logged_in()) {
+            $user = get_current_user();
+        }
+
+        if ($user || is_user_logged_in()) {
+            // Include profile page template
+            get_template_part( 'template-parts/profile/index' );
+        }
     ?>
 </div>
 

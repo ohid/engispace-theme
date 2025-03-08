@@ -3574,7 +3574,7 @@ header {
     .es-forum-content-wrap .es-forum-content-entry:hover {
       background: #FFFBEA; }
     .es-forum-content-wrap .es-forum-content-entry .es-comments-counter {
-      background: #E8B097;
+      background: #C3CDD8;
       width: 40px;
       height: 50px;
       color: #ffffff;
@@ -3585,6 +3585,14 @@ header {
       align-items: center;
       justify-content: center;
       font-size: 14px; }
+      .es-forum-content-wrap .es-forum-content-entry .es-comments-counter.es-eng-severity-orange_1 {
+        background-color: #EBDDD8; }
+      .es-forum-content-wrap .es-forum-content-entry .es-comments-counter.es-eng-severity-orange_2 {
+        background-color: #E8B097; }
+      .es-forum-content-wrap .es-forum-content-entry .es-comments-counter.es-eng-severity-orange_3 {
+        background-color: #E58C63; }
+      .es-forum-content-wrap .es-forum-content-entry .es-comments-counter.es-eng-severity-orange_4 {
+        background-color: #E04B06; }
     .es-forum-content-wrap .es-forum-content-entry .es-fce-title h3 {
       font-size: 16px;
       font-weight: 500;
@@ -3668,6 +3676,14 @@ header {
     width: 80%;
     justify-content: center;
     box-sizing: border-box; }
+    .es-forum-top-nav ul li.es-eng-severity-orange_1 {
+      border-bottom-color: #EBDDD8; }
+    .es-forum-top-nav ul li.es-eng-severity-orange_2 {
+      border-bottom-color: #E8B097; }
+    .es-forum-top-nav ul li.es-eng-severity-orange_3 {
+      border-bottom-color: #E58C63; }
+    .es-forum-top-nav ul li.es-eng-severity-orange_4 {
+      border-bottom-color: #E04B06; }
 
 .es-forum-single-content-wrapper {
   margin-top: 30px;
@@ -3953,15 +3969,15 @@ header {
     @media screen and (max-width: 768px) {
       .es-aq-form .es-aq-form-right {
         width: 100%; } }
-    .es-aq-form .es-aq-form-right .es-forum-post-author .es-fpa-name {
+    .es-aq-form .es-aq-form-right .es-forum-post-author a.es-fpa-name {
       display: flex;
       gap: 10px;
       align-items: center;
       margin-bottom: 10px; }
-      .es-aq-form .es-aq-form-right .es-forum-post-author .es-fpa-name img {
+      .es-aq-form .es-aq-form-right .es-forum-post-author a.es-fpa-name img {
         max-width: 40px;
         border-radius: 20px; }
-      .es-aq-form .es-aq-form-right .es-forum-post-author .es-fpa-name a {
+      .es-aq-form .es-aq-form-right .es-forum-post-author a.es-fpa-name span.es-fpa-name {
         font-size: 18px;
         font-weight: 500;
         line-height: 30px; }

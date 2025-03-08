@@ -21,11 +21,19 @@ class Rewrite_Pages implements Component_Interface {
         add_action( 'init', array( $this, 'course_payment_pages' ) );
         add_filter( 'request', array( $this, 'filter_request' ) );
         add_filter( 'template_include', array( $this, 'load_template' ) );
+        add_filter( 'query_vars', array( $this, 'es_register_query_vars') );
     }
 
     public function course_payment_pages() {
         add_rewrite_endpoint( 'course-payment-success', EP_PERMALINK );
         add_rewrite_endpoint( 'course-payment-error', EP_PERMALINK );
+
+        // Add rewrite rule for user profile
+        add_rewrite_rule(
+            'profile/([^/]+)/?$',
+            'index.php?profile_username=$matches[1]',
+            'top'
+        );
     }
 
     public function filter_request( $vars ) {
@@ -50,6 +58,18 @@ class Rewrite_Pages implements Component_Interface {
             return get_template_part( 'template-parts/courses/course-payment-error' );
         }
 
+        if (get_query_var('profile_username')) {
+            $new_template = locate_template('template-profile-page.php');
+            if (!empty($new_template)) {
+                return $new_template;
+            }
+        }
+
 	    return $template;
+    }
+
+    public function es_register_query_vars( $vars ) {
+        $vars[] = 'profile_username';
+        return $vars;
     }
 }

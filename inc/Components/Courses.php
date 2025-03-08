@@ -214,13 +214,13 @@ class Courses implements Component_Interface {
         return $courses;
     }
 
-    public static function get_creator_courses() {
+    public static function get_creator_courses($user_id = false) {
         $query_args = array(
             'post_type' => 'sfwd-courses',
             'limit' => 20,
             'post_status' => 'publish',
             'order' => 'DESC',
-            'author' => get_current_user_id()
+            'author' => $user_id ? $user_id : get_current_user_id()
         );
 
         // run the query
@@ -233,8 +233,8 @@ class Courses implements Component_Interface {
         return $courses;
     }
 
-    public static function get_creator_courses_html() {
-        $courses = self::get_creator_courses();
+    public static function get_creator_courses_html($user_id = false) {
+        $courses = self::get_creator_courses($user_id);
         
         if ( $courses->have_posts() ) {
             echo '<div class="es-creator-courses-list">';

@@ -209,6 +209,22 @@ function es_get_current_user_lastname() {
 }
 
 /**
+ * Get the profile page URL for a specific user
+ * 
+ * Generates the full URL for a user's profile page using their user_login.
+ * If no user_id is provided or user doesn't exist, returns the base profile URL.
+ * 
+ * @since 1.0.0
+ * @param int|false $user_id The ID of the user whose profile URL is needed. Default false.
+ * @return string The complete profile page URL (e.g., http://example.com/profile/username)
+ */
+function es_get_profile_page_url( $user_id = false ) {
+    // Get user name by user_id
+    $user = get_user_by('id', $user_id);
+    return get_site_url() . '/profile/' . $user->user_login;
+}
+
+/**
  * Get current logged in user's display_name
  * 
  * @since 1.0.0
@@ -255,11 +271,13 @@ function es_get_current_user_profile_bio( $user_id = false ) {
  * 
  * @return null|string
  */
-function es_get_current_user_phone() {
-    if ( !is_user_logged_in() ) {
-        return;
+function es_get_current_user_phone($user_id = false) {
+    if ( !$user_id ) {
+        if ( !is_user_logged_in() ) {
+            return;
+        }
+        $user_id = get_current_user_id();
     }
-    $user_id = get_current_user_id();
     return get_user_meta( $user_id, 'es_user_phone', true );
 }
 
@@ -270,11 +288,16 @@ function es_get_current_user_phone() {
  * 
  * @return null|string
  */
-function es_get_current_user_email() {
-    if ( !is_user_logged_in() ) {
-        return;
+function es_get_current_user_email($user_id = false) {
+    if ( !$user_id ) {
+        if ( !is_user_logged_in() ) {
+            return;
+        }
+        $current_user = wp_get_current_user();
     }
-    $current_user = wp_get_current_user();
+
+    $current_user = get_user_by( 'id', $user_id );
+
     return $current_user->user_email;
 }
 
@@ -285,11 +308,13 @@ function es_get_current_user_email() {
  * 
  * @return null|string
  */
-function es_get_current_user_url() {
-    if ( !is_user_logged_in() ) {
-        return;
+function es_get_current_user_url($user_id = false) {
+    if ( !$user_id ) {
+        if ( !is_user_logged_in() ) {
+            return;
+        }
+        $user_id = get_current_user_id();
     }
-    $user_id = get_current_user_id();
     return get_user_meta( $user_id, 'es_user_url', true );
 }
 
@@ -570,7 +595,9 @@ function es_answer_callback($comment) {
                     <?php 
                         $user = get_user_by( 'email', $comment->comment_author_email );
                         if ( es_user_profile_avatar( $user->ID ) ) {
+                            echo '<a href="'. esc_url(es_get_profile_page_url($user->ID)) .'">';
                             printf('<img src="%s" />', es_user_profile_avatar( $user->ID ));
+                            echo '</a>'    ;
                         } else {
                             echo get_avatar($comment, 50); 
                         }
@@ -578,7 +605,7 @@ function es_answer_callback($comment) {
                 </span>
                 <div class="es-right">
                     <span class="es-author-name">
-                        <a href="<?php echo esc_url(get_comment_author_url($comment)); ?>">
+                        <a href="<?php echo esc_url(es_get_profile_page_url($user->ID)); ?>">
                             <?php echo esc_html(get_comment_author($comment)); ?>
                         </a>
                     </span>
@@ -667,3 +694,20 @@ function es_redirect_non_logged_in_users() {
     }
 }
 add_action('template_redirect', 'es_redirect_non_logged_in_users');
+
+
+function es_eng_severity($count, $times = 1) {
+    $color_value = 'gray';
+
+    if ( $count >= 30 * $times ) {
+        $color_value = 'orange_4';
+    } elseif ( $count >= 15 * $times ) {
+        $color_value = 'orange_3';
+    } elseif ( $count >= 8 * $times ) {
+        $color_value = 'orange_2';
+    } elseif ( $count > 2 * $times ) {
+        $color_value = 'orange_1';
+    }
+
+    return $color_value;
+}

@@ -27,7 +27,7 @@ $post_user_id = get_post_field('post_author', get_the_ID());
                         <li>
                             <span class="es-comment-comment"><?php echo esc_html($comment->comment_content); ?></span> -
                             <span class="es-comment-author">
-                                <a href="<?php echo esc_url(get_author_posts_url($comment->user_id)); ?>">
+                                <a href="<?php echo esc_url(es_get_profile_page_url($comment->user_id)); ?>">
                                     <?php echo esc_html(get_comment_author($comment)); ?>
                                 </a>
                             </span>
@@ -64,10 +64,10 @@ $post_user_id = get_post_field('post_author', get_the_ID());
     </div>
     <div class="es-content-sidebar">
         <div class="es-forum-post-author">
-            <div class="es-fpa-name">
+            <a href="<?php echo esc_url(es_get_profile_page_url($post_user_id)); ?>" class="es-fpa-name">
                 <span><img src="<?php echo es_user_profile_avatar($post_user_id); ?>" alt=""></span>
-                <a href="#"><?php echo es_get_current_user_display_name($post_user_id); ?></a>
-            </div>
+                <span class="es-fpa-name"><?php echo es_get_current_user_display_name($post_user_id); ?></span>
+            </a>
             <div class="es-fpa-author-info">
                 <p><?php echo es_get_current_user_profile_bio($post_user_id); ?></p>
             </div>
