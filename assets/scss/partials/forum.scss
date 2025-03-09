@@ -225,7 +225,7 @@
         }
         
         .es-comments-counter {    
-            background: #C3CDD8;
+            background: #dadfe5;
             width: 40px;
             height: 50px;
             color: #ffffff;
@@ -237,6 +237,16 @@
             justify-content: center;
             font-size: 14px;
 
+            &.es-eng-severity-gray,
+            &.es-eng-severity-orange_1 {
+                color: #000;
+
+                svg {
+                    path {
+                        fill: #A9B7C7;
+                    }
+                }
+            }
             &.es-eng-severity-orange_1 {
                 background-color: #EBDDD8;
             }
@@ -654,6 +664,68 @@
         .es-forum-answer {
             display: flex;
             padding: 10px 0px;
+            gap: 20px;
+
+            .es-answer-reputation {
+                display: flex;
+                flex-direction: column;
+                gap: 2px;
+                .es-ar-upvote, 
+                .es-ar-downvote {
+                    button {
+                        border: 1px solid #E1E4E8;
+                        padding: 3px 12px;
+                        color: #000;
+                        font-size: 14px;
+                        font-weight: 500;
+                        border-radius: 5px;
+                        width: 40px;
+                    }
+                }
+                .es-ar-reputation-count {
+                    border: 1px solid #E1E4E8;
+                    background-color: #dadfe5;
+                    padding: 1px 12px;
+                    color: #000;
+                    font-size: 14px;
+                    font-weight: 500;
+                    border-radius: 5px;
+                    width: 40px;
+                    text-align: center;
+
+                    &.es-eng-severity-orange_1 {
+                        background-color: #EBDDD8;
+                    }
+                    &.es-eng-severity-orange_2 {
+                        background-color: #E8B097;
+                    }
+                    &.es-eng-severity-orange_3 {
+                        background-color: #E58C63;
+                        color: #fff;
+                    }
+                    &.es-eng-severity-orange_4 {
+                        background-color: #E04B06;
+                        color: #fff;
+                    }
+                }
+
+                .es-ar-downvote {
+                    button.voted {
+                        background-color: #f4f4f4;
+                    }
+                }
+                .es-ar-upvote {
+                    button {
+                        color: #E04B06;
+                        border-color: #ebe7e7;
+
+                        &.voted {
+                            background-color: #E04B06;
+                            color: #fff;
+                        }
+                    }
+                }
+            }
 
             &:not(:last-child) {
                 margin-bottom: 15px;

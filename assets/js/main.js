@@ -1006,6 +1006,46 @@
             });
         },
 
+        voteForumAnswers: function() {
+            $('.es-forum-upvote-answer, .es-forum-downvote-answer').on('click', function(e) {
+                e.preventDefault();
+                
+                const $button = $(this);
+                const $reputationCount = $button.closest('.es-answer-reputation').find('.es-ar-reputation-count');
+                const commentId = $button.data('comment-id');
+                const voteType = $button.hasClass('es-forum-upvote-answer') ? 'upvote' : 'downvote';
+        
+                $.ajax({
+                    url: engisapce_obj.ajaxurl,
+                    type: 'POST',
+                    data: {
+                        action: 'es_answer_vote',
+                        comment_id: commentId,
+                        vote_type: voteType,
+                        nonce: engisapce_obj.nonce
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            // Update reputation count
+                            $reputationCount.text(response.data.reputation);
+        
+                            // Update button states
+                            const $upvoteBtn = $button.closest('.es-answer-reputation').find('.es-forum-upvote-answer');
+                            const $downvoteBtn = $button.closest('.es-answer-reputation').find('.es-forum-downvote-answer');
+        
+                            $upvoteBtn.toggleClass('voted', response.data.has_upvoted);
+                            $downvoteBtn.toggleClass('voted', response.data.has_downvoted);
+                        } else {
+                            alert(response.data);
+                        }
+                    },
+                    error: function() {
+                        alert('Something went wrong. Please try again.');
+                    }
+                });
+            });
+        },
+
         init: function() {
             window.engispace.initHeaderFunctions();
             window.engispace.initCourseSliders();
@@ -1029,6 +1069,7 @@
             window.engispace.miscEvents();
             window.engispace.highlightJS();
             window.engispace.askQuestion();
+            window.engispace.voteForumAnswers();
 
             jQuery(window).on('resize', function() {
                 course_details_hover_box();

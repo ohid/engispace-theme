@@ -14,7 +14,7 @@ $query = $questions->get_questions( 'recent' );
                 <div class="es-fce-left-item">
                     <?php $commentsCount = $questions->get_question_answers_count(get_the_ID()); ?>
                     <span class="es-comments-counter es-eng-severity-<?php echo es_eng_severity($commentsCount); ?>">
-                        <img src="<?php echo THEME_URI . '/assets/img/comments.svg' ?>" alt="">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><g opacity="0.700577"><path fill-rule="evenodd" clip-rule="evenodd" d="M8.00008 2C4.32408 2 1.33341 4.692 1.33341 8C1.33341 9.15667 1.69408 10.2613 2.38208 11.224L0.666748 14H8.00008C11.6761 14 14.6667 11.308 14.6667 8C14.6667 4.692 11.6761 2 8.00008 2Z" fill="white"/></g></svg>
                         <?php echo $commentsCount; ?>
                     </span>
                 </div>

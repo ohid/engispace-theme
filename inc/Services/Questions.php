@@ -14,6 +14,7 @@ class Questions implements Component_Interface {
     public function initialize() {
         add_action( 'wp_ajax_create_forum_question', [ $this, 'create_forum_question' ], 10, 3 );
         add_action( 'template_redirect', [ $this, 'track_question_view' ] );
+        add_action( 'wp_ajax_es_answer_vote', [ $this, 'es_handle_answer_vote' ] );
     }
 
     public function track_question_view() {
@@ -31,6 +32,66 @@ class Questions implements Component_Interface {
             $viewed_posts[] = $post_id;
             setcookie('es_viewed_questions', implode(',', $viewed_posts), time() + (DAY_IN_SECONDS * 30), COOKIEPATH, COOKIE_DOMAIN);
         }
+    }
+
+    /**
+     * Handle voting system for the answer
+     */
+    public function es_handle_answer_vote() {
+        // Verify nonce
+        if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'es_nonce')) {
+            wp_send_json_error('Invalid nonce');
+        }
+    
+        // Check if user is logged in
+        if (!is_user_logged_in()) {
+            wp_send_json_error('Please login to vote');
+        }
+    
+        $comment_id = absint($_POST['comment_id']);
+        $vote_type = sanitize_text_field($_POST['vote_type']); // 'upvote' or 'downvote'
+        $user_id = get_current_user_id();
+    
+        // Get existing votes
+        $upvotes = get_comment_meta($comment_id, 'es_answer_upvotes', true) ?: [];
+        $downvotes = get_comment_meta($comment_id, 'es_answer_downvotes', true) ?: [];
+    
+        // Check if user already voted
+        $has_upvoted = in_array($user_id, (array)$upvotes);
+        $has_downvoted = in_array($user_id, (array)$downvotes);
+    
+        if ($vote_type === 'upvote') {
+            if ($has_upvoted) {
+                // Remove upvote
+                $upvotes = array_diff((array)$upvotes, [$user_id]);
+            } else {
+                // Add upvote and remove downvote if exists
+                $upvotes[] = $user_id;
+                $downvotes = array_diff((array)$downvotes, [$user_id]);
+            }
+        } else {
+            if ($has_downvoted) {
+                // Remove downvote
+                $downvotes = array_diff((array)$downvotes, [$user_id]);
+            } else {
+                // Add downvote and remove upvote if exists
+                $downvotes[] = $user_id;
+                $upvotes = array_diff((array)$upvotes, [$user_id]);
+            }
+        }
+    
+        // Update vote counts
+        update_comment_meta($comment_id, 'es_answer_upvotes', array_values($upvotes));
+        update_comment_meta($comment_id, 'es_answer_downvotes', array_values($downvotes));
+    
+        // Calculate total reputation
+        $reputation = count($upvotes) - count($downvotes);
+    
+        wp_send_json_success([
+            'reputation' => $reputation,
+            'has_upvoted' => in_array($user_id, $upvotes),
+            'has_downvoted' => in_array($user_id, $downvotes)
+        ]);
     }
 
     public function get_questions( $sort = 'recent', $category = null, $limit = 10 ) {

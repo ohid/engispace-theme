@@ -586,9 +586,23 @@ function es_all_courses_page_title() {
  * @return void
  */
 function es_answer_callback($comment) {
+    $reputation_count = es_get_answer_reputation($comment->comment_ID);
     ?>
     <div class="es-forum-answer">
-        <!-- <div class="es-answer-reputation"></div> -->
+        <div class="es-answer-reputation">
+            <span class="es-ar-upvote">
+                <button class="es-forum-upvote-answer <?php echo es_user_has_voted($comment->comment_ID, 'upvote') ? 'voted' : ''; ?>" 
+                        data-comment-id="<?php echo esc_attr($comment->comment_ID); ?>">+1</button>
+            </span>
+            <span class="es-ar-reputation-count es-eng-severity-<?php echo es_eng_severity($reputation_count); ?>">
+                <?php echo $reputation_count; ?>
+            </span>
+            <span class="es-ar-downvote">
+                <button class="es-forum-downvote-answer <?php echo es_user_has_voted($comment->comment_ID, 'downvote') ? 'voted' : ''; ?>" 
+                        data-comment-id="<?php echo esc_attr($comment->comment_ID); ?>">-1</button>
+            </span>
+        </div>
+
         <div class="es-answer-content">
             <div class="es-answer-author">
                 <span class="es-author-img">
@@ -711,3 +725,68 @@ function es_eng_severity($count, $times = 1) {
 
     return $color_value;
 }
+
+
+/**
+ * Get answer reputation count
+ */
+function es_get_answer_reputation($comment_id) {
+    $upvotes = get_comment_meta($comment_id, 'es_answer_upvotes', true) ?: [];
+    $downvotes = get_comment_meta($comment_id, 'es_answer_downvotes', true) ?: [];
+    return count((array)$upvotes) - count((array)$downvotes);
+}
+
+/**
+ * Check if user has voted on an answer
+ */
+function es_user_has_voted($comment_id, $vote_type) {
+    if (!is_user_logged_in()) return false;
+    
+    $user_id = get_current_user_id();
+    $votes = get_comment_meta($comment_id, "es_answer_{$vote_type}s", true) ?: [];
+    return in_array($user_id, (array)$votes);
+}
+
+/**
+ * Allow specific HTML tags in comments
+ */
+function es_allow_html_in_comments($data) {
+    global $allowedtags;
+    
+    // Add additional allowed tags
+    $allowedtags['h1'] = array();
+    $allowedtags['h2'] = array();
+    $allowedtags['h3'] = array();
+    $allowedtags['h4'] = array();
+    $allowedtags['h5'] = array();
+    $allowedtags['h6'] = array();
+    $allowedtags['img'] = array(
+        'src' => true,
+        'alt' => true,
+        'width' => true,
+        'height' => true,
+        'class' => true
+    );
+    $allowedtags['figure'] = array(
+        'class' => true
+    );
+    $allowedtags['figcaption'] = array();
+    
+    // Remove WordPress's default filtering
+    remove_filter('pre_comment_content', 'wp_filter_kses');
+    add_filter('pre_comment_content', 'wp_kses_post');
+    
+    return $data;
+}
+add_filter('preprocess_comment', 'es_allow_html_in_comments');
+
+/**
+ * Remove autop from comment text
+ */
+function es_remove_comment_autop($content) {
+    if (get_post_type() === 'question') {
+        remove_filter('comment_text', 'wpautop', 30);
+    }
+    return $content;
+}
+add_filter('the_content', 'es_remove_comment_autop');

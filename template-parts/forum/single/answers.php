@@ -29,11 +29,6 @@ $comments = $questions->get_question_answers(get_the_ID());
                     foreach ($comments as $comment) : 
                         es_answer_callback( $comment );
                     endforeach;
-                    if (count($comments) > 3) : ?>
-                        <li class="more-comments">
-                            <a href="#">View more comments</a>
-                        </li>
-                    <?php endif;
                 endif; ?>
             </div>
 
