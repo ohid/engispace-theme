@@ -790,3 +790,24 @@ function es_remove_comment_autop($content) {
     return $content;
 }
 add_filter('the_content', 'es_remove_comment_autop');
+
+
+
+/**
+ * Modify main query for search results pagination
+ */
+function es_modify_search_query($query) {
+    if (!is_admin() && $query->is_main_query() && $query->is_search()) {
+        $sort = isset($_GET['sort']) ? sanitize_text_field($_GET['sort']) : 'all';
+        
+        if ($sort === 'all') {
+            $query->set('post_type', array('sfwd-courses', 'question'));
+        } else {
+            $query->set('post_type', array($sort));
+        }
+        
+        $query->set('posts_per_page', 10);
+    }
+    return $query;
+}
+add_action('pre_get_posts', 'es_modify_search_query');

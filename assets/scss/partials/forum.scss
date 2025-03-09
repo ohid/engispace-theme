@@ -210,7 +210,8 @@
     }
 }
 
-.es-forum-content-wrap {
+.es-forum-content-wrap,
+.es-profile-page-content {
     padding-top: 25px;
     .es-forum-content-entry {
         display: flex;
@@ -959,6 +960,37 @@
 
         .es-aq-form-submit {
             margin-top: 30px;
+        }
+    }
+}
+
+.es-search-wrapper {
+    padding: 40px 0px;
+
+    .es-search-pagination {
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+
+        ul {
+            display: flex;
+            gap: 10px;
+        }
+
+        a.page-numbers,
+        span.page-numbers {
+            border: 1px solid #A9B7C733;
+            background: linear-gradient(180deg, #FFFFFF 0%, #EDF0F3 100%);
+            font-size: 14px;
+            font-weight: 500;
+            padding: 15px 25px;
+            border-radius: 4px;
+            display: inline-block;
+            transition: all 0.2s ease-in;
+
+            &:hover, &.current {
+                background: linear-gradient(180deg, #EDF0F3 0%, #dadee2 100%);
+            }
         }
     }
 }

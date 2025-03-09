@@ -150,6 +150,22 @@ class Questions implements Component_Interface {
         return $query;
     }
 
+    public function get_question_by_user( $user_id = false ) {
+        if ( !$user_id ) {
+            $user_id = get_current_user_id();
+        }
+
+        $args = array(
+            'post_type' => 'question',
+            'author' => $user_id,
+            'posts_per_page' => -1,
+            'order' => 'DESC'
+        );
+        $query = new \WP_Query( $args );
+
+        return $query;
+    }
+
     public function get_questions_categories() {
         $args = array(
             'taxonomy' => 'categories',
