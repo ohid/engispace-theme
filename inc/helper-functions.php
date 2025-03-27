@@ -294,9 +294,9 @@ function es_get_current_user_email($user_id = false) {
             return;
         }
         $current_user = wp_get_current_user();
+    } else if ( is_user_logged_in() ) {
+        $current_user = wp_get_current_user();
     }
-
-    $current_user = get_user_by( 'id', $user_id );
 
     return $current_user->user_email;
 }

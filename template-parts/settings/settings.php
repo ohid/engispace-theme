@@ -3,9 +3,24 @@
 </div>
 
 <div class="es-settings-update-password">
-    <h3>Change Password</h3>
     <form method="POST" id="es-update-user-password">
-        <div class="es-form-fields">
+        <h3>User details</h3>
+        <div class="es-form-user-details-fields es-form-fields">
+            <div class="es-form-control">
+                <label for="email">Email</label>
+                <input type="text" name="email" id="email" value="<?php esc_attr_e( es_get_current_user_email() ); ?>">
+            </div>
+            <div class="es-form-control">
+                <label for="first_name">First name</label>
+                <input type="text" name="first_name" id="first_name" value="<?php esc_attr_e( es_get_current_user_firstname() ); ?>">
+            </div>
+            <div class="es-form-control">
+                <label for="last_name">Last name</label>
+                <input type="text" name="last_name" id="last_name" value="<?php esc_attr_e( es_get_current_user_lastname() ); ?>">
+            </div>
+        </div>
+        <h3>Change Password</h3>
+        <div class="es-form-password-fields es-form-fields">
             <div class="es-form-control">
                 <label for="old_password">Old password</label>
                 <input type="password" name="old_password" id="old_password">

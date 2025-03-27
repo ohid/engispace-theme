@@ -3078,7 +3078,8 @@ header {
       grid-template-columns: 1fr 1fr;
       gap: 10px;
       /* Adjust the gap as needed */ }
-    .es-settings-page-inner .es-settings-page-content .es-settings-update-password .es-form-control {
+    .es-settings-page-inner .es-settings-page-content .es-settings-update-password .es-form-user-details-fields .es-form-control,
+    .es-settings-page-inner .es-settings-page-content .es-settings-update-password .es-form-password-fields .es-form-control {
       grid-column: span 2;
       /* Make each div take full width by default */ }
     .es-settings-page-inner .es-settings-page-content .es-settings-update-password .es-form-control:nth-child(2),

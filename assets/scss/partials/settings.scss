@@ -71,10 +71,14 @@
                 grid-template-columns: 1fr 1fr;
                 gap: 10px; /* Adjust the gap as needed */
             }
-            
-            .es-form-control {
-                grid-column: span 2; /* Make each div take full width by default */
+
+            .es-form-user-details-fields,
+            .es-form-password-fields {
+                .es-form-control {
+                    grid-column: span 2; /* Make each div take full width by default */
+                }
             }
+            
             
             .es-form-control:nth-child(2),
             .es-form-control:nth-child(3) {
