@@ -517,7 +517,7 @@
                 display: flex;
                 gap: 10px;
                 align-items: center;
-                margin-bottom: 10px;
+                margin-bottom: 20px;
 
                 img {
                     max-width: 40px;
@@ -892,7 +892,7 @@
         }
 
         .es-forum-post-author {
-            a.es-fpa-name {
+            .es-fpa-name {
                 display: flex;
                 gap: 10px;
                 align-items: center;

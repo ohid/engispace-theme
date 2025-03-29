@@ -3882,7 +3882,7 @@ header {
       display: flex;
       gap: 10px;
       align-items: center;
-      margin-bottom: 10px; }
+      margin-bottom: 20px; }
       .es-forum-single-content-wrapper .es-content-sidebar .es-forum-post-author .es-fpa-name img {
         max-width: 40px;
         border-radius: 20px; }
@@ -4124,15 +4124,15 @@ header {
     @media screen and (max-width: 768px) {
       .es-aq-form .es-aq-form-right {
         width: 100%; } }
-    .es-aq-form .es-aq-form-right .es-forum-post-author a.es-fpa-name {
+    .es-aq-form .es-aq-form-right .es-forum-post-author .es-fpa-name {
       display: flex;
       gap: 10px;
       align-items: center;
       margin-bottom: 10px; }
-      .es-aq-form .es-aq-form-right .es-forum-post-author a.es-fpa-name img {
+      .es-aq-form .es-aq-form-right .es-forum-post-author .es-fpa-name img {
         max-width: 40px;
         border-radius: 20px; }
-      .es-aq-form .es-aq-form-right .es-forum-post-author a.es-fpa-name span.es-fpa-name {
+      .es-aq-form .es-aq-form-right .es-forum-post-author .es-fpa-name span.es-fpa-name {
         font-size: 18px;
         font-weight: 500;
         line-height: 30px; }
