@@ -179,6 +179,20 @@ class Questions implements Component_Interface {
         return $categories;
     }
 
+    public function get_questions_parent_categories() {
+        $args = array(
+            'taxonomy' => 'categories',
+            'hide_empty' => false,
+            'orderby' => 'name',
+            'order' => 'ASC',
+            'parent' => 0
+        );
+
+        $categories = get_terms($args);
+
+        return $categories;
+    }
+
     public function print_categories( $post_id ) {
         $categories = get_the_terms( $post_id, 'categories');
         if (!empty($categories)) : ?>

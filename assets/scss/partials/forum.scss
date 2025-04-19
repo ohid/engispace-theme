@@ -146,6 +146,17 @@
                     }
                 }
             }
+
+            &.es-widget-categories .es-widget-content > ul {
+                li {
+                    display: block;
+
+                    .sub-categories {
+                        margin-left: 20px;
+                        margin-top: 10px;
+                    }
+                }
+            }
         }
     }
 

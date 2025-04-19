@@ -52,12 +52,35 @@ $questions = new Questions();
                     <div class="es-widget-content">
                         <ul>
                             <?php
-                            $categories = $questions->get_questions_categories();
+                            $categories = $questions->get_questions_parent_categories();
                             $current_term_id = get_queried_object_id();
+                            
                             if ($categories) :
                                 foreach ($categories as $category) :
-                                    $is_active = $current_term_id === $category->term_id ? 'active' : ''; ?>
-                                    <li class="<?php echo esc_attr($is_active); ?>"><a href="<?php echo esc_url(get_term_link($category)); ?>"><?php echo esc_html($category->name); ?></a></li>
+                                    $is_active = $current_term_id === $category->term_id ? 'active' : '';
+                                    $term_link = get_term_link($category);
+                                    $category_url = is_wp_error($term_link) ? '#' : $term_link; 
+                                    $child_categories = get_terms([
+                                        'taxonomy' => 'categories',
+                                        'parent' => $category->term_id,
+                                        'hide_empty' => false
+                                    ]); ?>
+                                    
+                                    <li class="<?php echo esc_attr($is_active); ?>">
+                                        <a href="<?php echo esc_url($category_url); ?>"><?php echo esc_html($category->name); ?></a>
+                                        <?php if (!empty($child_categories)) : ?>
+                                            <ul class="sub-categories">
+                                                <?php foreach ($child_categories as $child) :
+                                                    $child_is_active = $current_term_id === $child->term_id ? 'active' : '';
+                                                    $child_link = get_term_link($child);
+                                                    $child_url = is_wp_error($child_link) ? '#' : $child_link; ?>
+                                                    <li class="<?php echo esc_attr($child_is_active); ?>">
+                                                        <a href="<?php echo esc_url($child_url); ?>"><?php echo esc_html($child->name); ?></a>
+                                                    </li>
+                                                <?php endforeach; ?>
+                                            </ul>
+                                        <?php endif; ?>
+                                    </li>
                                 <?php endforeach;
                             else : ?>
                                 <li><?php esc_html_e('No categories found', 'engispace-theme'); ?></li>
