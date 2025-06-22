@@ -156,7 +156,14 @@
                     data: formData,
                     success: function( response ) {
                         // handle sign in error response
-                        if ( ! response.success ) {
+                        console.log(response);
+                        if ( ! response.success && response.data === 'user_not_verified' ) {
+                            thisForm.find('.es-form-message')
+                                .html( "Please activate your account" )
+                                .addClass('form-error')
+                                .removeClass('form-success');
+                            return;
+                        } else if ( ! response.success ) {
                             thisForm.find('.es-form-message')
                                 .html( "Email or password did not match" )
                                 .addClass('form-error')
@@ -267,8 +274,8 @@
                             $('#es-signup-form')[0].reset();
                             // reload the page
                             setTimeout(function() {
-                                window.location.href = engisapce_obj.siteurl + '/profile';
-                            }, 100);
+                                window.location.href = engisapce_obj.siteurl;
+                            }, 2000);
                         }
                     })
                 }

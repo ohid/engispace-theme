@@ -429,6 +429,9 @@ header {
     text-align: center;
     font-size: 3rem;
     font-weight: 500; }
+  .es-page-header p {
+    text-align: center;
+    margin-top: 20px; }
 
 .es-page-wrapper {
   margin: 40px 0px; }
@@ -1565,8 +1568,6 @@ header {
     width: calc(100% + 30px);
     overflow-x: scroll;
     padding: 30px; }
-    .es-modal-wrapper.display-modal[modal-type="signup-modal"] .es-site-modal {
-      top: 140px; }
     .es-modal-wrapper.display-modal .es-site-modal {
       transform: scale(1);
       margin-bottom: 0px; }

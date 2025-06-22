@@ -243,12 +243,6 @@
         overflow-x: scroll;
         padding: 30px;
 
-        &[modal-type="signup-modal"] {
-            .es-site-modal {
-                top: 140px;
-            }
-        }
-
         .es-site-modal {
             transform: scale(1);
             margin-bottom: 0px;

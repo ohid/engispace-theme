@@ -811,3 +811,30 @@ function es_modify_search_query($query) {
     return $query;
 }
 add_action('pre_get_posts', 'es_modify_search_query');
+
+function handle_email_verification() {
+    if (!isset($_GET['action']) || $_GET['action'] !== 'verify_email') {
+        return;
+    }
+    
+    $user_id = intval($_GET['user_id']);
+    $token = sanitize_text_field($_GET['token']);
+    
+    if (!$user_id || !$token) {
+        wp_die('Invalid verification link.');
+    }
+    
+    $stored_token = get_user_meta($user_id, 'verification_token', true);
+    
+    if ($token !== $stored_token) {
+        wp_die('Invalid or expired verification link.');
+    }
+    
+    // Verify the user
+    update_user_meta($user_id, 'account_verified', true);
+    delete_user_meta($user_id, 'verification_token');
+    
+    wp_redirect(add_query_arg('verified', '1', home_url('/login')));
+    exit;
+}
+add_action('init', 'handle_email_verification');

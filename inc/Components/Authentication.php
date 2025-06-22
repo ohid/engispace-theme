@@ -46,6 +46,13 @@ class Authentication implements Component_Interface {
         // Get the user by email
         $user = get_user_by( 'email', $email );
 
+        $is_verified = get_user_meta($user->ID, 'account_verified', true);
+        error_log($is_verified);
+        if(!$is_verified) {
+            wp_send_json_error( 'user_not_verified' );
+            die();
+        }
+
         if ( $user && wp_check_password( $password, $user->data->user_pass, $user->ID ) ) {
             // Password is correct, log the user in
             wp_set_current_user($user->ID, $user->user_login);
@@ -101,14 +108,55 @@ class Authentication implements Component_Interface {
             'role' => 'subscriber'
         ));
 
+        // Make user inactive by adding meta
+        update_user_meta($user_id, 'account_verified', false);
+        update_user_meta($user_id, 'verification_token', wp_generate_password(32, false));
+        
+        // Send verification email
+        $this->send_verification_email($user_id);
+
         // automatically sign in the user
-        wp_clear_auth_cookie();
-        wp_set_current_user( $user_id );
-        wp_set_auth_cookie( $user_id );
+        // wp_clear_auth_cookie();
+        // wp_set_current_user( $user_id );
+        // wp_set_auth_cookie( $user_id );
 
         // Send the JSON success to the client end
         wp_send_json_success( 'user_created' );
         die();
+    }
+
+    public function send_verification_email($user_id) {
+        $user = get_userdata($user_id);
+        $token = get_user_meta($user_id, 'verification_token', true);
+        
+        $verification_url = add_query_arg([
+            'action' => 'verify_email',
+            'user_id' => $user_id,
+            'token' => $token
+        ], home_url());
+        
+        $subject = 'Welcome to EngiSpace! Please verify your email address';
+        
+        $message = "
+        <html>
+        <body>
+            <h2>Welcome to " . get_bloginfo('name') . "!</h2>
+            <p>Hi {$user->first_name},</p>
+            <p>Thank you for registering! Please click the link below to verify your email address and activate your account:</p>
+            <p><a href='{$verification_url}' style='background: #0073aa; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;'>Verify Email Address</a></p>
+            <p>Or copy and paste this link: {$verification_url}</p>
+            <p>This link will expire in 24 hours.</p>
+            <p>Best regards,<br>The " . get_bloginfo('name') . " Team</p>
+        </body>
+        </html>
+        ";
+        
+        $headers = [
+            'Content-Type: text/html; charset=UTF-8',
+            'From: ' . get_bloginfo('name') . ' <' . get_option('admin_email') . '>'
+        ];
+        
+        wp_mail($user->user_email, $subject, $message, $headers);
     }
 
     public function forget_password() {
