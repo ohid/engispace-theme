@@ -93,8 +93,7 @@ module.exports = function(grunt) {
                             '!.gitignore',
                             '!.DS_Store',
                             '!**/.DS_Store',
-                            '!tailwind.config.js',
-                            '!vendor/**'
+                            '!tailwind.config.js'
                         ],
                         dest: 'build/engispace-theme/'
                     }
@@ -103,7 +102,8 @@ module.exports = function(grunt) {
         },
         zip: {
             build: {
-                src: ['build/engispace-theme/**/*'],
+                cwd: 'build/engispace-theme/',
+                src: ['**/*'],
                 dest: 'build/engispace-theme.zip'
             }
         }

@@ -27,6 +27,13 @@ class Authentication implements Component_Interface {
 
         add_action( 'wp_ajax_es_auth_required_modal', array( $this, 'auth_required_modal' ) );
         add_action( 'wp_ajax_nopriv_es_auth_required_modal', array( $this, 'auth_required_modal' ) );
+        
+        // Handle email verification
+        add_action( 'init', array( $this, 'handle_email_verification' ) );
+        
+        // Disable WordPress default new user notification email
+        add_filter( 'wp_new_user_notification_email', '__return_false' );
+        add_filter( 'wp_new_user_notification_email_admin', '__return_false' );
     }
 
     public function signin() {
@@ -156,7 +163,84 @@ class Authentication implements Component_Interface {
             'From: ' . get_bloginfo('name') . ' <' . get_option('admin_email') . '>'
         ];
         
-        wp_mail($user->user_email, $subject, $message, $headers);
+        $result = wp_mail($user->user_email, $subject, $message, $headers);
+        
+        // Log email result for debugging
+        if (!$result) {
+            error_log('Verification email failed to send to: ' . $user->user_email);
+        }
+        
+        return $result;
+    }
+    
+    public function handle_email_verification() {
+        if (!isset($_GET['action']) || $_GET['action'] !== 'verify_email') {
+            return;
+        }
+        
+        $user_id = absint($_GET['user_id']);
+        $token = sanitize_text_field($_GET['token']);
+        
+        if (!$user_id || !$token) {
+            wp_die('Invalid verification link.');
+        }
+        
+        $stored_token = get_user_meta($user_id, 'verification_token', true);
+        
+        if ($token !== $stored_token) {
+            wp_die('Invalid or expired verification token.');
+        }
+        
+        // Verify the user
+        update_user_meta($user_id, 'account_verified', true);
+        delete_user_meta($user_id, 'verification_token');
+        
+        // Send welcome email after successful verification
+        $this->send_welcome_email($user_id);
+        
+        // Redirect to login page with success message
+        wp_redirect(home_url('/?verified=1'));
+        exit;
+    }
+    
+    public function send_welcome_email($user_id) {
+        $user = get_userdata($user_id);
+        
+        $subject = 'Welcome to ' . get_bloginfo('name') . '! Your account is now active';
+        
+        $message = "
+        <html>
+        <body>
+            <h2>Welcome to " . get_bloginfo('name') . "!</h2>
+            <p>Hi {$user->first_name},</p>
+            <p>Congratulations! Your email has been verified and your account is now active.</p>
+            <p>You can now:</p>
+            <ul>
+                <li>Access all premium content</li>
+                <li>Participate in our community forums</li>
+                <li>Download course materials</li>
+                <li>Track your learning progress</li>
+            </ul>
+            <p><a href='" . home_url() . "' style='background: #0073aa; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;'>Start Learning Now</a></p>
+            <p>If you have any questions, feel free to contact our support team.</p>
+            <p>Best regards,<br>The " . get_bloginfo('name') . " Team</p>
+        </body>
+        </html>
+        ";
+        
+        $headers = [
+            'Content-Type: text/html; charset=UTF-8',
+            'From: ' . get_bloginfo('name') . ' <' . get_option('admin_email') . '>'
+        ];
+        
+        $result = wp_mail($user->user_email, $subject, $message, $headers);
+        
+        // Log email result for debugging
+        if (!$result) {
+            error_log('Welcome email failed to send to: ' . $user->user_email);
+        }
+        
+        return $result;
     }
 
     public function forget_password() {
