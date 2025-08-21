@@ -38,20 +38,43 @@ jobs:
     - name: Install Composer dependencies
       run: composer install --no-dev --optimize-autoloader --no-interaction
       
-    - name: Build theme for production
-      run: npm run build-theme
-      
-    - name: Verify build output
+    - name: Build CSS using Tailwind (skip Sass)
       run: |
-        if [ ! -f "build/engispace-theme.zip" ]; then
-          echo "Build failed: engispace-theme.zip not found"
-          exit 1
-        fi
+        # Build Tailwind CSS directly
+        npx tailwindcss -i ./assets/scss/tailwind.scss -o ./assets/css/site-styles.css --minify
         
-    - name: Extract theme for deployment
+    - name: Minify CSS files
+      run: npx grunt cssmin
+      
+    - name: Minify JavaScript files  
+      run: npx grunt uglify
+      
+    - name: Create theme package
       run: |
-        mkdir -p deploy-temp
-        unzip -q build/engispace-theme.zip -d deploy-temp/
+        mkdir -p build/engispace-theme
+        
+        # Copy all theme files except development files
+        rsync -av --exclude='node_modules' \
+                  --exclude='build' \
+                  --exclude='gruntfile.js' \
+                  --exclude='package.json' \
+                  --exclude='package-lock.json' \
+                  --exclude='composer.json' \
+                  --exclude='composer.lock' \
+                  --exclude='assets/scss' \
+                  --exclude='.git' \
+                  --exclude='.gitignore' \
+                  --exclude='.DS_Store' \
+                  --exclude='tailwind.config.js' \
+                  --exclude='.github' \
+                  ./ build/engispace-theme/
+                  
+        # Create zip file
+        cd build
+        zip -r engispace-theme.zip engispace-theme/
+        cd ..
+        
+        echo "✅ Theme package created: $(ls -lah build/engispace-theme.zip)"
         
     - name: Create backup script
       run: |
@@ -64,27 +87,19 @@ jobs:
         EOF
         chmod +x backup.sh
         
-    - name: Deploy to Hostinger via FTP
+    - name: Upload theme zip to server
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
         server: ${{ secrets.FTP_HOST }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         port: ${{ secrets.FTP_PORT }}
-        local-dir: ./deploy-temp/
-        server-dir: /public_html/wp-content/themes/engispace-theme/
+        local-dir: ./build/
+        server-dir: /public_html/wp-content/themes/
         clean: false
         dangerous-clean-slate: false
-        exclude: |
-          **/.git*
-          **/.git*/**
-          **/node_modules/**
-          **/build/**
-          .github/**
-          **/.DS_Store
-          backup.sh
           
-    - name: Verify deployment
+    - name: Extract theme on server
       uses: appleboy/ssh-action@v1.0.0
       with:
         host: ${{ secrets.FTP_HOST }}
@@ -92,13 +107,29 @@ jobs:
         password: ${{ secrets.SSH_PASSWORD }}
         port: ${{ secrets.SSH_PORT || 22 }}
         script: |
-          cd /public_html/wp-content/themes/engispace-theme
-          if [ -f "style.css" ] && [ -f "functions.php" ]; then
-            echo "✅ Theme files deployed successfully"
+          cd /public_html/wp-content/themes
+          
+          # Create backup of current theme
+          if [ -d "engispace-theme" ]; then
+            echo "📦 Creating backup..."
+            mv engispace-theme engispace-theme-backup-$(date +%Y%m%d_%H%M%S)
+          fi
+          
+          # Extract new theme
+          echo "📂 Extracting new theme..."
+          unzip -q engispace-theme.zip
+          
+          # Verify extraction
+          if [ -f "engispace-theme/style.css" ] && [ -f "engispace-theme/functions.php" ]; then
+            echo "✅ Theme extracted successfully"
             echo "📁 Theme directory contents:"
-            ls -la
+            ls -la engispace-theme/
+            
+            # Clean up zip file
+            rm engispace-theme.zip
+            echo "🧹 Cleaned up zip file"
           else
-            echo "❌ Deployment verification failed"
+            echo "❌ Theme extraction failed"
             exit 1
           fi
           

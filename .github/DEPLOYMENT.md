@@ -45,12 +45,22 @@ SLACK_WEBHOOK_URL=your-slack-webhook-url
 
 ### Automatic Deployment
 1. **Push to `main`** → Triggers production deployment
+2. **GitHub Actions builds theme** automatically
+3. **Deploys to server** via FTP
 
 ### Manual Deployment
 1. Go to **Actions** tab in GitHub
 2. Select **Deploy to Production**
 3. Click **Run workflow**
 4. Choose branch and options
+
+### How It Works
+1. **Builds theme** on GitHub Actions (CSS/JS compilation)
+2. **Creates theme package** (zip file)
+3. **Uploads** zip file to server via FTP
+4. **Creates backup** of current theme
+5. **Extracts** new theme on server
+6. **Verifies** successful deployment
 
 ## 📋 What Gets Deployed
 
