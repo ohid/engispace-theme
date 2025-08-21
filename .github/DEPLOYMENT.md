@@ -15,11 +15,16 @@ This repository is configured with automated deployment for deploying the WordPr
 Navigate to **Settings > Secrets and variables > Actions** and add these secrets:
 
 ```
-FTP_HOST=your-hostinger-ftp-host
+FTP_HOST=your-hostinger-ftp-host  (e.g., files.000webhost.com or ftp.yourdomain.com)
 FTP_USERNAME=your-ftp-username
 FTP_PASSWORD=your-ftp-password
-FTP_PORT=21
+FTP_PORT=21  (or 22 for SFTP)
 ```
+
+**Important**: Make sure you have the correct FTP hostname from Hostinger:
+- Check your Hostinger panel under "Files" > "FTP Accounts"
+- Use the server hostname exactly as shown (without ftp:// prefix)
+- Common formats: `files.000webhost.com`, `ftp.yourdomain.com`, or IP address
 
 ### Optional SSH Secrets (for verification)
 ```
@@ -34,7 +39,7 @@ SSH_PORT=22
 
 ### `main` branch
 - **Triggers**: Production deployment
-- **Target**: `public_html/wp-content/themes/engispace-theme/`
+- **Target**: `wp-content/themes/engispace-theme/` (relative to public_html)
 - **Manual approval**: Required via GitHub environment protection
 
 ## 🚀 Deployment Process

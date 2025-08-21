@@ -69,8 +69,7 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         port: ${{ secrets.FTP_PORT }}
         local-dir: ./build/
-        server-dir: /public_html/wp-content/themes/
-        clean: false
+        server-dir: wp-content/themes/
         dangerous-clean-slate: false
           
     - name: Extract theme on server
@@ -81,7 +80,7 @@ jobs:
         password: ${{ secrets.SSH_PASSWORD }}
         port: ${{ secrets.SSH_PORT || 22 }}
         script: |
-          cd /public_html/wp-content/themes
+          cd wp-content/themes
           
           # Create backup of current theme
           if [ -d "engispace-theme" ]; then
@@ -116,8 +115,8 @@ jobs:
         password: ${{ secrets.SSH_PASSWORD }}
         port: ${{ secrets.SSH_PORT || 22 }}
         script: |
-          cd /public_html
-          # Clear common WordPress cache
+          # Clear common WordPress cache (from public_html root)
+          cd /
           find wp-content/cache -type f -name "*.cache" -delete 2>/dev/null || true
           find wp-content/uploads/cache -type f -delete 2>/dev/null || true
           echo "Cache cleared (if any existed)"
