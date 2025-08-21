@@ -1,0 +1,136 @@
+name: Deploy to Production (Hostinger)
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      force_deploy:
+        description: 'Force deployment even if no changes'
+        required: false
+        default: 'false'
+        type: boolean
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.1'
+        extensions: mbstring, xml, ctype, json, tokenizer
+        
+    - name: Install Node dependencies
+      run: npm ci
+      
+    - name: Install Composer dependencies
+      run: composer install --no-dev --optimize-autoloader --no-interaction
+      
+    - name: Build theme for production
+      run: npm run build-theme
+      
+    - name: Verify build output
+      run: |
+        if [ ! -f "build/engispace-theme.zip" ]; then
+          echo "Build failed: engispace-theme.zip not found"
+          exit 1
+        fi
+        
+    - name: Extract theme for deployment
+      run: |
+        mkdir -p deploy-temp
+        unzip -q build/engispace-theme.zip -d deploy-temp/
+        
+    - name: Create backup script
+      run: |
+        cat > backup.sh << 'EOF'
+        #!/bin/bash
+        echo "Creating backup of current theme..."
+        mkdir -p backups/$(date +%Y%m%d_%H%M%S)
+        cp -r engispace-theme/* backups/$(date +%Y%m%d_%H%M%S)/ 2>/dev/null || true
+        echo "Backup created successfully"
+        EOF
+        chmod +x backup.sh
+        
+    - name: Deploy to Hostinger via FTP
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: ${{ secrets.FTP_HOST }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        port: ${{ secrets.FTP_PORT }}
+        local-dir: ./deploy-temp/
+        server-dir: /public_html/wp-content/themes/engispace-theme/
+        clean: false
+        dangerous-clean-slate: false
+        exclude: |
+          **/.git*
+          **/.git*/**
+          **/node_modules/**
+          **/build/**
+          .github/**
+          **/.DS_Store
+          backup.sh
+          
+    - name: Verify deployment
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.FTP_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        password: ${{ secrets.SSH_PASSWORD }}
+        port: ${{ secrets.SSH_PORT || 22 }}
+        script: |
+          cd /public_html/wp-content/themes/engispace-theme
+          if [ -f "style.css" ] && [ -f "functions.php" ]; then
+            echo "✅ Theme files deployed successfully"
+            echo "📁 Theme directory contents:"
+            ls -la
+          else
+            echo "❌ Deployment verification failed"
+            exit 1
+          fi
+          
+    - name: Clear WordPress cache (if applicable)
+      uses: appleboy/ssh-action@v1.0.0
+      continue-on-error: true
+      with:
+        host: ${{ secrets.FTP_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        password: ${{ secrets.SSH_PASSWORD }}
+        port: ${{ secrets.SSH_PORT || 22 }}
+        script: |
+          cd /public_html
+          # Clear common WordPress cache
+          find wp-content/cache -type f -name "*.cache" -delete 2>/dev/null || true
+          find wp-content/uploads/cache -type f -delete 2>/dev/null || true
+          echo "Cache cleared (if any existed)"
+          
+    - name: Send deployment notification
+      if: always()
+      uses: 8398a7/action-slack@v3
+      with:
+        status: ${{ job.status }}
+        text: |
+          🚀 *Production Deployment*
+          
+          *Status:* ${{ job.status == 'success' && '✅ Success' || '❌ Failed' }}
+          *Branch:* ${{ github.ref_name }}
+          *Commit:* ${{ github.sha }}
+          *Author:* ${{ github.actor }}
+          
+          ${{ job.status == 'success' && '🎉 Theme successfully deployed to production!' || '⚠️ Deployment failed. Please check the logs.' }}
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      continue-on-error: true
