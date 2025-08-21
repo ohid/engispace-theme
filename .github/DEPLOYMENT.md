@@ -29,10 +29,6 @@ SSH_PORT=22
 ```
 
 
-### Notifications (Optional)
-```
-SLACK_WEBHOOK_URL=your-slack-webhook-url
-```
 
 ## 🌿 Branch Strategy
 

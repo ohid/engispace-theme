@@ -20,34 +20,8 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
-        cache: 'npm'
-        
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.1'
-        extensions: mbstring, xml, ctype, json, tokenizer
-        
-    - name: Install Node dependencies
-      run: npm ci
-      
     - name: Install Composer dependencies
       run: composer install --no-dev --optimize-autoloader --no-interaction
-      
-    - name: Build CSS using Tailwind (skip Sass)
-      run: |
-        # Build Tailwind CSS directly
-        npx tailwindcss -i ./assets/scss/tailwind.scss -o ./assets/css/site-styles.css --minify
-        
-    - name: Minify CSS files
-      run: npx grunt cssmin
-      
-    - name: Minify JavaScript files  
-      run: npx grunt uglify
       
     - name: Create theme package
       run: |
@@ -147,21 +121,3 @@ jobs:
           find wp-content/cache -type f -name "*.cache" -delete 2>/dev/null || true
           find wp-content/uploads/cache -type f -delete 2>/dev/null || true
           echo "Cache cleared (if any existed)"
-          
-    - name: Send deployment notification
-      if: always()
-      uses: 8398a7/action-slack@v3
-      with:
-        status: ${{ job.status }}
-        text: |
-          🚀 *Production Deployment*
-          
-          *Status:* ${{ job.status == 'success' && '✅ Success' || '❌ Failed' }}
-          *Branch:* ${{ github.ref_name }}
-          *Commit:* ${{ github.sha }}
-          *Author:* ${{ github.actor }}
-          
-          ${{ job.status == 'success' && '🎉 Theme successfully deployed to production!' || '⚠️ Deployment failed. Please check the logs.' }}
-      env:
-        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-      continue-on-error: true
