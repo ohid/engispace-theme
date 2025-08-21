@@ -46,7 +46,7 @@ jobs:
         echo "✅ Theme package created: $(ls -lah build/engispace-theme/)"
         
     - name: Upload theme files directly to server
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
         server: ${{ secrets.FTP_HOST }}
         username: ${{ secrets.FTP_USERNAME }}
