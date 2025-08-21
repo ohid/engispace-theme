@@ -43,68 +43,18 @@ jobs:
                   --exclude='.github' \
                   ./ build/engispace-theme/
                   
-        # Create zip file
-        cd build
-        zip -r engispace-theme.zip engispace-theme/
-        cd ..
+        echo "✅ Theme package created: $(ls -lah build/engispace-theme/)"
         
-        echo "✅ Theme package created: $(ls -lah build/engispace-theme.zip)"
-        
-    - name: Create backup script
-      run: |
-        cat > backup.sh << 'EOF'
-        #!/bin/bash
-        echo "Creating backup of current theme..."
-        mkdir -p backups/$(date +%Y%m%d_%H%M%S)
-        cp -r engispace-theme/* backups/$(date +%Y%m%d_%H%M%S)/ 2>/dev/null || true
-        echo "Backup created successfully"
-        EOF
-        chmod +x backup.sh
-        
-    - name: Upload theme zip to server
+    - name: Upload theme files directly to server
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
         server: ${{ secrets.FTP_HOST }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         port: ${{ secrets.FTP_PORT }}
-        local-dir: ./build/
-        server-dir: wp-content/themes/
+        local-dir: ./build/engispace-theme/
+        server-dir: wp-content/themes/engispace-theme/
         dangerous-clean-slate: false
-          
-    - name: Extract theme on server
-      uses: appleboy/ssh-action@v1.0.0
-      with:
-        host: ${{ secrets.FTP_HOST }}
-        username: ${{ secrets.SSH_USERNAME }}
-        password: ${{ secrets.SSH_PASSWORD }}
-        port: ${{ secrets.SSH_PORT || 22 }}
-        script: |
-          cd wp-content/themes
-          
-          # Create backup of current theme
-          if [ -d "engispace-theme" ]; then
-            echo "📦 Creating backup..."
-            mv engispace-theme engispace-theme-backup-$(date +%Y%m%d_%H%M%S)
-          fi
-          
-          # Extract new theme
-          echo "📂 Extracting new theme..."
-          unzip -q engispace-theme.zip
-          
-          # Verify extraction
-          if [ -f "engispace-theme/style.css" ] && [ -f "engispace-theme/functions.php" ]; then
-            echo "✅ Theme extracted successfully"
-            echo "📁 Theme directory contents:"
-            ls -la engispace-theme/
-            
-            # Clean up zip file
-            rm engispace-theme.zip
-            echo "🧹 Cleaned up zip file"
-          else
-            echo "❌ Theme extraction failed"
-            exit 1
-          fi
           
     - name: Clear WordPress cache (if applicable)
       uses: appleboy/ssh-action@v1.0.0
