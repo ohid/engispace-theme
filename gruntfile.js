@@ -69,6 +69,43 @@ module.exports = function(grunt) {
                     ext: '.css'
                 }]
             }
+        },
+        clean: {
+            build: ['build/*'],
+            temp_folder: ['build/engispace-theme/']
+        },
+        copy: {
+            build: {
+                files: [
+                    {
+                        expand: true,
+                        src: [
+                            '**/*',
+                            '!node_modules/**',
+                            '!build/**',
+                            '!gruntfile.js',
+                            '!package.json',
+                            '!package-lock.json',
+                            '!composer.json',
+                            '!composer.lock',
+                            '!assets/scss/**',
+                            '!.git/**',
+                            '!.gitignore',
+                            '!.DS_Store',
+                            '!**/.DS_Store',
+                            '!tailwind.config.js',
+                            '!vendor/**'
+                        ],
+                        dest: 'build/engispace-theme/'
+                    }
+                ]
+            }
+        },
+        zip: {
+            build: {
+                src: ['build/engispace-theme/**/*'],
+                dest: 'build/engispace-theme.zip'
+            }
         }
     });
 
@@ -77,7 +114,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-uglify-es');
+    grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-zip');
 
     grunt.registerTask('default', ['sass', 'cssmin', 'uglify', 'imagemin']);
+    grunt.registerTask('build-theme', ['clean:build', 'sass', 'cssmin', 'uglify', 'copy:build', 'zip:build', 'clean:temp_folder']);
 
 };
