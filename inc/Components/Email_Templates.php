@@ -68,7 +68,7 @@ class Email_Templates {
         <p style="margin:0 0 20px;">Thank you for registering with <strong>' . get_bloginfo('name') . '</strong>! Please confirm your email address to activate your account and get started.</p>
         <table cellpadding="0" cellspacing="0" border="0" align="center" style="margin:25px auto;">
           <tr>
-            <td bgcolor="#0073e6" style="border-radius:6px;">
+            <td bgcolor="#EF4D1C" style="border-radius:6px;">
               <a href="' . esc_url($verification_url) . '" 
                  style="display:inline-block; padding:12px 25px; font-size:16px; color:#ffffff; text-decoration:none; border-radius:6px; font-weight:bold;">
                  Verify Email Address
@@ -77,7 +77,7 @@ class Email_Templates {
           </tr>
         </table>
         <p style="font-size:13px; color:#999; margin-top:20px;">Or copy and paste this link into your browser:</p>
-        <p style="font-size:13px; color:#0073e6; word-break:break-all;">
+        <p style="font-size:13px; color:#EF4D1C; word-break:break-all;">
           ' . esc_url($verification_url) . '
         </p>
         <p style="font-size:13px; color:#999;">⚠️ This link will expire in 24 hours.</p>
@@ -99,7 +99,7 @@ class Email_Templates {
         <p style="margin:0 0 20px;">You can now access all our features and start your learning journey with us.</p>
         <table cellpadding="0" cellspacing="0" border="0" align="center" style="margin:25px auto;">
           <tr>
-            <td bgcolor="#0073e6" style="border-radius:6px;">
+            <td bgcolor="#EF4D1C" style="border-radius:6px;">
               <a href="' . home_url() . '" 
                  style="display:inline-block; padding:12px 25px; font-size:16px; color:#ffffff; text-decoration:none; border-radius:6px; font-weight:bold;">
                  Start Learning Now
