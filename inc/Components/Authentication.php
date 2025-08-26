@@ -31,8 +31,8 @@ class Authentication implements Component_Interface {
         // Handle email verification
         add_action( 'init', array( $this, 'handle_email_verification' ) );
         
-        // Disable WordPress default new user notification email
-        add_filter( 'wp_new_user_notification_email', '__return_false' );
+        // Customize new user notification email to use verification email
+        add_filter( 'wp_new_user_notification_email', array( $this, 'customize_new_user_notification' ), 10, 3 );
         add_filter( 'wp_new_user_notification_email_admin', '__return_false' );
     }
 
@@ -118,7 +118,6 @@ class Authentication implements Component_Interface {
         // Make user inactive by adding meta
         update_user_meta($user_id, 'account_verified', false);
         update_user_meta($user_id, 'verification_token', wp_generate_password(32, false));
-        
         // Send verification email
         $this->send_verification_email($user_id);
 
@@ -134,6 +133,12 @@ class Authentication implements Component_Interface {
 
     public function send_verification_email($user_id) {
         $user = get_userdata($user_id);
+        
+        // Validate user exists and has email
+        if (!$user || empty($user->user_email)) {
+            return false;
+        }
+        
         $token = get_user_meta($user_id, 'verification_token', true);
         
         $verification_url = add_query_arg([
@@ -143,32 +148,11 @@ class Authentication implements Component_Interface {
         ], home_url());
         
         $subject = 'Welcome to EngiSpace! Please verify your email address';
+        $title = 'Welcome to ' . get_bloginfo('name') . '!';
+        $content = Email_Templates::get_verification_email_content($user->first_name, $verification_url);
         
-        $message = "
-        <html>
-        <body>
-            <h2>Welcome to " . get_bloginfo('name') . "!</h2>
-            <p>Hi {$user->first_name},</p>
-            <p>Thank you for registering! Please click the link below to verify your email address and activate your account:</p>
-            <p><a href='{$verification_url}' style='background: #0073aa; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;'>Verify Email Address</a></p>
-            <p>Or copy and paste this link: {$verification_url}</p>
-            <p>This link will expire in 24 hours.</p>
-            <p>Best regards,<br>The " . get_bloginfo('name') . " Team</p>
-        </body>
-        </html>
-        ";
+        $result = Email_Templates::send_email($user->user_email, $subject, $title, $content);
         
-        $headers = [
-            'Content-Type: text/html; charset=UTF-8',
-            'From: ' . get_bloginfo('name') . ' <' . get_option('admin_email') . '>'
-        ];
-        
-        $result = wp_mail($user->user_email, $subject, $message, $headers);
-        
-        // Log email result for debugging
-        if (!$result) {
-            error_log('Verification email failed to send to: ' . $user->user_email);
-        }
         
         return $result;
     }
@@ -207,40 +191,44 @@ class Authentication implements Component_Interface {
         $user = get_userdata($user_id);
         
         $subject = 'Welcome to ' . get_bloginfo('name') . '! Your account is now active';
+        $title = 'Welcome to ' . get_bloginfo('name') . '!';
+        $content = Email_Templates::get_welcome_email_content($user->first_name);
         
-        $message = "
-        <html>
-        <body>
-            <h2>Welcome to " . get_bloginfo('name') . "!</h2>
-            <p>Hi {$user->first_name},</p>
-            <p>Congratulations! Your email has been verified and your account is now active.</p>
-            <p>You can now:</p>
-            <ul>
-                <li>Access all premium content</li>
-                <li>Participate in our community forums</li>
-                <li>Download course materials</li>
-                <li>Track your learning progress</li>
-            </ul>
-            <p><a href='" . home_url() . "' style='background: #0073aa; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;'>Start Learning Now</a></p>
-            <p>If you have any questions, feel free to contact our support team.</p>
-            <p>Best regards,<br>The " . get_bloginfo('name') . " Team</p>
-        </body>
-        </html>
-        ";
+        return Email_Templates::send_email($user->user_email, $subject, $title, $content);
+    }
+    
+    /**
+     * Customize new user notification email to send verification email instead
+     */
+    public function customize_new_user_notification($wp_new_user_notification_email, $user, $blogname) {
+        // Generate verification token for the user
+        update_user_meta($user->ID, 'account_verified', false);
+        update_user_meta($user->ID, 'verification_token', wp_generate_password(32, false));
         
-        $headers = [
-            'Content-Type: text/html; charset=UTF-8',
-            'From: ' . get_bloginfo('name') . ' <' . get_option('admin_email') . '>'
-        ];
+        // Get verification URL
+        $token = get_user_meta($user->ID, 'verification_token', true);
+        $verification_url = add_query_arg([
+            'action' => 'verify_email',
+            'user_id' => $user->ID,
+            'token' => $token
+        ], home_url());
         
-        $result = wp_mail($user->user_email, $subject, $message, $headers);
+        // Create custom email content using our template
+        $subject = 'Welcome to EngiSpace! Please verify your email address';
+        $title = 'Welcome to ' . get_bloginfo('name') . '!';
+        $content = Email_Templates::get_verification_email_content($user->first_name, $verification_url);
+        $message = Email_Templates::get_template_wrapper($title, $content);
         
-        // Log email result for debugging
-        if (!$result) {
-            error_log('Welcome email failed to send to: ' . $user->user_email);
-        }
-        
-        return $result;
+        // Return customized email array
+        return array(
+            'to'      => $user->user_email,
+            'subject' => $subject,
+            'message' => $message,
+            'headers' => array(
+                'Content-Type: text/html; charset=UTF-8',
+                'From: ' . get_bloginfo('name') . ' <' . get_option('admin_email') . '>'
+            ),
+        );
     }
 
     public function forget_password() {
@@ -336,7 +324,7 @@ class Authentication implements Component_Interface {
         include( locate_template( 'templates/email/reset-password.php', false, false ) );
         $message = ob_get_clean();
 
-        $headers = array('Content-Type: text/html; charset=UTF-8','From: EngiSpace <admin@engiversity.com>');
+        $headers = array('Content-Type: text/html; charset=UTF-8','From: EngiSpace <no-reply@engispace.com>');
 
         wp_mail( $to, $subject, $message, $headers );
     }
