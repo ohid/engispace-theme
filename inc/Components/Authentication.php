@@ -148,7 +148,7 @@ class Authentication implements Component_Interface {
         ], home_url());
         
         $subject = 'Welcome to EngiSpace! Please verify your email address';
-        $title = 'Welcome to ' . get_bloginfo('name') . '!';
+        $title = 'Welcome to EngiSpace!';
         $content = Email_Templates::get_verification_email_content($user->first_name, $verification_url);
         
         $result = Email_Templates::send_email($user->user_email, $subject, $title, $content);
@@ -190,8 +190,8 @@ class Authentication implements Component_Interface {
     public function send_welcome_email($user_id) {
         $user = get_userdata($user_id);
         
-        $subject = 'Welcome to ' . get_bloginfo('name') . '! Your account is now active';
-        $title = 'Welcome to ' . get_bloginfo('name') . '!';
+        $subject = 'Welcome to EngiSpace! Your account is now active';
+        $title = 'Welcome to EngiSpace!';
         $content = Email_Templates::get_welcome_email_content($user->first_name);
         
         return Email_Templates::send_email($user->user_email, $subject, $title, $content);
@@ -215,7 +215,7 @@ class Authentication implements Component_Interface {
         
         // Create custom email content using our template
         $subject = 'Welcome to EngiSpace! Please verify your email address';
-        $title = 'Welcome to ' . get_bloginfo('name') . '!';
+        $title = 'Welcome to EngiSpace!';
         $content = Email_Templates::get_verification_email_content($user->first_name, $verification_url);
         $message = Email_Templates::get_template_wrapper($title, $content);
         
@@ -226,7 +226,7 @@ class Authentication implements Component_Interface {
             'message' => $message,
             'headers' => array(
                 'Content-Type: text/html; charset=UTF-8',
-                'From: ' . get_bloginfo('name') . ' <' . get_option('admin_email') . '>'
+                'From: EngiSpace <no-reply@engispace.com>'
             ),
         );
     }
