@@ -34,6 +34,9 @@ class Authentication implements Component_Interface {
         // Customize new user notification email to use verification email
         add_filter( 'wp_new_user_notification_email', array( $this, 'customize_new_user_notification' ), 10, 3 );
         add_filter( 'wp_new_user_notification_email_admin', '__return_false' );
+        
+        // Customize password reset email
+        add_filter( 'retrieve_password_message', array( $this, 'customize_password_reset_email' ), 10, 4 );
     }
 
     public function signin() {
@@ -230,6 +233,28 @@ class Authentication implements Component_Interface {
             ),
         );
     }
+    
+    /**
+     * Customize password reset email message
+     */
+    public function customize_password_reset_email($message, $key, $user_login, $user_data) {
+        // Generate reset URL
+        $reset_url = network_site_url("wp-login.php?action=rp&key=$key&login=" . rawurlencode($user_login), 'login');
+        
+        // Get user's first name, fallback to display name or username
+        $first_name = !empty($user_data->first_name) ? $user_data->first_name : 
+                     (!empty($user_data->display_name) ? $user_data->display_name : $user_data->user_login);
+        
+        // Create custom email content using our template
+        $title = 'Password Reset Request';
+        $content = Email_Templates::get_password_reset_email_content($first_name, $reset_url);
+        $message = Email_Templates::get_template_wrapper($title, $content);
+        
+        // Set HTML content type for this email
+        add_filter('wp_mail_content_type', function() { return 'text/html'; });
+        
+        return $message;
+    }
 
     public function forget_password() {
         if ( !wp_doing_ajax() ) {
@@ -320,12 +345,13 @@ class Authentication implements Component_Interface {
         $key = get_password_reset_key( $user );
         $reset_url = network_site_url("wp-login.php?action=rp&key=$key&login=" . rawurlencode($user->user_login), 'login');
 
-        ob_start();
-        include( locate_template( 'templates/email/reset-password.php', false, false ) );
-        $message = ob_get_clean();
+        // Get user's first name, fallback to display name or username
+        $first_name = !empty($user->first_name) ? $user->first_name : 
+                     (!empty($user->display_name) ? $user->display_name : $user->user_login);
 
-        $headers = array('Content-Type: text/html; charset=UTF-8','From: EngiSpace <no-reply@engispace.com>');
+        $title = 'Password Reset Request';
+        $content = Email_Templates::get_password_reset_email_content($first_name, $reset_url);
 
-        wp_mail( $to, $subject, $message, $headers );
+        return Email_Templates::send_email($to, $subject, $title, $content, 'EngiSpace', 'no-reply@engispace.com');
     }
 }

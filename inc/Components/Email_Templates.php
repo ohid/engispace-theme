@@ -77,7 +77,7 @@ class Email_Templates {
     public static function get_verification_email_content($first_name, $verification_url) {
         $content = '
         <p style="margin:0 0 15px;">Hi <strong>' . esc_html($first_name) . '</strong>,</p>
-        <p style="margin:0 0 20px;">Thank you for registering with <strong>' . get_bloginfo('name') . '</strong>! Please confirm your email address to activate your account and get started.</p>
+        <p style="margin:0 0 20px;">Thank you for registering with <strong>EngiSpace</strong>! Please confirm your email address to activate your account and get started.</p>
         <table cellpadding="0" cellspacing="0" border="0" align="center" style="margin:25px auto;">
           <tr>
             <td bgcolor="#f24c00" style="border-radius:6px;">
@@ -120,6 +120,39 @@ class Email_Templates {
           </tr>
         </table>
         <p style="font-size:13px; color:#999; margin-top:20px;">If you have any questions, feel free to contact our support team.</p>
+        ';
+        
+        return $content;
+    }
+    
+    /**
+     * Generate password reset email content
+     * 
+     * @param string $first_name User's first name
+     * @param string $reset_url Password reset URL
+     * @return string HTML email content
+     */
+    public static function get_password_reset_email_content($first_name, $reset_url) {
+        $content = '
+        <p style="margin:0 0 15px;">Hi <strong>' . esc_html($first_name) . '</strong>,</p>
+        <p style="margin:0 0 20px;">We received a request to reset your password for your <strong>EngiSpace</strong> account.</p>
+        <p style="margin:0 0 20px;">Click the button below to reset your password:</p>
+        <table cellpadding="0" cellspacing="0" border="0" align="center" style="margin:25px auto;">
+          <tr>
+            <td bgcolor="#f24c00" style="border-radius:6px;">
+              <a href="' . esc_url($reset_url) . '" 
+                 style="display:inline-block; padding:12px 25px; font-size:16px; color:#ffffff; text-decoration:none; border-radius:6px; font-weight:bold;">
+                 Reset Password
+              </a>
+            </td>
+          </tr>
+        </table>
+        <p style="font-size:13px; color:#999; margin-top:20px;">Or copy and paste this link into your browser:</p>
+        <p style="font-size:13px; color:#f24c00; word-break:break-all;">
+          ' . esc_url($reset_url) . '
+        </p>
+        <p style="font-size:13px; color:#999;">⚠️ This link will expire in 24 hours.</p>
+        <p style="font-size:13px; color:#999; margin-top:20px;">If you did not request a password reset, please ignore this email.</p>
         ';
         
         return $content;
