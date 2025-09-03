@@ -156,6 +156,9 @@ class Course_Purchase implements Component_Interface {
         // Enable access to the course for the user
         self::enable_course_access( $course_post->ID );
 
+        // Send purchase confirmation email
+        self::send_purchase_confirmation_email( $course_post );
+
         self::record_course_purchase_data( $course_post );
     }
 
@@ -201,6 +204,32 @@ class Course_Purchase implements Component_Interface {
         $success_page_url = get_site_url() . '/course-payment-success?course_id=' . es_custom_encrypt_value($course->ID);
 
         wp_send_json_success( $success_page_url );
+    }
+
+    /**
+     * Send purchase confirmation email to user
+     * 
+     * @param object $course_post Course post object
+     * @since 1.0.0
+     */
+    public static function send_purchase_confirmation_email( $course_post ) {
+        $user = wp_get_current_user();
+        if ( !$user || !$course_post ) {
+            return;
+        }
+
+        $course_title = get_the_title( $course_post->ID );
+        $course_url = get_permalink( $course_post->ID );
+        
+        // Get user's first name, fallback to display name or username
+        $first_name = !empty($user->first_name) ? $user->first_name : 
+                     (!empty($user->display_name) ? $user->display_name : $user->user_login);
+
+        $subject = 'Thank you for your purchase - ' . $course_title;
+        $title = 'Purchase Confirmation';
+        $content = Email_Templates::get_course_purchase_email_content($first_name, $course_title, $course_url);
+
+        return Email_Templates::send_email($user->user_email, $subject, $title, $content);
     }
 
 }

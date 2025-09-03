@@ -1053,6 +1053,59 @@
             });
         },
 
+        initAutoResizeTextareas: function() {
+            // Auto-resize textarea function
+            function autoResizeTextarea(textarea) {
+                textarea.style.height = '34px'; // Set default height first
+                var newHeight = Math.max(34, textarea.scrollHeight);
+                textarea.style.height = newHeight + 'px';
+            }
+
+            // Find all textareas and apply auto-resize
+            $(document).find('textarea').each(function() {
+                var textarea = this;
+                
+                // Set initial height
+                textarea.style.height = '34px';
+                autoResizeTextarea(textarea);
+                
+                // Auto-resize on input
+                $(textarea).on('input', function() {
+                    autoResizeTextarea(this);
+                });
+                
+                // Auto-resize on paste
+                $(textarea).on('paste', function() {
+                    setTimeout(function() {
+                        autoResizeTextarea(textarea);
+                    }, 0);
+                });
+            });
+
+            // Handle dynamically added textareas (for AJAX loaded content)
+            $(document).on('input paste', 'textarea', function() {
+                var textarea = this;
+                autoResizeTextarea(textarea);
+            });
+
+            // Handle Enter key submission (Enter to submit, Ctrl+Enter for new lines)
+            $(document).on('keydown', 'textarea', function(e) {
+                if (e.which === 13) { // Enter key
+                    if (e.ctrlKey || e.metaKey) {
+                        // Ctrl+Enter or Cmd+Enter - insert new line (allow default behavior)
+                        return true;
+                    } else {
+                        // Just Enter - submit form
+                        e.preventDefault();
+                        var $form = $(this).closest('form');
+                        if ($form.length) {
+                            $form.submit();
+                        }
+                    }
+                }
+            });
+        },
+
         init: function() {
             window.engispace.initHeaderFunctions();
             window.engispace.initCourseSliders();
@@ -1077,6 +1130,7 @@
             window.engispace.highlightJS();
             window.engispace.askQuestion();
             window.engispace.voteForumAnswers();
+            window.engispace.initAutoResizeTextareas();
 
             jQuery(window).on('resize', function() {
                 course_details_hover_box();

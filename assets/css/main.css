@@ -3837,8 +3837,11 @@ header {
         font-size: 14px;
         font-weight: 400;
         line-height: 24px;
-        border-bottom: 1px solid #E1E4E8;
         padding: 10px 0px; }
+        .es-forum-single-content-wrapper .es-content-area .es-content-comments ul li:not(:last-child) {
+          border-bottom: 1px solid #E1E4E8; }
+        .es-forum-single-content-wrapper .es-content-area .es-content-comments ul li:last-child {
+          padding-bottom: 0px; }
         .es-forum-single-content-wrapper .es-content-area .es-content-comments ul li a {
           color: #0366D6;
           font-weight: 700; }
@@ -3858,7 +3861,8 @@ header {
       border-radius: 6px;
       padding: 12px;
       width: 100%;
-      grid-template-columns: 30px calc(100% - 46px); }
+      grid-template-columns: 30px calc(100% - 46px);
+      margin-top: 20px; }
       .es-forum-single-content-wrapper .es-content-area .post-comment .logged-in-as {
         display: none; }
       .es-forum-single-content-wrapper .es-content-area .post-comment .es-author-img img {
@@ -3868,16 +3872,13 @@ header {
         width: 100%; }
         .es-forum-single-content-wrapper .es-content-area .post-comment form textarea {
           width: 100%;
-          padding: 10px 60px 10px 10px;
+          padding: 6px 60px 6px 10px;
           box-sizing: border-box;
           font-size: 14px;
-          border-radius: 5px; }
+          border-radius: 5px;
+          height: 34px; }
         .es-forum-single-content-wrapper .es-content-area .post-comment form button {
-          padding: 2px 10px;
-          font-size: 12px;
-          background: transparent;
-          color: #8e8f90;
-          border: 1px solid #8e8f90; }
+          display: none; }
   .es-forum-single-content-wrapper .es-content-sidebar {
     width: 25%;
     position: relative; }

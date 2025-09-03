@@ -159,6 +159,49 @@ class Email_Templates {
     }
     
     /**
+     * Generate course purchase confirmation email content
+     * 
+     * @param string $first_name User's first name
+     * @param string $course_title Course title
+     * @param string $course_url Course URL
+     * @return string HTML email content
+     */
+    public static function get_course_purchase_email_content($first_name, $course_title, $course_url = '') {
+        $content = '
+        <p style="margin:0 0 15px;">Hi <strong>' . esc_html($first_name) . '</strong>,</p>
+        <p style="margin:0 0 20px;">Thank you for purchasing <strong>' . esc_html($course_title) . '</strong> from <strong>EngiSpace</strong>!</p>
+        <p style="margin:0 0 20px;">Your payment has been successfully processed and you now have full access to the course content.</p>
+        <p style="margin:0 0 20px;">Here\'s what you can do now:</p>
+        <ul style="margin:0 0 20px 0; padding-left:20px; color:#555;">
+            <li style="margin-bottom:8px;">Access all course materials and videos</li>
+            <li style="margin-bottom:8px;">Download course resources</li>
+            <li style="margin-bottom:8px;">Participate in course discussions</li>
+            <li style="margin-bottom:8px;">Track your learning progress</li>
+        </ul>';
+        
+        if ($course_url) {
+            $content .= '
+            <table cellpadding="0" cellspacing="0" border="0" align="center" style="margin:25px auto;">
+              <tr>
+                <td bgcolor="#f24c00" style="border-radius:6px;">
+                  <a href="' . esc_url($course_url) . '" 
+                     style="display:inline-block; padding:12px 25px; font-size:16px; color:#ffffff; text-decoration:none; border-radius:6px; font-weight:bold;">
+                     Start Learning Now
+                  </a>
+                </td>
+              </tr>
+            </table>';
+        }
+        
+        $content .= '
+        <p style="font-size:13px; color:#999; margin-top:20px;">If you have any questions about the course, feel free to contact our support team.</p>
+        <p style="font-size:13px; color:#999;">Happy learning!</p>
+        ';
+        
+        return $content;
+    }
+    
+    /**
      * Send email with template
      * 
      * @param string $to Email address
