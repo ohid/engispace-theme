@@ -1285,7 +1285,8 @@ header {
         color: #646667B2; }
       .es-sc-comments-area .comment-list li .the-comment .comment-text {
         font-size: 16px;
-        line-height: 24px; }
+        line-height: 24px;
+        margin: 10px 0px; }
       .es-sc-comments-area .comment-list li .the-comment .comment-reply-link {
         text-decoration: none;
         color: inherit;
