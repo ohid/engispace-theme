@@ -7,19 +7,41 @@ if ( !ABSPATH ) exit;
 
 use Engispace\Services\Questions;
 
+// Get sort parameter
+$current_sort = isset($_GET['answer_sort']) ? sanitize_text_field($_GET['answer_sort']) : 'votes';
+
 $questions = new Questions();
-$comments = $questions->get_question_answers(get_the_ID());
+$comments = $questions->get_question_answers(get_the_ID(), $current_sort);
 ?>
 
 <div id="answers" class="es-forum-answers-section">
     <div class="es-forum-answers">
-        <div class="es-comment-title">
-            <?php
-            printf(
-                esc_html(_n('%s Answer', '%s Answers', count($comments), 'engispace-theme')),
-                number_format_i18n(count($comments))
-            );
-            ?>
+        <div class="es-forum-content-filter-navigation">
+            <div class="es-filter-label">
+                <?php
+                printf(
+                    esc_html(_n('%s Answer', '%s Answers', count($comments), 'engispace-theme')),
+                    number_format_i18n(count($comments))
+                );
+                ?>
+            </div>
+            <div class="es-filter-tabs">
+                <?php
+                $current_sort = isset($_GET['answer_sort']) ? sanitize_text_field($_GET['answer_sort']) : 'votes';
+                $sort_tabs = [
+                    'votes' => 'Votes',
+                    'chronological' => 'Chronological'
+                ];
+                
+                foreach ($sort_tabs as $sort_key => $sort_label) :
+                    $sort_url = add_query_arg('answer_sort', $sort_key);
+                    $active_class = ($current_sort === $sort_key) ? 'active' : '';
+                ?>
+                    <a href="<?php echo esc_url($sort_url); ?>" class="<?php echo esc_attr($active_class); ?>">
+                        <span class="es-icon"></span> <?php echo esc_html($sort_label); ?>
+                    </a>
+                <?php endforeach; ?>
+            </div>
         </div>
 
         <?php if ( have_comments() ) : ?>

@@ -330,7 +330,7 @@ class Questions implements Component_Interface {
         return $qa_comments;
     }
 
-    public function get_question_answers( $post_id = null ) {
+    public function get_question_answers( $post_id = null, $sort = 'votes' ) {
         // Get the current post ID (if you're in a loop or a singular post page)
         if ( !$post_id ) {
             $post_id = get_the_ID();
@@ -343,8 +343,43 @@ class Questions implements Component_Interface {
             'type'    => 'question_answers',   // Filter by your custom comment type.
         );
 
+        // Add sorting based on parameter
+        if ( $sort === 'votes' ) {
+            $args['meta_query'] = array(
+                'relation' => 'OR',
+                array(
+                    'key' => 'es_answer_upvotes',
+                    'compare' => 'EXISTS'
+                ),
+                array(
+                    'key' => 'es_answer_upvotes',
+                    'compare' => 'NOT EXISTS'
+                )
+            );
+            $args['orderby'] = 'meta_value_num';
+            $args['order'] = 'DESC';
+        } elseif ( $sort === 'chronological' ) {
+            $args['orderby'] = 'comment_date';
+            $args['order'] = 'DESC';
+        }
+
         // Retrieve the comments.
         $qa_comments = get_comments( $args );
+
+        // For votes sorting, we need to calculate reputation manually since get_comments doesn't support complex meta calculations
+        if ( $sort === 'votes' && $qa_comments ) {
+            usort( $qa_comments, function( $a, $b ) {
+                $upvotes_a = get_comment_meta( $a->comment_ID, 'es_answer_upvotes', true ) ?: array();
+                $downvotes_a = get_comment_meta( $a->comment_ID, 'es_answer_downvotes', true ) ?: array();
+                $reputation_a = count( $upvotes_a ) - count( $downvotes_a );
+
+                $upvotes_b = get_comment_meta( $b->comment_ID, 'es_answer_upvotes', true ) ?: array();
+                $downvotes_b = get_comment_meta( $b->comment_ID, 'es_answer_downvotes', true ) ?: array();
+                $reputation_b = count( $upvotes_b ) - count( $downvotes_b );
+
+                return $reputation_b - $reputation_a; // Descending order
+            });
+        }
 
         return $qa_comments;
     }
