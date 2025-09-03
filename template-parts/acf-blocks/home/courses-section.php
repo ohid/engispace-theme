@@ -56,7 +56,7 @@ $second_row_course_selector = get_field( 'second_row_course_selector' );
                             <?php if ( isset( $price_args['type'] ) && $price_args['type'] === 'paynow' ): ?>
                                 <ins><?php echo $es_currency . esc_html( $price_args['price'] ); ?></ins>
                             <?php endif; ?>
-                            <span>[rating content]</span>
+                            <span></span>
                         </div>
                     </div>
                     <?php 
@@ -87,7 +87,7 @@ $second_row_course_selector = get_field( 'second_row_course_selector' );
                         <?php if ( isset( $price_args['type'] ) && $price_args['type'] === 'paynow' ): ?>
                             <ins><?php echo $es_currency . esc_html( $price_args['price'] ); ?></ins>
                         <?php endif; ?>
-                        <span>[rating content]</span>
+                        <span></span>
                     </div>
                 </div>
                 <?php 

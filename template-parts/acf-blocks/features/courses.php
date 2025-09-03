@@ -69,7 +69,7 @@ $features_list = get_field( 'features_list' );
                             <?php if ( isset( $price_args['type'] ) && $price_args['type'] === 'paynow' ): ?>
                                 <ins><?php echo $es_currency . esc_html( $price_args['price'] ); ?></ins>
                             <?php endif; ?>
-                            <span>[rating content]</span>
+                            <span></span>
                         </div>
                     </div>
                     <?php 
