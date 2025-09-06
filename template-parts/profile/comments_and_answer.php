@@ -75,6 +75,17 @@ $comments_and_answers = $questions->get_comments_and_answers_by_user( $viewed_us
     <?php endforeach; ?>
 <?php else : ?>
     <div class="es-no-content">
-        <p><?php esc_html_e( 'You haven\'t made any comments or answers yet.', 'engispace' ); ?></p>
+        <?php 
+        $current_user_id = get_current_user_id();
+        if ( $current_user_id === $viewed_user_id ) {
+            // User viewing their own profile
+            $message = esc_html__( 'You haven\'t made any comments or answers yet.', 'engispace' );
+        } else {
+            // User viewing someone else's profile
+            $viewed_user_name = $viewed_user ? $viewed_user->display_name : 'This user';
+            $message = sprintf( esc_html__( '%s hasn\'t made any comments or answers yet.', 'engispace' ), $viewed_user_name );
+        }
+        ?>
+        <p><?php echo $message; ?></p>
     </div>
 <?php endif; ?>

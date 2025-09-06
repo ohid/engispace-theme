@@ -45,5 +45,21 @@ $query = $questions->get_question_by_user( $viewed_user_id );
             </div>
         <?php } ?>
     <?php 
-    } 
+    } else {
+        // No questions found - show contextual message
+        $current_user_id = get_current_user_id();
+        if ( $current_user_id === $viewed_user_id ) {
+            // User viewing their own profile
+            $message = esc_html__( 'You haven\'t asked any questions yet.', 'engispace' );
+        } else {
+            // User viewing someone else's profile
+            $viewed_user_name = $viewed_user ? $viewed_user->display_name : 'This user';
+            $message = sprintf( esc_html__( '%s hasn\'t asked any questions yet.', 'engispace' ), $viewed_user_name );
+        }
+        ?>
+        <div class="es-no-content">
+            <p><?php echo $message; ?></p>
+        </div>
+        <?php
+    }
 ?>
