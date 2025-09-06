@@ -1015,3 +1015,22 @@
         }
     }
 }
+// Profile Comments & Answers Styles
+.es-profile-comments-right {
+    width: 100%;
+    
+    .es-profile-comments-meta {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+// Smooth scroll behavior for anchor links
+html {
+    scroll-behavior: smooth;
+}
+
+// Scroll margin for better positioning with fixed headers
+#comment-*, #answer-* {
+    scroll-margin-top: 80px;
+}

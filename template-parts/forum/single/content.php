@@ -24,7 +24,7 @@ $post_user_id = get_post_field('post_author', get_the_ID());
                 $comments = $questions->get_question_comments(get_the_ID());
                 if ($comments) :
                     foreach ($comments as $comment) : ?>
-                        <li>
+                        <li id="comment-<?php echo esc_attr($comment->comment_ID); ?>">
                             <span class="es-comment-comment"><?php echo esc_html($comment->comment_content); ?></span> -
                             <span class="es-comment-author">
                                 <a href="<?php echo esc_url(es_get_profile_page_url($comment->user_id)); ?>">

@@ -13,10 +13,10 @@ if ( ! defined( 'ABSPATH' ) ) exit;
             'page' => 'questions',
             'title' => esc_html__( 'Forum Questions', 'engispace' ),
         ],
-        // [
-        //     'page' => 'comments_and_answer',
-        //     'title' => esc_html__( 'Comments & Answer', 'engispace' ),
-        // ],
+        [
+            'page' => 'comments_and_answer',
+            'title' => esc_html__( 'Comments & Answer', 'engispace' ),
+        ],
     ]
 ?>
 

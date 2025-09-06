@@ -426,7 +426,7 @@ function es_generate_buy_now_button( $price_args ) {
  * @return null|string 
  */
 function es_get_course_current_tab_class( $tab ) {
-    $current_page_tab = isset( $_GET['tab'] ) ? sanitize_text_field( $_GET['tab'] ) : 'content';
+    $current_page_tab = isset( $_GET['tab'] ) ? sanitize_text_field( $_GET['tab'] ) : 'courses';
 
     if ( $current_page_tab === $tab ) {
         return ' active';
@@ -588,7 +588,7 @@ function es_all_courses_page_title() {
 function es_answer_callback($comment) {
     $reputation_count = es_get_answer_reputation($comment->comment_ID);
     ?>
-    <div class="es-forum-answer">
+    <div class="es-forum-answer" id="answer-<?php echo esc_attr($comment->comment_ID); ?>">
         <div class="es-answer-reputation">
             <span class="es-ar-upvote">
                 <button class="es-forum-upvote-answer <?php echo es_user_has_voted($comment->comment_ID, 'upvote') ? 'voted' : ''; ?>" 

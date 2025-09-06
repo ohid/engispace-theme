@@ -403,4 +403,63 @@ class Questions implements Component_Interface {
 
         return $qa_comments;
     }
+
+    public function get_comments_and_answers_by_user( $user_id = false, $sort = 'recent' ) {
+        if ( !$user_id ) {
+            $user_id = get_current_user_id();
+        }
+
+        // Base args for getting user's comments and answers
+        $base_args = array(
+            'user_id' => $user_id,
+            'status'  => 'approve',
+            'post_type' => 'question', // Only comments on questions
+            'orderby' => 'comment_date',
+            'order' => 'DESC'
+        );
+
+        // Get comments
+        $comments_args = array_merge( $base_args, array(
+            'type' => 'question_comment'
+        ));
+        $comments = get_comments( $comments_args );
+
+        // Get answers  
+        $answers_args = array_merge( $base_args, array(
+            'type' => 'question_answers'
+        ));
+        $answers = get_comments( $answers_args );
+
+        // Combine and sort results
+        $combined = array_merge( $comments, $answers );
+
+        if ( $sort === 'recent' ) {
+            usort( $combined, function( $a, $b ) {
+                return strtotime( $b->comment_date ) - strtotime( $a->comment_date );
+            });
+        } elseif ( $sort === 'votes' ) {
+            // Only answers have votes, so prioritize by votes then by date
+            usort( $combined, function( $a, $b ) {
+                if ( $a->comment_type === 'question_answers' && $b->comment_type === 'question_answers' ) {
+                    $upvotes_a = get_comment_meta( $a->comment_ID, 'es_answer_upvotes', true ) ?: array();
+                    $downvotes_a = get_comment_meta( $a->comment_ID, 'es_answer_downvotes', true ) ?: array();
+                    $reputation_a = count( $upvotes_a ) - count( $downvotes_a );
+
+                    $upvotes_b = get_comment_meta( $b->comment_ID, 'es_answer_upvotes', true ) ?: array();
+                    $downvotes_b = get_comment_meta( $b->comment_ID, 'es_answer_downvotes', true ) ?: array();
+                    $reputation_b = count( $upvotes_b ) - count( $downvotes_b );
+
+                    return $reputation_b - $reputation_a;
+                } elseif ( $a->comment_type === 'question_answers' ) {
+                    return -1; // Prioritize answers over comments
+                } elseif ( $b->comment_type === 'question_answers' ) {
+                    return 1;
+                } else {
+                    return strtotime( $b->comment_date ) - strtotime( $a->comment_date );
+                }
+            });
+        }
+
+        return $combined;
+    }
 }

@@ -4202,4 +4202,16 @@ header {
       .es-search-wrapper .es-search-pagination span.page-numbers.current {
         background: linear-gradient(180deg, #EDF0F3 0%, #dadee2 100%); }
 
+.es-profile-comments-right {
+  width: 100%; }
+  .es-profile-comments-right .es-profile-comments-meta {
+    display: flex;
+    justify-content: space-between; }
+
+html {
+  scroll-behavior: smooth; }
+
+#comment-*, #answer-* {
+  scroll-margin-top: 80px; }
+
 /*# sourceMappingURL=main.css.map */
