@@ -2,9 +2,14 @@
 
 use Engispace\Services\Questions;
 
+// Get the profile being viewed
+$username = get_query_var('profile_username');
+$viewed_user = get_user_by('login', $username);
+$viewed_user_id = $viewed_user instanceof \WP_User ? $viewed_user->ID : get_current_user_id();
+
 $questions = new Questions();
 
-$comments_and_answers = $questions->get_comments_and_answers_by_user();
+$comments_and_answers = $questions->get_comments_and_answers_by_user( $viewed_user_id );
 ?>
 
 <?php if ( !empty( $comments_and_answers ) ) : ?>

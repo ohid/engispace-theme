@@ -49,7 +49,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
                 printf(
                     '<li class="%s"><a href="%s">%s</a></li>',
-                    es_get_course_current_tab_class( $page['page'] ),
+                    es_get_course_current_tab_class( $page['page'], $is_own_profile ? 'courses' : 'questions' ),
                     $url,
                     $page['title'],
                 );

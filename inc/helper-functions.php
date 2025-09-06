@@ -425,8 +425,8 @@ function es_generate_buy_now_button( $price_args ) {
  * 
  * @return null|string 
  */
-function es_get_course_current_tab_class( $tab ) {
-    $current_page_tab = isset( $_GET['tab'] ) ? sanitize_text_field( $_GET['tab'] ) : 'courses';
+function es_get_course_current_tab_class( $tab, $default_tab = 'courses' ) {
+    $current_page_tab = isset( $_GET['tab'] ) ? sanitize_text_field( $_GET['tab'] ) : $default_tab;
 
     if ( $current_page_tab === $tab ) {
         return ' active';
