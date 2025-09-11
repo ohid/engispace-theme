@@ -56,13 +56,6 @@ class Authentication implements Component_Interface {
         // Get the user by email
         $user = get_user_by( 'email', $email );
 
-        $is_verified = get_user_meta($user->ID, 'account_verified', true);
-        error_log($is_verified);
-        if(!$is_verified) {
-            wp_send_json_error( 'user_not_verified' );
-            die();
-        }
-
         if ( $user && wp_check_password( $password, $user->data->user_pass, $user->ID ) ) {
             // Password is correct, log the user in
             wp_set_current_user($user->ID, $user->user_login);
