@@ -209,12 +209,13 @@ class Questions implements Component_Interface {
     }
 
     public function print_author( $id ) {
-        $author_posts_url = esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) );
+        $author_username = get_the_author_meta( 'user_login' );
+        $author_profile_url = home_url( '/profile/' . $author_username );
         $author_name = get_the_author();
 
         printf(
             '<a href="%1$s" title="%2$s">%3$s</a>',
-            $author_posts_url,
+            esc_url( $author_profile_url ),
             esc_attr( $author_name ),
             esc_html( $author_name )
         );
