@@ -3663,6 +3663,12 @@ header {
     .es-forum-content-wrap .es-forum-content-entry:hover,
     .es-profile-page-content .es-forum-content-entry:hover {
       background: #FFFBEA; }
+    .es-forum-content-wrap .es-forum-content-entry .es-fce-left,
+    .es-profile-page-content .es-forum-content-entry .es-fce-left {
+      width: 40px; }
+    .es-forum-content-wrap .es-forum-content-entry .es-fce-right,
+    .es-profile-page-content .es-forum-content-entry .es-fce-right {
+      width: calc(100% - 40px); }
     .es-forum-content-wrap .es-forum-content-entry .es-comments-counter,
     .es-profile-page-content .es-forum-content-entry .es-comments-counter {
       background: #dadfe5;

@@ -235,6 +235,14 @@
         &:hover {
             background: #FFFBEA;
         }
+
+        .es-fce-left {
+            width: 40px;
+        }
+
+        .es-fce-right {
+            width: calc(100% - 40px);
+        }
         
         .es-comments-counter {    
             background: #dadfe5;
