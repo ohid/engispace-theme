@@ -2,14 +2,28 @@
 // File Security Check
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+// Get profile username from URL and current user info
+$profile_username = get_query_var('profile_username');
+$current_user = wp_get_current_user();
 
-// Check if profile_username exists
-$username = get_query_var('profile_username');
-$user = get_user_by('login', $username);
-if (!$user && is_user_logged_in()) {
-    $user = get_current_user();
+// Determine which user profile to display
+if ($profile_username) {
+    // Viewing specific user profile (/profile/username)
+    $user = get_user_by('login', $profile_username);
+} else if (is_user_logged_in()) {
+    // Viewing own profile (/profile)
+    $user = $current_user;
+} else {
+    $user = null;
 }
+
 $user_id = $user instanceof \WP_User ? $user->ID : 0;
+
+// Determine if edit buttons should be shown
+$show_edit_buttons = is_user_logged_in() && (
+    empty($profile_username) || 
+    $profile_username === $current_user->user_login
+);
 ?>
 
 <div class="es-user-personal-details">
@@ -18,7 +32,7 @@ $user_id = $user instanceof \WP_User ? $user->ID : 0;
     ?>
     <div class="es-person-name">
         <h3><?php echo es_get_current_user_display_name($user_id); ?></h3>
-        <?php if (is_user_logged_in() && get_current_user_id() === $user_id) : ?>
+        <?php if ($show_edit_buttons) : ?>
         <span class="es-icon" id="es-user-profile-details"><?php echo es_get_svg_icon( '/assets/img/pencil' ); ?></span>
         <?php endif; ?>
     </div>
@@ -28,7 +42,7 @@ $user_id = $user instanceof \WP_User ? $user->ID : 0;
 <div class="es-user-details-section">
     <div class="es-title">
         <h4>Contact</h4>
-        <?php if (is_user_logged_in() && get_current_user_id() === $user_id) : ?>
+        <?php if ($show_edit_buttons) : ?>
         <span class="es-icon" id="es-user-contact-details">
             <?php echo es_get_svg_icon( '/assets/img/pencil' ); ?>
         </span>
