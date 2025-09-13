@@ -6,6 +6,9 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 // Check if profile_username exists
 $username = get_query_var('profile_username');
 $user = get_user_by('login', $username);
+if (!$user && is_user_logged_in()) {
+    $user = get_current_user();
+}
 $user_id = $user instanceof \WP_User ? $user->ID : 0;
 ?>
 
