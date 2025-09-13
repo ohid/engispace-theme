@@ -144,11 +144,11 @@ class Review_Course implements Component_Interface {
         $author_name = !empty($author->first_name) ? $author->first_name : 
                       (!empty($author->display_name) ? $author->display_name : $author->user_login);
         $reviewer_name = es_get_user_display_name( $reviewer->ID );
-        $review_url = admin_url('admin.php?page=review_course&course_id=' . $course_id);
+        $review_url = home_url('/course-builder/' . $course_id . '/');
 
         // Email content
-        $subject = 'New review posted for your course: ' . $course_title;
-        $title = 'New Course Review';
+        $subject = 'Requires attention for your course: ' . $course_title;
+        $title = 'Course Update Required';
         $content = Email_Templates::get_course_review_email_content(
             $author_name, 
             $course_title, 

@@ -214,10 +214,10 @@ class Email_Templates {
     public static function get_course_review_email_content($author_name, $course_title, $reviewer_name, $review_content, $review_url = '') {
         $content = '
         <p style="margin:0 0 15px;">Hi <strong>' . esc_html($author_name) . '</strong>,</p>
-        <p style="margin:0 0 20px;">Great news! Someone has posted a new review for your course <strong>' . esc_html($course_title) . '</strong> on <strong>EngiSpace</strong>.</p>
+        <p style="margin:0 0 20px;">Thanks for creating a course on our EngiSpace platform. After reviewing your course, we think these changes are required before we publish the course on our platform. Please review the course and make the necessary changes.</p>
         
         <div style="background:#f9fafc; border-left:4px solid #f24c00; padding:20px; margin:20px 0;">
-            <p style="margin:0 0 10px; font-weight:bold; color:#333;">Review by ' . esc_html($reviewer_name) . ':</p>
+            <p style="margin:0 0 10px; font-weight:bold; color:#333;">Reviewed by ' . esc_html($reviewer_name) . ':</p>
             <p style="margin:0; color:#555; font-style:italic;">"' . esc_html($review_content) . '"</p>
         </div>
         
@@ -230,7 +230,7 @@ class Email_Templates {
                 <td bgcolor="#f24c00" style="border-radius:6px;">
                   <a href="' . esc_url($review_url) . '" 
                      style="display:inline-block; padding:12px 25px; font-size:16px; color:#ffffff; text-decoration:none; border-radius:6px; font-weight:bold;">
-                     View Review
+                     Update your course
                   </a>
                 </td>
               </tr>
