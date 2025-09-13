@@ -245,6 +245,71 @@ class Email_Templates {
     }
     
     /**
+     * Generate membership subscription confirmation email content
+     * 
+     * @param string $first_name User's first name
+     * @param string $membership_type Membership type (creator or pro)
+     * @return string HTML email content
+     */
+    public static function get_membership_subscription_email_content($first_name, $membership_type) {
+        $membership_title = ucfirst($membership_type) . ' Membership';
+        $benefits = [];
+        $cta_url = home_url();
+        $cta_text = 'Get Started';
+        
+        if ($membership_type === 'creator') {
+            $benefits = [
+                'Create and sell unlimited courses',
+                'Access to instructor dashboard and analytics',
+                'Priority support for course creation',
+                'Revenue sharing opportunities',
+                'Community access to connect with other creators'
+            ];
+            $cta_url = home_url('/instructor-dashboard');
+            $cta_text = 'Start Creating Courses';
+        } elseif ($membership_type === 'pro') {
+            $benefits = [
+                'Access to all premium courses',
+                'Download course materials and resources',
+                'Priority customer support',
+                'Exclusive webinars and live sessions',
+                'Community access and networking opportunities'
+            ];
+            $cta_url = home_url('/courses');
+            $cta_text = 'Browse Premium Courses';
+        }
+        
+        $content = '
+        <p style="margin:0 0 15px;">Hi <strong>' . esc_html($first_name) . '</strong>,</p>
+        <p style="margin:0 0 20px;">🎉 Congratulations! Your payment has been successfully processed and you are now a <strong>' . esc_html($membership_title) . '</strong> member of <strong>EngiSpace</strong>!</p>
+        <p style="margin:0 0 20px;">Your membership gives you access to exclusive benefits:</p>
+        <ul style="margin:0 0 20px 0; padding-left:20px; color:#555;">';
+        
+        foreach ($benefits as $benefit) {
+            $content .= '<li style="margin-bottom:8px;">' . esc_html($benefit) . '</li>';
+        }
+        
+        $content .= '
+        </ul>
+        <p style="margin:0 0 20px;">We\'re excited to have you as part of our community!</p>
+        <table cellpadding="0" cellspacing="0" border="0" align="center" style="margin:25px auto;">
+          <tr>
+            <td bgcolor="#f24c00" style="border-radius:6px;">
+              <a href="' . esc_url($cta_url) . '" 
+                 style="display:inline-block; padding:12px 25px; font-size:16px; color:#ffffff; text-decoration:none; border-radius:6px; font-weight:bold;">
+                 ' . esc_html($cta_text) . '
+              </a>
+            </td>
+          </tr>
+        </table>
+        <p style="font-size:13px; color:#999; margin-top:20px;">If you have any questions about your membership, feel free to contact our support team.</p>
+        <p style="font-size:13px; color:#999;">Welcome to the EngiSpace community!</p>
+        ';
+        
+        return $content;
+    }
+    
+    /**
      * Send email with template
      * 
      * @param string $to Email address

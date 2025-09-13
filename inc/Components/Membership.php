@@ -35,6 +35,9 @@ class Membership implements Component_Interface {
 
         // Update user role
         $this->update_user_role( $membership_type, $user_id );
+        
+        // Send membership confirmation email
+        $this->send_membership_confirmation_email( $user_id, $membership_type );
     }
 
     public function edd_payment_action_delay( $payment_id ) {
@@ -78,6 +81,40 @@ class Membership implements Component_Interface {
         }
 
         return $membership_type;
+    }
+
+    /**
+     * Send membership confirmation email to user
+     * 
+     * @since 1.0.0
+     * @param integer $user_id
+     * @param string $membership_type
+     * 
+     * @return void
+     */
+    public function send_membership_confirmation_email( $user_id, $membership_type ) {
+        if ( !$user_id || !$membership_type ) {
+            return;
+        }
+        
+        $user = get_user_by( 'id', $user_id );
+        if ( !$user ) {
+            return;
+        }
+        
+        $first_name = get_user_meta( $user_id, 'first_name', true );
+        if ( empty( $first_name ) ) {
+            $first_name = $user->display_name ?: 'Member';
+        }
+        
+        $email = $user->user_email;
+        $membership_title = ucfirst( $membership_type ) . ' Membership';
+        $subject = 'Welcome to Your ' . $membership_title . ' - EngiSpace';
+        $title = 'Membership Subscription Activated!';
+        
+        $content = Email_Templates::get_membership_subscription_email_content( $first_name, $membership_type );
+        
+        Email_Templates::send_email( $email, $subject, $title, $content );
     }
 
     /**
