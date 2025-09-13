@@ -15,7 +15,9 @@ $user_id = $user instanceof \WP_User ? $user->ID : 0;
     ?>
     <div class="es-person-name">
         <h3><?php echo es_get_current_user_display_name($user_id); ?></h3>
+        <?php if (is_user_logged_in() && get_current_user_id() === $user_id) : ?>
         <span class="es-icon" id="es-user-profile-details"><?php echo es_get_svg_icon( '/assets/img/pencil' ); ?></span>
+        <?php endif; ?>
     </div>
     <p><?php echo es_get_current_user_profile_bio($user_id); ?></p>
 </div>
@@ -23,9 +25,11 @@ $user_id = $user instanceof \WP_User ? $user->ID : 0;
 <div class="es-user-details-section">
     <div class="es-title">
         <h4>Contact</h4>
+        <?php if (is_user_logged_in() && get_current_user_id() === $user_id) : ?>
         <span class="es-icon" id="es-user-contact-details">
             <?php echo es_get_svg_icon( '/assets/img/pencil' ); ?>
         </span>
+        <?php endif; ?>
     </div>
     <div class="es-ups-content">
         <ul>
