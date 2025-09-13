@@ -109,7 +109,7 @@ class Membership implements Component_Interface {
         
         $email = $user->user_email;
         $membership_title = ucfirst( $membership_type ) . ' Membership';
-        $subject = 'Welcome to Your ' . $membership_title . ' - EngiSpace';
+        $subject = 'Thanks for subscring to ' . $membership_title . ' plan - EngiSpace';
         $title = 'Membership Subscription Activated!';
         
         $content = Email_Templates::get_membership_subscription_email_content( $first_name, $membership_type );

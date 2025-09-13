@@ -252,7 +252,7 @@ class Email_Templates {
      * @return string HTML email content
      */
     public static function get_membership_subscription_email_content($first_name, $membership_type) {
-        $membership_title = ucfirst($membership_type) . ' Membership';
+        $membership_title = ucfirst($membership_type);
         $benefits = [];
         $cta_url = home_url();
         $cta_text = 'Get Started';
