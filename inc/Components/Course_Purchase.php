@@ -146,7 +146,7 @@ class Course_Purchase implements Component_Interface {
      */
     public static function process_course_after_purchase() {
         $course_id = isset( $_GET['course_id'] ) ? $_GET['course_id'] : false;
-        $course_id = es_custom_decrypt_value( $course_id );
+        $course_id = es_custom_decrypt_value( sanitize_text_field( $course_id ) );
         $course_post = get_post( $course_id );
 
         if ( !is_user_logged_in() || !$course_post ) {

@@ -461,10 +461,15 @@ function es_custom_encrypt_value( $value ) {
     $cipher = "aes-256-cbc";
     $key = substr( hash( 'sha256', AUTH_KEY . SECURE_AUTH_KEY . LOGGED_IN_KEY . NONCE_KEY ), 0, 32 );
     $ivlen = openssl_cipher_iv_length($cipher);
-    $iv = openssl_random_pseudo_bytes($ivlen);
+    $iv = random_bytes($ivlen);
     $ciphertext = openssl_encrypt($value, $cipher, $key, $options=0, $iv);
+    
+    if ($ciphertext === false) {
+        return false;
+    }
 
-    return base64_encode($iv . $ciphertext);
+    // Use URL-safe base64 encoding to prevent issues with URL parameters
+    return rtrim(strtr(base64_encode($iv . $ciphertext), '+/', '-_'), '=');
 }
 
 /**
@@ -475,14 +480,28 @@ function es_custom_encrypt_value( $value ) {
  * @return string
  */
 function es_custom_decrypt_value( $encrypted_value ) {
+    if (empty($encrypted_value)) {
+        return false;
+    }
+    
     $cipher = "aes-256-cbc";
     $key = substr( hash( 'sha256', AUTH_KEY . SECURE_AUTH_KEY . LOGGED_IN_KEY . NONCE_KEY ), 0, 32 );
     $ivlen = openssl_cipher_iv_length($cipher);
+    
+    // Handle URL-safe base64 decoding
+    $encrypted_value = str_pad(strtr($encrypted_value, '-_', '+/'), strlen($encrypted_value) % 4, '=', STR_PAD_RIGHT);
     $data = base64_decode($encrypted_value);
+    
+    if ($data === false || strlen($data) < $ivlen) {
+        return false;
+    }
+    
     $iv = substr($data, 0, $ivlen);
     $ciphertext = substr($data, $ivlen);
 
-    return openssl_decrypt($ciphertext, $cipher, $key, $options=0, $iv);
+    $decrypted = openssl_decrypt($ciphertext, $cipher, $key, $options=0, $iv);
+    
+    return $decrypted !== false ? $decrypted : false;
 }
 
 /**
@@ -678,7 +697,6 @@ function es_get_question_view_count() {
         $updated = update_post_meta($post_id, 'es_question_view_count', $view_count);
         
         if (false === $updated) {
-            error_log(sprintf('Failed to update view count for question ID: %d', $post_id));
             return $view_count - 1; // Return non-incremented count if update fails
         }
     }

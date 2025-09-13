@@ -33,11 +33,6 @@ class Membership implements Component_Interface {
         $membership_type = $this->get_membership_type( $membership_name );
         $user_id = !empty( $payment->user_id ) ? $payment->user_id : 0;
 
-        error_log('$cart_details: ' . print_r($cart_details, true));
-        error_log('$membership_name: ' . $membership_name);
-        error_log('$membership_type: ' . $membership_type);
-        error_log('$user_id: ' . $user_id);
-
         // Update user role
         $this->update_user_role( $membership_type, $user_id );
     }
