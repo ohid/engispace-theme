@@ -74,6 +74,8 @@ class Review_Course implements Component_Interface {
         $submitted_review_id = $this->insert_course_review( $review, $course_id );
 
         if ( $submitted_review_id ) {
+            // Send email notification to course author
+            $this->send_review_notification_email( $course_id, $review );
             wp_send_json_success();
         }
 
@@ -108,5 +110,61 @@ class Review_Course implements Component_Interface {
         );
 
         return $reviews;
+    }
+
+    /**
+     * Send email notification to course author when a new review is posted
+     * 
+     * @param int $course_id Course ID
+     * @param string $review Review content
+     * @return bool Success status
+     */
+    public function send_review_notification_email( $course_id, $review ) {
+        // Get course data
+        $course = get_post( $course_id );
+        if ( !$course ) {
+            return false;
+        }
+
+        // Get course author
+        $author_id = $course->post_author;
+        $author = get_userdata( $author_id );
+        if ( !$author ) {
+            return false;
+        }
+
+        // Get reviewer data
+        $reviewer = wp_get_current_user();
+        if ( !$reviewer ) {
+            return false;
+        }
+
+        // Prepare email data
+        $course_title = $course->post_title;
+        $author_name = !empty($author->first_name) ? $author->first_name : 
+                      (!empty($author->display_name) ? $author->display_name : $author->user_login);
+        $reviewer_name = es_get_user_display_name( $reviewer->ID );
+        $review_url = admin_url('admin.php?page=review_course&course_id=' . $course_id);
+
+        // Email content
+        $subject = 'New review posted for your course: ' . $course_title;
+        $title = 'New Course Review';
+        $content = Email_Templates::get_course_review_email_content(
+            $author_name, 
+            $course_title, 
+            $reviewer_name, 
+            $review, 
+            $review_url
+        );
+
+        // Send email
+        return Email_Templates::send_email(
+            $author->user_email, 
+            $subject, 
+            $title, 
+            $content, 
+            'EngiSpace', 
+            'no-reply@engispace.com'
+        );
     }
 }

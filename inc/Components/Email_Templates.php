@@ -202,6 +202,49 @@ class Email_Templates {
     }
     
     /**
+     * Generate course review notification email content
+     * 
+     * @param string $author_name Course author's name
+     * @param string $course_title Course title
+     * @param string $reviewer_name Reviewer's name
+     * @param string $review_content Review content
+     * @param string $review_url URL to view review in admin
+     * @return string HTML email content
+     */
+    public static function get_course_review_email_content($author_name, $course_title, $reviewer_name, $review_content, $review_url = '') {
+        $content = '
+        <p style="margin:0 0 15px;">Hi <strong>' . esc_html($author_name) . '</strong>,</p>
+        <p style="margin:0 0 20px;">Great news! Someone has posted a new review for your course <strong>' . esc_html($course_title) . '</strong> on <strong>EngiSpace</strong>.</p>
+        
+        <div style="background:#f9fafc; border-left:4px solid #f24c00; padding:20px; margin:20px 0;">
+            <p style="margin:0 0 10px; font-weight:bold; color:#333;">Review by ' . esc_html($reviewer_name) . ':</p>
+            <p style="margin:0; color:#555; font-style:italic;">"' . esc_html($review_content) . '"</p>
+        </div>
+        
+        <p style="margin:0 0 20px;">This feedback helps build trust with potential students and improves your course visibility on our platform.</p>';
+        
+        if ($review_url) {
+            $content .= '
+            <table cellpadding="0" cellspacing="0" border="0" align="center" style="margin:25px auto;">
+              <tr>
+                <td bgcolor="#f24c00" style="border-radius:6px;">
+                  <a href="' . esc_url($review_url) . '" 
+                     style="display:inline-block; padding:12px 25px; font-size:16px; color:#ffffff; text-decoration:none; border-radius:6px; font-weight:bold;">
+                     View Review
+                  </a>
+                </td>
+              </tr>
+            </table>';
+        }
+        
+        $content .= '
+        <p style="font-size:13px; color:#999; margin-top:20px;">Keep up the great work creating valuable content for the EngiSpace community!</p>
+        ';
+        
+        return $content;
+    }
+    
+    /**
      * Send email with template
      * 
      * @param string $to Email address
