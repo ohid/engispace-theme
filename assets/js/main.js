@@ -274,7 +274,7 @@
                             $('#es-signup-form')[0].reset();
                             // reload the page
                             setTimeout(function() {
-                                window.location.href = engisapce_obj.siteurl;
+                                window.location.href = engisapce_obj.siteurl + '/profile';
                             }, 2000);
                         }
                     })

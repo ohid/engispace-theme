@@ -118,9 +118,9 @@ class Authentication implements Component_Interface {
         $this->send_verification_email($user_id);
 
         // automatically sign in the user
-        // wp_clear_auth_cookie();
-        // wp_set_current_user( $user_id );
-        // wp_set_auth_cookie( $user_id );
+        wp_clear_auth_cookie();
+        wp_set_current_user( $user_id );
+        wp_set_auth_cookie( $user_id );
 
         // Send the JSON success to the client end
         wp_send_json_success( 'user_created' );
