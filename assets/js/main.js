@@ -275,7 +275,7 @@
                             // reload the page
                             setTimeout(function() {
                                 window.location.href = engisapce_obj.siteurl + '/profile';
-                            }, 2000);
+                            }, 1000);
                         }
                     })
                 }
