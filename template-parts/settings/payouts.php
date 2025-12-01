@@ -1,5 +1,5 @@
 <div class="es-content-title">
-    <h3>Stripe API</h3>
+    <h3>Banking & Payouts</h3>
 </div>
 
 <div class="es-settings-tab-content es-settings-subscription-tab">
@@ -9,7 +9,7 @@
             if ( es_is_creator_user() ) { ?>
                 <div class="es-creator-stripe-api-form">
                     <p>Enter your Stripe Connect API key to receive commissions by selling your courses. <a href="https://docs.stripe.com/keys">Learn more.</a></p>
-                    <form method="POST" id="creator-stripe-api-form">
+                    <!-- <form method="POST" id="creator-stripe-api-form">
                         <div class="es-form-group">
                             <label for="es_creator_stripe_api">Stripe API</label>
                             <input type="password" name="es_creator_stripe_api" id="es_creator_stripe_api_field">
@@ -25,7 +25,7 @@
                                 <span class="btn-icon"><?php echo es_get_svg_icon( '/assets/img/loader' ); ?></span>
                             </button>
                         </div>
-                    </form>
+                    </form> -->
                 </div>
             <?php } else {
                 printf(
