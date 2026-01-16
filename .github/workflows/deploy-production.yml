@@ -57,7 +57,7 @@ jobs:
         dangerous-clean-slate: false
           
     - name: Clear WordPress cache (if applicable)
-      uses: appleboy/ssh-action@v1.0.0
+      uses: appleboy/ssh-action@v1.2.2
       continue-on-error: true
       with:
         host: ${{ secrets.FTP_HOST }}
