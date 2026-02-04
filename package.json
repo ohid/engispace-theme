@@ -6,7 +6,7 @@
 	"license": "GPL-3.0-or-later",
 	"homepage": "https://engispace.com",
 	"devDependencies": {
-		"grunt": "~0.4.5",
+		"grunt": "~1.6.1",
 		"grunt-contrib-clean": "^2.0.1",
 		"grunt-contrib-copy": "^1.0.0",
 		"grunt-contrib-cssmin": "~0.10.0",
